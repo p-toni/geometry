@@ -1,0 +1,24 @@
+:root {
+  --paper: #faf6ee;
+  --paper-2: #f4eee1;
+  --ink: #2a2420;
+  --ink-2: #5c524a;
+  --line: #ece4d3;
+  --accent: #c8956c;
+  --accent-ink: #8a5a38;
+
+  --block-amber: #fde68a;
+  --block-rose: #fecdd3;
+  --block-blue: #bfdbfe;
+  --block-green: #a7f3d0;
+  --block-purple: #e9d5ff;
+  --block-stone: #e7e5e4;
+
+  --font-display: 'Fraunces Variable', Georgia, serif;
+  --font-mono: 'JetBrains Mono Variable', 'SF Mono', monospace;
+
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+
+  --header-h: 48px;
+  --footer-h: 32px;
+}

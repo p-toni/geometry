@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "slug": "writing",
+  "title": "Writing",
+  "background": "paper",
+  "items": [
+    {
+      "id": "writing-title",
+      "type": "h2",
+      "col": 2,
+      "row": 2,
+      "cols": 13,
+      "rows": 3,
+      "color": 1,
+      "label": "writing",
+      "content": "Writing desk"
+    },
+    {
+      "id": "writing-md",
+      "type": "markdown",
+      "col": 4,
+      "row": 6,
+      "cols": 14,
+      "rows": 9,
+      "color": 5,
+      "label": "essay",
+      "content": "/content/writing.md",
+      "controls": [
+        {
+          "id": "writing-md-source",
+          "kind": "selector",
+          "value": "/content/writing.md",
+          "options": [
+            { "label": "writing", "value": "/content/writing.md" },
+            { "label": "about", "value": "/content/about.md" },
+            { "label": "project", "value": "/content/project.md" }
+          ]
+        },
+        {
+          "id": "writing-md-refresh",
+          "kind": "action"
+        }
+      ]
+    },
+    {
+      "id": "writing-code",
+      "type": "code",
+      "col": 22,
+      "row": 5,
+      "cols": 12,
+      "rows": 8,
+      "color": 2,
+      "label": "source",
+      "content": "export function snap(value: number) {\n  return Math.round(value);\n}\n\nexport function cell(width: number, height: number) {\n  return Math.min(width / 40, height / 20);\n}\n",
+      "controls": [
+        {
+          "id": "writing-code-raw",
+          "kind": "toggle",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "writing-home",
+      "type": "link",
+      "col": 26,
+      "row": 15,
+      "cols": 7,
+      "rows": 3,
+      "color": 0,
+      "label": "home",
+      "content": "home"
+    }
+  ]
+}

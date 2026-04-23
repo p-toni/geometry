@@ -1,0 +1,94 @@
+@import './design/fonts.css';
+@import './design/tokens.css';
+@import 'tailwindcss';
+
+@theme {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-block-amber: var(--block-amber);
+  --color-block-rose: var(--block-rose);
+  --color-block-blue: var(--block-blue);
+  --color-block-green: var(--block-green);
+  --color-block-purple: var(--block-purple);
+  --color-block-stone: var(--block-stone);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+::selection {
+  background: var(--block-rose);
+}
+
+.font-variation-soft {
+  font-variation-settings:
+    'opsz' 72,
+    'SOFT' 0,
+    'WONK' 0;
+}
+
+.canvas-grid {
+  background-image:
+    linear-gradient(to right, rgb(42 36 32 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(42 36 32 / 0.07) 1px, transparent 1px);
+  background-size: var(--cell) var(--cell);
+}
+
+.markdown-body p {
+  margin-block: 0 0.8em;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+  margin-block: 0 0.5em;
+  line-height: 0.95;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  margin-block: 0 0.8em;
+  padding-inline-start: 1.25rem;
+}
+
+.markdown-body a {
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}

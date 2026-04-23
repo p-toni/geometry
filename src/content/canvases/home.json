@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "slug": "home",
+  "title": "Geometry",
+  "background": "paper",
+  "items": [
+    {
+      "id": "home-title",
+      "type": "h1",
+      "col": 2,
+      "row": 2,
+      "cols": 15,
+      "rows": 4,
+      "color": 0,
+      "label": "home",
+      "content": "Geometry"
+    },
+    {
+      "id": "home-copy",
+      "type": "p",
+      "col": 3,
+      "row": 8,
+      "cols": 10,
+      "rows": 4,
+      "color": 5,
+      "label": "bio",
+      "content": "A personal website composed as a set of draggable, resizable, grid-aligned canvases."
+    },
+    {
+      "id": "home-quote",
+      "type": "quote",
+      "col": 21,
+      "row": 3,
+      "cols": 11,
+      "rows": 4,
+      "color": 1,
+      "label": "note",
+      "content": "Warm paper, serif display type, and a fixed 40 by 20 structure."
+    },
+    {
+      "id": "home-image",
+      "type": "image",
+      "col": 22,
+      "row": 10,
+      "cols": 12,
+      "rows": 7,
+      "color": 2,
+      "label": "sketch",
+      "content": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 560'><rect width='800' height='560' fill='%23faf6ee'/><circle cx='240' cy='220' r='145' fill='%23fecdd3'/><circle cx='520' cy='330' r='160' fill='%23a7f3d0'/><path d='M110 410 C260 250 410 500 690 160' stroke='%23c8956c' stroke-width='46' fill='none' stroke-linecap='round'/></svg>",
+      "controls": [
+        {
+          "id": "home-image-opacity",
+          "kind": "slider",
+          "value": 1,
+          "min": 0.2,
+          "max": 1
+        },
+        {
+          "id": "home-image-fit",
+          "kind": "toggle",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "home-writing",
+      "type": "link",
+      "col": 4,
+      "row": 15,
+      "cols": 8,
+      "rows": 3,
+      "color": 3,
+      "label": "writing",
+      "content": "writing"
+    },
+    {
+      "id": "home-project",
+      "type": "link",
+      "col": 13,
+      "row": 15,
+      "cols": 9,
+      "rows": 3,
+      "color": 4,
+      "label": "project",
+      "content": "projects/foo"
+    }
+  ]
+}
