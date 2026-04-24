@@ -1,5 +1,5 @@
 import nav from '../content/nav.json';
-import { slugToRoutePath } from '../lib/paths';
+import { slugToPath } from '../lib/paths';
 import { parseCanvas } from '../store/canvasSchema';
 import type { Canvas } from '../types';
 
@@ -50,7 +50,7 @@ const orderedSlugs = [
 
 export const canvasRoutes = orderedSlugs.map((slug) => ({
   slug,
-  path: slugToRoutePath(slug),
+  path: slugToPath(slug),
 }));
 
 export function getCanvas(slug: string) {
