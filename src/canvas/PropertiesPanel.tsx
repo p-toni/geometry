@@ -99,42 +99,42 @@ export function PropertiesPanel() {
       </div>
 
       <div className="grid grid-cols-4 gap-2">
-        <Field label="col">
+        <Field label="x">
           <input
             className={inputClass()}
             type="number"
             min={0}
-            max={GRID_COLS - selectedItem.cols}
+            max={GRID_COLS - 1}
             value={selectedItem.col}
             onChange={(event) => update({ col: asNumber(event.target.value) })}
           />
         </Field>
-        <Field label="row">
+        <Field label="y">
           <input
             className={inputClass()}
             type="number"
             min={0}
-            max={GRID_ROWS - selectedItem.rows}
+            max={GRID_ROWS - 1}
             value={selectedItem.row}
             onChange={(event) => update({ row: asNumber(event.target.value) })}
           />
         </Field>
-        <Field label="cols">
+        <Field label="w">
           <input
             className={inputClass()}
             type="number"
             min={1}
-            max={GRID_COLS - selectedItem.col}
+            max={GRID_COLS}
             value={selectedItem.cols}
             onChange={(event) => update({ cols: asNumber(event.target.value) })}
           />
         </Field>
-        <Field label="rows">
+        <Field label="h">
           <input
             className={inputClass()}
             type="number"
             min={1}
-            max={GRID_ROWS - selectedItem.row}
+            max={GRID_ROWS}
             value={selectedItem.rows}
             onChange={(event) => update({ rows: asNumber(event.target.value) })}
           />

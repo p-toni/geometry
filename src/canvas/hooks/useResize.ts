@@ -37,8 +37,6 @@ export function useResize({
         const next = clampItemSize(
           originCols + (moveEvent.clientX - originX) / cell,
           originRows + (moveEvent.clientY - originY) / cell,
-          item.col,
-          item.row,
         );
         setResizeGhost(next.cols, next.rows);
       };
@@ -57,9 +55,7 @@ export function useResize({
       enabled,
       endResize,
       id,
-      item.col,
       item.cols,
-      item.row,
       item.rows,
       select,
       setResizeGhost,

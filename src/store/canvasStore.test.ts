@@ -47,7 +47,18 @@ describe('createCanvasStore', () => {
   it('updates items and clamps grid values', () => {
     const store = createCanvasStore(seedCanvas());
     store.getState().updateItem('a', { col: 99, row: 99, cols: 8, rows: 8 });
-    expect(store.getState().canvas.items[0]).toMatchObject({ col: 32, row: 12 });
+    expect(store.getState().canvas.items[0]).toMatchObject({ col: 39, row: 19 });
+  });
+
+  it('allows items to resize to the full canvas regardless of position', () => {
+    const store = createCanvasStore(seedCanvas());
+    store.getState().updateItem('a', { col: 39, row: 19, cols: 99, rows: 99 });
+    expect(store.getState().canvas.items[0]).toMatchObject({
+      col: 39,
+      row: 19,
+      cols: 40,
+      rows: 20,
+    });
   });
 
   it('deletes selected items', () => {

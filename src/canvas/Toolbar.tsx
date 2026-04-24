@@ -41,6 +41,17 @@ const blockIcons: Record<BlockType, typeof Heading1> = {
   link: LinkIcon,
 };
 
+const controlSupport: Record<Control['kind'], BlockType[]> = {
+  toggle: ['h1', 'h2', 'h3', 'quote', 'code', 'image'],
+  slider: ['p', 'image'],
+  selector: ['markdown', 'link'],
+  action: ['markdown', 'code'],
+};
+
+function controlApplies(kind: Control['kind'], item: Item | undefined) {
+  return Boolean(item && controlSupport[kind].includes(item.type));
+}
+
 function selectorForItem(item: Item): Control {
   const withCurrentValue = (options: { label: string; value: string }[]) => {
     if (options.some((option) => option.value === item.content)) return options;
@@ -53,15 +64,6 @@ function selectorForItem(item: Item): Control {
       kind: 'selector',
       value: item.content,
       options: withCurrentValue(canvasSlugOptions),
-    };
-  }
-
-  if (item.type !== 'markdown') {
-    return {
-      id: createId('selector'),
-      kind: 'selector',
-      value: item.content,
-      options: [{ label: 'current', value: item.content }],
     };
   }
 
@@ -101,12 +103,12 @@ export function Toolbar({
   const deleteItem = useCanvasStore((state) => state.deleteItem);
 
   const attachControl = (kind: Control['kind']) => {
-    if (!selectedId || !selectedItem) return;
+    if (!selectedId || !selectedItem || !controlApplies(kind, selectedItem)) return;
     const control: Control =
       kind === 'toggle'
-        ? { id: createId('toggle'), kind: 'toggle', value: false }
+        ? { id: createId('toggle'), kind: 'toggle', value: true }
         : kind === 'slider'
-          ? { id: createId('slider'), kind: 'slider', value: 1, min: 0.2, max: 1 }
+          ? { id: createId('slider'), kind: 'slider', value: 0.75, min: 0.2, max: 1 }
           : kind === 'selector'
             ? selectorForItem(selectedItem)
             : { id: createId('action'), kind: 'action' };
@@ -159,7 +161,7 @@ export function Toolbar({
           type="button"
           title="Toggle"
           aria-label="Add toggle"
-          disabled={!selectedId}
+          disabled={!controlApplies('toggle', selectedItem)}
           className="flex h-8 w-8 items-center justify-center rounded-full border border-transparent transition enabled:hover:border-ink/15 enabled:hover:bg-paper-2 disabled:opacity-35"
           onClick={() => attachControl('toggle')}
         >
@@ -169,7 +171,7 @@ export function Toolbar({
           type="button"
           title="Slider"
           aria-label="Add slider"
-          disabled={!selectedId}
+          disabled={!controlApplies('slider', selectedItem)}
           className="flex h-8 w-8 items-center justify-center rounded-full border border-transparent transition enabled:hover:border-ink/15 enabled:hover:bg-paper-2 disabled:opacity-35"
           onClick={() => attachControl('slider')}
         >
@@ -179,7 +181,7 @@ export function Toolbar({
           type="button"
           title="Selector"
           aria-label="Add selector"
-          disabled={!selectedId}
+          disabled={!controlApplies('selector', selectedItem)}
           className="flex h-8 w-8 items-center justify-center rounded-full border border-transparent transition enabled:hover:border-ink/15 enabled:hover:bg-paper-2 disabled:opacity-35"
           onClick={() => attachControl('selector')}
         >
@@ -189,7 +191,7 @@ export function Toolbar({
           type="button"
           title="Action"
           aria-label="Add action"
-          disabled={!selectedId}
+          disabled={!controlApplies('action', selectedItem)}
           className="flex h-8 w-8 items-center justify-center rounded-full border border-transparent transition enabled:hover:border-ink/15 enabled:hover:bg-paper-2 disabled:opacity-35"
           onClick={() => attachControl('action')}
         >

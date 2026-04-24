@@ -139,10 +139,10 @@ export function Block({ item, cell, isMobile }: { item: Item; cell: number; isMo
       <button
         type="button"
         aria-label="Resize block"
-        title="Resize"
+        title="Resize diagonally"
         data-no-drag="true"
         className={cn(
-          'absolute bottom-1 right-1 flex h-6 w-6 items-center justify-center rounded-full border border-ink/10 bg-paper/85 text-ink-2 opacity-0 transition',
+          'absolute bottom-1 right-1 z-20 flex h-8 w-8 cursor-nwse-resize items-center justify-center rounded-full border border-ink/10 bg-paper/90 text-ink-2 opacity-0 shadow-sm transition hover:border-accent-ink',
           isSelected && 'opacity-100',
         )}
         onPointerDown={onResizePointerDown}

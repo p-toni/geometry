@@ -36,9 +36,8 @@ function cloneCanvas(canvas: Canvas): Canvas {
 }
 
 function normalizeItem(item: Item): Item {
-  const baseSize = clampItemSize(item.cols, item.rows, 0, 0);
-  const position = clampItemPosition(item.col, item.row, baseSize.cols, baseSize.rows);
-  const size = clampItemSize(baseSize.cols, baseSize.rows, position.col, position.row);
+  const size = clampItemSize(item.cols, item.rows);
+  const position = clampItemPosition(item.col, item.row);
   return {
     ...item,
     ...size,
@@ -49,7 +48,7 @@ function normalizeItem(item: Item): Item {
 function nextPosition(count: number, cols: number, rows: number) {
   const col = (count * 3) % Math.max(1, GRID_COLS - cols);
   const row = (count * 2) % Math.max(1, GRID_ROWS - rows);
-  return clampItemPosition(col, row, cols, rows);
+  return clampItemPosition(col, row);
 }
 
 export function createCanvasStore(initialCanvas: Canvas): CanvasStoreApi {

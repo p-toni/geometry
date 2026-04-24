@@ -35,12 +35,12 @@ describe('cellMath', () => {
   });
 
   it('clamps item position to the 40 by 20 grid', () => {
-    expect(clampItemPosition(-4, -2, 5, 5)).toEqual({ col: 0, row: 0 });
-    expect(clampItemPosition(50, 50, 5, 5)).toEqual({ col: 35, row: 15 });
+    expect(clampItemPosition(-4, -2)).toEqual({ col: 0, row: 0 });
+    expect(clampItemPosition(50, 50)).toEqual({ col: 39, row: 19 });
   });
 
-  it('clamps item size to the remaining grid space', () => {
-    expect(clampItemSize(0, 0, 10, 10)).toEqual({ cols: 1, rows: 1 });
-    expect(clampItemSize(50, 50, 38, 19)).toEqual({ cols: 2, rows: 1 });
+  it('clamps item size to the full grid', () => {
+    expect(clampItemSize(0, 0)).toEqual({ cols: 1, rows: 1 });
+    expect(clampItemSize(50, 50)).toEqual({ cols: 40, rows: 20 });
   });
 });

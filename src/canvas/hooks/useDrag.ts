@@ -41,8 +41,6 @@ export function useDrag({
         const next = clampItemPosition(
           originCol + (moveEvent.clientX - originX) / cell,
           originRow + (moveEvent.clientY - originY) / cell,
-          item.cols,
-          item.rows,
         );
         setDragGhost(next.col, next.row);
       };
@@ -56,6 +54,6 @@ export function useDrag({
       window.addEventListener('pointermove', onMove);
       window.addEventListener('pointerup', onUp);
     },
-    [cell, enabled, endDrag, id, item.col, item.cols, item.row, item.rows, select, setDragGhost, startDrag],
+    [cell, enabled, endDrag, id, item.col, item.row, select, setDragGhost, startDrag],
   );
 }
