@@ -21,7 +21,10 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { BLOCK_TYPES, IS_OWNER } from '../constants';
+import { markdownSources } from '../content/markdownRegistry';
 import { createId } from '../lib/id';
+import { slugToPath } from '../lib/paths';
+import { canvasSlugOptions } from '../routes/canvasRegistry';
 import { orderedCanvasForSave, useCanvasStore } from '../store/canvasStore';
 import type { BlockType, Canvas, Control, Item } from '../types';
 
@@ -38,21 +41,13 @@ const blockIcons: Record<BlockType, typeof Heading1> = {
   link: LinkIcon,
 };
 
-function slugToPath(slug: string) {
-  return slug === 'home' ? '/' : `/${slug.replace(/^\/+/, '')}`;
-}
-
 function selectorForItem(item: Item): Control {
   if (item.type === 'link') {
     return {
       id: createId('selector'),
       kind: 'selector',
       value: item.content,
-      options: [
-        { label: 'home', value: 'home' },
-        { label: 'writing', value: 'writing' },
-        { label: 'project', value: 'projects/foo' },
-      ],
+      options: canvasSlugOptions,
     };
   }
 
@@ -60,11 +55,7 @@ function selectorForItem(item: Item): Control {
     id: createId('selector'),
     kind: 'selector',
     value: item.content,
-    options: [
-      { label: 'about', value: '/content/about.md' },
-      { label: 'writing', value: '/content/writing.md' },
-      { label: 'project', value: '/content/project.md' },
-    ],
+    options: markdownSources,
   };
 }
 

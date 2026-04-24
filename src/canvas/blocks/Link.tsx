@@ -1,11 +1,8 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { tween } from '../../design/motion';
+import { slugToPath } from '../../lib/paths';
 import type { BlockRendererProps } from './types';
-
-function slugToPath(slug: string) {
-  return slug === 'home' ? '/' : `/${slug.replace(/^\/+/, '')}`;
-}
 
 export function Link({ item }: BlockRendererProps) {
   const navigate = useNavigate();

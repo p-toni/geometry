@@ -13,7 +13,7 @@ export function saveCanvasPlugin(): Plugin {
         }
 
         const slug = decodeURIComponent(req.url.slice('/__save/'.length));
-        if (!/^[a-z0-9/_-]+$/.test(slug)) {
+        if (!/^[a-z0-9][a-z0-9_-]*(\/[a-z0-9][a-z0-9_-]*)*$/.test(slug)) {
           res.statusCode = 400;
           return res.end('bad slug');
         }
@@ -28,7 +28,6 @@ export function saveCanvasPlugin(): Plugin {
             const path = resolve(process.cwd(), 'src/content/canvases', `${slug}.json`);
             await mkdir(dirname(path), { recursive: true });
             await writeFile(path, `${JSON.stringify(parsed, null, 2)}\n`);
-            server.ws.send({ type: 'full-reload' });
             res.statusCode = 200;
             res.end('ok');
           } catch (error) {

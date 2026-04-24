@@ -4,6 +4,7 @@ import { orderedCanvasForSave, useCanvasStore, CanvasStoreProvider } from '../st
 import type { Canvas as CanvasModel } from '../types';
 import { Block } from './Block';
 import { DemoChip } from './DemoChip';
+import { ErrorBoundary } from './ErrorBoundary';
 import { useCell } from './hooks/useCell';
 import { useKeyboard } from './hooks/useKeyboard';
 import { PropertiesPanel } from './PropertiesPanel';
@@ -79,7 +80,9 @@ function CanvasSurface() {
 export function Canvas({ initialCanvas }: { initialCanvas: CanvasModel }) {
   return (
     <CanvasStoreProvider initialCanvas={initialCanvas}>
-      <CanvasSurface />
+      <ErrorBoundary>
+        <CanvasSurface />
+      </ErrorBoundary>
     </CanvasStoreProvider>
   );
 }

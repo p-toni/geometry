@@ -72,6 +72,7 @@ export function Block({ item, cell, isMobile }: { item: Item; cell: number; isMo
   const renderRows = isResizing ? resizeState.ghostRows : item.rows;
   const onDragPointerDown = useDrag({ id: item.id, item, cell, enabled: !isMobile });
   const onResizePointerDown = useResize({ id: item.id, item, cell, enabled: !isMobile });
+  const isActiveGesture = isDragging || isResizing;
 
   if (isMobile) {
     return (
@@ -107,7 +108,7 @@ export function Block({ item, cell, isMobile }: { item: Item; cell: number; isMo
         height: cellToPx(renderRows, cell),
         scale: isSelected ? 1.01 : 1,
       }}
-      transition={spring.drag}
+      transition={isActiveGesture ? { duration: 0 } : spring.drag}
       onPointerDown={onDragPointerDown}
       onClick={(event) => {
         event.stopPropagation();

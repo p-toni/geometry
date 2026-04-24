@@ -1,4 +1,5 @@
 import nav from '../content/nav.json';
+import { slugToRoutePath } from '../lib/paths';
 import { parseCanvas } from '../store/canvasSchema';
 import type { Canvas } from '../types';
 
@@ -34,6 +35,10 @@ export const canvasesBySlug = new Map<string, Canvas>(
   canvases.map(({ slug, canvas }) => [slug, canvas]),
 );
 
+export const canvasSlugOptions = canvases
+  .map(({ slug, canvas }) => ({ label: canvas.title || slug, value: slug }))
+  .sort((a, b) => a.label.localeCompare(b.label));
+
 const order = readOrder(nav);
 const orderedSlugs = [
   ...order.filter((slug) => canvasesBySlug.has(slug)),
@@ -45,7 +50,7 @@ const orderedSlugs = [
 
 export const canvasRoutes = orderedSlugs.map((slug) => ({
   slug,
-  path: slug === 'home' ? '/' : slug,
+  path: slugToRoutePath(slug),
 }));
 
 export function getCanvas(slug: string) {

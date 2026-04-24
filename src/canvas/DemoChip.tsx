@@ -21,7 +21,7 @@ export function DemoChip() {
           <span>demo mode · changes won&apos;t save</span>
           <button
             type="button"
-            title="Reset"
+            title="Reset canvas (R)"
             aria-label="Reset canvas"
             className="flex h-6 w-6 items-center justify-center rounded-full border border-ink/10 transition hover:border-accent-ink"
             onClick={reset}
