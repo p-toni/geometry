@@ -100,6 +100,15 @@ describe('createCanvasStore', () => {
     expect(store.getState().canvas.items[0].content).toBe('two');
   });
 
+  it('ignores duplicate controls of the same kind on an item', () => {
+    const store = createCanvasStore(seedCanvas());
+    store.getState().addControl('a', { id: 's1', kind: 'selector', value: 'one', options: [] });
+    store.getState().addControl('a', { id: 's2', kind: 'selector', value: 'two', options: [] });
+    expect(store.getState().canvas.items[0].controls).toEqual([
+      { id: 's1', kind: 'selector', value: 'one', options: [] },
+    ]);
+  });
+
   it('bumps refresh keys for action controls', () => {
     const store = createCanvasStore(seedCanvas());
     store.getState().triggerAction('a');

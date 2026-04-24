@@ -92,6 +92,7 @@ function parseItem(value: unknown, path: string): Item {
     color: value.color,
     label: value.label,
     content: value.content,
+    linkIcon: isString(value.linkIcon) ? value.linkIcon : undefined,
     controls,
     refreshKey: isFiniteNumber(value.refreshKey) ? value.refreshKey : undefined,
   };

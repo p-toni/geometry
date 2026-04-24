@@ -75,6 +75,7 @@ export function createCanvasStore(initialCanvas: Canvas): CanvasStoreApi {
           color: (state.canvas.items.length % 6) as Item['color'],
           label: defaults.label,
           content: defaults.content,
+          linkIcon: type === 'link' ? 'link' : undefined,
         });
         return {
           canvas: { ...state.canvas, items: [...state.canvas.items, item] },
@@ -99,15 +100,24 @@ export function createCanvasStore(initialCanvas: Canvas): CanvasStoreApi {
         hasDiverged: true,
       })),
     addControl: (id, control) =>
-      set((state) => ({
-        canvas: {
-          ...state.canvas,
-          items: state.canvas.items.map((item) =>
-            item.id === id ? { ...item, controls: [...(item.controls ?? []), control] } : item,
-          ),
-        },
-        hasDiverged: true,
-      })),
+      set((state) => {
+        let added = false;
+        const items = state.canvas.items.map((item) => {
+          if (item.id !== id) return item;
+          const controls = item.controls ?? [];
+          if (controls.some((existing) => existing.kind === control.kind)) return item;
+          added = true;
+          return { ...item, controls: [...controls, control] };
+        });
+        if (!added) return state;
+        return {
+          canvas: {
+            ...state.canvas,
+            items,
+          },
+          hasDiverged: true,
+        };
+      }),
     updateControl: (itemId, control) =>
       set((state) => ({
         canvas: {
@@ -263,6 +273,7 @@ function orderedItem(item: Item): Item {
     color: item.color,
     label: item.label,
     content: item.content,
+    linkIcon: item.linkIcon,
     controls: item.controls?.map(orderedControl),
     refreshKey: item.refreshKey,
   };

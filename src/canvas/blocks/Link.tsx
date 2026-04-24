@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { tween } from '../../design/motion';
 import { cn } from '../../lib/cn';
+import { LinkIcon } from '../../lib/linkIcons';
 import { slugToPath } from '../../lib/paths';
 import type { BlockRendererProps } from './types';
 
@@ -14,8 +16,8 @@ export function Link({ item }: BlockRendererProps) {
       type="button"
       data-no-drag="true"
       className={cn(
-        'group flex h-full w-full flex-col rounded-[6px] border border-ink/10 bg-paper/50 text-left transition hover:border-accent-ink',
-        isCompact ? 'justify-end px-2 pb-2 pt-1' : 'justify-end p-3',
+        'group flex h-full w-full rounded-[6px] border border-ink/10 bg-paper/55 text-left transition hover:border-accent-ink hover:bg-paper/70',
+        isCompact ? 'items-end gap-2 p-2' : 'items-stretch gap-3 p-3',
       )}
       whileHover={{ y: -2 }}
       transition={tween.hover}
@@ -27,21 +29,45 @@ export function Link({ item }: BlockRendererProps) {
     >
       <span
         className={cn(
-          'max-w-full truncate font-display leading-none tracking-normal',
-          isCompact ? 'text-[16px]' : 'text-[24px]',
+          'flex shrink-0 items-center justify-center rounded-[6px] border border-ink/10 bg-paper text-accent-ink shadow-sm transition group-hover:border-accent-ink',
+          isCompact ? 'h-9 w-9' : 'h-full min-h-16 w-16',
         )}
-        style={{ fontVariationSettings: `'opsz' 72, 'SOFT' 30, 'WONK' 1` }}
+        aria-hidden="true"
       >
-        {item.label}
+        <LinkIcon name={item.linkIcon} size={isCompact ? 18 : 25} strokeWidth={1.8} />
       </span>
-      <span className={cn('h-px w-full origin-left scale-x-0 bg-accent-ink transition-transform duration-150 group-hover:scale-x-100', isCompact ? 'mt-1' : 'mt-2')} />
-      <span
-        className={cn(
-          'max-w-full truncate font-mono uppercase tracking-[0.12em] text-ink-2',
-          isCompact ? 'mt-1 text-[8px]' : 'mt-2 text-[10px]',
-        )}
-      >
-        {item.content === 'home' ? '/' : item.content}
+      <span className={cn('flex min-w-0 flex-1 flex-col', isCompact ? 'justify-end' : 'justify-between')}>
+        <span className="flex min-w-0 items-start justify-between gap-2">
+          <span
+            className={cn(
+              'min-w-0 truncate font-display leading-none tracking-normal',
+              isCompact ? 'text-[18px]' : 'text-[28px]',
+            )}
+            style={{ fontVariationSettings: `'opsz' 72, 'SOFT' 30, 'WONK' 1` }}
+          >
+            {item.label}
+          </span>
+          {!isCompact ? (
+            <ArrowRight
+              size={16}
+              className="mt-1 shrink-0 text-ink-2 transition group-hover:translate-x-1 group-hover:text-accent-ink"
+            />
+          ) : null}
+        </span>
+        <span
+          className={cn(
+            'h-px w-full origin-left scale-x-0 bg-accent-ink transition-transform duration-150 group-hover:scale-x-100',
+            isCompact ? 'mt-1' : 'my-2',
+          )}
+        />
+        <span
+          className={cn(
+            'max-w-full truncate font-mono uppercase tracking-[0.12em] text-ink-2',
+            isCompact ? 'text-[8px]' : 'text-[10px]',
+          )}
+        >
+          {item.content === 'home' ? '/' : item.content}
+        </span>
       </span>
     </motion.button>
   );

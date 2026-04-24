@@ -39,6 +39,7 @@ export interface Item {
   color: ColorToken;
   label: string;
   content: string;
+  linkIcon?: string;
   controls?: Control[];
   refreshKey?: number;
 }

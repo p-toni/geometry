@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react';
 import { WandSparkles, X } from 'lucide-react';
 import { BLOCK_TYPES, COLORS, GRID_COLS, GRID_ROWS, IS_OWNER } from '../constants';
 import { cn } from '../lib/cn';
+import { LinkIcon, LINK_ICON_OPTIONS } from '../lib/linkIcons';
 import { useCanvasStore } from '../store/canvasStore';
 import type { BlockType, ColorToken, Item } from '../types';
 
@@ -162,6 +163,34 @@ export function PropertiesPanel() {
           onChange={(event) => update({ content: event.target.value })}
         />
       </Field>
+
+      {selectedItem.type === 'link' ? (
+        <div className="grid gap-2 border-t border-line pt-3">
+          <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink-2">
+            icon
+          </span>
+          <div className="grid grid-cols-5 gap-1">
+            {LINK_ICON_OPTIONS.map(({ name, label }) => {
+              const selected = (selectedItem.linkIcon ?? 'link') === name;
+              return (
+                <button
+                  key={name}
+                  type="button"
+                  title={label}
+                  aria-label={`Use ${label} icon`}
+                  className={cn(
+                    'flex h-9 items-center justify-center rounded-[6px] border bg-paper transition hover:border-accent-ink',
+                    selected ? 'border-accent-ink text-accent-ink' : 'border-ink/10 text-ink-2',
+                  )}
+                  onClick={() => update({ linkIcon: name })}
+                >
+                  <LinkIcon name={name} size={16} strokeWidth={1.9} />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
 
       {IS_OWNER && selectedItem.type === 'image' ? (
         <div className="grid gap-2 border-t border-line pt-3">

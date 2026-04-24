@@ -52,6 +52,14 @@ function controlApplies(kind: Control['kind'], item: Item | undefined) {
   return Boolean(item && controlSupport[kind].includes(item.type));
 }
 
+function hasControl(kind: Control['kind'], item: Item | undefined) {
+  return Boolean(item?.controls?.some((control) => control.kind === kind));
+}
+
+function canAttachControl(kind: Control['kind'], item: Item | undefined) {
+  return controlApplies(kind, item) && !hasControl(kind, item);
+}
+
 function selectorForItem(item: Item): Control {
   const withCurrentValue = (options: { label: string; value: string }[]) => {
     if (options.some((option) => option.value === item.content)) return options;
@@ -103,7 +111,7 @@ export function Toolbar({
   const deleteItem = useCanvasStore((state) => state.deleteItem);
 
   const attachControl = (kind: Control['kind']) => {
-    if (!selectedId || !selectedItem || !controlApplies(kind, selectedItem)) return;
+    if (!selectedId || !selectedItem || !canAttachControl(kind, selectedItem)) return;
     const control: Control =
       kind === 'toggle'
         ? { id: createId('toggle'), kind: 'toggle', value: true }
@@ -161,7 +169,7 @@ export function Toolbar({
           type="button"
           title="Toggle"
           aria-label="Add toggle"
-          disabled={!controlApplies('toggle', selectedItem)}
+          disabled={!canAttachControl('toggle', selectedItem)}
           className="flex h-8 w-8 items-center justify-center rounded-full border border-transparent transition enabled:hover:border-ink/15 enabled:hover:bg-paper-2 disabled:opacity-35"
           onClick={() => attachControl('toggle')}
         >
@@ -171,7 +179,7 @@ export function Toolbar({
           type="button"
           title="Slider"
           aria-label="Add slider"
-          disabled={!controlApplies('slider', selectedItem)}
+          disabled={!canAttachControl('slider', selectedItem)}
           className="flex h-8 w-8 items-center justify-center rounded-full border border-transparent transition enabled:hover:border-ink/15 enabled:hover:bg-paper-2 disabled:opacity-35"
           onClick={() => attachControl('slider')}
         >
@@ -181,7 +189,7 @@ export function Toolbar({
           type="button"
           title="Selector"
           aria-label="Add selector"
-          disabled={!controlApplies('selector', selectedItem)}
+          disabled={!canAttachControl('selector', selectedItem)}
           className="flex h-8 w-8 items-center justify-center rounded-full border border-transparent transition enabled:hover:border-ink/15 enabled:hover:bg-paper-2 disabled:opacity-35"
           onClick={() => attachControl('selector')}
         >
@@ -191,7 +199,7 @@ export function Toolbar({
           type="button"
           title="Action"
           aria-label="Add action"
-          disabled={!controlApplies('action', selectedItem)}
+          disabled={!canAttachControl('action', selectedItem)}
           className="flex h-8 w-8 items-center justify-center rounded-full border border-transparent transition enabled:hover:border-ink/15 enabled:hover:bg-paper-2 disabled:opacity-35"
           onClick={() => attachControl('action')}
         >
