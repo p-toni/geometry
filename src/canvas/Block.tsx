@@ -179,7 +179,7 @@ function BlockChrome({
     >
       <div
         className={cn(
-          'pointer-events-auto flex h-6 min-w-0 max-w-[min(320px,100%)] items-stretch overflow-hidden rounded-lg border bg-paper/95 shadow-sm backdrop-blur-sm',
+          'pointer-events-auto flex h-6 min-w-0 max-w-[min(320px,100%)] items-stretch rounded-lg border bg-paper/95 shadow-sm backdrop-blur-sm',
           isSelected ? 'border-accent-ink' : 'border-ink/15',
         )}
       >
