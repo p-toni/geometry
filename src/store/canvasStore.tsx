@@ -98,8 +98,9 @@ export function createCanvasStore(initialCanvas: Canvas): CanvasStoreApi {
       set((state) => {
         const fromItem = state.canvas.items.find((item) => item.id === fromItemId);
         const preferred =
-          state.canvas.items.find((item) => item.type === 'markdown' && item.id.includes('reader')) ??
-          fromItem;
+          state.canvas.items.find(
+            (item) => item.type === 'markdown' && item.id.includes('reader'),
+          ) ?? fromItem;
         if (!preferred || preferred.type !== 'markdown') return state;
         const targetId = preferred.id;
         return {
@@ -162,7 +163,10 @@ export function createCanvasStore(initialCanvas: Canvas): CanvasStoreApi {
           ...state.canvas,
           items: state.canvas.items.map((item) =>
             item.id === itemId
-              ? { ...item, controls: (item.controls ?? []).filter((control) => control.id !== controlId) }
+              ? {
+                  ...item,
+                  controls: (item.controls ?? []).filter((control) => control.id !== controlId),
+                }
               : item,
           ),
         },
@@ -185,7 +189,9 @@ export function createCanvasStore(initialCanvas: Canvas): CanvasStoreApi {
     },
     setDragGhost: (col, row) =>
       set((state) =>
-        state.dragState ? { dragState: { ...state.dragState, ghostCol: col, ghostRow: row } } : state,
+        state.dragState
+          ? { dragState: { ...state.dragState, ghostCol: col, ghostRow: row } }
+          : state,
       ),
     endDrag: (commit) =>
       set((state) => {
@@ -196,7 +202,9 @@ export function createCanvasStore(initialCanvas: Canvas): CanvasStoreApi {
             ? {
                 ...state.canvas,
                 items: state.canvas.items.map((item) =>
-                  item.id === id ? normalizeItem({ ...item, col: ghostCol, row: ghostRow }) : item,
+                  item.id === id
+                    ? normalizeItem({ ...item, col: ghostCol, row: ghostRow })
+                    : item,
                 ),
               }
             : state.canvas,
@@ -224,7 +232,9 @@ export function createCanvasStore(initialCanvas: Canvas): CanvasStoreApi {
             ? {
                 ...state.canvas,
                 items: state.canvas.items.map((item) =>
-                  item.id === id ? normalizeItem({ ...item, cols: ghostCols, rows: ghostRows }) : item,
+                  item.id === id
+                    ? normalizeItem({ ...item, cols: ghostCols, rows: ghostRows })
+                    : item,
                 ),
               }
             : state.canvas,
@@ -264,7 +274,8 @@ export function useCanvasStore<T>(selector: (state: CanvasState) => T): T {
 }
 
 function orderedControl(control: Control): Control {
-  if (control.kind === 'toggle') return { id: control.id, kind: 'toggle', value: control.value };
+  if (control.kind === 'toggle')
+    return { id: control.id, kind: 'toggle', value: control.value };
   if (control.kind === 'slider') {
     return {
       id: control.id,
@@ -281,6 +292,9 @@ function orderedControl(control: Control): Control {
       value: control.value,
       options: control.options.map((option) => ({ label: option.label, value: option.value })),
     };
+  }
+  if (control.kind === 'align') {
+    return { id: control.id, kind: 'align', value: control.value };
   }
   return { id: control.id, kind: 'action' };
 }

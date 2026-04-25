@@ -27,7 +27,13 @@ export type SelectorControl = {
   options: { label: string; value: string }[];
 };
 export type ActionControl = { id: string; kind: 'action' };
-export type Control = ToggleControl | SliderControl | SelectorControl | ActionControl;
+export type AlignControl = { id: string; kind: 'align'; value: 'left' | 'center' | 'right' };
+export type Control =
+  | ToggleControl
+  | SliderControl
+  | SelectorControl
+  | ActionControl
+  | AlignControl;
 
 export interface Item {
   id: string;

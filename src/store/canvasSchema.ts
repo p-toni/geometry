@@ -32,7 +32,11 @@ function parseControl(value: unknown, path: string): Control {
     return { id: value.id, kind: 'toggle', value: value.value };
   }
   if (value.kind === 'slider') {
-    if (!isFiniteNumber(value.value) || !isFiniteNumber(value.min) || !isFiniteNumber(value.max)) {
+    if (
+      !isFiniteNumber(value.value) ||
+      !isFiniteNumber(value.min) ||
+      !isFiniteNumber(value.max)
+    ) {
       throw new Error(`${path} slider values must be numbers`);
     }
     return { id: value.id, kind: 'slider', value: value.value, min: value.min, max: value.max };
@@ -51,6 +55,12 @@ function parseControl(value: unknown, path: string): Control {
   }
   if (value.kind === 'action') {
     return { id: value.id, kind: 'action' };
+  }
+  if (value.kind === 'align') {
+    if (value.value !== 'left' && value.value !== 'center' && value.value !== 'right') {
+      throw new Error(`${path}.value must be 'left', 'center', or 'right'`);
+    }
+    return { id: value.id, kind: 'align', value: value.value as 'left' | 'center' | 'right' };
   }
   throw new Error(`${path}.kind is invalid`);
 }
@@ -77,7 +87,9 @@ function parseItem(value: unknown, path: string): Item {
     value.controls === undefined
       ? undefined
       : Array.isArray(value.controls)
-        ? value.controls.map((control, index) => parseControl(control, `${path}.controls[${index}]`))
+        ? value.controls.map((control, index) =>
+            parseControl(control, `${path}.controls[${index}]`),
+          )
         : (() => {
             throw new Error(`${path}.controls must be an array`);
           })();
@@ -103,7 +115,11 @@ export function parseCanvas(value: unknown): Canvas {
   if (value.version !== 1) throw new Error('canvas.version must be 1');
   if (!isString(value.slug)) throw new Error('canvas.slug must be a string');
   if (!isString(value.title)) throw new Error('canvas.title must be a string');
-  if (value.background !== undefined && value.background !== 'paper' && value.background !== 'ink') {
+  if (
+    value.background !== undefined &&
+    value.background !== 'paper' &&
+    value.background !== 'ink'
+  ) {
     throw new Error('canvas.background is invalid');
   }
   if (!Array.isArray(value.items)) throw new Error('canvas.items must be an array');

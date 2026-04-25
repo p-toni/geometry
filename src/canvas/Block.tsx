@@ -17,11 +17,12 @@ import { COLORS } from '../constants';
 import { spring } from '../design/motion';
 import { cn } from '../lib/cn';
 import { useCanvasStore } from '../store/canvasStore';
-import type { Control, Item } from '../types';
+import type { AlignControl, Control, Item } from '../types';
 import { cellToPx } from './hooks/cellMath';
 import { useDrag } from './hooks/useDrag';
 import { useResize } from './hooks/useResize';
 import { Action } from './controls/Action';
+import { Align } from './controls/Align';
 import { Toggle } from './controls/Toggle';
 import {
   Code,
@@ -57,6 +58,8 @@ function controlValues(controls: Control[] | undefined) {
     toggled: controls?.find((control) => control.kind === 'toggle')?.value ?? false,
     sliderValue: controls?.find((control) => control.kind === 'slider')?.value ?? 1,
     selectorValue: controls?.find((control) => control.kind === 'selector')?.value ?? null,
+    alignValue:
+      controls?.find((c): c is AlignControl => c.kind === 'align')?.value ?? ('left' as const),
   };
 }
 
@@ -77,6 +80,7 @@ function ControlChip({
 
   if (control.kind === 'toggle') return <Toggle itemId={itemId} control={control} />;
   if (control.kind === 'action') return <Action itemId={itemId} control={control} />;
+  if (control.kind === 'align') return <Align itemId={itemId} control={control} />;
 
   return (
     <span

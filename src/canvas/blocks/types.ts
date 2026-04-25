@@ -6,4 +6,5 @@ export interface BlockRendererProps {
   toggled: boolean;
   sliderValue: number;
   selectorValue: string | null;
+  alignValue: 'left' | 'center' | 'right';
 }

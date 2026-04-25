@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import type { BlockRendererProps } from './types';
 
-export function Code({ item, toggled }: BlockRendererProps) {
+export function Code({ item, toggled, selectorValue }: BlockRendererProps) {
   const [html, setHtml] = useState('');
 
   useEffect(() => {
     let active = true;
     import('../../lib/highlight')
-      .then(({ highlightTypeScript }) => highlightTypeScript(item.content))
+      .then(({ highlight }) => highlight(item.content, selectorValue ?? 'typescript'))
       .then((value) => {
         if (active) setHtml(value);
       })
@@ -18,7 +18,7 @@ export function Code({ item, toggled }: BlockRendererProps) {
     return () => {
       active = false;
     };
-  }, [item.content, item.refreshKey]);
+  }, [item.content, item.refreshKey, selectorValue]);
 
   if (toggled || !html) {
     return (

@@ -1,4 +1,5 @@
 import {
+  AlignCenter,
   Bot,
   Check,
   Code2,
@@ -52,10 +53,11 @@ const blockGroups: { label: string; icon: typeof Heading1; types: BlockType[] }[
 ];
 
 const controlSupport: Record<Control['kind'], BlockType[]> = {
-  toggle: ['h1', 'h2', 'h3', 'quote', 'code', 'image'],
-  slider: ['p', 'image'],
-  selector: ['markdown', 'link'],
+  toggle: ['h1', 'h2', 'h3', 'p', 'quote', 'code', 'image', 'markdown'],
+  slider: ['h1', 'h2', 'h3', 'p', 'image'],
+  selector: ['markdown', 'link', 'code'],
   action: ['markdown', 'code'],
+  align: ['h1', 'h2', 'h3', 'p', 'quote', 'markdown'],
 };
 
 function controlApplies(kind: Control['kind'], item: Item | undefined) {
@@ -70,6 +72,13 @@ function canAttachControl(kind: Control['kind'], item: Item | undefined) {
   return controlApplies(kind, item) && !hasControl(kind, item);
 }
 
+function sliderForItem(item: Item): Control {
+  if (item.type === 'h1' || item.type === 'h2' || item.type === 'h3') {
+    return { id: createId('slider'), kind: 'slider', value: 1.0, min: 0.5, max: 2.0 };
+  }
+  return { id: createId('slider'), kind: 'slider', value: 1.0, min: 0.1, max: 1.0 };
+}
+
 function selectorForItem(item: Item): Control {
   const withCurrentValue = (options: { label: string; value: string }[]) => {
     if (options.some((option) => option.value === item.content)) return options;
@@ -82,6 +91,23 @@ function selectorForItem(item: Item): Control {
       kind: 'selector',
       value: item.content,
       options: withCurrentValue(canvasSlugOptions),
+    };
+  }
+
+  if (item.type === 'code') {
+    return {
+      id: createId('selector'),
+      kind: 'selector',
+      value: 'typescript',
+      options: [
+        { label: 'TypeScript', value: 'typescript' },
+        { label: 'JavaScript', value: 'javascript' },
+        { label: 'Python', value: 'python' },
+        { label: 'CSS', value: 'css' },
+        { label: 'HTML', value: 'html' },
+        { label: 'JSON', value: 'json' },
+        { label: 'Shell', value: 'bash' },
+      ],
     };
   }
 
@@ -189,10 +215,12 @@ export function Toolbar({
       kind === 'toggle'
         ? { id: createId('toggle'), kind: 'toggle', value: true }
         : kind === 'slider'
-          ? { id: createId('slider'), kind: 'slider', value: 0.75, min: 0.2, max: 1 }
+          ? sliderForItem(selectedItem)
           : kind === 'selector'
             ? selectorForItem(selectedItem)
-            : { id: createId('action'), kind: 'action' };
+            : kind === 'align'
+              ? { id: createId('align'), kind: 'align', value: 'left' }
+              : { id: createId('action'), kind: 'action' };
     addControl(selectedId, control);
   };
 
@@ -221,11 +249,7 @@ export function Toolbar({
 
       <div className="flex min-w-0 items-center gap-1 overflow-x-auto">
         {blockGroups.map((group) => (
-          <ExpandingGroup
-            key={group.label}
-            label={`${group.label} blocks`}
-            icon={group.icon}
-          >
+          <ExpandingGroup key={group.label} label={`${group.label} blocks`} icon={group.icon}>
             {group.types.map((type) => {
               const Icon = blockIcons[type];
               return (
@@ -286,6 +310,16 @@ export function Toolbar({
             onClick={() => attachControl('action')}
           >
             <RefreshCw size={15} />
+          </button>
+          <button
+            type="button"
+            title="Align"
+            aria-label="Add alignment"
+            disabled={!canAttachControl('align', selectedItem)}
+            className={disabledToolbarButtonClass}
+            onClick={() => attachControl('align')}
+          >
+            <AlignCenter size={15} />
           </button>
         </ExpandingGroup>
         <button
