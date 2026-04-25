@@ -167,6 +167,10 @@ export function saveCanvasPlugin(): Plugin {
           return reply(res, 400, `invalid canvas: ${validated.error}`);
         }
 
+        if ((validated.canvas as { slug: string }).slug !== slug) {
+          return reply(res, 400, 'slug mismatch');
+        }
+
         try {
           const path = resolve(process.cwd(), 'src/content/canvases', `${slug}.json`);
           await mkdir(dirname(path), { recursive: true });

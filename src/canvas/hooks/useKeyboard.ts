@@ -67,8 +67,6 @@ export function useKeyboard(onSave: () => void) {
         const next = clampItemPosition(
           selectedItem.col + delta.col,
           selectedItem.row + delta.row,
-          selectedItem.cols,
-          selectedItem.rows,
         );
         updateItem(selectedId, next);
         return;

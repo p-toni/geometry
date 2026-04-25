@@ -28,10 +28,9 @@ export function clampItemSize(cols: number, rows: number) {
   };
 }
 
-export function clampItemPosition(col: number, row: number, cols = 1, rows = 1) {
-  const size = clampItemSize(cols, rows);
+export function clampItemPosition(col: number, row: number) {
   return {
-    col: clamp(snapToCell(col), 0, GRID_COLS - size.cols),
-    row: clamp(snapToCell(row), 0, GRID_ROWS - size.rows),
+    col: clamp(snapToCell(col), 0, GRID_COLS - 1),
+    row: clamp(snapToCell(row), 0, GRID_ROWS - 1),
   };
 }
