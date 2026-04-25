@@ -10,15 +10,15 @@
   --inverse-surface: #213145;
   --inverse-on-surface: #eaf1ff;
 
-  --block-amber: #e1e0ff;
-  --block-rose: #d3e4fe;
-  --block-blue: #dae2fd;
-  --block-green: #e0e3e5;
-  --block-purple: #c0c1ff;
-  --block-stone: #ffffff;
+  --block-amber: #fde3a7;
+  --block-rose: #fac9d3;
+  --block-blue: #c5dbf7;
+  --block-green: #c9e6cf;
+  --block-purple: #d4c8f5;
+  --block-stone: #ece5d3;
 
-  --card-heading: #e1e0ff;
-  --card-heading-line: #c0c1ff;
+  --card-heading: #f0eafd;
+  --card-heading-line: #d4c8f5;
   --card-heading-accent: #4648d4;
   --card-reading: #ffffff;
   --card-reading-line: #dce9ff;
@@ -26,17 +26,17 @@
   --card-link: #dae2fd;
   --card-link-line: #bec6e0;
   --card-link-accent: #4648d4;
-  --card-quote: #e0e3e5;
-  --card-quote-line: #c4c7c9;
-  --card-quote-accent: #595c5e;
+  --card-quote: #ece5d3;
+  --card-quote-line: #d6cfb8;
+  --card-quote-accent: #6b5e3a;
   --card-code: #eff4ff;
   --card-code-line: #bec6e0;
   --card-code-accent: #565e74;
-  --card-media: #f8f9ff;
-  --card-media-line: #d3e4fe;
-  --card-media-accent: #6063ee;
+  --card-media: #fff5e3;
+  --card-media-line: #fce0b8;
+  --card-media-accent: #b87333;
 
-  --font-display: 'Manrope', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Fraunces Variable', 'Fraunces', Georgia, ui-serif, serif;
   --font-mono: 'JetBrains Mono Variable', 'SF Mono', monospace;
 
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);

@@ -93,11 +93,13 @@ function ControlChip({
                 type="range"
                 min={control.min}
                 max={control.max}
-                step={(control.max - control.min) / 100}
+                step={Math.max((control.max - control.min) / 100, Number.EPSILON)}
                 value={control.value}
                 className="h-4 w-24 accent-[var(--accent-ink)]"
                 onChange={(event) => {
-                  updateControl(itemId, { ...control, value: Number(event.target.value) });
+                  const next = Number(event.target.value);
+                  if (!Number.isFinite(next)) return;
+                  updateControl(itemId, { ...control, value: next });
                 }}
               />
             </label>
@@ -155,8 +157,8 @@ function BlockChrome({
     >
       <div
         className={cn(
-          'pointer-events-auto flex h-6 min-w-0 max-w-[min(260px,100%)] cursor-grab items-center rounded-t-[4px] rounded-b-none border border-ink/10 bg-paper/95 px-2 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-2 shadow-sm active:cursor-grabbing',
-          isSelected && 'border-accent-ink text-ink',
+          'pointer-events-auto flex h-6 min-w-0 max-w-[min(280px,100%)] cursor-grab items-center gap-2 rounded-t-[4px] rounded-b-none border border-ink/10 bg-paper/95 px-2 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-2 shadow-sm active:cursor-grabbing',
+          isSelected && 'border-accent-ink bg-paper text-ink',
         )}
         onPointerDown={onDragPointerDown}
         onClick={(event) => {
@@ -165,15 +167,10 @@ function BlockChrome({
         }}
       >
         <span className="truncate font-semibold">{item.label}</span>
+        <span className="shrink-0 text-ink-2/80">
+          {item.cols}&times;{item.rows}
+        </span>
       </div>
-      <div className="pointer-events-auto flex h-6 shrink-0 items-center rounded-t-[4px] rounded-b-none border border-ink/10 bg-paper/90 px-2 font-mono text-[10px] text-ink-2 shadow-sm">
-        {item.cols} x {item.rows}
-      </div>
-      {isSelected && (
-        <div className="pointer-events-auto hidden h-6 shrink-0 items-center rounded-t-[4px] rounded-b-none border border-ink/10 bg-paper/80 px-2 font-mono text-[10px] text-ink-2 shadow-sm sm:flex">
-          x{item.col} y{item.row}
-        </div>
-      )}
       {(item.controls ?? []).length > 0 && (
         <div className="pointer-events-auto flex h-6 shrink-0 items-center gap-0.5 rounded-t-[4px] rounded-b-none border border-ink/10 bg-paper/90 px-1 shadow-sm">
           {(item.controls ?? []).map((control) => (
@@ -217,14 +214,19 @@ export function Block({ item, cell, isMobile }: { item: Item; cell: number; isMo
   if (isMobile) {
     return (
       <article
-        className="relative min-h-40 overflow-hidden rounded-[16px] border border-ink/10 p-4 shadow-[0_4px_16px_rgba(11,28,48,0.05)]"
+        className="relative flex min-h-20 flex-col overflow-hidden rounded-[16px] border border-ink/10 p-3 shadow-[0_4px_16px_rgba(11,28,48,0.05)]"
         style={{
           background: cardBackground,
+          aspectRatio: `${item.cols} / ${item.rows}`,
+          maxHeight: '60vh',
         }}
       >
-        <div className="mb-3 flex items-center justify-between gap-2">
-          <div className="min-w-0 truncate font-mono text-[10px] uppercase tracking-[0.12em] text-ink-2">
-            {item.label}
+        <div className="mb-2 flex items-center justify-between gap-2">
+          <div className="flex min-w-0 items-center gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-2">
+            <span className="truncate font-semibold">{item.label}</span>
+            <span className="shrink-0 text-ink-2/70">
+              {item.cols}&times;{item.rows}
+            </span>
           </div>
           {(item.controls ?? []).length > 0 ? (
             <div className="flex shrink-0 items-center gap-0.5">
@@ -240,7 +242,9 @@ export function Block({ item, cell, isMobile }: { item: Item; cell: number; isMo
             </div>
           ) : null}
         </div>
-        <Renderer item={item} cell={cell} {...values} />
+        <div className="min-h-0 flex-1 overflow-auto">
+          <Renderer item={item} cell={cell} {...values} />
+        </div>
       </article>
     );
   }
@@ -249,7 +253,7 @@ export function Block({ item, cell, isMobile }: { item: Item; cell: number; isMo
     <motion.article
       data-testid={`block-${item.type}`}
       className={cn(
-        'absolute left-0 top-0 overflow-visible outline-none',
+        'group absolute left-0 top-0 overflow-visible outline-none',
         'touch-none select-none',
       )}
       style={{
@@ -287,7 +291,9 @@ export function Block({ item, cell, isMobile }: { item: Item; cell: number; isMo
         className={cn(
           'absolute left-0 right-0 overflow-hidden rounded-[16px] border p-3 shadow-[0_4px_16px_rgba(11,28,48,0.05)]',
           item.type === 'link' && 'p-2',
-          isSelected ? 'border-accent-ink ring-2 ring-accent/40' : 'border-ink/10',
+          isSelected
+            ? 'border-accent-ink ring-2 ring-accent/70 ring-offset-1 ring-offset-paper'
+            : 'border-ink/10',
         )}
         style={{
           top: chromeOffset,
@@ -303,8 +309,8 @@ export function Block({ item, cell, isMobile }: { item: Item; cell: number; isMo
           title="Resize diagonally"
           data-no-drag="true"
           className={cn(
-            'absolute bottom-1 right-1 z-20 flex h-8 w-8 cursor-nwse-resize items-center justify-center rounded-full border border-ink/10 bg-paper/90 text-ink-2 opacity-0 shadow-sm transition hover:border-accent-ink',
-            isSelected && 'opacity-100',
+            'absolute bottom-1 right-1 z-20 flex h-8 w-8 cursor-nwse-resize items-center justify-center rounded-full border border-ink/10 bg-paper/90 text-ink-2 opacity-0 shadow-sm transition hover:border-accent-ink group-hover:opacity-70 focus-visible:opacity-100',
+            isSelected && 'opacity-100 group-hover:opacity-100',
           )}
           onPointerDown={onResizePointerDown}
         >

@@ -34,9 +34,9 @@ describe('cellMath', () => {
     expect(cellToPx(4, 18)).toBe(72);
   });
 
-  it('clamps item position to the 40 by 20 grid', () => {
+  it('clamps item anchor so the top-left cell stays inside the grid', () => {
     expect(clampItemPosition(-4, -2)).toEqual({ col: 0, row: 0 });
-    expect(clampItemPosition(50, 50)).toEqual({ col: 40, row: 20 });
+    expect(clampItemPosition(50, 50)).toEqual({ col: 39, row: 19 });
   });
 
   it('clamps item size to the full grid', () => {

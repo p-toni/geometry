@@ -9,12 +9,12 @@ export const MOBILE_BREAKPOINT = 768;
 export const IS_OWNER = import.meta.env.DEV;
 
 export const COLORS: { token: ColorToken; name: string; className: string; hex: string }[] = [
-  { token: 0, name: 'primary mist', className: 'bg-block-amber', hex: '#e1e0ff' },
-  { token: 1, name: 'canvas blue', className: 'bg-block-rose', hex: '#d3e4fe' },
-  { token: 2, name: 'navigation blue', className: 'bg-block-blue', hex: '#dae2fd' },
-  { token: 3, name: 'neutral chip', className: 'bg-block-green', hex: '#e0e3e5' },
-  { token: 4, name: 'indigo glow', className: 'bg-block-purple', hex: '#c0c1ff' },
-  { token: 5, name: 'white card', className: 'bg-block-stone', hex: '#ffffff' },
+  { token: 0, name: 'warm amber', className: 'bg-block-amber', hex: '#fde3a7' },
+  { token: 1, name: 'soft rose', className: 'bg-block-rose', hex: '#fac9d3' },
+  { token: 2, name: 'sky blue', className: 'bg-block-blue', hex: '#c5dbf7' },
+  { token: 3, name: 'mint', className: 'bg-block-green', hex: '#c9e6cf' },
+  { token: 4, name: 'lavender', className: 'bg-block-purple', hex: '#d4c8f5' },
+  { token: 5, name: 'stone', className: 'bg-block-stone', hex: '#ece5d3' },
 ];
 
 export const BLOCK_DEFAULT_COLORS: Record<BlockType, ColorToken> = {

@@ -52,18 +52,23 @@ describe('createCanvasStore', () => {
     expect(store.getState().canvas.items.at(-1)).toMatchObject({ type: 'link', color: 2 });
   });
 
-  it('updates items and clamps grid values', () => {
+  it('updates items and keeps the anchor inside the grid', () => {
     const store = createCanvasStore(seedCanvas());
     store.getState().updateItem('a', { col: 99, row: 99, cols: 8, rows: 8 });
-    expect(store.getState().canvas.items[0]).toMatchObject({ col: 40, row: 20 });
+    expect(store.getState().canvas.items[0]).toMatchObject({
+      col: 39,
+      row: 19,
+      cols: 8,
+      rows: 8,
+    });
   });
 
   it('allows items to resize to the full canvas regardless of position', () => {
     const store = createCanvasStore(seedCanvas());
     store.getState().updateItem('a', { col: 40, row: 20, cols: 99, rows: 99 });
     expect(store.getState().canvas.items[0]).toMatchObject({
-      col: 40,
-      row: 20,
+      col: 39,
+      row: 19,
       cols: 40,
       rows: 20,
     });

@@ -6,8 +6,12 @@ import { LinkIcon, LINK_ICON_OPTIONS } from '../lib/linkIcons';
 import { useCanvasStore } from '../store/canvasStore';
 import type { BlockType, ColorToken, Item } from '../types';
 
-function asNumber(value: string) {
-  return Number.isFinite(Number(value)) ? Number(value) : 0;
+function parseField(value: string) {
+  const trimmed = value.trim();
+  if (trimmed === '') return null;
+  const parsed = Number(trimmed);
+  if (!Number.isFinite(parsed)) return null;
+  return Math.round(parsed);
 }
 
 function Field({ label, children }: { label: string; children: ReactNode }) {
@@ -37,7 +41,14 @@ export function PropertiesPanel() {
   if (!selectedId || !selectedItem) return null;
 
   const update = (patch: Partial<Item>) => updateItem(selectedId, patch);
+  const updateField = (key: 'col' | 'row' | 'cols' | 'rows', raw: string) => {
+    const next = parseField(raw);
+    if (next === null) return;
+    update({ [key]: next });
+  };
   const panelSide = selectedItem.col + selectedItem.cols > GRID_COLS - 10 ? 'left-3' : 'right-3';
+  const maxCol = Math.max(0, GRID_COLS - selectedItem.cols);
+  const maxRow = Math.max(0, GRID_ROWS - selectedItem.rows);
 
   const generate = async () => {
     if (!IS_OWNER || selectedItem.type !== 'image' || !prompt.trim()) return;
@@ -105,9 +116,9 @@ export function PropertiesPanel() {
             className={inputClass()}
             type="number"
             min={0}
-            max={GRID_COLS}
+            max={maxCol}
             value={selectedItem.col}
-            onChange={(event) => update({ col: asNumber(event.target.value) })}
+            onChange={(event) => updateField('col', event.target.value)}
           />
         </Field>
         <Field label="y">
@@ -115,9 +126,9 @@ export function PropertiesPanel() {
             className={inputClass()}
             type="number"
             min={0}
-            max={GRID_ROWS}
+            max={maxRow}
             value={selectedItem.row}
-            onChange={(event) => update({ row: asNumber(event.target.value) })}
+            onChange={(event) => updateField('row', event.target.value)}
           />
         </Field>
         <Field label="w">
@@ -127,7 +138,7 @@ export function PropertiesPanel() {
             min={1}
             max={GRID_COLS}
             value={selectedItem.cols}
-            onChange={(event) => update({ cols: asNumber(event.target.value) })}
+            onChange={(event) => updateField('cols', event.target.value)}
           />
         </Field>
         <Field label="h">
@@ -137,7 +148,7 @@ export function PropertiesPanel() {
             min={1}
             max={GRID_ROWS}
             value={selectedItem.rows}
-            onChange={(event) => update({ rows: asNumber(event.target.value) })}
+            onChange={(event) => updateField('rows', event.target.value)}
           />
         </Field>
       </div>

@@ -28,27 +28,60 @@ export function useResize({
       select(id);
       startResize(id);
 
+      const target = event.currentTarget;
+      const pointerId = event.pointerId;
       const originX = event.clientX;
       const originY = event.clientY;
       const originCols = item.cols;
       const originRows = item.rows;
+      let dirty = false;
 
       const onMove = (moveEvent: PointerEvent) => {
+        if (moveEvent.pointerId !== pointerId) return;
         const next = clampItemSize(
           originCols + (moveEvent.clientX - originX) / cell,
           originRows + (moveEvent.clientY - originY) / cell,
         );
+        if (next.cols !== originCols || next.rows !== originRows) dirty = true;
         setResizeGhost(next.cols, next.rows);
       };
 
-      const onUp = () => {
-        window.removeEventListener('pointermove', onMove);
-        window.removeEventListener('pointerup', onUp);
-        endResize(true);
+      const cleanup = () => {
+        target.removeEventListener('pointermove', onMove);
+        target.removeEventListener('pointerup', onUp);
+        target.removeEventListener('pointercancel', onCancel);
+        window.removeEventListener('keydown', onKey);
+        if (target.hasPointerCapture(pointerId)) target.releasePointerCapture(pointerId);
       };
 
-      window.addEventListener('pointermove', onMove);
-      window.addEventListener('pointerup', onUp);
+      function onUp(upEvent: PointerEvent) {
+        if (upEvent.pointerId !== pointerId) return;
+        cleanup();
+        endResize(dirty);
+      }
+
+      function onCancel(cancelEvent: PointerEvent) {
+        if (cancelEvent.pointerId !== pointerId) return;
+        cleanup();
+        endResize(false);
+      }
+
+      function onKey(keyEvent: KeyboardEvent) {
+        if (keyEvent.key === 'Escape') {
+          cleanup();
+          endResize(false);
+        }
+      }
+
+      try {
+        target.setPointerCapture(pointerId);
+      } catch {
+        // pointer capture can fail in tests or if the pointer was already released
+      }
+      target.addEventListener('pointermove', onMove);
+      target.addEventListener('pointerup', onUp);
+      target.addEventListener('pointercancel', onCancel);
+      window.addEventListener('keydown', onKey);
     },
     [
       cell,
