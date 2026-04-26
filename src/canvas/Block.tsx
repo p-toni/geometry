@@ -378,7 +378,7 @@ export function Block({
       <div
         className={cn(
           'absolute left-0 right-0 overflow-hidden rounded-[16px] shadow-[0_4px_16px_rgba(11,28,48,0.05)]',
-          item.type === 'link' || showInnerFrame ? 'p-2' : 'p-3',
+          showInnerFrame ? 'p-2' : 'p-3',
           isSelected
             ? 'border border-accent-ink ring-2 ring-accent/70 ring-offset-1 ring-offset-paper'
             : 'border border-ink/10',

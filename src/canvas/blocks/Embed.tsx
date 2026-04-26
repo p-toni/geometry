@@ -9,7 +9,7 @@ export function Embed({ item }: BlockRendererProps) {
       title={item.label}
       sandbox="allow-scripts"
       srcDoc={srcDoc}
-      className="h-full w-full rounded-[6px] border border-ink/10 bg-white"
+      className="block h-full w-full"
     />
   );
 }
