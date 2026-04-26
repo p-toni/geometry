@@ -281,7 +281,7 @@ export function Toolbar({
               : kind === 'fit'
                 ? { id: createId('fit'), kind: 'fit', value: true }
                 : kind === 'border'
-                  ? { id: createId('border'), kind: 'border', value: false }
+                  ? { id: createId('border'), kind: 'border', value: true }
                   : { id: createId('action'), kind: 'action' };
     addControl(selectedId, control);
   };
