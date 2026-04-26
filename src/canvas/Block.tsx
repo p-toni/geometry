@@ -23,6 +23,7 @@ import { useDrag } from './hooks/useDrag';
 import { useResize } from './hooks/useResize';
 import { Action } from './controls/Action';
 import { Align } from './controls/Align';
+import { Border } from './controls/Border';
 import { Fit } from './controls/Fit';
 import { Toggle } from './controls/Toggle';
 import {
@@ -66,6 +67,7 @@ function controlValues(controls: Control[] | undefined) {
     alignValue:
       controls?.find((c): c is AlignControl => c.kind === 'align')?.value ?? ('left' as const),
     fitEnabled: controls?.find((control) => control.kind === 'fit')?.value ?? false,
+    borderEnabled: controls?.find((control) => control.kind === 'border')?.value ?? true,
   };
 }
 
@@ -88,6 +90,7 @@ function ControlChip({
   if (control.kind === 'action') return <Action itemId={itemId} control={control} />;
   if (control.kind === 'align') return <Align itemId={itemId} control={control} />;
   if (control.kind === 'fit') return <Fit itemId={itemId} control={control} />;
+  if (control.kind === 'border') return <Border itemId={itemId} control={control} />;
 
   return (
     <span
@@ -189,14 +192,14 @@ function BlockChrome({
     >
       <div
         className={cn(
-          'pointer-events-auto flex h-6 min-w-0 max-w-[min(320px,100%)] items-stretch rounded-lg border bg-paper/95 shadow-sm backdrop-blur-sm',
+          'pointer-events-auto flex h-6 min-w-0 max-w-[min(320px,100%)] items-stretch overflow-hidden rounded-lg border bg-paper/95 shadow-sm backdrop-blur-sm',
           isSelected ? 'border-accent-ink' : 'border-ink/15',
         )}
       >
         {/* Label + drag handle */}
         <div
           className={cn(
-            'flex cursor-grab items-center gap-2 px-2.5 font-mono text-[10px] uppercase tracking-[0.1em] active:cursor-grabbing',
+            'flex min-w-0 cursor-grab items-center gap-2 px-2.5 font-mono text-[10px] uppercase tracking-[0.1em] active:cursor-grabbing',
             isSelected ? 'text-ink' : 'text-ink-2',
           )}
           onPointerDown={onDragPointerDown}
@@ -205,7 +208,9 @@ function BlockChrome({
             onSelect();
           }}
         >
-          <span className="truncate font-semibold">{item.label}</span>
+          <span className="min-w-0 truncate font-semibold" title={item.label}>
+            {item.label}
+          </span>
           <span className="shrink-0 opacity-40">
             {item.cols}×{item.rows}
           </span>
@@ -253,7 +258,9 @@ export function Block({
   const cardBackground = color.hex;
   const textColor = getContrastColor(color.hex);
   const Renderer = renderers[item.type];
-  const values = controlValues(item.controls);
+  const allValues = controlValues(item.controls);
+  const { borderEnabled: _, ...values } = allValues;
+  void _;
   const renderCol = isDragging ? dragState.ghostCol : item.col;
   const renderRow = isDragging ? dragState.ghostRow : item.row;
   const renderCols = isResizing ? resizeState.ghostCols : item.cols;
@@ -267,7 +274,10 @@ export function Block({
   if (isMobile) {
     return (
       <article
-        className="relative flex min-h-20 flex-col overflow-hidden rounded-[16px] border border-ink/10 p-3 shadow-[0_4px_16px_rgba(11,28,48,0.05)]"
+        className={cn(
+          'relative flex min-h-20 flex-col overflow-hidden rounded-[16px] p-3 shadow-[0_4px_16px_rgba(11,28,48,0.05)]',
+          allValues.borderEnabled ? 'border border-ink/10' : 'border-0',
+        )}
         style={{
           background: cardBackground,
           color: textColor,
@@ -283,11 +293,21 @@ export function Block({
             </span>
           </div>
           {(item.controls ?? []).filter(
-            (c) => c.kind === 'toggle' || c.kind === 'align' || c.kind === 'action' || c.kind === 'fit',
+            (c) =>
+              c.kind === 'toggle' ||
+              c.kind === 'align' ||
+              c.kind === 'action' ||
+              c.kind === 'fit' ||
+              c.kind === 'border',
           ).length > 0 ? (
             <div className="flex shrink-0 items-center gap-0.5">
               {(item.controls ?? [])
-                .filter((c) => c.kind === 'toggle' || c.kind === 'align' || c.kind === 'action' || c.kind === 'fit')
+                .filter((c) =>
+              c.kind === 'toggle' ||
+              c.kind === 'align' ||
+              c.kind === 'action' ||
+              c.kind === 'fit' ||
+              c.kind === 'border')
                 .map((control) => (
                   <ControlChip
                     key={control.id}
@@ -347,11 +367,13 @@ export function Block({
 
       <div
         className={cn(
-          'absolute left-0 right-0 overflow-hidden rounded-[16px] border p-3 shadow-[0_4px_16px_rgba(11,28,48,0.05)]',
+          'absolute left-0 right-0 overflow-hidden rounded-[16px] p-3 shadow-[0_4px_16px_rgba(11,28,48,0.05)]',
           item.type === 'link' && 'p-2',
           isSelected
-            ? 'border-accent-ink ring-2 ring-accent/70 ring-offset-1 ring-offset-paper'
-            : 'border-ink/10',
+            ? 'border border-accent-ink ring-2 ring-accent/70 ring-offset-1 ring-offset-paper'
+            : allValues.borderEnabled
+              ? 'border border-ink/10'
+              : 'border-0',
         )}
         style={{
           top: chromeOffset,

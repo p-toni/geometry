@@ -13,6 +13,7 @@ import {
   ListFilter,
   Maximize2,
   MousePointerClick,
+  Square,
   Pilcrow,
   Plus,
   Quote,
@@ -66,6 +67,20 @@ const controlSupport: Record<Control['kind'], BlockType[]> = {
   action: ['markdown', 'code', 'shader', 'voxel'],
   align: ['h1', 'h2', 'h3', 'p', 'quote', 'markdown'],
   fit: ['h1', 'h2', 'h3', 'p', 'quote'],
+  border: [
+    'h1',
+    'h2',
+    'h3',
+    'p',
+    'quote',
+    'markdown',
+    'code',
+    'embed',
+    'image',
+    'link',
+    'shader',
+    'voxel',
+  ],
 };
 
 function controlApplies(kind: Control['kind'], item: Item | undefined) {
@@ -129,7 +144,7 @@ function selectorForItem(item: Item): Control {
   if (item.type === 'shader') {
     const value = shaderSelectorOptions.some((option) => option.value === item.content)
       ? item.content
-      : (shaderSelectorOptions[0]?.value ?? '@gradient');
+      : (shaderSelectorOptions[0]?.value ?? item.content);
     return {
       id: createId('selector'),
       kind: 'selector',
@@ -265,7 +280,9 @@ export function Toolbar({
               ? { id: createId('align'), kind: 'align', value: 'left' }
               : kind === 'fit'
                 ? { id: createId('fit'), kind: 'fit', value: true }
-                : { id: createId('action'), kind: 'action' };
+                : kind === 'border'
+                  ? { id: createId('border'), kind: 'border', value: false }
+                  : { id: createId('action'), kind: 'action' };
     addControl(selectedId, control);
   };
 
@@ -375,6 +392,16 @@ export function Toolbar({
             onClick={() => attachControl('fit')}
           >
             <Maximize2 size={15} />
+          </button>
+          <button
+            type="button"
+            title="Border"
+            aria-label="Add border toggle"
+            disabled={!canAttachControl('border', selectedItem)}
+            className={disabledToolbarButtonClass}
+            onClick={() => attachControl('border')}
+          >
+            <Square size={15} />
           </button>
         </ExpandingGroup>
         <button

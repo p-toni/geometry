@@ -171,7 +171,22 @@ export const BLOCK_DEFAULTS: Record<
     cols: 10,
     rows: 8,
     label: 'shader',
-    content: '@gradient',
+    content: `precision mediump float;
+uniform vec2 u_resolution;
+uniform float u_time;
+uniform float u_slider;
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+  float t = u_time * 0.18;
+  vec3 a = vec3(1.00, 0.44, 0.14);
+  vec3 b = vec3(0.23, 0.28, 0.49);
+  vec3 c = vec3(0.86, 0.73, 0.65);
+  float wave = 0.5 + 0.5 * sin((uv.x + uv.y) * (1.4 + u_slider * 4.0) + t);
+  vec3 col = mix(mix(a, b, uv.y), c, wave);
+  gl_FragColor = vec4(col, 1.0);
+}
+`,
   },
   voxel: {
     cols: 10,

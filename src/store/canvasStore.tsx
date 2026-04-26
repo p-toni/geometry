@@ -303,6 +303,9 @@ function orderedControl(control: Control): Control {
   if (control.kind === 'fit') {
     return { id: control.id, kind: 'fit', value: control.value };
   }
+  if (control.kind === 'border') {
+    return { id: control.id, kind: 'border', value: control.value };
+  }
   return { id: control.id, kind: 'action' };
 }
 

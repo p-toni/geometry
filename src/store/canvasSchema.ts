@@ -72,6 +72,10 @@ function parseControl(value: unknown, path: string): Control {
     if (typeof value.value !== 'boolean') throw new Error(`${path}.value must be boolean`);
     return { id: value.id, kind: 'fit', value: value.value };
   }
+  if (value.kind === 'border') {
+    if (typeof value.value !== 'boolean') throw new Error(`${path}.value must be boolean`);
+    return { id: value.id, kind: 'border', value: value.value };
+  }
   throw new Error(`${path}.kind is invalid`);
 }
 
