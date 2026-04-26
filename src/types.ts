@@ -32,13 +32,15 @@ export type SelectorControl = {
 export type ActionControl = { id: string; kind: 'action' };
 export type AlignControl = { id: string; kind: 'align'; value: 'left' | 'center' | 'right' };
 export type FitControl = { id: string; kind: 'fit'; value: boolean };
+export type BorderControl = { id: string; kind: 'border'; value: boolean };
 export type Control =
   | ToggleControl
   | SliderControl
   | SelectorControl
   | ActionControl
   | AlignControl
-  | FitControl;
+  | FitControl
+  | BorderControl;
 
 export interface Item {
   id: string;

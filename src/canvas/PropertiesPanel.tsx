@@ -16,15 +16,15 @@ function parseField(value: string) {
 
 function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <label className="grid gap-1 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-2">
-      {label}
+    <label className="grid min-w-0 gap-1 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-2">
+      <span className="truncate">{label}</span>
       {children}
     </label>
   );
 }
 
 function inputClass() {
-  return 'rounded-[8px] border border-line bg-white/80 px-2 py-1.5 font-display text-[14px] normal-case tracking-normal text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20';
+  return 'block w-full min-w-0 rounded-[8px] border border-line bg-white/80 px-2 py-1.5 font-display text-[14px] normal-case tracking-normal text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20';
 }
 
 export function PropertiesPanel() {
@@ -72,15 +72,18 @@ export function PropertiesPanel() {
       onClick={(event) => event.stopPropagation()}
       onPointerDown={(event) => event.stopPropagation()}
     >
-      <div className="flex items-center justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink-2">
+      <div className="flex min-w-0 items-center justify-between gap-2">
+        <span
+          className="min-w-0 truncate font-mono text-[10px] uppercase tracking-[0.12em] text-ink-2"
+          title={selectedItem.id}
+        >
           {selectedItem.id}
         </span>
         <button
           type="button"
           aria-label="Close properties"
           title="Close"
-          className="flex h-7 w-7 items-center justify-center rounded-full border border-transparent hover:border-ink/10"
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-transparent hover:border-ink/10"
           onClick={() => select(null)}
         >
           <X size={14} />
@@ -154,9 +157,11 @@ export function PropertiesPanel() {
       </div>
 
       <div className="grid gap-1">
-        <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.12em] text-ink-2">
-          <span>card color</span>
-          <span>default: {CARD_SURFACES[selectedItem.type].name}</span>
+        <div className="flex min-w-0 items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-2">
+          <span className="shrink-0">card color</span>
+          <span className="min-w-0 truncate">
+            default: {CARD_SURFACES[selectedItem.type].name}
+          </span>
         </div>
         <div className="flex gap-1">
           {COLORS.map((color) => (
