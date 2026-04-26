@@ -23,7 +23,7 @@ export const BLOCK_DEFAULT_COLORS: Record<BlockType, ColorToken> = {
   h3: 3,
   p: 1,
   quote: 1,
-  markdown: 0,
+  markdown: 5,
   code: 4,
   embed: 3,
   image: 0,
