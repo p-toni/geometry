@@ -262,6 +262,12 @@ export function Block({
   const { borderEnabled: _, ...values } = allValues;
   void _;
   const showInnerFrame = allValues.borderEnabled;
+  const FULL_BLEED_TYPES: Item['type'][] = ['shader', 'embed', 'image', 'voxel'];
+  const isFullBleed = FULL_BLEED_TYPES.includes(item.type);
+  const innerFramePadding = isFullBleed ? '' : 'p-3';
+  const innerFrameSurface = isFullBleed
+    ? 'border-0 bg-transparent'
+    : 'border border-ink/15 bg-paper shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]';
   const renderCol = isDragging ? dragState.ghostCol : item.col;
   const renderRow = isDragging ? dragState.ghostRow : item.row;
   const renderCols = isResizing ? resizeState.ghostCols : item.cols;
@@ -275,10 +281,7 @@ export function Block({
   if (isMobile) {
     return (
       <article
-        className={cn(
-          'relative flex min-h-20 flex-col overflow-hidden rounded-[16px] p-3 shadow-[0_4px_16px_rgba(11,28,48,0.05)]',
-          allValues.borderEnabled ? 'border border-ink/10' : 'border-0',
-        )}
+        className="relative flex min-h-20 flex-col overflow-hidden rounded-[16px] border-0 p-3 shadow-[0_4px_16px_rgba(11,28,48,0.05)]"
         style={{
           background: cardBackground,
           color: textColor,
@@ -324,7 +327,11 @@ export function Block({
         <div className="min-h-0 flex-1 overflow-auto">
           {showInnerFrame ? (
             <div
-              className="h-full w-full overflow-auto rounded-[12px] border border-line/80 bg-white/85 p-3"
+              className={cn(
+                'h-full w-full overflow-hidden rounded-[12px]',
+                innerFrameSurface,
+                innerFramePadding,
+              )}
               style={{ color: 'var(--ink)' }}
             >
               <Renderer item={item} cell={cell} {...values} />
@@ -381,7 +388,7 @@ export function Block({
           showInnerFrame ? 'p-2' : 'p-3',
           isSelected
             ? 'border border-accent-ink ring-2 ring-accent/70 ring-offset-1 ring-offset-paper'
-            : 'border border-ink/10',
+            : 'border-0',
         )}
         style={{
           top: chromeOffset,
@@ -392,7 +399,11 @@ export function Block({
       >
         {showInnerFrame ? (
           <div
-            className="h-full w-full overflow-hidden rounded-[12px] border border-line/80 bg-white/85 p-3"
+            className={cn(
+              'h-full w-full overflow-hidden rounded-[12px]',
+              innerFrameSurface,
+              innerFramePadding,
+            )}
             style={{ color: 'var(--ink)' }}
           >
             <Renderer item={item} cell={cell} {...values} />
