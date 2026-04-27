@@ -90,7 +90,7 @@
       "rows": 4,
       "color": 5,
       "label": "embed",
-      "content": "<div style=\"font-family:Georgia,serif;padding:18px;color:#2a2420;background:#f3eee5;height:100%;display:grid;place-items:center;text-align:center\">embedded HTML</div>"
+      "content": "<style>html,body{margin:0;background:transparent;color:#faf8f5;font-family:Georgia,serif}</style><div style=\"height:100vh;display:grid;place-items:center;text-align:center\">embedded HTML</div>"
     },
     {
       "id": "audit-image",
