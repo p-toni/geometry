@@ -23,7 +23,7 @@ export function DemoChip() {
             type="button"
             title="Reset canvas (R)"
             aria-label="Reset canvas"
-            className="flex h-6 w-6 items-center justify-center rounded-full border border-ink/10 transition hover:border-accent-ink"
+            className="flex h-6 w-6 items-center justify-center rounded-full border border-ink/10 transition-[border-color,transform] duration-150 ease-out hover:border-accent-ink active:scale-[0.96]"
             onClick={reset}
           >
             <RefreshCw size={12} />

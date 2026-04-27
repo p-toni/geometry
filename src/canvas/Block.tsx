@@ -10,7 +10,7 @@ function getContrastColor(hex: string): string {
   return luminance > 0.179 ? 'var(--ink)' : '#ffffff';
 }
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Grip, ListFilter, SlidersHorizontal } from 'lucide-react';
 import { useState, type PointerEvent as ReactPointerEvent, type ReactElement } from 'react';
 import { COLORS } from '../constants';
@@ -84,7 +84,7 @@ function ControlChip({
 }) {
   const updateControl = useCanvasStore((state) => state.updateControl);
   const iconClass =
-    'inline-flex h-5 w-5 items-center justify-center rounded-sm text-ink-2 transition hover:bg-ink/10 hover:text-ink';
+    'inline-flex h-5 w-5 items-center justify-center rounded-sm text-ink-2 transition-[background-color,color,transform] duration-150 ease-out hover:bg-ink/10 hover:text-ink active:scale-[0.96]';
 
   if (control.kind === 'toggle') return <Toggle itemId={itemId} control={control} />;
   if (control.kind === 'action') return <Action itemId={itemId} control={control} />;
@@ -142,7 +142,7 @@ function ControlChip({
                   key={option.value}
                   type="button"
                   className={cn(
-                    'rounded-[4px] px-2 py-1 text-left font-mono text-[10px] transition hover:bg-paper-2',
+                    'rounded-[4px] px-2 py-1 text-left font-mono text-[10px] transition-colors duration-150 ease-out hover:bg-paper-2',
                     option.value === control.value
                       ? 'bg-paper-2 text-accent-ink'
                       : 'text-ink-2',
@@ -192,8 +192,10 @@ function BlockChrome({
     >
       <div
         className={cn(
-          'pointer-events-auto flex h-6 min-w-0 max-w-[min(320px,100%)] items-stretch overflow-hidden rounded-lg border bg-paper/95 shadow-sm backdrop-blur-sm',
-          isSelected ? 'border-accent-ink' : 'border-ink/15',
+          'pointer-events-auto flex h-6 min-w-0 max-w-[min(320px,100%)] items-stretch overflow-hidden rounded-lg border bg-paper/95 shadow-sm backdrop-blur-sm transition-opacity duration-150 ease-out group-hover:opacity-100 group-focus-within:opacity-100',
+          isSelected
+            ? 'border-accent-ink opacity-100'
+            : 'border-ink/15 opacity-50 hover:opacity-100',
         )}
       >
         {/* Label + drag handle */}
@@ -254,6 +256,7 @@ export function Block({
   const isSelected = selectedId === item.id;
   const isDragging = dragState?.id === item.id;
   const isResizing = resizeState?.id === item.id;
+  const reduceMotion = useReducedMotion();
   const color = COLORS.find((entry) => entry.token === item.color) ?? COLORS[0];
   const cardBackground = color.hex;
   const textColor = getContrastColor(color.hex);
@@ -360,9 +363,9 @@ export function Block({
         y: cellToPx(renderRow, cell) - chromeOffset,
         width: cellToPx(renderCols, cell),
         height: cellToPx(renderRows, cell) + chromeOffset,
-        scale: isSelected ? 1.01 : 1,
+        scale: reduceMotion ? 1 : isSelected ? 1.01 : 1,
       }}
-      transition={isActiveGesture ? { duration: 0 } : spring.drag}
+      transition={isActiveGesture || reduceMotion ? { duration: 0 } : spring.drag}
       onPointerDown={onDragPointerDown}
       onClick={(event) => {
         event.stopPropagation();
@@ -418,7 +421,7 @@ export function Block({
           title="Resize diagonally"
           data-no-drag="true"
           className={cn(
-            'absolute bottom-1 right-1 z-20 flex h-8 w-8 cursor-nwse-resize items-center justify-center rounded-full border border-ink/10 bg-paper/90 text-ink-2 opacity-0 shadow-sm transition hover:border-accent-ink group-hover:opacity-70 focus-visible:opacity-100',
+            'absolute bottom-1 right-1 z-20 flex h-8 w-8 cursor-nwse-resize items-center justify-center rounded-full border border-ink/10 bg-paper/90 text-ink-2 opacity-0 shadow-sm transition-[opacity,border-color] duration-150 ease-out hover:border-accent-ink group-hover:opacity-70 focus-visible:opacity-100',
             isSelected && 'opacity-100 group-hover:opacity-100',
           )}
           onPointerDown={onResizePointerDown}

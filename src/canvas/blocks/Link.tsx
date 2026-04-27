@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { tween } from '../../design/motion';
@@ -9,6 +9,7 @@ import type { BlockRendererProps } from './types';
 
 export function Link({ item }: BlockRendererProps) {
   const navigate = useNavigate();
+  const reduceMotion = useReducedMotion();
   const isCompact = item.rows <= 3 || item.cols <= 8;
 
   return (
@@ -16,10 +17,10 @@ export function Link({ item }: BlockRendererProps) {
       type="button"
       data-no-drag="true"
       className={cn(
-        'group flex h-full w-full text-left transition',
+        'group flex h-full w-full text-left transition-transform duration-150 ease-out active:scale-[0.985]',
         isCompact ? 'items-end gap-2' : 'items-stretch gap-3',
       )}
-      whileHover={{ y: -2 }}
+      whileHover={reduceMotion ? undefined : { transform: 'translateY(-2px)' }}
       transition={tween.hover}
       onPointerDown={(event) => event.stopPropagation()}
       onClick={(event) => {
@@ -29,7 +30,7 @@ export function Link({ item }: BlockRendererProps) {
     >
       <span
         className={cn(
-          'flex shrink-0 items-center justify-center rounded-[10px] border border-line/80 bg-white text-accent-ink shadow-sm transition group-hover:border-accent',
+          'flex shrink-0 items-center justify-center rounded-[10px] border border-line/80 bg-white text-accent-ink shadow-sm transition-[border-color] duration-150 ease-out group-hover:border-accent',
           isCompact ? 'h-9 w-9' : 'h-full min-h-16 w-16',
         )}
         aria-hidden="true"
@@ -49,7 +50,7 @@ export function Link({ item }: BlockRendererProps) {
           {!isCompact ? (
             <ArrowRight
               size={16}
-              className="mt-1 shrink-0 text-ink-2 transition group-hover:translate-x-1 group-hover:text-accent-ink"
+              className="mt-1 shrink-0 text-ink-2 transition-[color,transform] duration-150 ease-out group-hover:translate-x-1 group-hover:text-accent-ink"
             />
           ) : null}
         </span>
