@@ -13,8 +13,12 @@ const ALLOWED_HOSTS = new Set([
   '::1',
 ]);
 
+// Keep in sync with the BlockType union in src/types.ts and BLOCK_TYPES in
+// src/constants.ts. Duplicated here because this plugin runs at Vite config
+// load time, before module aliases / DEV env are wired up.
 const BLOCK_TYPES = new Set([
   'h1', 'h2', 'h3', 'p', 'quote', 'markdown', 'code', 'embed', 'image', 'link',
+  'shader', 'voxel',
 ]);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
