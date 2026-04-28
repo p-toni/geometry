@@ -9,12 +9,12 @@ export const MOBILE_BREAKPOINT = 768;
 export const IS_OWNER = import.meta.env.DEV;
 
 export const COLORS: { token: ColorToken; name: string; className: string; hex: string }[] = [
-  { token: 0, name: 'pale cashmere', className: 'bg-block-amber', hex: '#e8dfd5' },
-  { token: 1, name: 'cinnamon ice', className: 'bg-block-rose', hex: '#dbbba7' },
-  { token: 2, name: 'burning orange', className: 'bg-block-blue', hex: '#ff7124' },
-  { token: 3, name: 'blue estate', className: 'bg-block-green', hex: '#3b4883' },
-  { token: 4, name: 'wahoo', className: 'bg-block-purple', hex: '#272d4e' },
-  { token: 5, name: 'noble black', className: 'bg-block-stone', hex: '#202124' },
+  { token: 0, name: 'mineral paper', className: 'bg-block-amber', hex: '#efe5d3' },
+  { token: 1, name: 'oxidized green', className: 'bg-block-rose', hex: '#c8d6cf' },
+  { token: 2, name: 'vermilion', className: 'bg-block-blue', hex: '#d65a3a' },
+  { token: 3, name: 'weathered steel', className: 'bg-block-green', hex: '#58717d' },
+  { token: 4, name: 'deep indigo', className: 'bg-block-purple', hex: '#2b2d42' },
+  { token: 5, name: 'ink', className: 'bg-block-stone', hex: '#171a1f' },
 ];
 
 export const BLOCK_DEFAULT_COLORS: Record<BlockType, ColorToken> = {
@@ -194,24 +194,10 @@ void main() {
     label: 'voxel',
     content: JSON.stringify(
       {
-        tile: 14,
-        camera: { type: 'isometric', angle: 30 },
-        shapes: [
-          {
-            op: 'add',
-            type: 'box',
-            position: [0, 0, 0],
-            size: [4, 1, 4],
-            style: { fill: '#dbbba7', stroke: '#202124' },
-          },
-          {
-            op: 'add',
-            type: 'box',
-            position: [1, 1, 1],
-            size: [2, 3, 2],
-            style: { fill: '#ff7124', stroke: '#202124' },
-          },
-        ],
+        preset: 'glyph',
+        tile: 16,
+        gap: 0.08,
+        camera: { type: 'isometric', angle: 45 },
       },
       null,
       2,

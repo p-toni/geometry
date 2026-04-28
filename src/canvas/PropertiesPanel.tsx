@@ -228,7 +228,7 @@ export function PropertiesPanel() {
           </Field>
           <button
             type="button"
-            className="inline-flex h-8 items-center justify-center gap-2 rounded-full border border-accent/50 bg-paper-2 px-3 font-mono text-[10px] uppercase tracking-[0.12em] transition hover:border-accent-ink"
+            className="inline-flex h-8 items-center justify-center gap-2 rounded-full border border-accent/50 bg-paper-2 px-3 font-mono text-[10px] uppercase tracking-[0.12em] transition-[border-color,transform] duration-150 ease-out hover:border-accent-ink active:scale-[0.97]"
             onClick={() => void generate()}
           >
             <WandSparkles size={13} />
@@ -239,7 +239,7 @@ export function PropertiesPanel() {
 
       <button
         type="button"
-        className="h-8 rounded-full border border-ink/10 font-mono text-[10px] uppercase tracking-[0.12em] transition hover:border-accent-ink"
+        className="h-8 rounded-full border border-ink/10 font-mono text-[10px] uppercase tracking-[0.12em] transition-[border-color,transform] duration-150 ease-out hover:border-accent-ink active:scale-[0.98]"
         onClick={() => deleteItem(selectedId)}
       >
         delete

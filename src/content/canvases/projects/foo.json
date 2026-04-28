@@ -1,7 +1,7 @@
 {
   "version": 1,
   "slug": "projects/foo",
-  "title": "Project Foo",
+  "title": "Selected Work",
   "background": "paper",
   "items": [
     {
@@ -9,30 +9,30 @@
       "type": "h2",
       "col": 2,
       "row": 2,
-      "cols": 12,
+      "cols": 15,
       "rows": 3,
-      "color": 0,
-      "label": "project",
-      "content": "Project Foo"
+      "color": 4,
+      "label": "work",
+      "content": "Selected Work"
     },
     {
       "id": "project-subtitle",
       "type": "h3",
-      "col": 4,
+      "col": 2,
       "row": 6,
-      "cols": 10,
-      "rows": 2,
+      "cols": 18,
+      "rows": 3,
       "color": 0,
       "label": "caption",
-      "content": "A placeholder project canvas"
+      "content": "AI product systems, instrumentation, and human-in-the-loop workflows."
     },
     {
       "id": "project-embed",
       "type": "embed",
-      "col": 18,
+      "col": 24,
       "row": 3,
       "cols": 14,
-      "rows": 8,
+      "rows": 10,
       "color": 5,
       "label": "sequin wave",
       "content": "@shader:sequinWave"
@@ -40,18 +40,18 @@
     {
       "id": "project-md",
       "type": "markdown",
-      "col": 4,
+      "col": 2,
       "row": 10,
-      "cols": 13,
-      "rows": 7,
-      "color": 5,
+      "cols": 18,
+      "rows": 8,
+      "color": 0,
       "label": "notes",
       "content": "/content/project.md"
     },
     {
       "id": "project-home",
       "type": "link",
-      "col": 25,
+      "col": 24,
       "row": 15,
       "cols": 8,
       "rows": 3,

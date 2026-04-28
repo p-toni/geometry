@@ -17,6 +17,7 @@
   --color-block-purple: var(--block-purple);
   --color-block-stone: var(--block-stone);
   --font-display: var(--font-display);
+  --font-heading: var(--font-heading);
   --font-mono: var(--font-mono);
 }
 
@@ -24,6 +25,17 @@
   box-sizing: border-box;
   scrollbar-width: thin;
   scrollbar-color: gray transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 html,
@@ -65,15 +77,15 @@ button {
 
 .canvas-grid {
   background-image:
-    linear-gradient(to right, rgb(32 33 36 / 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(32 33 36 / 0.07) 1px, transparent 1px);
+    linear-gradient(to right, rgb(23 26 31 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(23 26 31 / 0.05) 1px, transparent 1px);
   background-size: var(--cell) var(--cell);
 }
 
 .markdown-body {
   color: inherit;
-  font-size: 16px;
-  line-height: 1.62;
+  font-size: 15.5px;
+  line-height: 1.68;
   overflow-wrap: anywhere;
   user-select: text;
 }
@@ -104,20 +116,22 @@ button {
 }
 
 .markdown-body h1 {
-  font-size: 2.25rem;
-  font-weight: 800;
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 650;
 }
 
 .markdown-body h2 {
   margin-block-start: 1.25em;
+  font-family: var(--font-heading);
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 650;
 }
 
 .markdown-body h3 {
   margin-block-start: 1em;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 650;
 }
 
 .markdown-body h4,
@@ -183,8 +197,8 @@ button {
 
 .markdown-body blockquote {
   margin: 0 0 1.1em;
-  border-left: 3px solid var(--accent);
-  padding-left: 0.85rem;
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
   color: color-mix(in srgb, currentColor 65%, transparent);
   font-style: italic;
 }

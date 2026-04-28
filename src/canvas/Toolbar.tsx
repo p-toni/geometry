@@ -188,10 +188,10 @@ function makeNewCanvas(slug: string, title: string): Canvas {
 }
 
 const toolbarButtonClass =
-  'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-transparent transition hover:border-accent/25 hover:bg-paper-2 active:scale-[0.97]';
+  'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-transparent transition-[background-color,border-color,transform,opacity] duration-150 ease-out hover:border-accent/25 hover:bg-paper-2 active:scale-[0.97]';
 
 const disabledToolbarButtonClass =
-  'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-transparent transition enabled:hover:border-accent/25 enabled:hover:bg-paper-2 enabled:active:scale-[0.97] disabled:opacity-35';
+  'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-transparent transition-[background-color,border-color,transform,opacity] duration-150 ease-out enabled:hover:border-accent/25 enabled:hover:bg-paper-2 enabled:active:scale-[0.97] disabled:opacity-35';
 
 const revealTransition = { duration: 0.16, ease: [0.23, 1, 0.32, 1] as const };
 
@@ -226,7 +226,7 @@ function ExpandingGroup({
         title={label}
         aria-label={label}
         aria-expanded={open}
-        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-transparent text-ink-2 transition hover:border-accent/25 hover:bg-paper-2 hover:text-ink active:scale-[0.97]"
+        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-transparent text-ink-2 transition-[background-color,border-color,color,transform] duration-150 ease-out hover:border-accent/25 hover:bg-paper-2 hover:text-ink active:scale-[0.97]"
         onClick={() => setOpen(true)}
       >
         <Icon size={15} />
@@ -429,7 +429,7 @@ export function Toolbar({
               type="button"
               title="Save"
               aria-label="Save canvas"
-              className="flex h-8 w-8 items-center justify-center rounded-full border border-accent/40 bg-accent text-white transition hover:border-accent-ink"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-accent/40 bg-accent text-white transition-[border-color,transform] duration-150 ease-out hover:border-accent-ink active:scale-[0.97]"
               onClick={onSave}
             >
               {saveState === 'saved' ? <Check size={15} /> : <Save size={15} />}

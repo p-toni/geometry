@@ -6,60 +6,78 @@
   "items": [
     {
       "id": "home-title",
-      "type": "h2",
+      "type": "h1",
       "col": 1,
       "row": 1,
-      "cols": 6,
-      "rows": 2,
+      "cols": 8,
+      "rows": 3,
       "color": 4,
       "label": "toni.ltd",
-      "content": "Toni Inc."
+      "content": "/home"
     },
     {
-      "id": "embed-mod94fni-d6ryxp",
-      "type": "embed",
-      "col": 30,
-      "row": 2,
-      "cols": 8,
-      "rows": 17,
-      "color": 5,
-      "label": "embed",
-      "content": "@shader:sequinWave"
-    },
-    {
-      "id": "home-about",
+      "id": "markdown-moj0epz2-y6irn1",
       "type": "markdown",
-      "col": 1,
-      "row": 4,
-      "cols": 18,
-      "rows": 8,
+      "col": 15,
+      "row": 1,
+      "cols": 12,
+      "rows": 18,
       "color": 5,
-      "label": "about",
+      "label": "markdown",
       "content": "/content/about.md"
     },
     {
-      "id": "home-project",
-      "type": "link",
-      "col": 1,
-      "row": 13,
-      "cols": 5,
-      "rows": 2,
+      "id": "home-field",
+      "type": "voxel",
+      "col": 32,
+      "row": 1,
+      "cols": 7,
+      "rows": 7,
       "color": 0,
-      "label": "project",
-      "content": "/projects/foo",
-      "linkIcon": "briefcase"
+      "label": "lock in",
+      "content": "{\n  \"preset\": \"glyph\",\n  \"tile\": 18,\n  \"gap\": 0.08,\n  \"padding\": 18,\n  \"occlusion\": true,\n  \"camera\": { \"type\": \"isometric\", \"angle\": 45 }\n}"
     },
     {
-      "id": "home-writing",
+      "id": "embed-moj0bgaz-8gm3rm",
+      "type": "embed",
+      "col": 1,
+      "row": 5,
+      "cols": 13,
+      "rows": 8,
+      "color": 5,
+      "label": "sea",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0a0a; }\n  canvas { display: block; width: 100vw; height: 100vh; }\n  .label {\n    position: fixed;\n    top: 20px;\n    left: 24px;\n    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;\n    font-size: 11px;\n    letter-spacing: 0.15em;\n    text-transform: uppercase;\n    color: rgba(200, 149, 108, 0.5);\n    z-index: 10;\n    pointer-events: none;\n    user-select: none;\n  }\n  /* Color scheme: Mono */\n  canvas { filter: grayscale(1); }\n</style>\n</head>\n<body>\n<canvas id=\"canvas\"></canvas>\n<script>\n// ─────────────────────────────────────────────\n// Moonlit Ripple — Moon reflection on dark water with concentric ripple interference\n// ─────────────────────────────────────────────\n(function () {\n  var canvas = document.getElementById('canvas');\n  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n\n  var gl = canvas.getContext('webgl', { alpha: true, antialias: false, preserveDrawingBuffer: false });\n  if (!gl) return;\n\n  var vertSrc = [\n    'attribute vec2 a_pos;',\n    'void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }'\n  ].join('\\n');\n\n  var fragSrc = [\n    'precision highp float;',\n    'uniform float u_time;',\n    'uniform vec2 u_res;',\n    'uniform float u_rippleSpeed;',\n    'uniform float u_moonGlow;',\n    'uniform vec2 u_mouse;',\n    'uniform float u_tilt;',\n    'uniform float u_waves;',\n    '',\n    '#define PI 3.14159265359',\n    '#define WAVE_LAYERS 7',\n    '',\n    '// ── Multi-directional waves with analytical normals ──',\n    'vec4 sea(vec2 p, float t) {',\n    '  float h = 0.0;',\n    '  vec2 dh = vec2(0.0);',\n    '  float freq = 1.0;',\n    '  float baseAmp = 0.2 * u_waves;',\n    '  // Higher intensity = slower amplitude decay = more high-freq energy (choppier)',\n    '  float decay = mix(0.55, 0.38, clamp(u_waves / 3.0, 0.0, 1.0));',\n    '  float amp = baseAmp;',\n    '  float angle = 0.0;',\n    '  for (int i = 0; i < WAVE_LAYERS; i++) {',\n    '    float c = cos(angle);',\n    '    float s = sin(angle);',\n    '    // Rotate sampling position per layer (breaks alignment)',\n    '    vec2 pp = vec2(c * p.x + s * p.y, -s * p.x + c * p.y);',\n    '    float fi = float(i);',\n    '    float spd = sqrt(freq) * 0.8;',\n    '    // Sample along y of rotated space + per-layer offset',\n    '    float phase = (pp.y + fi) * freq - t * spd;',\n    '    float sn = sin(phase);',\n    '    float cn = cos(phase);',\n    '    h += sn * amp;',\n    '    // Derivative in rotated space, then rotate back',\n    '    float dy = freq * amp * cn;',\n    '    dh += vec2(-s * dy, c * dy);',\n    '    angle += fi + 1.2;',\n    '    freq *= 1.3;',\n    '    amp *= decay;',\n    '  }',\n    '  vec3 N = normalize(vec3(-dh.x, 1.0, -dh.y));',\n    '  return vec4(h, N);',\n    '}',\n    '',\n    '// ── Moon direction in 3D ──',\n    'vec3 moonDir() {',\n    '  return normalize(vec3(0.15, 0.35, 1.0));',\n    '}',\n    '',\n    '// Simple hash for moon texture',\n    'float hash(vec2 p) {',\n    '  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);',\n    '}',\n    '',\n    '// ── Night sky color with textured moon disc ──',\n    'vec3 skyColor(vec3 rd) {',\n    '  vec3 md = moonDir();',\n    '  // Warm base tones — blue scheme hue-rotates these to cool moonlit blue',\n    '  vec3 skyDark = vec3(0.06, 0.03, 0.02);',\n    '  vec3 skyHoriz = vec3(0.09, 0.05, 0.04);',\n    '  vec3 sky = mix(skyHoriz, skyDark, max(rd.y, 0.0));',\n    '  vec3 moonCol = vec3(0.98, 0.92, 0.85);',\n    '  float moonDot = max(dot(rd, md), 0.0);',\n    '  float moonAngle = acos(clamp(moonDot, 0.0, 1.0));',\n    '  float moonRadius = 0.04;',\n    '  float disc = smoothstep(moonRadius, moonRadius * 0.7, moonAngle);',\n    '  // Crater texture — project rd onto moon-tangent plane',\n    '  if (disc > 0.0) {',\n    '    vec3 up = vec3(0.0, 1.0, 0.0);',\n    '    vec3 right = normalize(cross(up, md));',\n    '    vec3 mup = cross(md, right);',\n    '    vec2 muv = vec2(dot(rd - md, right), dot(rd - md, mup)) * 25.0;',\n    '    float crater = hash(floor(muv * 2.0)) * 0.25;',\n    '    crater += hash(floor(muv * 4.0)) * 0.15;',\n    '    float darkening = 1.0 - crater * smoothstep(moonRadius * 0.9, moonRadius * 0.4, moonAngle);',\n    '    // Slight limb darkening',\n    '    float limb = smoothstep(0.0, moonRadius, moonAngle);',\n    '    darkening *= mix(1.0, 0.7, limb * limb);',\n    '    sky += moonCol * disc * 0.85 * darkening;',\n    '  }',\n    '  // Bloom (scales with moonGlow, disc does not)',\n    '  sky += moonCol * 0.25 * pow(moonDot, 40.0) * u_moonGlow;',\n    '  sky += moonCol * 1.2 * pow(moonDot, 400.0) * u_moonGlow;',\n    '  return sky;',\n    '}',\n    '',\n    'void main() {',\n    '  float aspect = u_res.x / u_res.y;',\n    '  vec2 uv = -1.0 + 2.0 * gl_FragCoord.xy / u_res;',\n    '  uv.x *= aspect;',\n    '  float t = u_time * u_rippleSpeed;',\n    '',\n    '  // ── 3D Camera — tilt: 0=horizontal, 0.5=default, 1=top-down ──',\n    '  float tiltRad = u_tilt * 0.7;',\n    '  vec3 ro = vec3(0.0, 8.0, 0.0);',\n    '  vec3 ww = normalize(vec3(0.0, -sin(tiltRad), cos(tiltRad)));',\n    '  vec3 uu = normalize(cross(vec3(0.0, 1.0, 0.0), ww));',\n    '  vec3 vv = normalize(cross(ww, uu));',\n    '  vec3 rd = normalize(uv.x * uu + uv.y * vv + 2.5 * ww);',\n    '',\n    '  vec3 md = moonDir();',\n    '  vec3 moonCol = vec3(0.98, 0.92, 0.85);',\n    '',\n    '  // ── Sky (above horizon) ──',\n    '  vec3 sky = skyColor(rd);',\n    '  vec3 col = sky;',\n    '',\n    '  // ── Ray-plane intersection (water at y=0) ──',\n    '  float dsea = -ro.y / rd.y;',\n    '',\n    '  if (dsea > 0.0) {',\n    '    vec3 wp = ro + dsea * rd;',\n    '',\n    '    // ── Sample waves ──',\n    '    vec4 s = sea(wp.xz, t);',\n    '    float h = s.x;',\n    '    vec3 nor = s.yzw;',\n    '',\n    '    // ── Mouse ripple — concentric rings that affect normals ──',\n    '    if (u_mouse.x > 0.0) {',\n    '      vec2 mUV = -1.0 + 2.0 * u_mouse / u_res;',\n    '      mUV.x *= aspect;',\n    '      vec3 mrd = normalize(mUV.x * uu + mUV.y * vv + 2.5 * ww);',\n    '      float mdsea = -ro.y / mrd.y;',\n    '      if (mdsea > 0.0) {',\n    '        vec3 mwp = ro + mdsea * mrd;',\n    '        vec2 mdelta = wp.xz - mwp.xz;',\n    '        float md2 = length(mdelta);',\n    '        float mfreq = 4.0;',\n    '        float mphase = md2 * mfreq - t * 5.0;',\n    '        float mamp = exp(-md2 * 0.15) * 0.4 * u_waves;',\n    '        h += sin(mphase) * mamp;',\n    '        // Analytical normal contribution from mouse ripple',\n    '        float mcos = cos(mphase) * mamp * mfreq;',\n    '        vec2 mgrad = md2 > 0.01 ? (mdelta / md2) * mcos : vec2(0.0);',\n    '        nor = normalize(nor + vec3(-mgrad.x, 0.0, -mgrad.y) * 2.0);',\n    '      }',\n    '    }',\n    '    // Flatten normal with distance (perspective detail fade)',\n    '    nor = mix(nor, vec3(0.0, 1.0, 0.0), smoothstep(0.0, 300.0, dsea));',\n    '',\n    '    // ── Fresnel ──',\n    '    float fre = clamp(1.0 - dot(-nor, rd), 0.0, 1.0);',\n    '    fre = pow(fre, 3.0);',\n    '',\n    '    // ── Diffuse moonlight ──',\n    '    float dif = mix(0.25, 1.0, max(dot(nor, md), 0.0));',\n    '',\n    '    // ── Reflection & refraction ──',\n    '    vec3 refl = skyColor(reflect(rd, nor));',\n    '    vec3 seaCol1 = vec3(0.05, 0.02, 0.01);',\n    '    vec3 seaCol2 = vec3(0.10, 0.06, 0.04);',\n    '    vec3 refr = seaCol1 + dif * moonCol * seaCol2 * 0.15 * u_moonGlow;',\n    '',\n    '    col = mix(refr, 0.9 * refl, fre);',\n    '',\n    '    // ── Wave crest highlight ──',\n    '    float atten = max(1.0 - dsea * dsea * 0.0005, 0.0);',\n    '    col += seaCol2 * (wp.y - h) * 1.5 * atten;',\n    '',\n    '    // ── Distance fog (fade to sky at horizon) ──',\n    '    col = mix(col, sky, 1.0 - exp(-0.008 * dsea));',\n    '  }',\n    '',\n    '  // ── Gamma ──',\n    '  col = pow(max(col, vec3(0.0)), vec3(0.85));',\n    '',\n    '  gl_FragColor = vec4(col, 1.0);',\n    '}',\n  ].join('\\n');\n\n  function compile(type, src) {\n    var s = gl.createShader(type);\n    gl.shaderSource(s, src);\n    gl.compileShader(s);\n    return s;\n  }\n\n  var prog = gl.createProgram();\n  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vertSrc));\n  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fragSrc));\n  gl.linkProgram(prog);\n  gl.useProgram(prog);\n\n  var buf = gl.createBuffer();\n  gl.bindBuffer(gl.ARRAY_BUFFER, buf);\n  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);\n  var aPos = gl.getAttribLocation(prog, 'a_pos');\n  gl.enableVertexAttribArray(aPos);\n  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);\n\n  var uTime = gl.getUniformLocation(prog, 'u_time');\n  var uRes = gl.getUniformLocation(prog, 'u_res');\n  var uRippleSpeed = gl.getUniformLocation(prog, 'u_rippleSpeed');\n  var uMoonGlow = gl.getUniformLocation(prog, 'u_moonGlow');\n  var uMouse = gl.getUniformLocation(prog, 'u_mouse');\n  var uTilt = gl.getUniformLocation(prog, 'u_tilt');\n  var uWaves = gl.getUniformLocation(prog, 'u_waves');\n  var rippleSpeedVal = 0.5;\n  var moonGlowVal = 1.0;\n  var tiltVal = 0.15;\n  var wavesVal = 1.0;\n  var mouseX = -1.0, mouseY = -1.0;\n\n  var dpr = Math.min(window.devicePixelRatio || 1, 2);\n  var needsResize = true;\n  var running = true;\n\n  function resize() {\n    needsResize = false;\n    var w = Math.round(canvas.clientWidth * dpr);\n    var h = Math.round(canvas.clientHeight * dpr);\n    if (canvas.width !== w || canvas.height !== h) {\n      canvas.width = w;\n      canvas.height = h;\n      gl.viewport(0, 0, w, h);\n      gl.uniform2f(uRes, canvas.width, canvas.height);\n    }\n  }\n\n  function render(now) {\n    if (!running) { requestAnimationFrame(render); return; }\n    if (needsResize) resize();\n    gl.uniform1f(uTime, prefersReduced ? 0.0 : now * 0.001);\n    gl.uniform1f(uRippleSpeed, rippleSpeedVal);\n    gl.uniform1f(uMoonGlow, moonGlowVal);\n    gl.uniform1f(uTilt, tiltVal);\n    gl.uniform1f(uWaves, wavesVal);\n    gl.uniform2f(uMouse, mouseX, mouseY);\n    gl.drawArrays(gl.TRIANGLES, 0, 3);\n    requestAnimationFrame(render);\n  }\n\n  window.addEventListener('resize', function () {\n    needsResize = true;\n  });\n\n  resize();\n\n  requestAnimationFrame(render);\n\n  document.addEventListener('visibilitychange', function () {\n    running = !document.hidden;\n  });\n\n  canvas.addEventListener('mousemove', function(e) {\n    mouseX = e.clientX * dpr;\n    mouseY = (canvas.clientHeight - e.clientY) * dpr;\n  });\n  canvas.addEventListener('mouseleave', function() {\n    mouseX = -1.0; mouseY = -1.0;\n  });\n  canvas.addEventListener('touchstart', function(e) {\n    var touch = e.touches[0];\n    mouseX = touch.clientX * dpr;\n    mouseY = (canvas.clientHeight - touch.clientY) * dpr;\n  }, { passive: true });\n  canvas.addEventListener('touchmove', function(e) {\n    var touch = e.touches[0];\n    mouseX = touch.clientX * dpr;\n    mouseY = (canvas.clientHeight - touch.clientY) * dpr;\n  }, { passive: true });\n  canvas.addEventListener('touchend', function() {\n    mouseX = -1.0; mouseY = -1.0;\n  });\n\n  window.addEventListener('message', function(e) {\n    if (e.data && e.data.type === 'param') {\n      switch (e.data.name) {\n        case 'RIPPLE_SPEED': rippleSpeedVal = e.data.value; break;\n        case 'MOON_GLOW': moonGlowVal = e.data.value; break;\n        case 'CAMERA_TILT': tiltVal = e.data.value; break;\n        case 'WAVE_INTENSITY': wavesVal = e.data.value; break;\n      }\n    }\n  });\n})();\n</script>\n</body>\n</html>",
+      "controls": [
+        {
+          "id": "border-moj0fb7f-w7u75x",
+          "kind": "border",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "link-moj0jc5h-erty7f",
       "type": "link",
-      "col": 7,
-      "row": 13,
-      "cols": 5,
+      "col": 1,
+      "row": 14,
+      "cols": 6,
       "rows": 2,
-      "color": 1,
-      "label": "writing",
+      "color": 0,
+      "label": "writings",
       "content": "/writing",
       "linkIcon": "pen"
+    },
+    {
+      "id": "link-moj0kl2l-ok1r74",
+      "type": "link",
+      "col": 8,
+      "row": 14,
+      "cols": 6,
+      "rows": 2,
+      "color": 5,
+      "label": "x.com",
+      "content": "https://x.com/ape_toni",
+      "linkIcon": "external"
     }
   ]
 }

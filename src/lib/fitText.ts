@@ -1,10 +1,18 @@
 import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
-import { layout, prepare } from '@chenglou/pretext';
+import {
+  measureLineStats,
+  prepareWithSegments,
+  type PrepareOptions,
+  type PreparedTextWithSegments,
+} from '@chenglou/pretext';
 
 const MIN = 8;
 const MAX = 320;
 const ITERATIONS = 10;
-const LINE_HEIGHT_RATIO = 1.1;
+const DEFAULT_LINE_HEIGHT_RATIO = 1.1;
+const PREPARED_CACHE_LIMIT = 500;
+
+const preparedCache = new Map<string, PreparedTextWithSegments>();
 
 interface FitOptions {
   fontFamily: string;
@@ -13,20 +21,62 @@ interface FitOptions {
   height: number;
   text: string;
   enabled: boolean;
+  lineHeightRatio?: number;
+  maxSize?: number;
+  minSize?: number;
+  maxLines?: number;
+  whiteSpace?: PrepareOptions['whiteSpace'];
+  wordBreak?: PrepareOptions['wordBreak'];
+  letterSpacing?: number;
 }
 
-function findFitSize({ text, fontFamily, fontWeight, width, height }: Omit<FitOptions, 'enabled'>) {
-  if (width <= 0 || height <= 0 || !text) return null;
+function fontForSize(fontFamily: string, fontWeight: string | number | undefined, size: number) {
   const weightSegment = fontWeight !== undefined ? `${fontWeight} ` : '';
-  let lo = MIN;
-  let hi = MAX;
+  return `${weightSegment}${size}px ${fontFamily}`;
+}
+
+function preparedFor(text: string, font: string, options: PrepareOptions) {
+  const cacheKey = JSON.stringify([text, font, options]);
+  const cached = preparedCache.get(cacheKey);
+  if (cached) return cached;
+
+  const prepared = prepareWithSegments(text, font, options);
+  preparedCache.set(cacheKey, prepared);
+  if (preparedCache.size > PREPARED_CACHE_LIMIT) {
+    const oldest = preparedCache.keys().next().value;
+    if (oldest) preparedCache.delete(oldest);
+  }
+  return prepared;
+}
+
+function findFitSize({
+  text,
+  fontFamily,
+  fontWeight,
+  width,
+  height,
+  lineHeightRatio = DEFAULT_LINE_HEIGHT_RATIO,
+  maxSize = MAX,
+  minSize = MIN,
+  maxLines,
+  whiteSpace = 'normal',
+  wordBreak = 'normal',
+  letterSpacing,
+}: Omit<FitOptions, 'enabled'>) {
+  if (width <= 0 || height <= 0 || !text) return null;
+  let lo = minSize;
+  let hi = maxSize;
+  const prepareOptions: PrepareOptions = { whiteSpace, wordBreak, letterSpacing };
+
   for (let i = 0; i < ITERATIONS; i += 1) {
     const mid = (lo + hi) / 2;
-    const font = `${weightSegment}${mid}px ${fontFamily}`;
+    const font = fontForSize(fontFamily, fontWeight, mid);
     try {
-      const prepared = prepare(text, font);
-      const result = layout(prepared, width, mid * LINE_HEIGHT_RATIO);
-      if (result.height <= height) lo = mid;
+      const prepared = preparedFor(text, font, prepareOptions);
+      const stats = measureLineStats(prepared, width);
+      const lineCount = Math.max(1, stats.lineCount);
+      const measuredHeight = lineCount * mid * lineHeightRatio;
+      if (measuredHeight <= height && (!maxLines || lineCount <= maxLines)) lo = mid;
       else hi = mid;
     } catch {
       hi = mid;
@@ -36,11 +86,52 @@ function findFitSize({ text, fontFamily, fontWeight, width, height }: Omit<FitOp
 }
 
 export function useFitFontSize(options: FitOptions): number | null {
-  const { enabled, text, fontFamily, fontWeight, width, height } = options;
+  const {
+    enabled,
+    text,
+    fontFamily,
+    fontWeight,
+    width,
+    height,
+    lineHeightRatio,
+    maxSize,
+    minSize,
+    maxLines,
+    whiteSpace,
+    wordBreak,
+    letterSpacing,
+  } = options;
   return useMemo(() => {
     if (!enabled) return null;
-    return findFitSize({ text, fontFamily, fontWeight, width, height });
-  }, [enabled, text, fontFamily, fontWeight, width, height]);
+    return findFitSize({
+      text,
+      fontFamily,
+      fontWeight,
+      width,
+      height,
+      lineHeightRatio,
+      maxSize,
+      minSize,
+      maxLines,
+      whiteSpace,
+      wordBreak,
+      letterSpacing,
+    });
+  }, [
+    enabled,
+    text,
+    fontFamily,
+    fontWeight,
+    width,
+    height,
+    lineHeightRatio,
+    maxSize,
+    minSize,
+    maxLines,
+    whiteSpace,
+    wordBreak,
+    letterSpacing,
+  ]);
 }
 
 export function useElementSize<T extends HTMLElement>(): [
