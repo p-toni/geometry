@@ -13,80 +13,82 @@
       "rows": 3,
       "color": 4,
       "label": "writing",
-      "content": "/writing"
-    },
-    {
-      "id": "writing-reader",
-      "type": "markdown",
-      "col": 11,
-      "row": 1,
-      "cols": 19,
-      "rows": 18,
-      "color": 0,
-      "label": "read",
-      "content": "/content/12-allowed-ignorance.md",
+      "content": "/writing",
       "controls": [
         {
-          "id": "writing-reader-source",
+          "id": "toggle-moj2vo2v-371xfw",
+          "kind": "toggle",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "markdown-moj2wad6-i5cu5p",
+      "type": "markdown",
+      "col": 12,
+      "row": 1,
+      "cols": 18,
+      "rows": 18,
+      "color": 0,
+      "label": "pieces",
+      "content": "/content/09-allowed-ignorance.md",
+      "controls": [
+        {
+          "id": "selector-moj2xqqr-oqju33",
           "kind": "selector",
-          "value": "/content/12-allowed-ignorance.md",
+          "value": "/content/09-allowed-ignorance.md",
           "options": [
             {
-              "label": "On Digital Minimalism",
-              "value": "/content/01-on-digital-minimalism.md"
+              "label": "01-tools-need-edges",
+              "value": "/content/01-tools-need-edges.md"
             },
             {
-              "label": "The Instrument Metaphor",
-              "value": "/content/02-the-instrument-metaphor.md"
+              "label": "02-increasing-returns",
+              "value": "/content/02-increasing-returns.md"
             },
             {
-              "label": "Constraints as Liberation",
-              "value": "/content/03-constraints-as-liberation.md"
+              "label": "03-ilya",
+              "value": "/content/03-ilya.md"
             },
             {
-              "label": "About Me",
-              "value": "/content/04-about-me.md"
+              "label": "04-co-owning-the-loop",
+              "value": "/content/04-co-owning-the-loop.md"
             },
             {
-              "label": "Increasing Returns",
-              "value": "/content/05-increasing-returns.md"
+              "label": "05-bounded-me",
+              "value": "/content/05-bounded-me.md"
             },
             {
-              "label": "Ilya",
-              "value": "/content/06-ilya.md"
+              "label": "06-me-plus-ai",
+              "value": "/content/06-me-plus-ai.md"
             },
             {
-              "label": "Co-owning The Loop",
-              "value": "/content/07-co-owning-the-loop.md"
+              "label": "07-geometry-over-retrieval",
+              "value": "/content/07-geometry-over-retrieval.md"
             },
             {
-              "label": "Bounded Me",
-              "value": "/content/08-bounded-me.md"
+              "label": "08-weak-geometry",
+              "value": "/content/08-weak-geometry.md"
             },
             {
-              "label": "Me + AI",
-              "value": "/content/09-me-plus-ai.md"
+              "label": "09-allowed-ignorance",
+              "value": "/content/09-allowed-ignorance.md"
             },
             {
-              "label": "Geometry Over Retrieval",
-              "value": "/content/10-geometry-over-retrieval.md"
+              "label": "about",
+              "value": "/content/about.md"
             },
             {
-              "label": "Weak Geometry",
-              "value": "/content/11-weak-geometry.md"
+              "label": "project",
+              "value": "/content/project.md"
             },
             {
-              "label": "Allowed Ignorance",
-              "value": "/content/12-allowed-ignorance.md"
+              "label": "writing",
+              "value": "/content/writing.md"
             }
           ]
-        },
-        {
-          "id": "writing-reader-refresh",
-          "kind": "action"
         }
-      ],
-      "refreshKey": 2
+      ]
     },
     {
       "id": "writing-index",
@@ -95,7 +97,7 @@
       "row": 5,
       "cols": 8,
       "rows": 14,
-      "color": 1,
+      "color": 0,
       "label": "pieces",
       "content": "/content/writing.md"
     },

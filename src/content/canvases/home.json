@@ -11,16 +11,23 @@
       "row": 1,
       "cols": 8,
       "rows": 3,
-      "color": 4,
+      "color": 5,
       "label": "toni.ltd",
-      "content": "/home"
+      "content": "/home",
+      "controls": [
+        {
+          "id": "toggle-moj2yj7q-5al6c1",
+          "kind": "toggle",
+          "value": true
+        }
+      ]
     },
     {
       "id": "markdown-moj0epz2-y6irn1",
       "type": "markdown",
-      "col": 15,
+      "col": 16,
       "row": 1,
-      "cols": 12,
+      "cols": 14,
       "rows": 18,
       "color": 5,
       "label": "markdown",

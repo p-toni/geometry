@@ -1,28 +1,45 @@
 # About Me
 
-*2025.10.17*  ·  _contemplative / critical_
+*2026.04.28*  ·  _contemplative / critical_
 
 > Toni Pereira
 
-> Build products from first principles: starting with why, expose the constraints, instrument the loop, and use AI to search the solution space faster. The goal is to move faster: better questions, tighter feedback, more reliable outcomes.
+I build products from first principles: find the real constraint, shape the smallest useful system around it, and instrument the loop until progress becomes visible.
+
+AI is not the point. It is leverage — a way to search wider, test faster, and turn judgment into systems that can improve.
 
 ### How I work
-- Clarity first. Translate fuzzy goals into testable hypotheses and guardrails; pick the smallest slice that proves value.
-- Observable workflows. Traceable inputs → steps → outputs; stochastic exploration to widen options, deterministic checks where decisions matter.
-- Human-in-the-loop by design. Keep people as goal-setters and editors; use AI for proposals, drafts, counter-examples, and stress tests.
-- Instrumentation over intuition. Ship with evaluators, logs, and quality checks; iterate on real signals, not vibes.
-- Integrity is a feature. Reliability, safety, explainability, and security are product requirements—not add-ons.
+
+I like problems that are still partly fog. The goal is not to pretend the world is simple, but to separate what we know from what we assume; what matters from what merely looks urgent; what must be true before a product deserves more investment.
+
+From there, I build in loops: frame the problem, expose the constraints, create the smallest useful artifact, observe how it behaves, and tighten the system. Good product work is not a straight line from idea to launch. It is a disciplined search process.
+
+A few ideas show up often:
+
+- **Clarity before scale.** If the problem is fuzzy, scale only multiplies confusion.
+- **Evidence over confidence.** Demos show possibility; evaluations create direction.
+- **Human judgment stays central.** AI should expand options, generate counterexamples, draft, simulate, and stress-test — not quietly absorb accountability.
+- **Trust is a product requirement.** Reliability, safety, explainability, and security belong in the design, not in a late-stage review.
 
 ### What I do
-- Lead product end-to-end: problem framing, exploratory prototypes, measurable launches, and continuous evaluation.
-- Design human–AI workflows that amplify judgment (co-drafting, counter-pattern search, auto-evaluators/guardrails).
-- Build systems that connect text, data, and code so teams spend less time searching and more time synthesizing.
 
-### Background (snapshot)
-Product leadership across AI, data, and software security; founder experience; earlier stints in analytics and growth. Recent roles span large-scale orgs and startups, with impact anchored in instrumentation, reliability, and user-centric design.
+I work across product strategy, AI systems, data, and software security — usually where the valuable thing is ambiguous, the operating model is unfinished, and the system needs to become measurable before it can become scalable.
+
+In practice, I help turn vague goals into testable direction; design human–AI workflows where people remain goal-setters, editors, and accountable decision-makers; and build the evals, guardrails, telemetry, and feedback loops that let teams trust what they are shipping.
+
+I am especially interested in the shift from AI as a feature to AI as an operating substrate: agents, eval-native product development, continuous assurance, deterministic scaffolding, and interfaces that let humans steer increasingly complex systems without losing the thread.
+
+> A demo shows that something can happen once. An eval tells you whether you can make it happen again, under pressure, for the reasons you intended.
+
+That difference matters. It is the distance between novelty and product, between automation and accountability, between intelligence that impresses and systems that can be trusted.
+
+### Background
+
+Product leadership across AI, data, and software security; founder experience; earlier work in analytics, growth, and systems design. I have worked in large organizations and startups, often at the boundary between messy human judgment and the systems meant to support it.
 
 ### Elsewhere
-- Prototyping/Capturing insights: this repo
-- Social: sharing work-in-progress and ideas on X [@ape_toni](https://x.com/ape_toni).
 
-> I treat intelligence as guided search: humans keep the *why* and the standards; machines expand the search and tighten the loop.
+- Prototypes, essays, and experiments: this site
+- Notes and work-in-progress: [@ape_toni](https://x.com/ape_toni)
+
+> I treat intelligence as guided search: humans keep the why, the taste, and the standards; machines expand the search space and tighten the feedback loop.
