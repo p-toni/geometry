@@ -7,27 +7,25 @@ import { LinkIcon } from '../../lib/linkIcons';
 import { slugToPath } from '../../lib/paths';
 import type { BlockRendererProps } from './types';
 
+function isExternalHref(value: string) {
+  return /^https?:\/\//i.test(value) || value.startsWith('mailto:');
+}
+
+function displayTarget(value: string) {
+  if (value === 'home') return '/';
+  if (value.startsWith('https://')) return value.replace(/^https:\/\//i, '');
+  if (value.startsWith('http://')) return value.replace(/^http:\/\//i, '');
+  return value;
+}
+
 export function Link({ item }: BlockRendererProps) {
   const navigate = useNavigate();
   const reduceMotion = useReducedMotion();
   const isCompact = item.rows <= 3 || item.cols <= 8;
+  const external = isExternalHref(item.content);
 
-  return (
-    <motion.button
-      type="button"
-      data-no-drag="true"
-      className={cn(
-        'group flex h-full w-full text-left transition-transform duration-150 ease-out active:scale-[0.985]',
-        isCompact ? 'items-end gap-2' : 'items-stretch gap-3',
-      )}
-      whileHover={reduceMotion ? undefined : { transform: 'translateY(-2px)' }}
-      transition={tween.hover}
-      onPointerDown={(event) => event.stopPropagation()}
-      onClick={(event) => {
-        event.stopPropagation();
-        navigate(slugToPath(item.content));
-      }}
-    >
+  const body = (
+    <>
       <span
         className={cn(
           'flex shrink-0 items-center justify-center rounded-[6px] border border-accent/45 bg-paper text-accent-ink shadow-sm transition-[border-color] duration-150 ease-out group-hover:border-accent',
@@ -67,9 +65,49 @@ export function Link({ item }: BlockRendererProps) {
             isCompact ? 'text-[8px]' : 'text-[10px]',
           )}
         >
-          {item.content === 'home' ? '/' : item.content}
+          {displayTarget(item.content)}
         </span>
       </span>
+    </>
+  );
+
+  const className = cn(
+    'group flex h-full w-full text-left transition-transform duration-150 ease-out active:scale-[0.985]',
+    isCompact ? 'items-end gap-2' : 'items-stretch gap-3',
+  );
+
+  if (external) {
+    return (
+      <motion.a
+        href={item.content}
+        target="_blank"
+        rel="noreferrer"
+        data-no-drag="true"
+        className={className}
+        whileHover={reduceMotion ? undefined : { transform: 'translateY(-2px)' }}
+        transition={tween.hover}
+        onPointerDown={(event) => event.stopPropagation()}
+        onClick={(event) => event.stopPropagation()}
+      >
+        {body}
+      </motion.a>
+    );
+  }
+
+  return (
+    <motion.button
+      type="button"
+      data-no-drag="true"
+      className={className}
+      whileHover={reduceMotion ? undefined : { transform: 'translateY(-2px)' }}
+      transition={tween.hover}
+      onPointerDown={(event) => event.stopPropagation()}
+      onClick={(event) => {
+        event.stopPropagation();
+        navigate(slugToPath(item.content));
+      }}
+    >
+      {body}
     </motion.button>
   );
 }
