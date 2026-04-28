@@ -6,21 +6,21 @@
   "items": [
     {
       "id": "writing-title",
-      "type": "h2",
+      "type": "h1",
       "col": 1,
       "row": 1,
       "cols": 8,
       "rows": 3,
       "color": 4,
       "label": "writing",
-      "content": "Writing"
+      "content": "/writing"
     },
     {
       "id": "writing-reader",
       "type": "markdown",
       "col": 11,
       "row": 1,
-      "cols": 21,
+      "cols": 19,
       "rows": 18,
       "color": 0,
       "label": "read",
@@ -89,27 +89,38 @@
       "refreshKey": 2
     },
     {
+      "id": "writing-index",
+      "type": "markdown",
+      "col": 1,
+      "row": 5,
+      "cols": 8,
+      "rows": 14,
+      "color": 1,
+      "label": "pieces",
+      "content": "/content/writing.md"
+    },
+    {
+      "id": "voxel-moj0qyib-i9j89q",
+      "type": "voxel",
+      "col": 32,
+      "row": 9,
+      "cols": 6,
+      "rows": 7,
+      "color": 0,
+      "label": "voxel",
+      "content": "{\n  \"preset\": \"signal\",\n  \"tile\": 16,\n  \"gap\": 0.08,\n  \"camera\": {\n    \"type\": \"isometric\",\n    \"angle\": 45\n  }\n}"
+    },
+    {
       "id": "writing-home",
       "type": "link",
-      "col": 34,
-      "row": 1,
+      "col": 32,
+      "row": 17,
       "cols": 5,
       "rows": 2,
       "color": 2,
       "label": "home",
       "content": "home",
       "linkIcon": "home"
-    },
-    {
-      "id": "writing-index",
-      "type": "markdown",
-      "col": 1,
-      "row": 6,
-      "cols": 9,
-      "rows": 13,
-      "color": 1,
-      "label": "pieces",
-      "content": "/content/writing.md"
     }
   ]
 }
