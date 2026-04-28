@@ -192,7 +192,7 @@ function BlockChrome({
     >
       <div
         className={cn(
-          'pointer-events-auto flex h-6 min-w-0 max-w-[min(320px,100%)] items-stretch overflow-hidden rounded-lg border bg-paper/95 shadow-sm backdrop-blur-sm transition-opacity duration-150 ease-out group-hover:opacity-100 group-focus-within:opacity-100',
+          'pointer-events-auto flex h-6 min-w-0 max-w-[min(320px,100%)] items-stretch overflow-visible rounded-lg border bg-paper/95 shadow-sm backdrop-blur-sm transition-opacity duration-150 ease-out group-hover:opacity-100 group-focus-within:opacity-100',
           isSelected
             ? 'border-accent-ink opacity-100'
             : 'border-ink/15 opacity-50 hover:opacity-100',
