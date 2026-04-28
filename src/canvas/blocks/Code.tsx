@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import type { BlockRendererProps } from './types';
 
+// Code blocks always render on their own paper surface so Shiki's syntax
+// colours stay legible regardless of the cushion colour.
+const CODE_SURFACE =
+  'h-full overflow-auto rounded-[10px] bg-paper p-3 font-mono text-[12px] leading-relaxed text-ink';
+
 export function Code({ item, toggled, selectorValue }: BlockRendererProps) {
   const [html, setHtml] = useState('');
 
@@ -22,7 +27,7 @@ export function Code({ item, toggled, selectorValue }: BlockRendererProps) {
 
   if (toggled || !html) {
     return (
-      <pre className="h-full overflow-auto whitespace-pre-wrap font-mono text-[12px] leading-relaxed">
+      <pre className={`${CODE_SURFACE} whitespace-pre-wrap`}>
         <code>{item.content}</code>
       </pre>
     );
@@ -30,7 +35,7 @@ export function Code({ item, toggled, selectorValue }: BlockRendererProps) {
 
   return (
     <div
-      className="h-full overflow-auto text-[12px] [&_pre]:!m-0 [&_pre]:!bg-transparent [&_pre]:!p-0"
+      className={`${CODE_SURFACE} [&_pre]:!m-0 [&_pre]:!bg-transparent [&_pre]:!p-0`}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

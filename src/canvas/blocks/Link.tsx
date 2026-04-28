@@ -16,8 +16,8 @@ export function Link({ item }: BlockRendererProps) {
       type="button"
       data-no-drag="true"
       className={cn(
-        'group flex h-full w-full rounded-[12px] border border-line/80 bg-white/55 text-left transition hover:border-accent hover:bg-white/80',
-        isCompact ? 'items-end gap-2 p-2' : 'items-stretch gap-3 p-3',
+        'group flex h-full w-full text-left transition',
+        isCompact ? 'items-end gap-2' : 'items-stretch gap-3',
       )}
       whileHover={{ y: -2 }}
       transition={tween.hover}

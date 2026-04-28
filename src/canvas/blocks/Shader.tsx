@@ -116,10 +116,6 @@ export function Shader({ item, sliderValue, selectorValue }: BlockRendererProps)
   }, [fragment]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      aria-label={item.label}
-      className="block h-full w-full rounded-[6px] border border-ink/10"
-    />
+    <canvas ref={canvasRef} aria-label={item.label} className="block h-full w-full" />
   );
 }
