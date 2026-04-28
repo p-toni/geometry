@@ -13,6 +13,9 @@ export function Quote({ item, toggled, alignValue, fitEnabled }: BlockRendererPr
     fontWeight: 500,
     width: size.width,
     height: size.height,
+    lineHeightRatio: 1.375,
+    maxSize: 20,
+    whiteSpace: 'pre-wrap',
   });
 
   return (

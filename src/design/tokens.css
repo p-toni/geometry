@@ -1,30 +1,27 @@
 :root {
   /* ═══════════════════════════════════════════════════════════
-     Palette — exact six colours, nothing else
-     Pale Cashmere  #E8DFD5  ·  Cinnamon Ice   #DBBBA7
-     Burning Orange #FF7124  ·  Blue Estate    #3B4883
-     Wahoo          #272D4E  ·  Noble Black    #202124
+     Palette — mineral paper, oxidized green, vermilion, steel, and ink.
   ═══════════════════════════════════════════════════════════ */
 
   /* ── Base ─────────────────────────────────────────────────── */
-  --paper: #faf8f5; /* Warm white — canvas background */
-  --paper-2: #dbbba7; /* Cinnamon Ice   */
-  --ink: #202124; /* Noble Black    */
-  --ink-2: #3b4883; /* Blue Estate    */
-  --line: #dbbba7; /* Cinnamon Ice   */
-  --accent: #ff7124; /* Burning Orange */
-  --accent-ink: #ff7124; /* Burning Orange */
-  --outline: #3b4883; /* Blue Estate    */
-  --inverse-surface: #272d4e; /* Wahoo          */
-  --inverse-on-surface: #e8dfd5; /* Pale Cashmere  */
+  --paper: #f8f4ec;
+  --paper-2: #ede4d5;
+  --ink: #171a1f;
+  --ink-2: #52616b;
+  --line: #d8ccba;
+  --accent: #d65a3a;
+  --accent-ink: #d65a3a;
+  --outline: #58717d;
+  --inverse-surface: #171a1f;
+  --inverse-on-surface: #f8f4ec;
 
   /* ── Block tints (exact palette as colour-picker swatches) ── */
-  --block-amber: #e8dfd5; /* token 0 — Pale Cashmere  */
-  --block-rose: #dbbba7; /* token 1 — Cinnamon Ice   */
-  --block-blue: #ff7124; /* token 2 — Burning Orange */
-  --block-green: #3b4883; /* token 3 — Blue Estate    */
-  --block-purple: #272d4e; /* token 4 — Wahoo          */
-  --block-stone: #202124; /* token 5 — Noble Black    */
+  --block-amber: #efe5d3;
+  --block-rose: #c8d6cf;
+  --block-blue: #d65a3a;
+  --block-green: #58717d;
+  --block-purple: #2b2d42;
+  --block-stone: #171a1f;
 
   /* ── Card surfaces ───────────────────────────────────────────
      Only Cashmere and Cinnamon Ice are used as base surfaces
@@ -33,37 +30,38 @@
   ─────────────────────────────────────────────────────────── */
 
   /* Headings — Cashmere base · Blue Estate tint → periwinkle  */
-  --card-heading: #e8dfd5;
-  --card-heading-line: #3b4883;
-  --card-heading-accent: #272d4e;
+  --card-heading: #efe5d3;
+  --card-heading-line: #58717d;
+  --card-heading-accent: #2b2d42;
 
   /* Reading (p + markdown) — Cashmere base · subtle           */
-  --card-reading: #e8dfd5;
-  --card-reading-line: #dbbba7;
-  --card-reading-accent: #3b4883;
+  --card-reading: #efe5d3;
+  --card-reading-line: #d8ccba;
+  --card-reading-accent: #52616b;
 
   /* Link — Cashmere base · Burning Orange tint → vivid orange  */
-  --card-link: #e8dfd5;
-  --card-link-line: #ff7124;
-  --card-link-accent: #202124;
+  --card-link: #efe5d3;
+  --card-link-line: #d65a3a;
+  --card-link-accent: #171a1f;
 
   /* Quote — Cinnamon Ice base · Cinnamon tint → warm tan      */
-  --card-quote: #dbbba7;
-  --card-quote-line: #202124;
-  --card-quote-accent: #202124;
+  --card-quote: #c8d6cf;
+  --card-quote-line: #171a1f;
+  --card-quote-accent: #171a1f;
 
   /* Code — Cashmere base · Wahoo tint → deep slate-blue       */
-  --card-code: #e8dfd5;
-  --card-code-line: #272d4e;
-  --card-code-accent: #272d4e;
+  --card-code: #efe5d3;
+  --card-code-line: #2b2d42;
+  --card-code-accent: #2b2d42;
 
   /* Media — Cinnamon Ice base · warm gallery                  */
-  --card-media: #dbbba7;
-  --card-media-line: #ff7124;
-  --card-media-accent: #202124;
+  --card-media: #c8d6cf;
+  --card-media-line: #d65a3a;
+  --card-media-accent: #171a1f;
 
   /* ── Typography ──────────────────────────────────────────── */
   --font-display: 'Albert Sans Variable', 'Albert Sans', system-ui, sans-serif;
+  --font-heading: 'Fraunces Variable', 'Fraunces', Georgia, serif;
   --font-mono: 'JetBrains Mono Variable', 'SF Mono', monospace;
 
   /* ── Motion ──────────────────────────────────────────────── */

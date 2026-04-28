@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export function NotFound() {
+  useEffect(() => {
+    document.title = '404 · toni.ltd';
+  }, []);
+
   return (
     <main className="grid h-screen place-items-center bg-paper px-6 text-ink">
       <div className="max-w-md text-center">

@@ -284,7 +284,7 @@ export function Block({
   if (isMobile) {
     return (
       <article
-        className="relative flex min-h-20 flex-col overflow-hidden rounded-[16px] border-0 p-3 shadow-[0_4px_16px_rgba(11,28,48,0.05)]"
+        className="relative flex min-h-20 flex-col overflow-hidden rounded-[8px] border border-line/70 p-4 shadow-[0_10px_30px_rgba(23,26,31,0.06)]"
         style={{
           background: cardBackground,
           color: textColor,
@@ -387,11 +387,11 @@ export function Block({
 
       <div
         className={cn(
-          'absolute left-0 right-0 overflow-hidden rounded-[16px] shadow-[0_4px_16px_rgba(11,28,48,0.05)]',
-          showInnerFrame ? 'p-2' : 'p-3',
+          'absolute left-0 right-0 overflow-hidden rounded-[8px] border border-line/70 shadow-[0_10px_30px_rgba(23,26,31,0.06)]',
+          showInnerFrame ? 'p-2' : 'p-4',
           isSelected
             ? 'border border-accent-ink ring-2 ring-accent/70 ring-offset-1 ring-offset-paper'
-            : 'border-0',
+            : null,
         )}
         style={{
           top: chromeOffset,

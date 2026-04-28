@@ -30,7 +30,7 @@ export function Link({ item }: BlockRendererProps) {
     >
       <span
         className={cn(
-          'flex shrink-0 items-center justify-center rounded-[10px] border border-line/80 bg-white text-accent-ink shadow-sm transition-[border-color] duration-150 ease-out group-hover:border-accent',
+          'flex shrink-0 items-center justify-center rounded-[6px] border border-accent/45 bg-paper text-accent-ink shadow-sm transition-[border-color] duration-150 ease-out group-hover:border-accent',
           isCompact ? 'h-9 w-9' : 'h-full min-h-16 w-16',
         )}
         aria-hidden="true"
@@ -41,9 +41,10 @@ export function Link({ item }: BlockRendererProps) {
         <span className="flex min-w-0 items-start justify-between gap-2">
           <span
             className={cn(
-              'min-w-0 truncate font-display font-bold leading-none tracking-normal',
+              'min-w-0 truncate font-display leading-none tracking-normal',
               isCompact ? 'text-[18px]' : 'text-[28px]',
             )}
+            style={{ fontWeight: 650 }}
           >
             {item.label}
           </span>

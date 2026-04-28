@@ -9,57 +9,64 @@
       "type": "h2",
       "col": 1,
       "row": 1,
-      "cols": 6,
-      "rows": 2,
+      "cols": 16,
+      "rows": 4,
       "color": 4,
       "label": "toni.ltd",
       "content": "Toni Inc."
     },
     {
-      "id": "embed-mod94fni-d6ryxp",
-      "type": "embed",
-      "col": 30,
-      "row": 2,
-      "cols": 8,
-      "rows": 17,
-      "color": 5,
-      "label": "embed",
-      "content": "@shader:sequinWave"
-    },
-    {
-      "id": "home-about",
-      "type": "markdown",
-      "col": 1,
-      "row": 4,
-      "cols": 18,
-      "rows": 8,
-      "color": 5,
-      "label": "about",
-      "content": "/content/about.md"
-    },
-    {
       "id": "home-project",
       "type": "link",
       "col": 1,
-      "row": 13,
-      "cols": 5,
-      "rows": 2,
+      "row": 5,
+      "cols": 8,
+      "rows": 3,
       "color": 0,
-      "label": "project",
+      "label": "work",
       "content": "/projects/foo",
       "linkIcon": "briefcase"
     },
     {
       "id": "home-writing",
       "type": "link",
-      "col": 7,
-      "row": 13,
-      "cols": 5,
-      "rows": 2,
+      "col": 10,
+      "row": 5,
+      "cols": 8,
+      "rows": 3,
       "color": 1,
       "label": "writing",
       "content": "/writing",
-      "linkIcon": "pen"
+      "linkIcon": "pen",
+      "controls": [
+        {
+          "id": "border-mohgk364-5v6o0a",
+          "kind": "border",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "markdown-mohghr9e-x3pfxa",
+      "type": "markdown",
+      "col": 1,
+      "row": 11,
+      "cols": 17,
+      "rows": 8,
+      "color": 5,
+      "label": "markdown",
+      "content": "/content/about.md"
+    },
+    {
+      "id": "home-field",
+      "type": "voxel",
+      "col": 25,
+      "row": 2,
+      "cols": 10,
+      "rows": 10,
+      "color": 0,
+      "label": "voxel mark",
+      "content": "{\n  \"preset\": \"glyph\",\n  \"tile\": 18,\n  \"gap\": 0.08,\n  \"padding\": 18,\n  \"occlusion\": true,\n  \"camera\": { \"type\": \"isometric\", \"angle\": 45 }\n}"
     }
   ]
 }

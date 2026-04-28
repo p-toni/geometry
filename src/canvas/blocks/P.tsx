@@ -14,6 +14,9 @@ export function P({ item, sliderValue, toggled, alignValue, fitEnabled }: BlockR
     fontWeight: 400,
     width: size.width,
     height: size.height,
+    lineHeightRatio: 1.45,
+    maxSize: toggled ? 13 : 17,
+    whiteSpace: 'pre-wrap',
   });
 
   return (

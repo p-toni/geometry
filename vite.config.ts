@@ -6,6 +6,19 @@ import { saveCanvasPlugin } from './src/plugins/vite-plugin-save';
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), saveCanvasPlugin(), aiProxyPlugin()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return undefined;
+          if (id.includes('/framer-motion') || id.includes('/motion-dom')) {
+            return 'motion-vendor';
+          }
+          return undefined;
+        },
+      },
+    },
+  },
   test: {
     environment: 'jsdom',
     globals: true,
