@@ -9,5 +9,6 @@ export { Markdown } from './Markdown';
 export { P } from './P';
 export { Quote } from './Quote';
 export { Shader } from './Shader';
+export { ThreeSharp } from './threeSharp/ThreeSharp';
 export { Voxel } from './Voxel';
 export type { BlockRendererProps } from './types';

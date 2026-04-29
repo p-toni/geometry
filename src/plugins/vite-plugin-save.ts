@@ -18,7 +18,7 @@ const ALLOWED_HOSTS = new Set([
 // load time, before module aliases / DEV env are wired up.
 const BLOCK_TYPES = new Set([
   'h1', 'h2', 'h3', 'p', 'quote', 'markdown', 'code', 'embed', 'image', 'link',
-  'shader', 'voxel',
+  'shader', 'voxel', 'threeSharp',
 ]);
 
 function isRecord(value: unknown): value is Record<string, unknown> {

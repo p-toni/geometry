@@ -109,7 +109,9 @@ describe('createCanvasStore', () => {
   it('updates controls and selector content', () => {
     const store = createCanvasStore(seedCanvas());
     store.getState().addControl('a', { id: 's', kind: 'selector', value: 'one', options: [] });
-    store.getState().updateControl('a', { id: 's', kind: 'selector', value: 'two', options: [] });
+    store
+      .getState()
+      .updateControl('a', { id: 's', kind: 'selector', value: 'two', options: [] });
     expect(store.getState().canvas.items[0].content).toBe('two');
   });
 
@@ -151,6 +153,40 @@ describe('createCanvasStore', () => {
     expect(reader).toMatchObject({ content: '/content/two.md' });
     expect(reader?.controls?.[0]).toMatchObject({ kind: 'selector', value: '/content/two.md' });
     expect(store.getState().selectedId).toBeNull();
+  });
+
+  it('falls back to the largest markdown block as the reader for content links', () => {
+    const canvas = seedCanvas();
+    canvas.items.push({
+      id: 'body',
+      type: 'markdown',
+      col: 8,
+      row: 0,
+      cols: 16,
+      rows: 12,
+      color: 0,
+      label: 'body',
+      content: '/content/one.md',
+    });
+    canvas.items.push({
+      id: 'index',
+      type: 'markdown',
+      col: 0,
+      row: 0,
+      cols: 7,
+      rows: 12,
+      color: 1,
+      label: 'index',
+      content: '/content/index.md',
+    });
+    const store = createCanvasStore(canvas);
+    store.getState().openMarkdownSource('index', '/content/two.md');
+    expect(store.getState().canvas.items.find((item) => item.id === 'body')).toMatchObject({
+      content: '/content/two.md',
+    });
+    expect(store.getState().canvas.items.find((item) => item.id === 'index')).toMatchObject({
+      content: '/content/index.md',
+    });
   });
 
   it('ignores duplicate controls of the same kind on an item', () => {

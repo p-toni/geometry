@@ -9,6 +9,7 @@ import {
   Heading2,
   Heading3,
   Image as ImageIcon,
+  ImagePlus,
   Link as LinkIcon,
   ListFilter,
   Maximize2,
@@ -22,12 +23,13 @@ import {
   Shapes,
   SlidersHorizontal,
   Sparkles,
+  Orbit,
   ToggleLeft,
   Trash2,
   Type,
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState, type FocusEvent, type ReactNode } from 'react';
+import { useRef, useState, type ChangeEvent, type FocusEvent, type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IS_OWNER } from '../constants';
 import { markdownSources } from '../content/markdownRegistry';
@@ -51,20 +53,21 @@ const blockIcons: Record<BlockType, typeof Heading1> = {
   link: LinkIcon,
   shader: Sparkles,
   voxel: Boxes,
+  threeSharp: Orbit,
 };
 
 const blockGroups: { label: string; icon: typeof Heading1; types: BlockType[] }[] = [
   { label: 'text', icon: Type, types: ['h1', 'h2', 'h3', 'p', 'quote'] },
   { label: 'rich', icon: Shapes, types: ['markdown', 'code', 'embed', 'image'] },
-  { label: 'generative', icon: Sparkles, types: ['shader', 'voxel'] },
+  { label: 'generative', icon: Sparkles, types: ['shader', 'voxel', 'threeSharp'] },
   { label: 'navigation', icon: LinkIcon, types: ['link'] },
 ];
 
 const controlSupport: Record<Control['kind'], BlockType[]> = {
   toggle: ['h1', 'h2', 'h3', 'p', 'quote', 'code', 'image', 'markdown'],
-  slider: ['h1', 'h2', 'h3', 'p', 'image', 'shader', 'voxel'],
+  slider: ['h1', 'h2', 'h3', 'p', 'image', 'shader', 'voxel', 'threeSharp'],
   selector: ['markdown', 'link', 'code', 'shader', 'voxel'],
-  action: ['markdown', 'code', 'shader', 'voxel'],
+  action: ['markdown', 'code', 'shader', 'voxel', 'threeSharp'],
   align: ['h1', 'h2', 'h3', 'p', 'quote', 'markdown'],
   fit: ['h1', 'h2', 'h3', 'p', 'quote'],
   border: [
@@ -80,6 +83,7 @@ const controlSupport: Record<Control['kind'], BlockType[]> = {
     'link',
     'shader',
     'voxel',
+    'threeSharp',
   ],
 };
 
@@ -104,6 +108,9 @@ function sliderForItem(item: Item): Control {
   }
   if (item.type === 'voxel') {
     return { id: createId('slider'), kind: 'slider', value: 0, min: 0, max: 1 };
+  }
+  if (item.type === 'threeSharp') {
+    return { id: createId('slider'), kind: 'slider', value: 0.5, min: 0, max: 1 };
   }
   return { id: createId('slider'), kind: 'slider', value: 1.0, min: 0.1, max: 1.0 };
 }
@@ -253,11 +260,14 @@ function ExpandingGroup({
 export function Toolbar({
   onSave,
   saveState,
+  onPickSharpImage,
 }: {
   onSave: () => void;
   saveState: 'idle' | 'saving' | 'saved' | 'error';
+  onPickSharpImage?: (file: File) => void;
 }) {
   const navigate = useNavigate();
+  const sharpInputRef = useRef<HTMLInputElement>(null);
   const canvas = useCanvasStore((state) => state.canvas);
   const selectedId = useCanvasStore((state) => state.selectedId);
   const selectedItem = useCanvasStore((state) =>
@@ -300,6 +310,13 @@ export function Toolbar({
     if (response.ok) navigate(slugToPath(slug));
   };
 
+  const pickSharpImage = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file || !onPickSharpImage) return;
+    onPickSharpImage(file);
+  };
+
   return (
     <header className="flex h-[var(--header-h)] items-center gap-2 border-b border-line/80 bg-white/80 px-3 shadow-[0_8px_24px_rgba(11,28,48,0.06)] backdrop-blur-xl">
       <div className="mr-2 flex min-w-32 items-baseline gap-2">
@@ -315,16 +332,28 @@ export function Toolbar({
             {group.types.map((type) => {
               const Icon = blockIcons[type];
               return (
-                <button
-                  key={type}
-                  type="button"
-                  title={`Add ${type}`}
-                  aria-label={`Add ${type}`}
-                  className={toolbarButtonClass}
-                  onClick={() => addItem(type)}
-                >
-                  <Icon size={15} />
-                </button>
+                <span key={type} className="contents">
+                  <button
+                    type="button"
+                    title={`Add ${type}`}
+                    aria-label={`Add ${type}`}
+                    className={toolbarButtonClass}
+                    onClick={() => addItem(type)}
+                  >
+                    <Icon size={15} />
+                  </button>
+                  {IS_OWNER && type === 'threeSharp' ? (
+                    <button
+                      type="button"
+                      title="Image to cloud"
+                      aria-label="Image to cloud"
+                      className={toolbarButtonClass}
+                      onClick={() => sharpInputRef.current?.click()}
+                    >
+                      <ImagePlus size={15} />
+                    </button>
+                  ) : null}
+                </span>
               );
             })}
           </ExpandingGroup>
@@ -442,6 +471,16 @@ export function Toolbar({
           <Bot size={15} className="text-ink-2" aria-label="Demo" />
         )}
       </div>
+      {IS_OWNER ? (
+        <input
+          ref={sharpInputRef}
+          className="hidden"
+          type="file"
+          accept="image/*"
+          tabIndex={-1}
+          onChange={pickSharpImage}
+        />
+      ) : null}
     </header>
   );
 }

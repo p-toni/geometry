@@ -12,8 +12,15 @@ function getContrastColor(hex: string): string {
 
 import { motion, useReducedMotion } from 'framer-motion';
 import { Grip, ListFilter, SlidersHorizontal } from 'lucide-react';
-import { useState, type PointerEvent as ReactPointerEvent, type ReactElement } from 'react';
+import {
+  useEffect,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+  type ReactElement,
+} from 'react';
 import { COLORS } from '../constants';
+import { markdownSources } from '../content/markdownRegistry';
+import { sharpSources } from '../content/sharpRegistry';
 import { spring } from '../design/motion';
 import { cn } from '../lib/cn';
 import { useCanvasStore } from '../store/canvasStore';
@@ -38,6 +45,7 @@ import {
   P,
   Quote,
   Shader,
+  ThreeSharp,
   Voxel,
   type BlockRendererProps,
 } from './blocks';
@@ -55,9 +63,12 @@ const renderers = {
   link: Link,
   shader: Shader,
   voxel: Voxel,
+  threeSharp: ThreeSharp,
 } satisfies Record<Item['type'], (props: BlockRendererProps) => ReactElement>;
 
 const CHROME_HEIGHT = 28;
+const NAVIGABLE_TYPES: Item['type'][] = ['markdown', 'threeSharp'];
+type SourceOption = { label: string; value: string };
 
 function controlValues(controls: Control[] | undefined) {
   return {
@@ -112,7 +123,7 @@ function ControlChip({
       </button>
       {isOpen && (
         <span
-          className="absolute left-0 top-full z-50 mt-1 rounded-[6px] border border-ink/10 bg-paper p-2 shadow-lg"
+          className="absolute right-0 top-full z-50 mt-1 rounded-[6px] border border-ink/10 bg-paper p-2 shadow-lg"
           onClick={(event) => event.stopPropagation()}
         >
           {control.kind === 'slider' ? (
@@ -162,6 +173,185 @@ function ControlChip({
         </span>
       )}
     </span>
+  );
+}
+
+function uniqueSources(sources: SourceOption[]): SourceOption[] {
+  const seen = new Set<string>();
+  return sources.filter((source) => {
+    if (!source.value || seen.has(source.value)) return false;
+    seen.add(source.value);
+    return true;
+  });
+}
+
+function optionsWithCurrent(options: SourceOption[], current: string | null): SourceOption[] {
+  if (!current) return uniqueSources(options);
+  const unique = uniqueSources(options);
+  if (unique.some((source) => source.value === current)) return unique;
+  return [...unique, { label: 'current', value: current }];
+}
+
+function currentSharpUrl(item: Item): string | null {
+  try {
+    const parsed = JSON.parse(item.content) as { plyUrl?: unknown };
+    return typeof parsed.plyUrl === 'string' && parsed.plyUrl.trim() ? parsed.plyUrl : null;
+  } catch {
+    return null;
+  }
+}
+
+function isIndexMarkdown(item: Item): boolean {
+  if (item.type !== 'markdown') return false;
+  const label = item.label.trim().toLowerCase();
+  const id = item.id.trim().toLowerCase();
+  return label === 'index' || id.endsWith('-index') || id.includes('index');
+}
+
+function patchSharpUrl(item: Item, url: string): string {
+  try {
+    const parsed = JSON.parse(item.content) as Record<string, unknown>;
+    return JSON.stringify({ ...parsed, plyUrl: url }, null, 2);
+  } catch {
+    return JSON.stringify({ plyUrl: url }, null, 2);
+  }
+}
+
+function sourceOptionsFor(
+  item: Item,
+  sharpSourceOptions: SourceOption[],
+): { current: string | null; options: SourceOption[] } {
+  if (item.type === 'markdown') {
+    return {
+      current: item.content,
+      options: optionsWithCurrent(
+        [
+          ...(item.controls ?? [])
+            .filter((control) => control.kind === 'selector')
+            .flatMap((control) => control.options),
+          ...markdownSources,
+        ],
+        item.content,
+      ),
+    };
+  }
+
+  if (item.type === 'threeSharp') {
+    const current = currentSharpUrl(item);
+    return {
+      current,
+      options: optionsWithCurrent(sharpSourceOptions, current),
+    };
+  }
+
+  return { current: null, options: [] };
+}
+
+function controlsWithContentSelectorValue(item: Item, value: string): Control[] | undefined {
+  const controls = item.controls;
+  if (!controls) return undefined;
+  return controls.map((control) =>
+    control.kind === 'selector' && control.affectsContent !== false
+      ? { ...control, value }
+      : control,
+  );
+}
+
+function BlockNavigator({
+  item,
+  setOpenControlId,
+}: {
+  item: Item;
+  setOpenControlId: (id: string | null) => void;
+}) {
+  const updateItem = useCanvasStore((state) => state.updateItem);
+  const [runtimeSharpSources, setRuntimeSharpSources] = useState<SourceOption[]>(sharpSources);
+
+  useEffect(() => {
+    if (item.type !== 'threeSharp' || !import.meta.env.DEV) return undefined;
+    let active = true;
+    fetch('/__sharp/list')
+      .then((response) => (response.ok ? response.json() : null))
+      .then((payload: unknown) => {
+        if (!active || !Array.isArray(payload)) return;
+        const sources = payload.filter((source): source is SourceOption => {
+          if (typeof source !== 'object' || source === null) return false;
+          const candidate = source as Partial<SourceOption>;
+          return (
+            typeof candidate.label === 'string' &&
+            typeof candidate.value === 'string' &&
+            candidate.value.endsWith('.splt')
+          );
+        });
+        setRuntimeSharpSources(uniqueSources([...sharpSources, ...sources]));
+      })
+      .catch(() => undefined);
+    return () => {
+      active = false;
+    };
+  }, [item.type]);
+
+  if (!NAVIGABLE_TYPES.includes(item.type)) return null;
+  if (isIndexMarkdown(item)) return null;
+
+  const { current, options } = sourceOptionsFor(item, runtimeSharpSources);
+  if (!current || options.length < 2) return null;
+
+  const index = options.findIndex((option) => option.value === current);
+  if (index < 0) return null;
+
+  const go = (direction: -1 | 1) => {
+    const next = options.at((index + direction + options.length) % options.length);
+    if (!next) return;
+    setOpenControlId(null);
+    if (item.type === 'markdown') {
+      updateItem(item.id, {
+        content: next.value,
+        controls: controlsWithContentSelectorValue(item, next.value),
+      });
+      return;
+    }
+    if (item.type === 'threeSharp') {
+      updateItem(item.id, { content: patchSharpUrl(item, next.value) });
+    }
+  };
+
+  const buttonClass =
+    'inline-flex h-5 w-5 items-center justify-center rounded-sm font-mono text-[11px] text-ink-2 transition-[background-color,color,transform] duration-150 ease-out hover:bg-ink/10 hover:text-ink active:scale-[0.96]';
+
+  return (
+    <>
+      <span className="my-1 w-px shrink-0 bg-ink/15" />
+      <div className="flex items-center px-1" data-no-drag="true">
+        <button
+          type="button"
+          aria-label="Previous artifact"
+          title="Previous artifact"
+          className={buttonClass}
+          onPointerDown={(event) => event.stopPropagation()}
+          onClick={(event) => {
+            event.stopPropagation();
+            go(-1);
+          }}
+        >
+          &lt;
+        </button>
+        <span className="px-0.5 font-mono text-[10px] text-ink-2/40">|</span>
+        <button
+          type="button"
+          aria-label="Next artifact"
+          title="Next artifact"
+          className={buttonClass}
+          onPointerDown={(event) => event.stopPropagation()}
+          onClick={(event) => {
+            event.stopPropagation();
+            go(1);
+          }}
+        >
+          &gt;
+        </button>
+      </div>
+    </>
   );
 }
 
@@ -218,6 +408,8 @@ function BlockChrome({
           </span>
         </div>
 
+        <BlockNavigator item={item} setOpenControlId={setOpenControlId} />
+
         {/* Divider + controls */}
         {hasControls && (
           <>
@@ -265,7 +457,7 @@ export function Block({
   const { borderEnabled: _, ...values } = allValues;
   void _;
   const showInnerFrame = allValues.borderEnabled;
-  const FULL_BLEED_TYPES: Item['type'][] = ['shader', 'embed', 'image', 'voxel'];
+  const FULL_BLEED_TYPES: Item['type'][] = ['shader', 'embed', 'image', 'voxel', 'threeSharp'];
   const isFullBleed = FULL_BLEED_TYPES.includes(item.type);
   const innerFramePadding = isFullBleed ? '' : 'p-3';
   const innerFrameSurface = isFullBleed
@@ -284,6 +476,7 @@ export function Block({
   if (isMobile) {
     return (
       <article
+        data-canvas-block="true"
         className="relative flex min-h-20 flex-col overflow-hidden rounded-[8px] border border-line/70 p-4 shadow-[0_10px_30px_rgba(23,26,31,0.06)]"
         style={{
           background: cardBackground,
@@ -309,12 +502,14 @@ export function Block({
           ).length > 0 ? (
             <div className="flex shrink-0 items-center gap-0.5">
               {(item.controls ?? [])
-                .filter((c) =>
-              c.kind === 'toggle' ||
-              c.kind === 'align' ||
-              c.kind === 'action' ||
-              c.kind === 'fit' ||
-              c.kind === 'border')
+                .filter(
+                  (c) =>
+                    c.kind === 'toggle' ||
+                    c.kind === 'align' ||
+                    c.kind === 'action' ||
+                    c.kind === 'fit' ||
+                    c.kind === 'border',
+                )
                 .map((control) => (
                   <ControlChip
                     key={control.id}
@@ -349,6 +544,7 @@ export function Block({
 
   return (
     <motion.article
+      data-canvas-block="true"
       data-testid={`block-${item.type}`}
       className={cn(
         'group absolute left-0 top-0 overflow-visible outline-none',

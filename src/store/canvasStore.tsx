@@ -12,9 +12,11 @@ export interface CanvasState {
   dragState: null | { id: string; ghostCol: number; ghostRow: number };
   resizeState: null | { id: string; ghostCols: number; ghostRows: number };
   hasDiverged: boolean;
+  statusMessage: string | null;
   select: (id: string | null) => void;
-  addItem: (type: BlockType) => void;
+  addItem: (type: BlockType) => string;
   updateItem: (id: string, patch: Partial<Item>) => void;
+  setStatusMessage: (message: string | null) => void;
   openMarkdownSource: (fromItemId: string, source: string) => void;
   deleteItem: (id: string) => void;
   addControl: (id: string, control: Control) => void;
@@ -61,29 +63,31 @@ export function createCanvasStore(initialCanvas: Canvas): CanvasStoreApi {
     dragState: null,
     resizeState: null,
     hasDiverged: false,
+    statusMessage: null,
     select: (id) => set({ selectedId: id }),
-    addItem: (type) =>
-      set((state) => {
-        const defaults = BLOCK_DEFAULTS[type];
-        const position = nextPosition(state.canvas.items.length, defaults.cols, defaults.rows);
-        const item: Item = normalizeItem({
-          id: createId(type),
-          type,
-          col: position.col,
-          row: position.row,
-          cols: defaults.cols,
-          rows: defaults.rows,
-          color: BLOCK_DEFAULT_COLORS[type],
-          label: defaults.label,
-          content: defaults.content,
-          linkIcon: type === 'link' ? 'link' : undefined,
-        });
-        return {
-          canvas: { ...state.canvas, items: [...state.canvas.items, item] },
-          selectedId: item.id,
-          hasDiverged: true,
-        };
-      }),
+    addItem: (type) => {
+      const state = get();
+      const defaults = BLOCK_DEFAULTS[type];
+      const position = nextPosition(state.canvas.items.length, defaults.cols, defaults.rows);
+      const item: Item = normalizeItem({
+        id: createId(type),
+        type,
+        col: position.col,
+        row: position.row,
+        cols: defaults.cols,
+        rows: defaults.rows,
+        color: BLOCK_DEFAULT_COLORS[type],
+        label: defaults.label,
+        content: defaults.content,
+        linkIcon: type === 'link' ? 'link' : undefined,
+      });
+      set({
+        canvas: { ...state.canvas, items: [...state.canvas.items, item] },
+        selectedId: item.id,
+        hasDiverged: true,
+      });
+      return item.id;
+    },
     updateItem: (id, patch) =>
       set((state) => ({
         canvas: {
@@ -94,13 +98,15 @@ export function createCanvasStore(initialCanvas: Canvas): CanvasStoreApi {
         },
         hasDiverged: true,
       })),
+    setStatusMessage: (message) => set({ statusMessage: message }),
     openMarkdownSource: (fromItemId, source) =>
       set((state) => {
         const fromItem = state.canvas.items.find((item) => item.id === fromItemId);
+        const markdownItems = state.canvas.items.filter((item) => item.type === 'markdown');
         const preferred =
-          state.canvas.items.find(
-            (item) => item.type === 'markdown' && item.id.includes('reader'),
-          ) ?? fromItem;
+          markdownItems.find((item) => item.id.includes('reader')) ??
+          [...markdownItems].sort((a, b) => b.cols * b.rows - a.cols * a.rows)[0] ??
+          fromItem;
         if (!preferred || preferred.type !== 'markdown') return state;
         const targetId = preferred.id;
         return {

@@ -6,11 +6,11 @@
   "items": [
     {
       "id": "writing-title",
-      "type": "h1",
+      "type": "h2",
       "col": 1,
       "row": 1,
-      "cols": 8,
-      "rows": 3,
+      "cols": 7,
+      "rows": 2,
       "color": 4,
       "label": "writing",
       "content": "/writing",
@@ -18,19 +18,19 @@
         {
           "id": "toggle-moj2vo2v-371xfw",
           "kind": "toggle",
-          "value": false
+          "value": true
         }
       ]
     },
     {
-      "id": "markdown-moj2wad6-i5cu5p",
+      "id": "writing-reader",
       "type": "markdown",
-      "col": 12,
+      "col": 11,
       "row": 1,
       "cols": 18,
       "rows": 18,
       "color": 0,
-      "label": "pieces",
+      "label": "reader",
       "content": "/content/09-allowed-ignorance.md",
       "controls": [
         {
@@ -94,11 +94,11 @@
       "id": "writing-index",
       "type": "markdown",
       "col": 1,
-      "row": 5,
-      "cols": 8,
-      "rows": 14,
+      "row": 4,
+      "cols": 7,
+      "rows": 15,
       "color": 0,
-      "label": "pieces",
+      "label": "index",
       "content": "/content/writing.md"
     },
     {
@@ -117,7 +117,7 @@
       "type": "link",
       "col": 32,
       "row": 17,
-      "cols": 5,
+      "cols": 6,
       "rows": 2,
       "color": 2,
       "label": "home",

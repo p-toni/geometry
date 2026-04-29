@@ -10,7 +10,8 @@ export type BlockType =
   | 'image'
   | 'link'
   | 'shader'
-  | 'voxel';
+  | 'voxel'
+  | 'threeSharp';
 
 export type ColorToken = 0 | 1 | 2 | 3 | 4 | 5;
 

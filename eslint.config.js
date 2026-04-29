@@ -8,7 +8,7 @@ import globals from 'globals';
 
 export default [
   {
-    ignores: ['dist', 'node_modules', 'coverage', '*.config.*', 'eslint.config.js'],
+    ignores: ['dist', 'node_modules', 'coverage', '.sharp/**', '*.config.*', 'eslint.config.js'],
   },
   js.configs.recommended,
   {
@@ -47,6 +47,16 @@ export default [
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
       'react/prop-types': 'off',
+    },
+  },
+  {
+    files: ['scripts/**/*.{js,mjs}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.node,
+      },
     },
   },
   prettier,

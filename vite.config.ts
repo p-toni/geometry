@@ -3,9 +3,10 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
 import { aiProxyPlugin } from './src/plugins/vite-plugin-ai';
 import { saveCanvasPlugin } from './src/plugins/vite-plugin-save';
+import { sharpPredictPlugin } from './src/plugins/vite-plugin-sharp';
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), saveCanvasPlugin(), aiProxyPlugin()],
+  plugins: [react(), tailwindcss(), saveCanvasPlugin(), aiProxyPlugin(), sharpPredictPlugin()],
   build: {
     rollupOptions: {
       output: {

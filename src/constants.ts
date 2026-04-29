@@ -30,6 +30,7 @@ export const BLOCK_DEFAULT_COLORS: Record<BlockType, ColorToken> = {
   link: 2,
   shader: 5,
   voxel: 0,
+  threeSharp: 5,
 };
 
 export const CARD_SURFACES: Record<
@@ -108,6 +109,12 @@ export const CARD_SURFACES: Record<
     border: 'var(--card-media-line)',
     accent: 'var(--card-media-accent)',
   },
+  threeSharp: {
+    name: 'three',
+    background: 'var(--card-code)',
+    border: 'var(--card-code-line)',
+    accent: 'var(--card-code-accent)',
+  },
 };
 
 export const BLOCK_TYPES: BlockType[] = [
@@ -123,6 +130,7 @@ export const BLOCK_TYPES: BlockType[] = [
   'link',
   'shader',
   'voxel',
+  'threeSharp',
 ];
 
 export const BLOCK_DEFAULTS: Record<
@@ -198,6 +206,41 @@ void main() {
         tile: 16,
         gap: 0.08,
         camera: { type: 'isometric', angle: 45 },
+      },
+      null,
+      2,
+    ),
+  },
+  threeSharp: {
+    cols: 12,
+    rows: 8,
+    label: 'three sharp',
+    content: JSON.stringify(
+      {
+        count: 2000000,
+        size: 0.02,
+        flowInfluenceIdle: 0.1,
+        flowInfluenceFast: 1.0,
+        flowSmoothing: 1.9,
+        strength: 0.6,
+        frequency: 1.0,
+        decayRate: 0.9,
+        timeScale: 0.2,
+        returnStrength: 0.65,
+        maxDrift: 0.32,
+        boundsRadius: 1.72,
+        cameraDistance: 3,
+        cameraOrbitX: 0.18,
+        cameraOrbitY: 0.08,
+        cameraBreath: 0.05,
+        roll: 0.01,
+        brightness: 0,
+        lift: 0.035,
+        contrast: 0.65,
+        saturation: 1.2,
+        tintStrength: 0.5,
+        pointSizeHeight: 900,
+        plyUrl: '/sharp/08f531b054917ea3.splt',
       },
       null,
       2,
