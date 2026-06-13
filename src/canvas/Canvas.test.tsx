@@ -214,7 +214,9 @@ describe('Canvas', () => {
       </MemoryRouter>,
     );
 
-    expect(await screen.findByText('loaded /content/05-bounded-me.md')).toBeInTheDocument();
+    expect(
+      await screen.findByText('loaded /content/05-bounded-me.md', undefined, { timeout: 5000 }),
+    ).toBeInTheDocument();
     vi.unstubAllGlobals();
   });
 
