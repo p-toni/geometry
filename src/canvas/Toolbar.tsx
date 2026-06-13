@@ -1,29 +1,30 @@
 import {
   AlignCenter,
   Bot,
-  Boxes,
+  Box,
+  Braces,
   Check,
-  Code2,
-  FilePlus,
+  FileCode2,
+  FileImage,
+  FileText,
+  Frame,
   Heading1,
   Heading2,
   Heading3,
-  Image as ImageIcon,
   ImagePlus,
   Link as LinkIcon,
   ListFilter,
   Maximize2,
-  MousePointerClick,
-  Square,
+  PanelTop,
+  SquareDashed,
   Pilcrow,
   Plus,
   Quote,
   RefreshCw,
   Save,
-  Shapes,
   SlidersHorizontal,
   Sparkles,
-  Orbit,
+  Atom,
   ToggleLeft,
   Trash2,
   Type,
@@ -46,19 +47,19 @@ const blockIcons: Record<BlockType, typeof Heading1> = {
   h3: Heading3,
   p: Pilcrow,
   quote: Quote,
-  markdown: FilePlus,
-  code: Code2,
-  embed: MousePointerClick,
-  image: ImageIcon,
+  markdown: FileText,
+  code: FileCode2,
+  embed: Frame,
+  image: FileImage,
   link: LinkIcon,
-  shader: Sparkles,
-  voxel: Boxes,
-  threeSharp: Orbit,
+  shader: Braces,
+  voxel: Box,
+  threeSharp: Atom,
 };
 
 const blockGroups: { label: string; icon: typeof Heading1; types: BlockType[] }[] = [
   { label: 'text', icon: Type, types: ['h1', 'h2', 'h3', 'p', 'quote'] },
-  { label: 'rich', icon: Shapes, types: ['markdown', 'code', 'embed', 'image'] },
+  { label: 'rich', icon: PanelTop, types: ['markdown', 'code', 'embed', 'image'] },
   { label: 'generative', icon: Sparkles, types: ['shader', 'voxel', 'threeSharp'] },
   { label: 'navigation', icon: LinkIcon, types: ['link'] },
 ];
@@ -93,10 +94,6 @@ function controlApplies(kind: Control['kind'], item: Item | undefined) {
 
 function hasControl(kind: Control['kind'], item: Item | undefined) {
   return Boolean(item?.controls?.some((control) => control.kind === kind));
-}
-
-function canAttachControl(kind: Control['kind'], item: Item | undefined) {
-  return controlApplies(kind, item) && !hasControl(kind, item);
 }
 
 function sliderForItem(item: Item): Control {
@@ -221,7 +218,7 @@ function ExpandingGroup({
     <motion.div
       layout
       aria-label={label}
-      className="flex h-9 items-center overflow-hidden rounded-full border border-line/70 bg-white/80 px-0.5 shadow-[0_10px_24px_rgba(11,28,48,0.08)] backdrop-blur-xl"
+      className="flex h-9 shrink-0 items-center overflow-hidden rounded-full border border-line/70 bg-white/80 px-0.5 shadow-[0_10px_24px_rgba(11,28,48,0.08)] backdrop-blur-xl"
       transition={revealTransition}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
@@ -275,10 +272,16 @@ export function Toolbar({
   );
   const addItem = useCanvasStore((state) => state.addItem);
   const addControl = useCanvasStore((state) => state.addControl);
+  const removeControl = useCanvasStore((state) => state.removeControl);
   const deleteItem = useCanvasStore((state) => state.deleteItem);
 
-  const attachControl = (kind: Control['kind']) => {
-    if (!selectedId || !selectedItem || !canAttachControl(kind, selectedItem)) return;
+  const toggleControl = (kind: Control['kind']) => {
+    if (!selectedId || !selectedItem || !controlApplies(kind, selectedItem)) return;
+    const existing = selectedItem.controls?.find((control) => control.kind === kind);
+    if (existing) {
+      removeControl(selectedId, existing.id);
+      return;
+    }
     const control: Control =
       kind === 'toggle'
         ? { id: createId('toggle'), kind: 'toggle', value: false }
@@ -295,6 +298,9 @@ export function Toolbar({
                   : { id: createId('action'), kind: 'action' };
     addControl(selectedId, control);
   };
+
+  const controlLabel = (kind: Control['kind'], label: string) =>
+    `${hasControl(kind, selectedItem) ? 'Remove' : 'Add'} ${label}`;
 
   const createCanvas = async () => {
     if (!IS_OWNER) return;
@@ -360,77 +366,77 @@ export function Toolbar({
         ))}
       </div>
 
-      <div className="ml-auto flex items-center gap-1">
+      <div className="ml-auto flex shrink-0 items-center gap-1">
         <ExpandingGroup label="block controls" icon={SlidersHorizontal}>
           <button
             type="button"
-            title="Toggle"
-            aria-label="Add toggle"
-            disabled={!canAttachControl('toggle', selectedItem)}
+            title={controlLabel('toggle', 'toggle')}
+            aria-label={controlLabel('toggle', 'toggle')}
+            disabled={!controlApplies('toggle', selectedItem)}
             className={disabledToolbarButtonClass}
-            onClick={() => attachControl('toggle')}
+            onClick={() => toggleControl('toggle')}
           >
             <ToggleLeft size={15} />
           </button>
           <button
             type="button"
-            title="Slider"
-            aria-label="Add slider"
-            disabled={!canAttachControl('slider', selectedItem)}
+            title={controlLabel('slider', 'slider')}
+            aria-label={controlLabel('slider', 'slider')}
+            disabled={!controlApplies('slider', selectedItem)}
             className={disabledToolbarButtonClass}
-            onClick={() => attachControl('slider')}
+            onClick={() => toggleControl('slider')}
           >
             <SlidersHorizontal size={15} />
           </button>
           <button
             type="button"
-            title="Selector"
-            aria-label="Add selector"
-            disabled={!canAttachControl('selector', selectedItem)}
+            title={controlLabel('selector', 'selector')}
+            aria-label={controlLabel('selector', 'selector')}
+            disabled={!controlApplies('selector', selectedItem)}
             className={disabledToolbarButtonClass}
-            onClick={() => attachControl('selector')}
+            onClick={() => toggleControl('selector')}
           >
             <ListFilter size={15} />
           </button>
           <button
             type="button"
-            title="Action"
-            aria-label="Add action"
-            disabled={!canAttachControl('action', selectedItem)}
+            title={controlLabel('action', 'action')}
+            aria-label={controlLabel('action', 'action')}
+            disabled={!controlApplies('action', selectedItem)}
             className={disabledToolbarButtonClass}
-            onClick={() => attachControl('action')}
+            onClick={() => toggleControl('action')}
           >
             <RefreshCw size={15} />
           </button>
           <button
             type="button"
-            title="Align"
-            aria-label="Add alignment"
-            disabled={!canAttachControl('align', selectedItem)}
+            title={controlLabel('align', 'alignment')}
+            aria-label={controlLabel('align', 'alignment')}
+            disabled={!controlApplies('align', selectedItem)}
             className={disabledToolbarButtonClass}
-            onClick={() => attachControl('align')}
+            onClick={() => toggleControl('align')}
           >
             <AlignCenter size={15} />
           </button>
           <button
             type="button"
-            title="Fit text"
-            aria-label="Add fit-text"
-            disabled={!canAttachControl('fit', selectedItem)}
+            title={controlLabel('fit', 'fit-text')}
+            aria-label={controlLabel('fit', 'fit-text')}
+            disabled={!controlApplies('fit', selectedItem)}
             className={disabledToolbarButtonClass}
-            onClick={() => attachControl('fit')}
+            onClick={() => toggleControl('fit')}
           >
             <Maximize2 size={15} />
           </button>
           <button
             type="button"
-            title="Border"
-            aria-label="Add border toggle"
-            disabled={!canAttachControl('border', selectedItem)}
+            title={controlLabel('border', 'border toggle')}
+            aria-label={controlLabel('border', 'border toggle')}
+            disabled={!controlApplies('border', selectedItem)}
             className={disabledToolbarButtonClass}
-            onClick={() => attachControl('border')}
+            onClick={() => toggleControl('border')}
           >
-            <Square size={15} />
+            <SquareDashed size={15} />
           </button>
         </ExpandingGroup>
         <button
