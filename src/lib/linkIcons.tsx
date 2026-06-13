@@ -2,15 +2,15 @@ import {
   ArrowRight,
   BookOpen,
   BriefcaseBusiness,
-  Code2,
+  FileCode2,
   ExternalLink,
   FileText,
   GitBranch,
   Home,
-  Image,
+  FileImage,
   Link,
   Mail,
-  Map,
+  MapPinned,
   PenLine,
   Sparkles,
   Star,
@@ -41,14 +41,14 @@ export function LinkIcon({ name, ...props }: LucideProps & { name: string | unde
   if (name === 'arrow') return <ArrowRight {...props} />;
   if (name === 'book') return <BookOpen {...props} />;
   if (name === 'briefcase') return <BriefcaseBusiness {...props} />;
-  if (name === 'code') return <Code2 {...props} />;
+  if (name === 'code') return <FileCode2 {...props} />;
   if (name === 'external') return <ExternalLink {...props} />;
   if (name === 'file') return <FileText {...props} />;
   if (name === 'git') return <GitBranch {...props} />;
   if (name === 'home') return <Home {...props} />;
-  if (name === 'image') return <Image {...props} />;
+  if (name === 'image') return <FileImage {...props} />;
   if (name === 'mail') return <Mail {...props} />;
-  if (name === 'map') return <Map {...props} />;
+  if (name === 'map') return <MapPinned {...props} />;
   if (name === 'pen') return <PenLine {...props} />;
   if (name === 'sparkles') return <Sparkles {...props} />;
   if (name === 'star') return <Star {...props} />;

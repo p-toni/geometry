@@ -1,6 +1,13 @@
 import { useState, type ReactNode } from 'react';
 import { WandSparkles, X } from 'lucide-react';
-import { BLOCK_TYPES, CARD_SURFACES, COLORS, GRID_COLS, GRID_ROWS, IS_OWNER } from '../constants';
+import {
+  BLOCK_TYPES,
+  CARD_SURFACES,
+  COLORS,
+  GRID_COLS,
+  GRID_ROWS,
+  IS_OWNER,
+} from '../constants';
 import { cn } from '../lib/cn';
 import { LinkIcon, LINK_ICON_OPTIONS } from '../lib/linkIcons';
 import { useCanvasStore } from '../store/canvasStore';
@@ -37,6 +44,7 @@ export function PropertiesPanel() {
   const updateItem = useCanvasStore((state) => state.updateItem);
   const select = useCanvasStore((state) => state.select);
   const deleteItem = useCanvasStore((state) => state.deleteItem);
+  const setStatusMessage = useCanvasStore((state) => state.setStatusMessage);
 
   if (!selectedId || !selectedItem) return null;
 
@@ -46,7 +54,8 @@ export function PropertiesPanel() {
     if (next === null) return;
     update({ [key]: next });
   };
-  const panelSide = selectedItem.col + selectedItem.cols > GRID_COLS - 10 ? 'left-3' : 'right-3';
+  const panelSide =
+    selectedItem.col + selectedItem.cols > GRID_COLS - 10 ? 'left-3' : 'right-3';
   const maxCol = Math.max(0, GRID_COLS - selectedItem.cols);
   const maxRow = Math.max(0, GRID_ROWS - selectedItem.rows);
 
@@ -54,11 +63,16 @@ export function PropertiesPanel() {
     if (!IS_OWNER || selectedItem.type !== 'image' || !prompt.trim()) return;
     try {
       setAiState('generating');
-      const { generateImage } = await import('../lib/ai/gemini');
-      const dataUrl = await generateImage(prompt);
-      update({ content: dataUrl });
+      setStatusMessage('image · generating');
+      const { generateImage } = await import('../lib/ai/openaiImage');
+      const result = await generateImage(prompt);
+      update({ content: result.url });
+      const model = result.model ? ` · ${result.model}` : '';
+      setStatusMessage(`image · ${result.id}${model} · ${Math.round(result.bytes / 1024)} KB`);
       setAiState('idle');
-    } catch {
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'generation failed';
+      setStatusMessage(`image · error · ${message}`);
       setAiState('error');
     }
   };
@@ -172,7 +186,8 @@ export function PropertiesPanel() {
               aria-label={color.name}
               className={cn(
                 'h-7 flex-1 rounded-[6px] border border-ink/10 outline-offset-2 transition',
-                selectedItem.color === color.token && 'ring-2 ring-accent ring-offset-1 ring-offset-white',
+                selectedItem.color === color.token &&
+                  'ring-2 ring-accent ring-offset-1 ring-offset-white',
               )}
               style={{ backgroundColor: color.hex }}
               onClick={() => update({ color: color.token as ColorToken })}
@@ -232,7 +247,11 @@ export function PropertiesPanel() {
             onClick={() => void generate()}
           >
             <WandSparkles size={13} />
-            {aiState === 'generating' ? 'generating' : aiState === 'error' ? 'error' : 'generate'}
+            {aiState === 'generating'
+              ? 'generating'
+              : aiState === 'error'
+                ? 'error'
+                : 'generate'}
           </button>
         </div>
       ) : null}
