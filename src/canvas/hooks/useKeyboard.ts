@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { IS_OWNER } from '../../constants';
 import { clampItemPosition } from './cellMath';
 import { useCanvasStore } from '../../store/canvasStore';
+import { useDemoReset } from './useDemoReset';
 
 function isTypingTarget(target: EventTarget | null) {
   if (!(target instanceof HTMLElement)) return false;
@@ -17,7 +18,7 @@ export function useKeyboard(onSave: () => void) {
   const select = useCanvasStore((state) => state.select);
   const updateItem = useCanvasStore((state) => state.updateItem);
   const deleteItem = useCanvasStore((state) => state.deleteItem);
-  const reset = useCanvasStore((state) => state.reset);
+  const reset = useDemoReset();
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {

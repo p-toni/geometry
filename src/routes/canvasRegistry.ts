@@ -1,5 +1,6 @@
 import nav from '../content/nav.json';
 import { slugToPath } from '../lib/paths';
+import { findDeepLinkReader } from '../lib/reader';
 import { parseCanvas } from '../store/canvasSchema';
 import type { Canvas } from '../types';
 
@@ -48,10 +49,15 @@ const orderedSlugs = [
     .sort((a, b) => a.localeCompare(b)),
 ];
 
-export const canvasRoutes = orderedSlugs.map((slug) => ({
-  slug,
-  path: slugToPath(slug),
-}));
+export const canvasRoutes = orderedSlugs.map((slug) => {
+  const canvas = canvasesBySlug.get(slug);
+  const path = slugToPath(slug);
+  return {
+    slug,
+    path,
+    hasReader: path !== '/' && Boolean(canvas && findDeepLinkReader(canvas.items)),
+  };
+});
 
 export function getCanvas(slug: string) {
   return canvasesBySlug.get(slug) ?? null;

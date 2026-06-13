@@ -1,13 +1,17 @@
 import { useCallback, useState, type CSSProperties } from 'react';
 import { IS_OWNER } from '../constants';
-import { orderedCanvasForSave, useCanvasStore, CanvasStoreProvider } from '../store/canvasStore';
+import {
+  orderedCanvasForSave,
+  useCanvasStore,
+  CanvasStoreProvider,
+} from '../store/canvasStore';
 import type { Canvas as CanvasModel } from '../types';
 import { Block } from './Block';
-import { DemoChip } from './DemoChip';
 import { ErrorBoundary } from './ErrorBoundary';
 import { useCell } from './hooks/useCell';
 import { useImageDrop } from './hooks/useImageDrop';
 import { useKeyboard } from './hooks/useKeyboard';
+import { useReaderDeepLink } from './hooks/useReaderRoute';
 import { PropertiesPanel } from './PropertiesPanel';
 import { SharpDropOverlay } from './SharpDropOverlay';
 import { StatusBar } from './StatusBar';
@@ -43,6 +47,7 @@ function CanvasSurface() {
   }, [canvas]);
 
   useKeyboard(save);
+  useReaderDeepLink();
 
   return (
     <div
@@ -84,7 +89,6 @@ function CanvasSurface() {
             <span>{sharpPendingMessage}</span>
           </div>
         ) : null}
-        {!IS_OWNER ? <DemoChip /> : null}
       </main>
       <StatusBar cell={metrics.cell} />
     </div>

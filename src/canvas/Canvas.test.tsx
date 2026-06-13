@@ -1,10 +1,12 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it } from 'vitest';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { describe, expect, it, vi } from 'vitest';
+import { getCanvas } from '../routes/canvasRegistry';
 import { CanvasStoreProvider, useCanvasStore } from '../store/canvasStore';
 import type { BlockType, Canvas as CanvasModel, Control } from '../types';
 import { Canvas } from './Canvas';
-import { DemoChip } from './DemoChip';
+import { DemoStatus } from './DemoStatus';
+import { Toolbar } from './Toolbar';
 
 const blockTypes = [
   'h1',
@@ -164,6 +166,11 @@ function MutateButton() {
   return <button onClick={() => addItem('p')}>mutate</button>;
 }
 
+function SelectButton({ id }: { id: string }) {
+  const select = useCanvasStore((state) => state.select);
+  return <button onClick={() => select(id)}>select</button>;
+}
+
 describe('Canvas', () => {
   it('renders every block type from JSON', () => {
     render(
@@ -175,16 +182,40 @@ describe('Canvas', () => {
     expect(screen.getAllByTestId(/block-/)).toHaveLength(12);
   });
 
-  it('shows the demo chip after the first mutation', async () => {
+  it('announces demo mode and warns after the first mutation', async () => {
     render(
-      <CanvasStoreProvider initialCanvas={allTypesCanvas()}>
-        <MutateButton />
-        <DemoChip />
-      </CanvasStoreProvider>,
+      <MemoryRouter>
+        <CanvasStoreProvider initialCanvas={allTypesCanvas()}>
+          <MutateButton />
+          <DemoStatus />
+        </CanvasStoreProvider>
+      </MemoryRouter>,
     );
 
+    expect(screen.getByText(/demo mode/)).toBeInTheDocument();
     screen.getByText('mutate').click();
     expect(await screen.findByText(/changes won't save/)).toBeInTheDocument();
+    expect(screen.getByLabelText('Reset canvas')).toBeInTheDocument();
+  });
+
+  it('drives the reader block from the essay deep link', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (url: string) => new Response(`loaded ${url}`)),
+    );
+    const writing = getCanvas('writing');
+    if (!writing) throw new Error('writing canvas missing from registry');
+
+    render(
+      <MemoryRouter initialEntries={['/writing/05-bounded-me']}>
+        <Routes>
+          <Route path="/writing/:essay?" element={<Canvas initialCanvas={writing} />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect(await screen.findByText('loaded /content/05-bounded-me.md')).toBeInTheDocument();
+    vi.unstubAllGlobals();
   });
 
   it.each(
@@ -202,7 +233,7 @@ describe('Canvas', () => {
     expect(block).toBeInTheDocument();
 
     if (kind === 'toggle') {
-      fireEvent.click(within(block).getByLabelText('Toggle'));
+      fireEvent.click(within(block).getByLabelText('Toggle block state'));
     } else if (kind === 'slider') {
       fireEvent.click(within(block).getByLabelText('Open slider'));
       fireEvent.change(within(block).getByLabelText('Slider'), { target: { value: '0.75' } });
@@ -222,5 +253,26 @@ describe('Canvas', () => {
     }
 
     expect(screen.getByTestId(`block-${type}`)).toBeInTheDocument();
+  });
+
+  it('toggles supported controls from the toolbar', () => {
+    const canvas = canvasWithControl('p', { id: 'p-toggle', kind: 'toggle', value: false });
+    render(
+      <MemoryRouter>
+        <CanvasStoreProvider initialCanvas={canvas}>
+          <SelectButton id="p-item" />
+          <Toolbar onSave={() => undefined} saveState="idle" />
+        </CanvasStoreProvider>
+      </MemoryRouter>,
+    );
+
+    fireEvent.click(screen.getByText('select'));
+    const group = screen.getAllByLabelText('block controls')[0];
+    fireEvent.mouseEnter(group);
+    fireEvent.click(screen.getByLabelText('Remove toggle'));
+    expect(screen.getByLabelText('Add toggle')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByLabelText('Add toggle'));
+    expect(screen.getByLabelText('Remove toggle')).toBeInTheDocument();
   });
 });

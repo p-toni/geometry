@@ -189,6 +189,35 @@ describe('createCanvasStore', () => {
     });
   });
 
+  it('treats content navigation as non-divergent', () => {
+    const canvas = seedCanvas();
+    canvas.items.push({
+      id: 'main-reader',
+      type: 'markdown',
+      col: 0,
+      row: 0,
+      cols: 10,
+      rows: 10,
+      color: 0,
+      label: 'reader',
+      content: '/content/one.md',
+      controls: [{ id: 'source', kind: 'selector', value: '/content/one.md', options: [] }],
+    });
+    const store = createCanvasStore(canvas);
+
+    store.getState().openMarkdownSource('main-reader', '/content/two.md');
+    expect(store.getState().hasDiverged).toBe(false);
+
+    store.getState().navigateItemContent('main-reader', '/content/three.md');
+    const reader = store.getState().canvas.items.find((item) => item.id === 'main-reader');
+    expect(reader).toMatchObject({ content: '/content/three.md' });
+    expect(reader?.controls?.[0]).toMatchObject({
+      kind: 'selector',
+      value: '/content/three.md',
+    });
+    expect(store.getState().hasDiverged).toBe(false);
+  });
+
   it('ignores duplicate controls of the same kind on an item', () => {
     const store = createCanvasStore(seedCanvas());
     store.getState().addControl('a', { id: 's1', kind: 'selector', value: 'one', options: [] });

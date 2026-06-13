@@ -172,7 +172,7 @@ button {
 
 .markdown-body a,
 .markdown-body .markdown-content-link {
-  color: var(--accent-ink);
+  color: var(--md-link, var(--link-on-paper));
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
@@ -186,8 +186,9 @@ button {
   text-align: inherit;
 }
 
+.markdown-body a:hover,
 .markdown-body .markdown-content-link:hover {
-  color: var(--ink);
+  color: inherit;
 }
 
 .markdown-body li .markdown-content-link {

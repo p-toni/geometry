@@ -7,11 +7,12 @@ import { NotFound } from './routes/NotFound';
 
 function AnimatedRoutes() {
   const location = useLocation();
+  const canvasSegment = `/${location.pathname.split('/')[1] ?? ''}`;
 
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        key={location.pathname}
+        key={canvasSegment}
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -12 }}
@@ -21,7 +22,7 @@ function AnimatedRoutes() {
           {canvasRoutes.map((route) => (
             <Route
               key={route.slug}
-              path={route.path}
+              path={route.hasReader ? `${route.path}/:essay?` : route.path}
               element={<CanvasRoute slug={route.slug} />}
             />
           ))}

@@ -6,9 +6,9 @@
 
 ## Preamble
 
-[Bounded Me](/content/08-bounded-me.md) gave me the pressure: my loop is finite, so any usable map has to fit inside real limits.
-[Geometry Over Retrieval](/content/10-geometry-over-retrieval.md) gave me the test: if the source closes and the structure does not come back, I do not own it.
-[Weak Geometry](/content/11-weak-geometry.md) gave me the warning: a map can be owned and still harden too early.
+[Bounded Me](/content/05-bounded-me.md) gave me the pressure: my loop is finite, so any usable map has to fit inside real limits.
+[Geometry Over Retrieval](/content/07-geometry-over-retrieval.md) gave me the test: if the source closes and the structure does not come back, I do not own it.
+[Weak Geometry](/content/08-weak-geometry.md) gave me the warning: a map can be owned and still harden too early.
 
 This piece keeps the same arc, but I want to look at it from the side.
 
@@ -52,7 +52,7 @@ I have removed material.
 Not because I am certain.
 Because I am bounded.
 
-This is the part I was circling in [Bounded Me](/content/08-bounded-me.md) without quite naming. My problem is not only finite capacity. It is forced selectivity over variation. Every useful internal map already contains an editorial decision about what no longer deserves separate treatment.
+This is the part I was circling in [Bounded Me](/content/05-bounded-me.md) without quite naming. My problem is not only finite capacity. It is forced selectivity over variation. Every useful internal map already contains an editorial decision about what no longer deserves separate treatment.
 
 And a cut is not merely omission. It is equivalence-making. It declares that several visible differences can now be treated as one usable thing. That is the primitive act underneath compression — not removing detail, but licensing a collapse.
 
@@ -135,7 +135,7 @@ Because the void is not inert. It is the exact place where a difference I stoppe
 
 ## V. Crack
 
-This is where [Weak Geometry](/content/11-weak-geometry.md) comes back in.
+This is where [Weak Geometry](/content/08-weak-geometry.md) comes back in.
 
 Its warning was not only "stay humble."
 The deeper warning was: be careful what you allow yourself to treat as the same.
@@ -185,7 +185,7 @@ What remains when I have to rebuild the object from inside my own head.
 A clean draft that does not change what I can carry is not understanding.
 It is formatting.
 
-And this is also the bridge back to [Me + AI](/content/09-me-plus-ai.md).
+And this is also the bridge back to [Me + AI](/content/06-me-plus-ai.md).
 The new risk is not only borrowed language or wrong answers.
 It is borrowed cuts.
 

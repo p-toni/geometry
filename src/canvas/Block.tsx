@@ -15,15 +15,18 @@ import { Grip, ListFilter, SlidersHorizontal } from 'lucide-react';
 import {
   useEffect,
   useState,
+  type CSSProperties,
   type PointerEvent as ReactPointerEvent,
   type ReactElement,
 } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { COLORS } from '../constants';
 import { markdownSources } from '../content/markdownRegistry';
 import { sharpSources } from '../content/sharpRegistry';
 import { spring } from '../design/motion';
 import { cn } from '../lib/cn';
 import { useCanvasStore } from '../store/canvasStore';
+import { useReaderRouting } from './hooks/useReaderRoute';
 import type { AlignControl, Control, Item } from '../types';
 import { cellToPx } from './hooks/cellMath';
 import { useDrag } from './hooks/useDrag';
@@ -95,7 +98,7 @@ function ControlChip({
 }) {
   const updateControl = useCanvasStore((state) => state.updateControl);
   const iconClass =
-    'inline-flex h-5 w-5 items-center justify-center rounded-sm text-ink-2 transition-[background-color,color,transform] duration-150 ease-out hover:bg-ink/10 hover:text-ink active:scale-[0.96]';
+    'inline-flex h-6 w-6 items-center justify-center rounded-sm text-ink-2 transition-[background-color,color,transform] duration-150 ease-out hover:bg-ink/10 hover:text-ink active:scale-[0.96]';
 
   if (control.kind === 'toggle') return <Toggle itemId={itemId} control={control} />;
   if (control.kind === 'action') return <Action itemId={itemId} control={control} />;
@@ -247,16 +250,6 @@ function sourceOptionsFor(
   return { current: null, options: [] };
 }
 
-function controlsWithContentSelectorValue(item: Item, value: string): Control[] | undefined {
-  const controls = item.controls;
-  if (!controls) return undefined;
-  return controls.map((control) =>
-    control.kind === 'selector' && control.affectsContent !== false
-      ? { ...control, value }
-      : control,
-  );
-}
-
 function BlockNavigator({
   item,
   setOpenControlId,
@@ -265,6 +258,9 @@ function BlockNavigator({
   setOpenControlId: (id: string | null) => void;
 }) {
   const updateItem = useCanvasStore((state) => state.updateItem);
+  const navigateItemContent = useCanvasStore((state) => state.navigateItemContent);
+  const { reader, hrefFor } = useReaderRouting();
+  const navigate = useNavigate();
   const [runtimeSharpSources, setRuntimeSharpSources] = useState<SourceOption[]>(sharpSources);
 
   useEffect(() => {
@@ -305,10 +301,12 @@ function BlockNavigator({
     if (!next) return;
     setOpenControlId(null);
     if (item.type === 'markdown') {
-      updateItem(item.id, {
-        content: next.value,
-        controls: controlsWithContentSelectorValue(item, next.value),
-      });
+      const route = reader?.id === item.id ? hrefFor(next.value) : null;
+      if (route) {
+        navigate(route);
+        return;
+      }
+      navigateItemContent(item.id, next.value);
       return;
     }
     if (item.type === 'threeSharp') {
@@ -317,7 +315,7 @@ function BlockNavigator({
   };
 
   const buttonClass =
-    'inline-flex h-5 w-5 items-center justify-center rounded-sm font-mono text-[11px] text-ink-2 transition-[background-color,color,transform] duration-150 ease-out hover:bg-ink/10 hover:text-ink active:scale-[0.96]';
+    'inline-flex h-6 w-6 items-center justify-center rounded-sm font-mono text-[11px] text-ink-2 transition-[background-color,color,transform] duration-150 ease-out hover:bg-ink/10 hover:text-ink active:scale-[0.96]';
 
   return (
     <>
@@ -452,6 +450,15 @@ export function Block({
   const color = COLORS.find((entry) => entry.token === item.color) ?? COLORS[0];
   const cardBackground = color.hex;
   const textColor = getContrastColor(color.hex);
+  const surfaceVars = {
+    '--md-link': textColor === '#ffffff' ? 'var(--link-on-ink)' : 'var(--link-on-paper)',
+    '--md-fade': cardBackground,
+  } as CSSProperties;
+  const innerFrameVars = {
+    color: 'var(--ink)',
+    '--md-link': 'var(--link-on-paper)',
+    '--md-fade': 'var(--paper)',
+  } as CSSProperties;
   const Renderer = renderers[item.type];
   const allValues = controlValues(item.controls);
   const { borderEnabled: _, ...values } = allValues;
@@ -479,8 +486,10 @@ export function Block({
         data-canvas-block="true"
         className="relative flex min-h-20 flex-col overflow-hidden rounded-[8px] border border-line/70 p-4 shadow-[0_10px_30px_rgba(23,26,31,0.06)]"
         style={{
+          ...surfaceVars,
           background: cardBackground,
           color: textColor,
+          width: '100%',
           aspectRatio: `${item.cols} / ${item.rows}`,
           maxHeight: '60vh',
         }}
@@ -530,7 +539,7 @@ export function Block({
                 innerFrameSurface,
                 innerFramePadding,
               )}
-              style={{ color: 'var(--ink)' }}
+              style={innerFrameVars}
             >
               <Renderer item={item} cell={cell} {...values} />
             </div>
@@ -590,6 +599,7 @@ export function Block({
             : null,
         )}
         style={{
+          ...surfaceVars,
           top: chromeOffset,
           height: cellToPx(renderRows, cell),
           background: cardBackground,

@@ -11,6 +11,9 @@
   --line: #d8ccba;
   --accent: #d65a3a;
   --accent-ink: #d65a3a;
+  /* Accent variants that clear WCAG AA (4.5:1) for body text on each surface. */
+  --link-on-paper: #a8431f;
+  --link-on-ink: #e87b5e;
   --outline: #58717d;
   --inverse-surface: #171a1f;
   --inverse-on-surface: #f8f4ec;

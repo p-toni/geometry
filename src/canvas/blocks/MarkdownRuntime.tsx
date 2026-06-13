@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -14,12 +15,18 @@ function transformUrl(url: string) {
   return '';
 }
 
+function isModifiedClick(event: MouseEvent) {
+  return event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
+}
+
 export default function MarkdownRuntime({
   markdown,
   onOpenContent,
+  resolveContentHref,
 }: {
   markdown: string;
   onOpenContent?: (href: string) => void;
+  resolveContentHref?: (href: string) => string | null;
 }) {
   return (
     <ReactMarkdown
@@ -28,6 +35,25 @@ export default function MarkdownRuntime({
       components={{
         a({ href, children }) {
           if (href?.startsWith('/content/')) {
+            const route = resolveContentHref?.(href) ?? null;
+            if (route) {
+              return (
+                <a
+                  href={route}
+                  data-no-drag="true"
+                  className="markdown-content-link"
+                  onPointerDown={(event) => event.stopPropagation()}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    if (isModifiedClick(event)) return;
+                    event.preventDefault();
+                    onOpenContent?.(href);
+                  }}
+                >
+                  {children}
+                </a>
+              );
+            }
             return (
               <button
                 type="button"

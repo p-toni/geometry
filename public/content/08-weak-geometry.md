@@ -6,7 +6,7 @@
 
 ## Preamble
 
-[Bounded Me](/content/08-bounded-me.md) gave me the pressure: memory as *"geometry, not storage."* [Me + AI](/content/09-me-plus-ai.md) gave me the control problem: I am regulating a coupled feedback system. [Geometry Over Retrieval](/content/10-geometry-over-retrieval.md) gave me the test: *"understanding is what remains when the source is closed."*
+[Bounded Me](/content/05-bounded-me.md) gave me the pressure: memory as *"geometry, not storage."* [Me + AI](/content/06-me-plus-ai.md) gave me the control problem: I am regulating a coupled feedback system. [Geometry Over Retrieval](/content/07-geometry-over-retrieval.md) gave me the test: *"understanding is what remains when the source is closed."*
 
 This piece is not a sequel. It is a correction.
 
@@ -48,11 +48,11 @@ But the map should commit less.
 
 ## I. Where the earlier pieces were too eager
 
-In [Bounded Me](/content/08-bounded-me.md), I was already suspicious of definitions that arrive too cleanly. "Information as entropy." "Intelligence as compression." They had the scent of completion before they had earned the weight of reality. What I did not yet have was the right knife for that suspicion. Weakness gives me one. The problem is not only that these definitions fail to cash out in lived cognition. The deeper problem is that they smuggle in a preference for tightness itself, as if better understanding were always the one that closes fastest.
+In [Bounded Me](/content/05-bounded-me.md), I was already suspicious of definitions that arrive too cleanly. "Information as entropy." "Intelligence as compression." They had the scent of completion before they had earned the weight of reality. What I did not yet have was the right knife for that suspicion. Weakness gives me one. The problem is not only that these definitions fail to cash out in lived cognition. The deeper problem is that they smuggle in a preference for tightness itself, as if better understanding were always the one that closes fastest.
 
-In [Geometry Over Retrieval](/content/10-geometry-over-retrieval.md), I said understanding begins when I can draw an edge and defend it. I still think that is right. But now it feels incomplete. Some edges deserve to exist only as temporary bridges, not as permanent beams. If I draw them with too much confidence, the local structure improves while the global truth gets worse. I stop exploring a terrain and start zoning it.
+In [Geometry Over Retrieval](/content/07-geometry-over-retrieval.md), I said understanding begins when I can draw an edge and defend it. I still think that is right. But now it feels incomplete. Some edges deserve to exist only as temporary bridges, not as permanent beams. If I draw them with too much confidence, the local structure improves while the global truth gets worse. I stop exploring a terrain and start zoning it.
 
-In [Me + AI](/content/09-me-plus-ai.md), I framed the central risk as a dysregulated integrated hybrid: exchange rises, my feedback control weakens, and the loop starts moving faster than I can author it. Weak geometry adds a subtler danger. I can preserve authorship and still close too early. The failure is not that the map came from somewhere else. The failure is that I built it myself, then mistook ownership for maturity.
+In [Me + AI](/content/06-me-plus-ai.md), I framed the central risk as a dysregulated integrated hybrid: exchange rises, my feedback control weakens, and the loop starts moving faster than I can author it. Weak geometry adds a subtler danger. I can preserve authorship and still close too early. The failure is not that the map came from somewhere else. The failure is that I built it myself, then mistook ownership for maturity.
 
 So this is the correction:
 
@@ -126,7 +126,7 @@ I want a geometry that is owned, navigable, and explicitly undercommitted.
 
 Weak geometry has four properties.
 
-First, it is reconstructable. If the source closes, I can still redraw the shape from inside my own head. That remains non-negotiable. [Geometry Over Retrieval](/content/10-geometry-over-retrieval.md) was right: *understanding is what remains when the source is closed.*
+First, it is reconstructable. If the source closes, I can still redraw the shape from inside my own head. That remains non-negotiable. [Geometry Over Retrieval](/content/07-geometry-over-retrieval.md) was right: *understanding is what remains when the source is closed.*
 
 Second, it is typed. An edge should not merely exist. It should announce its mode: causal, constraint, tradeoff, dependency, analogy, speculation. This was already latent in the previous piece. Weak geometry makes it mandatory. A map with untyped edges is a city where every road claims to be a highway.
 
@@ -170,7 +170,7 @@ The goal is delayed hardening.
 
 ## VI. A new diagnostic
 
-[Geometry Over Retrieval](/content/10-geometry-over-retrieval.md) gave me the core tests: rephrase, rebuild, predict, teach, break.
+[Geometry Over Retrieval](/content/07-geometry-over-retrieval.md) gave me the core tests: rephrase, rebuild, predict, teach, break.
 
 Weak geometry adds a sixth:
 
@@ -218,4 +218,4 @@ Not what compresses best.
 
 What I can rebuild, navigate, act from, and still revise without my whole inner city collapsing into its own architecture.
 
-**Update (2026-04-12):** [Allowed Ignorance](/content/12-allowed-ignorance.md) gives "staying less committed" a more precise operator: a cut is equivalence-making, and weak geometry is restraint about which equivalences I license. The question is no longer only "is this edge too strong?" but "did I merge differences that reality still treats as distinct?"
+**Update (2026-04-12):** [Allowed Ignorance](/content/09-allowed-ignorance.md) gives "staying less committed" a more precise operator: a cut is equivalence-making, and weak geometry is restraint about which equivalences I license. The question is no longer only "is this edge too strong?" but "did I merge differences that reality still treats as distinct?"

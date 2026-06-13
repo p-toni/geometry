@@ -4,6 +4,7 @@ import { createStore, type StoreApi } from 'zustand/vanilla';
 import { BLOCK_DEFAULT_COLORS, BLOCK_DEFAULTS, GRID_COLS, GRID_ROWS } from '../constants';
 import { clampItemPosition, clampItemSize } from '../canvas/hooks/cellMath';
 import { createId } from '../lib/id';
+import { findReaderItem } from '../lib/reader';
 import type { BlockType, Canvas, Control, Item } from '../types';
 
 export interface CanvasState {
@@ -18,6 +19,7 @@ export interface CanvasState {
   updateItem: (id: string, patch: Partial<Item>) => void;
   setStatusMessage: (message: string | null) => void;
   openMarkdownSource: (fromItemId: string, source: string) => void;
+  navigateItemContent: (id: string, content: string) => void;
   deleteItem: (id: string) => void;
   addControl: (id: string, control: Control) => void;
   updateControl: (itemId: string, control: Control) => void;
@@ -46,6 +48,18 @@ function normalizeItem(item: Item): Item {
     ...size,
     ...position,
   };
+}
+
+function withNavigatedContent(items: Item[], id: string, content: string): Item[] {
+  return items.map((item) => {
+    if (item.id !== id) return item;
+    const controls = item.controls?.map((control) =>
+      control.kind === 'selector' && control.affectsContent !== false
+        ? { ...control, value: content }
+        : control,
+    );
+    return { ...item, content, controls };
+  });
 }
 
 function nextPosition(count: number, cols: number, rows: number) {
@@ -102,27 +116,22 @@ export function createCanvasStore(initialCanvas: Canvas): CanvasStoreApi {
     openMarkdownSource: (fromItemId, source) =>
       set((state) => {
         const fromItem = state.canvas.items.find((item) => item.id === fromItemId);
-        const markdownItems = state.canvas.items.filter((item) => item.type === 'markdown');
-        const preferred =
-          markdownItems.find((item) => item.id.includes('reader')) ??
-          [...markdownItems].sort((a, b) => b.cols * b.rows - a.cols * a.rows)[0] ??
-          fromItem;
+        const preferred = findReaderItem(state.canvas.items) ?? fromItem;
         if (!preferred || preferred.type !== 'markdown') return state;
-        const targetId = preferred.id;
         return {
           canvas: {
             ...state.canvas,
-            items: state.canvas.items.map((item) => {
-              if (item.id !== targetId) return item;
-              const controls = item.controls?.map((control) =>
-                control.kind === 'selector' ? { ...control, value: source } : control,
-              );
-              return { ...item, content: source, controls };
-            }),
+            items: withNavigatedContent(state.canvas.items, preferred.id, source),
           },
-          hasDiverged: true,
         };
       }),
+    navigateItemContent: (id, content) =>
+      set((state) => ({
+        canvas: {
+          ...state.canvas,
+          items: withNavigatedContent(state.canvas.items, id, content),
+        },
+      })),
     deleteItem: (id) =>
       set((state) => ({
         canvas: { ...state.canvas, items: state.canvas.items.filter((item) => item.id !== id) },

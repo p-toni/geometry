@@ -6,8 +6,8 @@
 
 ## Preamble
 
-[Bounded Me](/content/08-bounded-me.md) defined the goal: memory as geometry, not storage.
-[Me + AI](/content/09-me-plus-ai.md) defined the guardrails: how to keep ownership of that geometry while coupling with a model.
+[Bounded Me](/content/05-bounded-me.md) defined the goal: memory as geometry, not storage.
+[Me + AI](/content/06-me-plus-ai.md) defined the guardrails: how to keep ownership of that geometry while coupling with a model.
 This piece defines the test: what geometry is, how to detect it, and how to build it without confusing fluency for understanding.
 
 ---
@@ -133,7 +133,7 @@ Operationally: make two independent predictions from different edges. Stress the
 
 ## VI. One system: how this relates to R3+2+1
 
-[Me + AI](/content/09-me-plus-ai.md) gave me R3+2+1 as a verification gate. This piece gives me six tests.
+[Me + AI](/content/06-me-plus-ai.md) gave me R3+2+1 as a verification gate. This piece gives me six tests.
 
 They are complementary layers:
 
@@ -207,4 +207,4 @@ My standard going forward:
 (The testing effect is the mechanism, not the slogan.)
 Use weakening to keep the map honest.
 
-**Update (2026-04-12):** [Allowed Ignorance](/content/12-allowed-ignorance.md) sharpens the "source closed" test: understanding is not just reconstruction, but reconstruction after faithful collapse of variation. The tests in Section V are not only diagnostics of grasp — they are stress tests on declared equivalences. A map that passes Rephrase and Rebuild may still fail if the equivalences it relies on were premature.
+**Update (2026-04-12):** [Allowed Ignorance](/content/09-allowed-ignorance.md) sharpens the "source closed" test: understanding is not just reconstruction, but reconstruction after faithful collapse of variation. The tests in Section V are not only diagnostics of grasp — they are stress tests on declared equivalences. A map that passes Rephrase and Rebuild may still fail if the equivalences it relies on were premature.
