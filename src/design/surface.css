@@ -24,6 +24,37 @@
   transform: scale(0.98);
 }
 
+/* FIG.12 — inline backlink node (Essay Widget Registry) */
+.essay-backlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-sizing: border-box;
+  margin: 0 2px;
+  padding: 3px 10px 3px 8px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(28, 31, 36, 0.06);
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+}
+
+.essay-backlink__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--signal);
+  flex: none;
+}
+
 .depth-flat {
   box-shadow: none;
 }

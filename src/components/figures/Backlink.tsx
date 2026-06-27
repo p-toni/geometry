@@ -12,7 +12,7 @@ export function Backlink({ title, targetId, onOpen }: BacklinkProps) {
     <span
       role={interactive ? 'button' : undefined}
       tabIndex={interactive ? 0 : undefined}
-      className="essay-backlink pressable"
+      className="essay-backlink edge-continues pressable"
       data-figure="FIG.12"
       data-testid="essay-backlink"
       onClick={() => onOpen?.(targetId)}
