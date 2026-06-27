@@ -1,0 +1,77 @@
+.edge-emphasis {
+  border-left: 3px solid var(--signal) !important;
+}
+
+.edge-continues {
+  border-right: 3px solid var(--signal) !important;
+}
+
+.edge-continues:hover {
+  background: #f4f6f3 !important;
+}
+
+.depth-flat {
+  box-shadow: none;
+}
+
+.depth-raised {
+  box-shadow: var(--shadow-raised);
+}
+
+.depth-lifted {
+  box-shadow: var(--shadow-lifted);
+}
+
+.depth-overlay {
+  box-shadow: var(--shadow-overlay);
+}
+
+.depth-inset {
+  box-shadow: var(--shadow-inset);
+  background: #e7eae6;
+}
+
+@keyframes holdpulse {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@keyframes crackdraw {
+  from {
+    stroke-dashoffset: 220;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field-node--hot {
+    animation: none !important;
+  }
+}
+
+@keyframes nowpulse {
+  0%,
+  100% {
+    box-shadow: var(--shadow-raised);
+  }
+  50% {
+    box-shadow: 0 2px 18px color-mix(in srgb, var(--signal) 55%, transparent);
+  }
+}
+
+.field-node--hot {
+  animation: nowpulse 2.4s ease-in-out infinite;
+}
+
+.field-node:hover {
+  box-shadow: 0 10px 26px rgba(20, 23, 26, 0.18) !important;
+  transform: translateY(-2px) !important;
+  opacity: 1 !important;
+}

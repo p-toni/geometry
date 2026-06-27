@@ -1,0 +1,57 @@
+@import './design/fonts.css';
+@import './design/tokens.css';
+@import './design/surface.css';
+@import 'tailwindcss';
+
+@theme {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-field: var(--field);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-signal: var(--signal);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.field-prose {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.66;
+  color: #2c333a;
+}
+
+@media (max-width: 900px) {
+  .field-read {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    z-index: 20;
+  }
+}
