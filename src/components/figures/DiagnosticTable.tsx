@@ -46,7 +46,7 @@ export function DiagnosticTable() {
               padding: '12px 14px',
               borderTop: '1px solid #F2EDE6',
               borderLeft: ci ? '1px solid #E8E2D8' : undefined,
-              fontFamily: ci === 0 ? 'var(--font-display)' : 'var(--font-body)',
+              fontFamily: ci === 0 ? 'var(--font-ui)' : 'var(--font-body)',
               fontWeight: ci === 0 ? 600 : 400,
               fontSize: 13,
               color: ci === 1 ? '#1C1F24' : ci === 2 ? '#9aa39c' : '#1C1F24',

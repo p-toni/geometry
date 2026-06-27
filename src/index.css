@@ -12,6 +12,7 @@
   --color-signal: var(--signal);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
+  --font-ui: var(--font-ui);
   --font-mono: var(--font-mono);
 }
 

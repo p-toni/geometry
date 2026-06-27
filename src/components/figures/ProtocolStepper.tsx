@@ -44,10 +44,10 @@ export function ProtocolStepper() {
           </div>
           <div
             style={{
-              fontFamily: 'var(--font-body)',
+              fontFamily: 'var(--font-ui)',
               fontWeight: 600,
-              fontFamily: 'var(--font-display)',
               fontSize: 15,
+              letterSpacing: '-0.01em',
               margin: '7px 0 4px',
             }}
           >

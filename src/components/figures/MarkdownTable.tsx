@@ -49,7 +49,7 @@ export function MarkdownTable({ headers, rows }: Props) {
               padding: '12px 14px',
               borderTop: `1px solid ${registry.lineHair}`,
               borderLeft: ci ? `1px solid ${registry.lineSoft}` : undefined,
-              fontFamily: ci === 0 ? 'var(--font-display)' : 'var(--font-body)',
+              fontFamily: ci === 0 ? 'var(--font-ui)' : 'var(--font-body)',
               fontWeight: ci === 0 ? 600 : 400,
               fontSize: 13,
               color: registry.ink,
