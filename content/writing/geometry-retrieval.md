@@ -200,14 +200,6 @@ The diagnostic table tells me whether I actually walked.
 
 <!-- block:steps -->
 
-1. **Sketch the graph.** Write the core nodes. Force 5–10 edges.
-2. **Type each edge.** Causal, constraint, tradeoff, dependency, analogy, speculation.
-3. **Grade its force.** Necessary, likely, working bridge, speculative.
-4. **Explain one mechanism until confidence breaks.**
-5. **Close the source.**
-6. **Rebuild from memory.**
-7. **Test: rephrase, predict, break, relax.**
-
 Stage rule:
 
 - **Early:** retrieval practice + reconstruction.

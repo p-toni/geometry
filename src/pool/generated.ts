@@ -2023,34 +2023,6 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "1. **Sketch the graph.** Write the core nodes. Force 5–10 edges."
-        },
-        {
-          "t": "p",
-          "x": "2. **Type each edge.** Causal, constraint, tradeoff, dependency, analogy, speculation."
-        },
-        {
-          "t": "p",
-          "x": "3. **Grade its force.** Necessary, likely, working bridge, speculative."
-        },
-        {
-          "t": "p",
-          "x": "4. **Explain one mechanism until confidence breaks.**"
-        },
-        {
-          "t": "p",
-          "x": "5. **Close the source.**"
-        },
-        {
-          "t": "p",
-          "x": "6. **Rebuild from memory.**"
-        },
-        {
-          "t": "p",
-          "x": "7. **Test: rephrase, predict, break, relax.**"
-        },
-        {
-          "t": "p",
           "x": "Stage rule:"
         },
         {

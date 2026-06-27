@@ -103,8 +103,12 @@ patch('content/writing/geometry-retrieval.md', (b) => {
     'That pattern is what I am calling curvature.\n\n[fig|curvature-test]\n\n> [honesty|honesty clause]',
   );
   s = s.replace(
-    '## Protocol\n\n1. **Sketch the graph.**',
-    '## Protocol\n\n<!-- block:edge-taxonomy -->\n\n<!-- block:steps -->\n\n1. **Sketch the graph.**',
+    /## Protocol\n\n(?:<!-- block:edge-taxonomy -->\n\n<!-- block:steps -->\n\n)?1\. \*\*Sketch the graph\.\*\*[\s\S]*?\n\nStage rule:/,
+    '## Protocol\n\n<!-- block:edge-taxonomy -->\n\n<!-- block:steps -->\n\nStage rule:',
+  );
+  s = s.replace(
+    '## Protocol\n\nStage rule:',
+    '## Protocol\n\n<!-- block:edge-taxonomy -->\n\n<!-- block:steps -->\n\nStage rule:',
   );
   s = s.replace(
     'My standard going forward:\n\n> Use models to expand the search space. Use reconstruction to build the map.',
