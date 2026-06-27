@@ -9,6 +9,7 @@ export { Plate } from './Plate';
 export { PointEdge } from './PointEdge';
 export { ProtocolStepper } from './ProtocolStepper';
 export { Sidenote } from './Sidenote';
+export { SectionRail } from './SectionRail';
 export { Thesis } from './Thesis';
 export { FigureReader } from './FigureReader';
 export { renderBlock } from './renderBlock';

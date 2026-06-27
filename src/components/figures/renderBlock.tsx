@@ -13,14 +13,17 @@ import { Plate } from './Plate';
 import { PointEdge } from './PointEdge';
 import { ProtocolStepper } from './ProtocolStepper';
 import { Sidenote } from './Sidenote';
+import { SectionRail } from './SectionRail';
 import { Thesis } from './Thesis';
+import { sectionRailMeta } from '../../lib/argumentGrammar';
 
 type RenderOpts = {
   onOpenNode?: (id: string) => void;
+  isFirstSection?: boolean;
 };
 
 export function renderBlock(block: Block, key: number, opts: RenderOpts = {}): ReactNode {
-  const { onOpenNode } = opts;
+  const { onOpenNode, isFirstSection } = opts;
 
   switch (block.t) {
     case 'p': {
@@ -68,16 +71,37 @@ export function renderBlock(block: Block, key: number, opts: RenderOpts = {}): R
     }
     case 'h': {
       const isSub = block.level === 3;
+      if (isSub) {
+        return (
+          <h3
+            key={key}
+            className="type-display"
+            style={{
+              fontWeight: 600,
+              fontSize: 16,
+              letterSpacing: '-0.01em',
+              color: '#3C434A',
+              margin: '20px 0 10px',
+            }}
+          >
+            {block.x}
+          </h3>
+        );
+      }
+      const rail = sectionRailMeta(block.x, 2);
+      if (rail) {
+        return <SectionRail key={key} {...rail} isFirst={isFirstSection} />;
+      }
       return (
         <h2
           key={key}
           className="type-display"
           style={{
             fontWeight: 600,
-            fontSize: isSub ? 16 : 20,
-            letterSpacing: isSub ? '-0.01em' : '-0.015em',
-            color: isSub ? '#3C434A' : 'var(--ink)',
-            margin: isSub ? '20px 0 10px' : '26px 0 12px',
+            fontSize: 20,
+            letterSpacing: '-0.015em',
+            color: 'var(--ink)',
+            margin: '26px 0 12px',
           }}
         >
           {block.x}
