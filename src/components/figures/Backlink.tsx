@@ -6,44 +6,26 @@ type BacklinkProps = {
 };
 
 export function Backlink({ title, targetId, onOpen }: BacklinkProps) {
+  const interactive = Boolean(onOpen);
+
   return (
-    <button
-      type="button"
-      className="pressable"
+    <span
+      role={interactive ? 'button' : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      className="essay-backlink pressable"
       data-figure="FIG.12"
       data-testid="essay-backlink"
       onClick={() => onOpen?.(targetId)}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 6,
-        margin: '0 1px',
-        padding: '1px 8px 1px 6px',
-        background: 'var(--card)',
-        border: '1px solid var(--line-soft)',
-        borderRight: '3px solid var(--signal)',
-        borderRadius: 3,
-        cursor: onOpen ? 'pointer' : 'default',
-        fontFamily: 'var(--font-body)',
-        fontWeight: 500,
-        fontSize: '0.92em',
-        color: 'var(--ink)',
-        verticalAlign: 'baseline',
-        lineHeight: 1.4,
-        whiteSpace: 'nowrap',
-        maxWidth: '100%',
+      onKeyDown={(e) => {
+        if (!onOpen) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onOpen(targetId);
+        }
       }}
     >
-      <span
-        style={{
-          width: 5,
-          height: 5,
-          borderRadius: '50%',
-          background: 'var(--signal)',
-          flex: 'none',
-        }}
-      />
+      <span className="essay-backlink__dot" aria-hidden />
       {title}
-    </button>
+    </span>
   );
 }

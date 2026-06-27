@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import { splitInlineBacklinks } from '../../lib/inlineBacklink';
 import { renderInlineMarkdown } from '../../lib/inlineMarkdown';
 import type { Block } from '../../pool/types';
@@ -37,7 +37,7 @@ export function renderBlock(block: Block, key: number, opts: RenderOpts = {}): R
       } as const;
       const renderPart = (part: (typeof parts)[number], i: number) =>
         part.kind === 'text' ? (
-          <span key={i}>{renderInlineMarkdown(part.text)}</span>
+          <Fragment key={i}>{renderInlineMarkdown(part.text)}</Fragment>
         ) : (
           <Backlink
             key={i}

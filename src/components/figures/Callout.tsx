@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { hasInlineBacklink, splitInlineBacklinks } from '../../lib/inlineBacklink';
 import { renderInlineMarkdown } from '../../lib/inlineMarkdown';
 import { Backlink } from './Backlink';
@@ -58,7 +59,7 @@ function CalloutBody({ x, onOpenNode }: { x: string; onOpenNode?: (id: string) =
     <>
       {splitInlineBacklinks(x).map((part, i) =>
         part.kind === 'text' ? (
-          <span key={i}>{renderInlineMarkdown(part.text)}</span>
+          <Fragment key={i}>{renderInlineMarkdown(part.text)}</Fragment>
         ) : (
           <Backlink
             key={i}
