@@ -45,13 +45,18 @@ function parseStructFromFile(rel: string) {
 }
 
 describe('buildPool struct round-trip', () => {
-  it('allowed-ignorance has four sections in content', () => {
+  it('allowed-ignorance uses argument-grammar sections in content', () => {
     const sections = parseStructFromFile('content/writing/allowed-ignorance.md');
-    expect(sections).toHaveLength(4);
+    expect(sections.length).toBeGreaterThanOrEqual(5);
     expect(sections.map((s) => s.label)).toEqual([
-      'Preamble',
-      'Thesis',
-      'Turn',
+      'Frame',
+      'Claim',
+      'Block',
+      'Face',
+      'Rotation',
+      'IV. Void',
+      'V. Crack',
+      'Workshop',
       'Closing',
     ]);
   });
@@ -59,12 +64,8 @@ describe('buildPool struct round-trip', () => {
   it('generated pool preserves all struct sections', async () => {
     const { generatedPool } = await import('../src/pool/generated.ts');
     const node = generatedPool.nodes['allowed-ignorance']!;
-    expect(node.struct?.sections).toHaveLength(4);
-    expect(node.struct?.sections.map((s) => s.label)).toEqual([
-      'Preamble',
-      'Thesis',
-      'Turn',
-      'Closing',
-    ]);
+    expect(node.struct?.sections).toHaveLength(9);
+    expect(node.struct?.sections[0]?.label).toBe('Frame');
+    expect(node.struct?.sections.at(-1)?.label).toBe('Closing');
   });
 });

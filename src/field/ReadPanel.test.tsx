@@ -60,7 +60,7 @@ describe('ReadPanel', () => {
     expect(screen.queryByRole('button', { name: /▤ read full/i })).not.toBeInTheDocument();
     expect(screen.getByTestId('read-full-body')).toBeInTheDocument();
     expect(
-      await screen.findByText(/valuing intelligence above every other human quality/i),
+      await screen.findByText(/gonna have a bad time/i),
     ).toBeInTheDocument();
   });
 
@@ -81,7 +81,8 @@ describe('ReadPanel', () => {
       />,
     );
 
-    expect(screen.queryByText(allowed.excerpt[0]!)).not.toBeInTheDocument();
+    const masthead = document.querySelector('[data-figure="FIG.01"]');
+    expect(masthead?.textContent).not.toContain(allowed.excerpt[0]!);
     const reader = screen.getByTestId('figure-reader');
     expect(reader).toBeInTheDocument();
     const prose = await screen.findByText(/usable map is not the whole object/i);

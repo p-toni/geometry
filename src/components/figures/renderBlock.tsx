@@ -6,6 +6,7 @@ import { Backlink } from './Backlink';
 import { Callout } from './Callout';
 import { Curvature } from './Curvature';
 import { DiagnosticTable } from './DiagnosticTable';
+import { MarkdownTable } from './MarkdownTable';
 import { EdgeTaxonomy } from './EdgeTaxonomy';
 import { LateFailure } from './LateFailure';
 import { Plate } from './Plate';
@@ -99,8 +100,18 @@ export function renderBlock(block: Block, key: number, opts: RenderOpts = {}): R
       return <Sidenote key={key} anchor={block.anchor} x={block.x} body={block.body} />;
     case 'plate':
       return <Plate key={key} cap={block.cap} src={block.src} />;
-    case 'table':
-      return <DiagnosticTable key={key} />;
+    case 'table': {
+      const isDiagnostic =
+        block.headers.length === 3 &&
+        block.headers[0]?.toLowerCase() === 'test' &&
+        block.headers[1]?.toLowerCase() === 'geometry' &&
+        block.headers[2]?.toLowerCase() === 'retrieval';
+      return isDiagnostic ? (
+        <DiagnosticTable key={key} />
+      ) : (
+        <MarkdownTable key={key} headers={block.headers} rows={block.rows} />
+      );
+    }
     case 'edge-taxonomy':
       return <EdgeTaxonomy key={key} rows={block.rows} />;
     case 'steps':

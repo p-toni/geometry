@@ -8,7 +8,7 @@ describe('buildConstellationLayout', () => {
     const node = pool.nodes['allowed-ignorance']!;
     const layout = buildConstellationLayout(loadEssayStructure(node));
     expect(layout.nodes.find((n) => n.id === 'c')?.kind).toBe('lens');
-    expect(layout.nodes.filter((n) => n.kind === 'section')).toHaveLength(4);
+    expect(layout.nodes.filter((n) => n.kind === 'section')).toHaveLength(9);
     expect(layout.edges.some(([a, b]) => a === 'c' && b === 's0')).toBe(true);
     expect(layout.edges.some(([a, b]) => a === 's0' && b.startsWith('s0k'))).toBe(true);
   });

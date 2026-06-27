@@ -3,11 +3,10 @@ id: geometry-retrieval
 kind: essay
 cluster: writing
 title: geometry > retrieval
-date: 2 weeks
+date: 2026-02-14
 rank: 5
 excerpt:
-  - "Spatial structure beats search for thinking. You navigate a shape; you query a pile."
-  - "Once knowledge has a geometry, recall becomes movement instead of lookup."
+  - "Understanding is what remains when the source is closed."
 links:
   - target: allowed-ignorance
     rel: theme
@@ -18,71 +17,210 @@ links:
 struct:
   lens: "why structure is prior to information"
   sections:
-    - label: "Preamble"
-      concepts: ["fluency", "recall"]
-    - label: "Thesis"
-      concepts: ["structure", "prior"]
-    - label: "I · fluency ≠ understanding"
-      concepts: ["lookup", "the pile"]
-    - label: "II · points vs edges"
-      concepts: ["relations", "shape"]
-    - label: "III · curvature"
-      concepts: ["curvature", "distance"]
-    - label: "IV · the tests"
-      concepts: ["movement", "navigate"]
+    - label: "Frame"
+      concepts: ["pressure", "situation"]
+    - label: "Claim"
+      concepts: ["thesis", "durable"]
+    - label: "Problem: fluency is not understanding"
+      concepts: ["problem", "fluency"]
+    - label: "Operator 1: points versus edges"
+      concepts: ["protocol", "reuse"]
+    - label: "Operator 2: curvature"
+      concepts: ["protocol", "reuse"]
+    - label: "Operator 3: what geometry feels like"
+      concepts: ["protocol", "reuse"]
+    - label: "Diagnostic table"
+      concepts: ["diagnostic", "table"]
+    - label: "Curvature test"
+      concepts: ["verification", "signal"]
+    - label: "How this relates to R3+2+1"
+      concepts: ["this", "relates"]
+    - label: "Protocol"
+      concepts: ["protocol"]
     - label: "Closing"
-      concepts: ["geometry"]
+      concepts: ["discipline", "limits"]
 ---
 
-Bounded Me defined the goal — memory as geometry, not storage. Me + AI defined the guardrails. This piece defines the test: what geometry is, how to detect it, and how to build it without confusing fluency for understanding.
-
-> [thesis|the standard]
+> [thesis|thesis]
 > Understanding is what remains when the source is closed.
 
-## I · Fluency is not understanding
+## Frame
 
-There is a failure mode that matters more now than it did pre-LLM: I feel like I understand something until I try to explain its mechanism. Rozenblit & Keil named this the *illusion of explanatory depth* — confidence collapses when you attempt a detailed explanation.
+[[Bounded Me|bounded-me]] defined the pressure: memory as geometry, not storage.
 
-LLMs amplify it. They generate mechanism-shaped language with high fluency on demand. The danger is not only error; it is accurate prose I do not own.
+[[Me + AI|me-plus-ai]] defined the control problem: how to keep ownership while coupling with a model.
 
-## II · Points versus edges
+This piece defines the test: how to tell whether I actually own the structure or only have retrieval dressed as understanding.
 
-A fact by itself is a point: isolated, repeatable, inert. Two points are still not a structure — proximity is not relationship. Understanding begins when I can draw an edge and defend it.
+## Claim
 
-[fig|point-to-edge]
+If I can rebuild the structure of an idea with the source closed, I have geometry.
 
-Cache misses increased database load, which increased tail latency; the hit-rate drop is upstream of the spike. Edges unlock navigational powers — predict, debug, teach.
+If I can only recall what I read, or re-summon it with a model, I have retrieval.
 
-<!-- block:edge-taxonomy -->
+This is not a preference. It is an operational standard: a way to stop mistaking coherence for internal structure.
 
-## III · The missing dimension: curvature
+But geometry is not final truth.
 
-Curvature is structured wrongness — the pattern of failure that tells me my map's global shape is wrong, even if local edges look fine. In a coupled system, clarity can increase drift if it displaces reconstruction.
+A map can be owned and still overcommitted.
 
-[fig|curvature-test]
+The better target is the weakest map that still navigates.
 
-> [honesty|honesty clause]
-> I use "curvature" as a cognitive concept, not a claim of equivalence between mathematical and mental objects. The point is navigational power, not category purity.
+## Problem: fluency is not understanding
 
-## IV · The tests
+There is a failure mode that matters more in the LLM era: I feel like I understand something until I try to explain the mechanism.
 
-These are the checks I run when I suspect I am holding borrowed coherence. They work because they force reconstruction, not recognition.
+Rozenblit and Keil called this the illusion of explanatory depth. People overrate how well they understand complex systems until asked to explain them in detail.
 
-| test | geometry (owned) | retrieval (muted) |
-| :--- | :--- | :--- |
-| **Rephrase** | Invariant survives | Surface breaks |
-| **Rebuild** | Structure regenerates | Fragments only |
-| **Predict** | Specific expectations | No expectations |
-| **Break** | Damage localizes to an edge | Whole picture destabilizes |
+Processing fluency makes the trap stickier. When something is easy to read, we treat it as more familiar, more true, or more known than it is.
 
-## V · How to build geometry
+LLMs amplify both. They generate mechanism-shaped language with high fluency on demand.
 
-To build reliable structures rather than mere lists, route your learning process through this four-step loop:
+The danger is not only error.
 
-<!-- block:steps -->
+The deeper danger is accurate prose that I do not own.
 
-> [thesis|standard going forward]
+> **Standard**  
+> Understanding is what remains when the source is closed.
+
+## Operator 1: points versus edges
+
+A fact by itself is a point: isolated, repeatable, inert.
+
+- “Latency spiked at 09:17.”
+- “Cache hit rate fell at 09:16.”
+
+Two points are still not a structure.
+
+Proximity is not relationship.
+
+Understanding begins when I can draw an edge and defend it:
+
+> Cache misses increased database load, which increased tail latency; the hit-rate drop is upstream of the spike.
+
+Edges unlock navigation:
+
+- **Predict:** if hit rate drops again, latency will follow unless something absorbs load.
+- **Debug:** if latency spikes without hit-rate change, the edge is wrong.
+- **Teach:** I can walk someone through dependency rather than quote a timeline.
+
+Experts represent problems by underlying structure, not surface features. Geometry is the same move applied to my own cognition.
+
+## Operator 2: curvature
+
+A local edge can be right while the global map is wrong.
+
+That pattern is what I am calling curvature.
+
+> **Honesty clause**  
+> I am using “curvature” as a cognitive concept, not claiming equivalence between mathematical and mental objects. The point is navigational power.
+
+Example:
+
+- Flat intuition: better summaries should improve decisions.
+- What happens in practice: better summaries can increase confidence without increasing ownership.
+
+The bend is:
+
+> In a coupled system, clarity can increase drift if it displaces reconstruction.
+
+That is curvature. The local benefit is real. The global movement is wrong.
+
+## Operator 3: what geometry feels like
+
+Retrieval feels like reaching:
+
+- “I read that…”
+- “The model said…”
+- “I remember the answer is…”
+
+An answer arrives like a delivered object. I can inspect it, but I am inspecting something I received.
+
+Geometry feels like standing somewhere:
+
+- “That cannot be right because…”
+- “This connects to…”
+- “The constraint here is…”
+
+That standing sensation has signatures:
+
+1. **Geometry generates predictions.**
+2. **Geometry degrades gracefully.**
+3. **Geometry localizes surprise.**
+
+Forget a detail and the surrounding constraints can often reconstruct it. When something breaks, I can name which edge failed and what it damages downstream.
+
+## Diagnostic table
+
+| Test | Geometry | Retrieval |
+|---|---|---|
+| **Rephrase** | invariant survives | surface breaks |
+| **Rebuild** | structure regenerates | fragments only |
+| **Predict** | specific expectations | no expectations |
+| **Teach** | I can walk a path | I can only relay |
+| **Break** | damage localizes to an edge | the whole picture destabilizes |
+| **Relax** | map still orients | usefulness collapses with certainty |
+
+The tests work because they force reconstruction, not recognition.
+
+Retrieval practice strengthens learning because it requires rebuilding knowledge rather than re-exposure.
+
+## Curvature test
+
+When surprise repeats in a consistent pattern, it is not just a broken edge. It is evidence that the global shape of the map is wrong.
+
+Operationally:
+
+1. Make two independent predictions from different edges.
+2. Stress the system.
+3. Watch the pattern of failure.
+
+If they repeatedly converge when I expected independence, I found a hidden coupling.
+
+If they repeatedly diverge when I expected consistency, I found a missing dimension.
+
+## How this relates to R3+2+1
+
+[[Me + AI|me-plus-ai]] gave me R3+2+1 as a verification gate.
+
+This piece gives me the result checks.
+
+- **R3** compresses the core structure and forces edges to exist.
+- **+2** stresses invariance with assumptions and alternative framings.
+- **+1** is the rebuild test.
+
+So R3+2+1 is how I walk.
+
+The diagnostic table tells me whether I actually walked.
+
+## Protocol
+
+1. **Sketch the graph.** Write the core nodes. Force 5–10 edges.
+2. **Type each edge.** Causal, constraint, tradeoff, dependency, analogy, speculation.
+3. **Grade its force.** Necessary, likely, working bridge, speculative.
+4. **Explain one mechanism until confidence breaks.**
+5. **Close the source.**
+6. **Rebuild from memory.**
+7. **Test: rephrase, predict, break, relax.**
+
+Stage rule:
+
+- **Early:** retrieval practice + reconstruction.
+- **Mid:** mapping to expose missing edges.
+- **Late:** diagrams as leverage because representation changes what is computationally cheap.
+
+## Closing
+
+Models are coherence engines.
+
+Humans are fluency-biased.
+
+So the default mode — prompt, accept, move on — reliably produces retrieval that feels like geometry.
+
+My standard going forward:
+
 > Use models to expand the search space. Use reconstruction to build the map.
 
-> [update|update · 2026-04-12]
-> [[backlink:Allowed Ignorance|theme|allowed-ignorance]] sharpens the "source closed" test: understanding is reconstruction *after faithful collapse of variation*.
+Use weakening to keep the map honest.
+
+**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] sharpens the source-closed test: understanding is reconstruction after faithful collapse of variation. The tests here are not only diagnostics of grasp. They are stress tests on declared equivalences.
