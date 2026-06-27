@@ -1,5 +1,6 @@
 import type { SpinVerb } from '../lib/dotgrid';
 import { uniqueEdges } from '../lib/graph';
+import { isWholePiece } from '../lib/readMode';
 import type { Pool } from '../pool';
 
 export type FieldMode = 'field' | 'lens' | 'now' | 'read';
@@ -38,9 +39,12 @@ export function statusForMode(
       left: `reading · ${node?.cluster ?? '—'} › neighborhood lit`,
       right: `${node?.links.length ?? 0} edges from here`,
       verb: args.readingAnim ? 'plot' : 'orbit',
-      hint: args.full
-        ? 'full essay open — in-essay links walk the field; collapse to return to excerpt'
-        : 'the field holds — its neighbors are lit; click one to walk the edge',
+      hint:
+        node && isWholePiece(node)
+          ? 'the note is whole — the field holds; its neighbors are lit'
+          : args.full
+            ? 'full essay open — in-essay links walk the field; collapse to return to excerpt'
+            : 'the field holds — its neighbors are lit; click one to walk the edge',
     };
   }
 

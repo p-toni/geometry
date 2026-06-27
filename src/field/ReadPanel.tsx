@@ -2,6 +2,7 @@ import { ErrorBoundary } from '../components/ErrorBoundary';
 import { FigureReader } from '../components/figures';
 import { Masthead } from '../components/figures/Masthead';
 import { neighbors } from '../lib/graph';
+import { isWholePiece } from '../lib/readMode';
 import type { Cluster, Pool, PoolNode } from '../pool';
 import { Spin } from '../components/Spin';
 
@@ -62,13 +63,15 @@ export function ReadPanel({
   canDescend,
 }: ReadPanelProps) {
   const next = neighbors(pool, node.id);
+  const wholePiece = isWholePiece(node);
   const hasFull = node.body.length > 0;
+  const showFullBody = wholePiece ? hasFull : full && hasFull;
   const dek = node.excerpt[0];
   const excerptTail = dek ? node.excerpt.slice(1) : node.excerpt;
 
   return (
     <aside
-      className={`field-read field-read-sheet edge-emphasis${full ? ' field-read--full' : ''}${reading ? ' field-read--enter' : ''}`}
+      className={`field-read field-read-sheet edge-emphasis${showFullBody && !wholePiece ? ' field-read--full' : ''}${reading ? ' field-read--enter' : ''}`}
       style={{
         background: 'var(--card)',
         boxShadow: '-18px 0 48px rgba(28,31,36,.16)',
@@ -119,7 +122,7 @@ export function ReadPanel({
           {node.title}
         </span>
         <div style={{ flex: 1 }} />
-        {full ? (
+        {full && !wholePiece ? (
           <button
             type="button"
             className="pressable"
@@ -171,7 +174,7 @@ export function ReadPanel({
           title={node.title}
           date={node.date}
           cluster={node.cluster}
-          dek={full ? undefined : dek}
+          dek={showFullBody && !wholePiece ? undefined : dek}
         />
 
         {node.media ? (
@@ -228,7 +231,7 @@ export function ReadPanel({
         ) : null}
 
         <div style={{ marginTop: 22 }}>
-          {!full && excerptTail.length > 0
+          {!showFullBody && excerptTail.length > 0
             ? excerptTail.map((p) => (
                 <p
                   key={p}
@@ -245,7 +248,7 @@ export function ReadPanel({
               ))
             : null}
 
-          {hasFull && !full ? (
+          {hasFull && !showFullBody ? (
             <button
               type="button"
               className="pressable"
@@ -271,7 +274,7 @@ export function ReadPanel({
             </button>
           ) : null}
 
-          {hasFull && full ? (
+          {showFullBody ? (
             <div data-testid="read-full-body">
               <ErrorBoundary>
                 <FigureReader blocks={node.body} onOpenNode={onOpenNode} />

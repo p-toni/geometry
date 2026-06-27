@@ -8,6 +8,7 @@ import {
   viewportMatchesUrl,
   writeFieldState,
 } from '../lib/fieldUrl';
+import { effectiveReadFull } from '../lib/readMode';
 import { kindLabel } from '../lib/glyph';
 
 import { pool, FIELD_HEIGHT, FIELD_WIDTH } from '../pool';
@@ -70,8 +71,7 @@ export function FieldApp() {
   const fullOn =
     urlState.full ||
     (locationState.read === readId && locationState.full);
-  const readFull =
-    fullOn && Boolean(readId && (pool.nodes[readId ?? '']?.body.length ?? 0) > 0);
+  const readFull = effectiveReadFull(readId ? pool.nodes[readId] : undefined, fullOn);
   const nowOn = urlState.now && !readId && !matched?.length;
   const lensActive = !!(urlState.query && matched && matched.length > 0 && !readId);
 
