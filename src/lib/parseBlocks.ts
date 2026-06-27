@@ -1,3 +1,4 @@
+import { hasInlineBacklink, splitInlineBacklinks } from './inlineBacklink';
 import type { Block } from '../pool/types';
 
 /** Parse markdown body (no frontmatter) into typed Blocks for Figures. */
@@ -8,7 +9,24 @@ export function parseBlocks(markdown: string): Block[] {
 
   const flushParagraph = (buf: string[]) => {
     const text = buf.join(' ').trim();
-    if (text) blocks.push({ t: 'p', x: text });
+    if (!text) {
+      buf.length = 0;
+      return;
+    }
+    if (hasInlineBacklink(text)) {
+      for (const part of splitInlineBacklinks(text)) {
+        if (part.kind === 'text') blocks.push({ t: 'p', x: part.text });
+        else
+          blocks.push({
+            t: 'backlink',
+            title: part.title,
+            rel: part.rel,
+            targetId: part.targetId,
+          });
+      }
+    } else {
+      blocks.push({ t: 'p', x: text });
+    }
     buf.length = 0;
   };
 

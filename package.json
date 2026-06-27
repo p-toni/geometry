@@ -11,6 +11,7 @@
     "pool:build": "vite-node scripts/buildPool.ts",
     "typecheck": "tsc -b --noEmit",
     "test": "vitest run",
+    "test:browser": "node scripts/browserTest.mjs",
     "test:watch": "vitest",
     "lint": "oxlint",
     "preview": "vite preview"

@@ -639,7 +639,17 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "**Update (2026-04-12):** [[backlink:Allowed Ignorance|cites|allowed-ignorance]] gives a sharper name to what boundedness forces: not just limited capacity, but mandatory equivalence-making. Every usable map already contains decisions about which differences can be treated as the same. That is the primitive act underneath compression — and the place where bounded cognition most quietly makes its bets."
+          "x": "**Update (2026-04-12):** "
+        },
+        {
+          "t": "backlink",
+          "title": "Allowed Ignorance",
+          "rel": "cites",
+          "targetId": "allowed-ignorance"
+        },
+        {
+          "t": "p",
+          "x": " gives a sharper name to what boundedness forces: not just limited capacity, but mandatory equivalence-making. Every usable map already contains decisions about which differences can be treated as the same. That is the primitive act underneath compression — and the place where bounded cognition most quietly makes its bets."
         }
       ],
       "struct": {

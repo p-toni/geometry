@@ -1,7 +1,13 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { FIELD_HEIGHT, FIELD_WIDTH } from '../../pool';
 
 const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
+const FLY_MS = 290;
+const MINI_MS = 290;
+
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
 
 export type Transform = {
   x: number;
@@ -30,12 +36,18 @@ export function useFieldTransform(initial?: Partial<Transform>) {
     const world = worldRef.current;
     const vp = vpRef.current;
     if (!world || !vp) return;
-    world.style.transition = animate
-      ? 'transform 0.5s var(--ease-out-strong)'
-      : 'none';
+    const reduce = prefersReducedMotion();
+    world.style.transition =
+      animate && !reduce ? `transform ${FLY_MS}ms var(--ease-out-strong)` : 'none';
     world.style.transform = `translate(${t.x}px,${t.y}px) scale(${t.z})`;
     if (readoutRef.current) {
-      readoutRef.current.textContent = `z ${Math.round(t.z * 100)}%`;
+      const el = readoutRef.current;
+      const next = `z ${Math.round(t.z * 100)}%`;
+      if (el.textContent !== next) {
+        el.classList.add('is-updating');
+        el.textContent = next;
+        window.setTimeout(() => el.classList.remove('is-updating'), 120);
+      }
     }
     const miniVp = miniVpRef.current;
     if (miniVp) {
@@ -44,11 +56,9 @@ export function useFieldTransform(initial?: Partial<Transform>) {
       const T = clamp(-t.y / t.z / FIELD_HEIGHT, 0, 1);
       const W = clamp(vr.width / t.z / FIELD_WIDTH, 0.04, 1 - L);
       const H = clamp(vr.height / t.z / FIELD_HEIGHT, 0.04, 1 - T);
-      miniVp.style.transition = animate ? 'all 0.5s var(--ease-out-strong)' : 'none';
-      miniVp.style.left = `${L * 100}%`;
-      miniVp.style.top = `${T * 100}%`;
-      miniVp.style.width = `${W * 100}%`;
-      miniVp.style.height = `${H * 100}%`;
+      miniVp.style.transition =
+        animate && !reduce ? `transform ${MINI_MS}ms var(--ease-out-strong)` : 'none';
+      miniVp.style.transform = `translate(${L * 100}%, ${T * 100}%) scale(${W}, ${H})`;
     }
   }, []);
 
@@ -85,24 +95,25 @@ export function useFieldTransform(initial?: Partial<Transform>) {
     [setT],
   );
 
+  const transformForPoint = useCallback((pos: readonly [number, number]): Transform => {
+    const vp = vpRef.current;
+    const prev = transformRef.current;
+    if (!vp) return prev;
+    const r = vp.getBoundingClientRect();
+    const [px, py] = pos;
+    const z = clamp(Math.max(prev.z, 1), 0.8, 2.6);
+    return {
+      x: r.width * 0.42 - px * z,
+      y: r.height * 0.46 - py * z,
+      z,
+    };
+  }, []);
+
   const flyTo = useCallback(
     (pos: readonly [number, number], animate = true) => {
-      const vp = vpRef.current;
-      if (!vp) return;
-      const r = vp.getBoundingClientRect();
-      const [px, py] = pos;
-      const prev = transformRef.current;
-      const z = clamp(Math.max(prev.z, 1), 0.8, 2.6);
-      setT(
-        {
-          x: r.width * 0.42 - px * z,
-          y: r.height * 0.46 - py * z,
-          z,
-        },
-        animate,
-      );
+      setT(transformForPoint(pos), animate);
     },
-    [setT],
+    [setT, transformForPoint],
   );
 
   const frameIds = useCallback(
@@ -196,31 +207,58 @@ export function useFieldTransform(initial?: Partial<Transform>) {
 
   const wasDragged = useCallback(() => movedRef.current, []);
 
-  return {
-    vpRef,
-    worldRef,
-    miniVpRef,
-    readoutRef,
-    transform,
-    ready,
-    initField,
-    fitView: () => initField(true),
-    zoomIn: () => {
-      const r = vpRef.current?.getBoundingClientRect();
-      if (r) zoomAt(1.35, r.width / 2, r.height / 2, true);
-    },
-    zoomOut: () => {
-      const r = vpRef.current?.getBoundingClientRect();
-      if (r) zoomAt(0.74, r.width / 2, r.height / 2, true);
-    },
-    flyTo,
-    frameIds,
-    setT,
-    onPointerDown,
-    onPointerMove,
-    onPointerUp,
-    onWheel,
-    onMiniClick,
-    wasDragged,
-  };
+  const fitView = useCallback(() => initField(true), [initField]);
+
+  const zoomIn = useCallback(() => {
+    const r = vpRef.current?.getBoundingClientRect();
+    if (r) zoomAt(1.35, r.width / 2, r.height / 2, true);
+  }, [zoomAt]);
+
+  const zoomOut = useCallback(() => {
+    const r = vpRef.current?.getBoundingClientRect();
+    if (r) zoomAt(0.74, r.width / 2, r.height / 2, true);
+  }, [zoomAt]);
+
+  return useMemo(
+    () => ({
+      vpRef,
+      worldRef,
+      miniVpRef,
+      readoutRef,
+      transform,
+      ready,
+      initField,
+      fitView,
+      zoomIn,
+      zoomOut,
+      flyTo,
+      transformForPoint,
+      frameIds,
+      setT,
+      onPointerDown,
+      onPointerMove,
+      onPointerUp,
+      onWheel,
+      onMiniClick,
+      wasDragged,
+    }),
+    [
+      transform,
+      ready,
+      initField,
+      fitView,
+      zoomIn,
+      zoomOut,
+      flyTo,
+      transformForPoint,
+      frameIds,
+      setT,
+      onPointerDown,
+      onPointerMove,
+      onPointerUp,
+      onWheel,
+      onMiniClick,
+      wasDragged,
+    ],
+  );
 }

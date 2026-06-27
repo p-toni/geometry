@@ -4,10 +4,17 @@
 
 .edge-continues {
   border-right: 3px solid var(--signal) !important;
+  transition: transform 140ms var(--ease-out-strong);
 }
 
-.edge-continues:hover {
-  background: #f4f6f3 !important;
+@media (hover: hover) and (pointer: fine) {
+  .edge-continues:hover {
+    background: #f4f6f3 !important;
+  }
+}
+
+.edge-continues:active {
+  transform: scale(0.98);
 }
 
 .depth-flat {
@@ -31,6 +38,103 @@
   background: #e7eae6;
 }
 
+/* Shared press + focus language */
+.pressable {
+  transition: transform 140ms var(--ease-out-strong);
+}
+
+.pressable:active {
+  transform: scale(0.97);
+}
+
+.pressable:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+.pressable--ghost:active {
+  transform: scale(0.95);
+}
+
+.lens-form {
+  transition: border-color 160ms ease-out;
+}
+
+.field-zoom-readout {
+  font-variant-numeric: tabular-nums;
+  transition: opacity 120ms ease-out;
+}
+
+.field-zoom-readout.is-updating {
+  opacity: 0.55;
+}
+
+.field-read-scrim {
+  transition: opacity 280ms var(--ease-out-strong);
+}
+
+.field-read {
+  width: 480px;
+  flex: 0 0 480px;
+  transition:
+    opacity 200ms var(--ease-out-strong),
+    width 320ms var(--ease-drawer),
+    flex-basis 320ms var(--ease-drawer);
+}
+
+.field-read--full {
+  width: 728px;
+  flex: 0 0 728px;
+}
+
+@keyframes field-read-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 901px) {
+  .field-read--enter {
+    animation: field-read-enter 120ms var(--ease-out-strong) both;
+  }
+}
+
+.constellation-overlay {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  transition: opacity 260ms var(--ease-out-strong), clip-path 260ms var(--ease-out-strong);
+}
+
+.constellation-overlay--enter {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+}
+
+.constellation-overlay--exit {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: opacity 160ms var(--ease-out-strong), clip-path 160ms var(--ease-out-strong);
+  pointer-events: none;
+}
+
+.curvature-svg {
+  position: relative;
+}
+
+.curvature-path-layer {
+  position: absolute;
+  inset: 0;
+  transition: opacity 220ms var(--ease-out-strong);
+}
+
+.curvature-path-layer.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 @keyframes holdpulse {
   0%,
   100% {
@@ -50,28 +154,67 @@
   }
 }
 
+.crackdraw {
+  stroke-dasharray: 220;
+  animation: crackdraw 480ms var(--ease-out-strong) forwards;
+}
+
+.field-node {
+  transition: opacity 200ms var(--ease-out-strong), transform 200ms var(--ease-out-strong);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .field-node:hover {
+    transform: translateY(-2px) !important;
+    opacity: 1 !important;
+  }
+}
+
+.field-node:active {
+  transform: translateY(0) scale(0.98) !important;
+}
+
+.field-node--hot {
+  box-shadow: 0 2px 18px color-mix(in srgb, var(--signal) 35%, transparent);
+}
+
+.field-region-label {
+  transition: opacity 280ms var(--ease-out-strong);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .field-node--hot {
     animation: none !important;
   }
-}
 
-@keyframes nowpulse {
-  0%,
-  100% {
-    box-shadow: var(--shadow-raised);
+  .field-node,
+  .pressable,
+  .edge-continues,
+  .field-read,
+  .field-read-scrim,
+  .constellation-overlay,
+  .curvature-path-layer,
+  .lens-form,
+  .field-zoom-readout {
+    transition: opacity 150ms ease-out !important;
+    animation: none !important;
   }
-  50% {
-    box-shadow: 0 2px 18px color-mix(in srgb, var(--signal) 55%, transparent);
+
+  .field-node,
+  .pressable,
+  .edge-continues,
+  .field-read,
+  .constellation-overlay {
+    transform: none !important;
   }
-}
 
-.field-node--hot {
-  animation: nowpulse 2.4s ease-in-out infinite;
-}
+  .field-read--enter {
+    opacity: 1;
+  }
 
-.field-node:hover {
-  box-shadow: 0 10px 26px rgba(20, 23, 26, 0.18) !important;
-  transform: translateY(-2px) !important;
-  opacity: 1 !important;
+  .constellation-overlay--enter,
+  .constellation-overlay--exit {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
 }

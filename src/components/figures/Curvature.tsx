@@ -10,17 +10,26 @@ const COPY: Record<Mode, string> = {
     'Paths diverge — missing dimension. Consistency breaks because the frame was too flat.',
 };
 
+function pathData(mode: Mode) {
+  const spread = mode === 'diverge' ? 1 : 0;
+  const leftEnd = 80 + spread * 40;
+  const rightEnd = 240 - spread * 40;
+  const midY = mode === 'converge' ? 118 : 48;
+  return {
+    left: `M 48 28 Q 120 ${midY} ${leftEnd} 112`,
+    right: `M 272 28 Q 200 ${midY} ${rightEnd} 112`,
+    hubY: mode === 'converge' ? 112 : 28,
+  };
+}
+
 type CurvatureProps = {
   inline?: boolean;
 };
 
 export function Curvature({ inline = true }: CurvatureProps) {
   const [mode, setMode] = useState<Mode>('converge');
-
-  const spread = mode === 'diverge' ? 1 : 0;
-  const leftEnd = 80 + spread * 40;
-  const rightEnd = 240 - spread * 40;
-  const midY = mode === 'converge' ? 118 : 48;
+  const converge = pathData('converge');
+  const diverge = pathData('diverge');
 
   const controls = (
     <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
@@ -28,6 +37,7 @@ export function Curvature({ inline = true }: CurvatureProps) {
         <button
           key={m}
           type="button"
+          className="pressable"
           onClick={() => setMode(m)}
           style={{
             ...mono,
@@ -46,49 +56,67 @@ export function Curvature({ inline = true }: CurvatureProps) {
     </div>
   );
 
-  const svg = (
-    <svg
-      viewBox="0 0 320 140"
-      role="img"
-      aria-label={`Curvature paths ${mode}`}
-      style={{
-        width: '100%',
-        height: 140,
-        display: 'block',
-        border: '1px solid var(--line-soft)',
-        borderRadius: 3,
-        background: 'var(--card)',
-      }}
-    >
+  const renderPaths = (data: ReturnType<typeof pathData>) => (
+    <>
       <path
-        d={`M 48 28 Q 120 ${midY} ${leftEnd} 112`}
+        d={data.left}
         fill="none"
         stroke="var(--signal)"
         strokeWidth={2}
         strokeLinecap="round"
-        style={{ transition: 'd 0.45s var(--ease-out-strong)' }}
       />
       <path
-        d={`M 272 28 Q 200 ${midY} ${rightEnd} 112`}
+        d={data.right}
         fill="none"
         stroke="var(--signal)"
         strokeWidth={2}
         strokeLinecap="round"
         opacity={0.7}
-        style={{ transition: 'd 0.45s var(--ease-out-strong)' }}
       />
       <circle cx={48} cy={28} r={4} fill="var(--signal)" opacity={0.5} />
       <circle cx={272} cy={28} r={4} fill="var(--signal)" opacity={0.5} />
       <circle
         cx={160}
-        cy={mode === 'converge' ? 112 : 28}
+        cy={data.hubY}
         r={5}
         fill="none"
         stroke="var(--signal)"
         strokeWidth={1.5}
         strokeDasharray="3 3"
       />
-    </svg>
+    </>
+  );
+
+  const svg = (
+    <div
+      className="curvature-svg"
+      style={{
+        position: 'relative',
+        height: 140,
+        border: '1px solid var(--line-soft)',
+        borderRadius: 3,
+        background: 'var(--card)',
+        overflow: 'hidden',
+      }}
+    >
+      <svg
+        viewBox="0 0 320 140"
+        role="img"
+        aria-label={`Curvature paths ${mode}`}
+        className={`curvature-path-layer${mode === 'converge' ? '' : ' is-hidden'}`}
+        style={{ width: '100%', height: 140, display: 'block' }}
+      >
+        {renderPaths(converge)}
+      </svg>
+      <svg
+        viewBox="0 0 320 140"
+        aria-hidden
+        className={`curvature-path-layer${mode === 'diverge' ? '' : ' is-hidden'}`}
+        style={{ width: '100%', height: 140, display: 'block' }}
+      >
+        {renderPaths(diverge)}
+      </svg>
+    </div>
   );
 
   const caption = (

@@ -61,6 +61,7 @@ export function LateFailure({ inline = true }: LateFailureProps) {
           role="button"
           tabIndex={0}
           aria-label="Hold to stress the lines"
+          className="pressable"
           style={{
             position: 'relative',
             maxWidth: 440,
@@ -92,7 +93,9 @@ export function LateFailure({ inline = true }: LateFailureProps) {
                   display: 'block',
                   color: cracked && i === LINES - 1 ? '#c2410c' : '#3c434a',
                   transform: `translateX(${strain * (i - 1) * 2}px)`,
-                  transition: 'transform 0.08s linear',
+                  transition: holding
+                    ? 'transform 0.08s linear'
+                    : 'transform 180ms var(--ease-out-strong)',
                 }}
               >
                 the model holds.

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { buildConstellationLayout } from './buildConstellationLayout';
 import type { EssayStructure } from '../pool/essayStructure';
 
@@ -9,12 +9,22 @@ type Props = {
 
 type Particle = { e: [string, string]; t: number };
 
+const NODE_STAGGER_S = 0.04;
+
 export function ConstellationDescent({ structure, onClose }: Props) {
+  const [exiting, setExiting] = useState(false);
+  const [entered, setEntered] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const startRef = useRef(performance.now());
   const rafRef = useRef<number>(0);
   const layoutRef = useRef(buildConstellationLayout(structure));
   const particlesRef = useRef<Particle[]>([]);
+
+  useEffect(() => {
+    setEntered(false);
+    const id = requestAnimationFrame(() => setEntered(true));
+    return () => cancelAnimationFrame(id);
+  }, [structure]);
 
   useEffect(() => {
     layoutRef.current = buildConstellationLayout(structure);
@@ -106,7 +116,10 @@ export function ConstellationDescent({ structure, onClose }: Props) {
 
       nodes.forEach((n, i) => {
         const pp = P(n);
-        const appear = Math.min(1, Math.max(0, intro * nodes.length - i));
+        const appear = Math.min(
+          1,
+          Math.max(0, (intro - i * NODE_STAGGER_S) / 0.28),
+        );
         const r = n.kind === 'lens' ? 6 : n.kind === 'section' ? 3.4 : 2.2;
         const col =
           n.kind === 'lens' ? accent : n.kind === 'section' ? '#ffffff' : '#9aa0aa';
@@ -166,8 +179,14 @@ export function ConstellationDescent({ structure, onClose }: Props) {
     return () => cancelAnimationFrame(rafRef.current);
   }, [structure]);
 
+  const requestClose = useCallback(() => {
+    setExiting(true);
+    window.setTimeout(() => onClose(), 160);
+  }, [onClose]);
+
   return (
     <div
+      className={`constellation-overlay${exiting ? ' constellation-overlay--exit' : entered ? '' : ' constellation-overlay--enter'}`}
       style={{
         position: 'absolute',
         inset: 0,
@@ -219,7 +238,8 @@ export function ConstellationDescent({ structure, onClose }: Props) {
         </div>
         <button
           type="button"
-          onClick={onClose}
+          className="pressable"
+          onClick={requestClose}
           style={{
             pointerEvents: 'auto',
             display: 'flex',

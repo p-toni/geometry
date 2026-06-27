@@ -23,6 +23,7 @@
   --shadow-inset: inset 0 2px 8px rgba(20, 23, 26, 0.09);
 
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
   --header-h: 50px;
   --status-h: 30px;
   --grid-opacity: 0.5;

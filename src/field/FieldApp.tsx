@@ -5,7 +5,6 @@ import { uniqueEdges } from '../lib/graph';
 import { activeChipForQuery, resolveLens } from '../lib/search';
 import {
   parseFieldState,
-  shouldSyncViewportToUrl,
   viewportMatchesUrl,
   writeFieldState,
 } from '../lib/fieldUrl';
@@ -29,8 +28,7 @@ export function FieldApp() {
   const [matched, setMatched] = useState<string[] | null>(
     urlState.query ? resolveLens(pool, urlState.query, pool.layout.lenses) : null,
   );
-  const [history, setHistory] = useState<string[]>([]);
-  const navInitiated = useRef(false);
+  const suppressViewportSync = useRef(0);
   const [descent, setDescent] = useState<EssayStructure | null>(null);
   const [composing, setComposing] = useState(false);
   const [activeChip, setActiveChip] = useState<string | null>(
@@ -38,6 +36,9 @@ export function FieldApp() {
   );
   const [readingAnim, setReadingAnim] = useState(false);
   const [cascading, setCascading] = useState(false);
+  /** Immediate read/trail — keeps the read panel in sync with field card clicks. */
+  const [readTarget, setReadTarget] = useState<string | null>(urlState.read);
+  const [trailTarget, setTrailTarget] = useState<string[]>(urlState.trail);
 
   const triggerCascade = useCallback(() => {
     setCascading(true);
@@ -49,10 +50,23 @@ export function FieldApp() {
     y: urlState.y ?? undefined,
     z: urlState.z ?? undefined,
   });
+  const {
+    ready: fieldReady,
+    initField,
+    flyTo,
+    setT: setFieldT,
+    transformForPoint,
+    frameIds,
+  } = field;
+  const readKey = params.get('read') ?? '';
 
-  const readId = urlState.read;
+  const readId = readTarget;
+  const locationState = parseFieldState(new URLSearchParams(window.location.search));
+  const fullOn =
+    urlState.full ||
+    (locationState.read === readId && locationState.full);
   const readFull =
-    urlState.full && Boolean(readId && (pool.nodes[readId ?? '']?.body.length ?? 0) > 0);
+    fullOn && Boolean(readId && (pool.nodes[readId ?? '']?.body.length ?? 0) > 0);
   const nowOn = urlState.now && !readId && !matched?.length;
   const lensActive = !!(urlState.query && matched && matched.length > 0 && !readId);
 
@@ -65,10 +79,16 @@ export function FieldApp() {
 
   const pushUrl = useCallback(
     (patch: Partial<ReturnType<typeof parseFieldState>>, replace = false) => {
-      navInitiated.current = true;
+      const navIntent = patch.read !== undefined || patch.trail !== undefined;
+      if (navIntent) {
+        suppressViewportSync.current = Date.now() + 1200;
+        if (patch.read !== undefined) setReadTarget(patch.read);
+        if (patch.trail !== undefined) setTrailTarget(patch.trail);
+      }
+      const base = parseFieldState(new URLSearchParams(window.location.search));
       const next = writeFieldState(
         {
-          ...urlState,
+          ...base,
           x: field.transform.x,
           y: field.transform.y,
           z: field.transform.z,
@@ -77,75 +97,66 @@ export function FieldApp() {
       );
       setParams(next, { replace });
     },
-    [field.transform, setParams, urlState],
+    [field.transform, setParams],
   );
 
   const skipViewportSync = useRef(true);
-  const modeKey = `${params.get('read') ?? ''}|${params.get('q') ?? ''}|${params.get('now') ?? ''}|${params.get('full') ?? ''}`;
+  const modeKey = `${params.get('read') ?? ''}|${params.get('trail') ?? ''}|${params.get('q') ?? ''}|${params.get('now') ?? ''}|${params.get('full') ?? ''}`;
   const viewportKey = `${params.get('x') ?? ''}|${params.get('y') ?? ''}|${params.get('z') ?? ''}`;
 
   useEffect(() => {
-    if (field.ready) return;
+    if (fieldReady) return;
     skipViewportSync.current = true;
     const id = requestAnimationFrame(() => {
       if (urlState.x == null) {
-        field.initField(false);
+        initField(false);
         if (readId && pool.layout.positions[readId]) {
-          requestAnimationFrame(() => field.flyTo(pool.layout.positions[readId]!, false));
+          requestAnimationFrame(() => flyTo(pool.layout.positions[readId]!, false));
         }
       } else {
-        field.setT(
-          { x: urlState.x!, y: urlState.y!, z: urlState.z ?? 1 },
-          false,
-        );
+        setFieldT({ x: urlState.x!, y: urlState.y!, z: urlState.z ?? 1 }, false);
       }
       window.setTimeout(() => {
         skipViewportSync.current = false;
       }, 100);
     });
     return () => cancelAnimationFrame(id);
-  }, [field, readId, urlState.x, urlState.y, urlState.z]);
+  }, [fieldReady, readId, urlState.x, urlState.y, urlState.z, initField, flyTo, setFieldT]);
 
   useEffect(() => {
     const state = parseFieldState(params);
+    if (Date.now() >= suppressViewportSync.current) {
+      setReadTarget(state.read);
+      setTrailTarget(state.trail);
+    }
     setLensInput(state.query);
     setMatched(
       state.query ? resolveLens(pool, state.query, pool.layout.lenses) : null,
     );
     setActiveChip(activeChipForQuery(state.query, pool.layout.lenses));
-
-    if (navInitiated.current) {
-      navInitiated.current = false;
-      return;
-    }
-    if (!state.read) {
-      setHistory([]);
-      return;
-    }
-    setHistory((h) => {
-      if (h.length && h.at(-1) === state.read) return h.slice(0, -1);
-      return h;
-    });
   }, [modeKey, params]);
 
   useEffect(() => {
-    if (!field.ready || skipViewportSync.current) return;
+    if (!fieldReady || skipViewportSync.current) return;
+    if (Date.now() < suppressViewportSync.current) return;
     const state = parseFieldState(params);
     if (state.x != null && state.y != null && state.z != null) {
-      field.setT({ x: state.x, y: state.y, z: state.z }, false);
+      setFieldT({ x: state.x, y: state.y, z: state.z }, false);
     } else if (state.read && pool.layout.positions[state.read]) {
-      field.flyTo(pool.layout.positions[state.read]!, false);
+      flyTo(pool.layout.positions[state.read]!, false);
     }
-  }, [viewportKey, modeKey, field, params]);
+  }, [viewportKey, readKey, fieldReady, setFieldT, flyTo, params]);
 
   useEffect(() => {
-    if (!field.ready || skipViewportSync.current) return;
-    if (!shouldSyncViewportToUrl(urlState)) return;
-    if (viewportMatchesUrl(field.transform, urlState)) return;
+    if (!fieldReady || skipViewportSync.current) return;
+    if (Date.now() < suppressViewportSync.current) return;
 
     const timeout = window.setTimeout(() => {
+      if (Date.now() < suppressViewportSync.current) return;
+      const state = parseFieldState(new URLSearchParams(window.location.search));
+      if (viewportMatchesUrl(field.transform, state)) return;
       const { x, y, z } = field.transform;
-      const next = writeFieldState(urlState, {
+      const next = writeFieldState(state, {
         x: Math.round(x),
         y: Math.round(y),
         z: Number(z.toFixed(2)),
@@ -154,82 +165,104 @@ export function FieldApp() {
     }, 450);
 
     return () => window.clearTimeout(timeout);
-  }, [
-    field.ready,
-    field.transform,
-    setParams,
-    urlState,
-  ]);
+  }, [fieldReady, field.transform, params, setParams]);
+
+  const focusNode = useCallback(
+    (id: string, animate = true) => {
+      const pos = pool.layout.positions[id];
+      if (!pos) return;
+      suppressViewportSync.current = Date.now() + 1200;
+      const view = transformForPoint(pos);
+      flyTo(pos, animate);
+      return view;
+    },
+    [flyTo, transformForPoint],
+  );
 
   const openNode = useCallback(
     (id: string) => {
-      if (readId) setHistory((h) => [...h, readId].slice(-16));
+      const trail = readTarget ? [...trailTarget, readTarget].slice(-16) : trailTarget;
+      const view = focusNode(id, true);
       setDescent(null);
-      setReadingAnim(true);
-      window.setTimeout(() => setReadingAnim(false), 600);
-      pushUrl({ read: id, query: '', now: false, full: false });
+      const fromField = !readTarget;
+      if (fromField) {
+        setReadingAnim(true);
+        window.setTimeout(() => setReadingAnim(false), 600);
+      }
+      pushUrl({
+        read: id,
+        query: '',
+        now: false,
+        full: false,
+        trail,
+        ...(view ?? {}),
+      });
       setLensInput('');
       setMatched(null);
       setActiveChip(null);
-      const pos = pool.layout.positions[id];
-      if (pos) field.flyTo(pos, true);
     },
-    [field, pushUrl, readId],
+    [focusNode, pushUrl, readTarget, trailTarget],
   );
 
   const onNodeClick = useCallback(
     (id: string) => {
-      if (field.wasDragged()) return;
       openNode(id);
     },
-    [field, openNode],
+    [openNode],
   );
 
   const home = useCallback(() => {
     triggerCascade();
-    setHistory([]);
     setDescent(null);
     setLensInput('');
     setMatched(null);
     setActiveChip(null);
-    pushUrl({ read: null, query: '', now: false, full: false });
+    pushUrl({ read: null, query: '', now: false, full: false, trail: [] });
     field.fitView();
   }, [field, pushUrl, triggerCascade]);
 
   const back = useCallback(() => {
     setDescent(null);
-    if (readFull) {
+    const state = parseFieldState(new URLSearchParams(window.location.search));
+    const fullNow =
+      state.full &&
+      Boolean(state.read && (pool.nodes[state.read]?.body.length ?? 0) > 0);
+    if (fullNow) {
       pushUrl({ full: false });
       return;
     }
-    const prev = history.at(-1);
+    const prev = trailTarget.at(-1);
+    const nextTrail = trailTarget.slice(0, -1);
     if (prev) {
-      setHistory((h) => h.slice(0, -1));
-      pushUrl({ read: prev, full: false });
-      const pos = pool.layout.positions[prev];
-      if (pos) field.flyTo(pos, true);
+      const view = focusNode(prev, true);
+      pushUrl({
+        read: prev,
+        full: false,
+        trail: nextTrail,
+        ...(view ?? {}),
+      });
     } else {
-      pushUrl({ read: null, full: false });
+      pushUrl({ read: null, full: false, trail: [] });
       field.fitView();
     }
-  }, [field, history, pushUrl, readFull]);
+  }, [field, focusNode, pushUrl, trailTarget]);
 
   const runLens = useCallback(
     (q: string) => {
       if (!q.trim()) {
-        pushUrl({ query: '', now: false, read: null });
+        pushUrl({ query: '', now: false, read: null, trail: [] });
         setMatched(null);
         setActiveChip(null);
         return;
       }
       setComposing(true);
-      window.setTimeout(() => setComposing(false), 900);
+      window.setTimeout(() => setComposing(false), 450);
       const ids = resolveLens(pool, q, pool.layout.lenses);
       setMatched(ids);
-      pushUrl({ query: q, now: false, read: null });
-      requestAnimationFrame(() => field.frameIds(ids, pool.layout.positions, true));
+      pushUrl({ query: q, now: false, read: null, trail: [] });
+      requestAnimationFrame(() => frameIds(ids, pool.layout.positions, false));
     },
-    [field, pushUrl],
+    [frameIds, pushUrl],
   );
 
   const pickChip = useCallback(
@@ -237,19 +270,19 @@ export function FieldApp() {
       setActiveChip(label);
       setLensInput(query);
       setComposing(true);
-      window.setTimeout(() => setComposing(false), 900);
+      window.setTimeout(() => setComposing(false), 450);
       setMatched(nodeIds);
-      pushUrl({ query, now: false, read: null });
-      requestAnimationFrame(() => field.frameIds(nodeIds, pool.layout.positions, true));
+      pushUrl({ query, now: false, read: null, trail: [] });
+      requestAnimationFrame(() => frameIds(nodeIds, pool.layout.positions, true));
     },
-    [field, pushUrl],
+    [frameIds, pushUrl],
   );
 
   const toggleNow = useCallback(() => {
     triggerCascade();
     setDescent(null);
     const next = !nowOn;
-    pushUrl({ now: next, read: null, query: '' });
+    pushUrl({ now: next, read: null, query: '', trail: [] });
     setLensInput('');
     setMatched(null);
     setActiveChip(null);
@@ -310,6 +343,7 @@ export function FieldApp() {
       >
         <button
           type="button"
+          className="pressable pressable--ghost"
           onClick={home}
           style={{
             display: 'flex',
@@ -331,6 +365,7 @@ export function FieldApp() {
         </button>
 
         <form
+          className="lens-form"
           onSubmit={(e) => {
             e.preventDefault();
             runLens(lensInput);
@@ -368,6 +403,7 @@ export function FieldApp() {
           {lensActive ? (
             <button
               type="button"
+              className="pressable"
               onClick={() => {
                 triggerCascade();
                 setDescent(null);
@@ -394,6 +430,7 @@ export function FieldApp() {
           ) : null}
           <button
             type="submit"
+            className="pressable"
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -422,6 +459,7 @@ export function FieldApp() {
               <button
                 key={chip.label}
                 type="button"
+                className="pressable"
                 onClick={() => pickChip(chip.label, chip.query, chip.nodeIds)}
                 style={{
                   fontFamily: 'var(--font-body)',
@@ -445,6 +483,7 @@ export function FieldApp() {
 
         <button
           type="button"
+          className="pressable"
           onClick={toggleNow}
           style={{
             display: 'flex',
@@ -546,6 +585,7 @@ export function FieldApp() {
             {pool.layout.regions.map((r) => (
               <div
                 key={r.label}
+                className="field-region-label"
                 style={{
                   position: 'absolute',
                   left: r.x,
@@ -559,7 +599,6 @@ export function FieldApp() {
                   opacity: readId || lensActive || nowOn ? 0.3 : 0.55,
                   fontWeight: 700,
                   pointerEvents: 'none',
-                  transition: 'opacity 0.4s ease',
                 }}
               >
                 {r.label}
@@ -590,8 +629,10 @@ export function FieldApp() {
                 >
                   <button
                     type="button"
+                    data-testid={`field-node-${id}`}
+                    onPointerDown={(e) => e.stopPropagation()}
                     onClick={() => onNodeClick(id)}
-                    className={vis.hot ? 'field-node--hot field-node' : 'field-node'}
+                    className={`pressable field-node${vis.hot ? ' field-node--hot' : ''}`}
                     style={{
                       position: 'relative',
                       minWidth: 108,
@@ -610,8 +651,6 @@ export function FieldApp() {
                       cursor: 'pointer',
                       opacity: vis.dim,
                       transform: vis.lift ? `translateY(${vis.lift}px)` : undefined,
-                      transition:
-                        'opacity 0.4s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-out-strong), border-color 0.3s ease',
                       textAlign: 'left',
                     }}
                   >
@@ -685,6 +724,8 @@ export function FieldApp() {
               <button
                 key={btn.label}
                 type="button"
+                className="pressable"
+                onPointerDown={(e) => e.stopPropagation()}
                 onClick={btn.onClick}
                 style={{
                   width: 32,
@@ -729,6 +770,7 @@ export function FieldApp() {
           </p>
           <div
             ref={field.readoutRef}
+            className="field-zoom-readout"
             style={{
               position: 'absolute',
               right: 14,
@@ -747,13 +789,15 @@ export function FieldApp() {
 
           {readFull ? (
             <div
+              className="field-read-scrim"
               style={{
                 position: 'absolute',
                 inset: 0,
                 background: 'rgba(238,240,237,.58)',
+                backdropFilter: 'blur(2px)',
+                WebkitBackdropFilter: 'blur(2px)',
                 pointerEvents: 'none',
                 zIndex: 8,
-                transition: 'opacity 0.4s ease',
               }}
             />
           ) : null}
@@ -763,7 +807,11 @@ export function FieldApp() {
           <ReadPanel
             node={readNode}
             pool={pool}
-            historyTitle={history.at(-1) ? pool.nodes[history.at(-1)!]?.title ?? null : null}
+            historyTitle={
+              trailTarget.at(-1)
+                ? (pool.nodes[trailTarget.at(-1)!]?.title ?? null)
+                : null
+            }
             reading={readingAnim}
             full={readFull}
             onBack={back}
@@ -979,8 +1027,9 @@ function Minimap({
           position: 'absolute',
           left: 0,
           top: 0,
-          width: '40%',
-          height: '40%',
+          width: '100%',
+          height: '100%',
+          transformOrigin: '0 0',
           border: '1px solid var(--signal)',
           borderRadius: 1,
           pointerEvents: 'none',

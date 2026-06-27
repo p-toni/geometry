@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { splitInlineBacklinks } from '../../lib/inlineBacklink';
 import type { Block } from '../../pool/types';
 import { Backlink } from './Backlink';
 import { Callout } from './Callout';
@@ -20,21 +21,40 @@ export function renderBlock(block: Block, key: number, opts: RenderOpts = {}): R
   const { onOpenNode } = opts;
 
   switch (block.t) {
-    case 'p':
+    case 'p': {
+      const parts = splitInlineBacklinks(block.x);
+      const pStyle = {
+        fontFamily: 'var(--font-body)',
+        fontSize: 16,
+        lineHeight: 1.66,
+        color: '#2c333a',
+        margin: '0 0 17px',
+      } as const;
+      if (parts.length === 1 && parts[0]!.kind === 'text') {
+        return (
+          <p key={key} style={pStyle}>
+            {parts[0]!.text}
+          </p>
+        );
+      }
       return (
-        <p
-          key={key}
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: 16,
-            lineHeight: 1.66,
-            color: '#2c333a',
-            margin: '0 0 17px',
-          }}
-        >
-          {block.x}
+        <p key={key} style={pStyle}>
+          {parts.map((part, i) =>
+            part.kind === 'text' ? (
+              <span key={i}>{part.text}</span>
+            ) : (
+              <Backlink
+                key={i}
+                title={part.title}
+                rel={part.rel}
+                targetId={part.targetId}
+                onOpen={onOpenNode}
+              />
+            ),
+          )}
         </p>
       );
+    }
     case 'h':
       return (
         <h2

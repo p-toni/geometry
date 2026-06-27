@@ -2,6 +2,8 @@ export type FieldViewState = {
   read: string | null;
   /** Expanded essay body in the read panel */
   full: boolean;
+  /** Essay IDs visited before the current read — powers back + breadcrumb */
+  trail: string[];
   query: string;
   now: boolean;
   x: number | null;
@@ -10,9 +12,14 @@ export type FieldViewState = {
 };
 
 export function parseFieldState(params: URLSearchParams): FieldViewState {
+  const trailRaw = params.get('trail');
+  const trail = trailRaw
+    ? trailRaw.split(',').map((id) => id.trim()).filter(Boolean)
+    : [];
   return {
     read: params.get('read') || null,
     full: params.get('full') === '1',
+    trail,
     query: params.get('q') ?? '',
     now: params.get('now') === '1',
     x: num(params.get('x')),
@@ -47,6 +54,7 @@ export function writeFieldState(base: FieldViewState, patch: Partial<FieldViewSt
   const p = new URLSearchParams();
   if (next.read) p.set('read', next.read);
   if (next.full) p.set('full', '1');
+  if (next.trail.length) p.set('trail', next.trail.join(','));
   if (next.query) p.set('q', next.query);
   if (next.now) p.set('now', '1');
   if (next.x != null) p.set('x', String(Math.round(next.x)));

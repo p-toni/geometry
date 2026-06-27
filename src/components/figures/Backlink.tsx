@@ -9,7 +9,9 @@ export function Backlink({ title, targetId, onOpen }: BacklinkProps) {
   return (
     <button
       type="button"
+      className="pressable"
       data-figure="FIG.12"
+      data-testid="essay-backlink"
       onClick={() => onOpen?.(targetId)}
       style={{
         display: 'inline-flex',

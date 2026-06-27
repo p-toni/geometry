@@ -68,16 +68,13 @@ export function ReadPanel({
 
   return (
     <aside
-      className="field-read edge-emphasis"
+      className={`field-read edge-emphasis${full ? ' field-read--full' : ''}${reading ? ' field-read--enter' : ''}`}
       style={{
-        width: full ? 728 : 480,
-        flex: 'none',
         background: 'var(--card)',
         boxShadow: '-18px 0 48px rgba(20,23,26,.16)',
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
-        transition: 'width 0.45s cubic-bezier(0.23, 1, 0.32, 1)',
       }}
     >
       <header
@@ -92,6 +89,7 @@ export function ReadPanel({
       >
         <button
           type="button"
+          className="pressable"
           onClick={onBack}
           style={{
             fontFamily: 'var(--font-mono)',
@@ -124,6 +122,7 @@ export function ReadPanel({
         {full ? (
           <button
             type="button"
+            className="pressable"
             onClick={() => onToggleFull(false)}
             style={{
               fontFamily: 'var(--font-mono)',
@@ -144,6 +143,7 @@ export function ReadPanel({
         {reading ? <Spin verb="plot" /> : null}
         <button
           type="button"
+          className="pressable pressable--ghost"
           onClick={onBack}
           aria-label="Close"
           style={{
@@ -159,7 +159,13 @@ export function ReadPanel({
         </button>
       </header>
 
-      <div style={{ flex: 1, overflow: 'auto', padding: '26px 28px 36px' }}>
+      <div
+        style={{
+          flex: 1,
+          overflow: 'auto',
+          padding: '26px 28px calc(36px + var(--status-h))',
+        }}
+      >
         <Masthead
           kind={node.kind}
           title={node.title}
@@ -242,6 +248,7 @@ export function ReadPanel({
           {hasFull && !full ? (
             <button
               type="button"
+              className="pressable"
               onClick={() => onToggleFull(true)}
               style={{
                 marginTop: 4,
@@ -279,10 +286,13 @@ export function ReadPanel({
           <>
             <button
               type="button"
+              className="pressable"
+              data-testid="constellation-descend"
               onClick={onDescend}
               style={{
                 marginTop: 16,
                 width: '100%',
+                scrollMarginBottom: 56,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -338,7 +348,7 @@ export function ReadPanel({
                     key={id}
                     type="button"
                     onClick={() => onOpen(id)}
-                    className="edge-continues"
+                    className="pressable edge-continues"
                     style={{
                       display: 'flex',
                       alignItems: 'center',

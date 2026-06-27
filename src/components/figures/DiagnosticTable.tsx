@@ -11,6 +11,7 @@ export function DiagnosticTable() {
   return (
     <div
       data-figure="FIG.07"
+      data-testid="diagnostic-table"
       style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',

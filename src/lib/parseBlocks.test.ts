@@ -28,4 +28,20 @@ describe('parseBlocks', () => {
       targetId: 'bounded-me',
     });
   });
+
+  it('splits inline backlinks inside paragraphs', () => {
+    const blocks = parseBlocks(
+      '**Update:** [[backlink:Allowed Ignorance|cites|allowed-ignorance]] gives a sharper name.',
+    );
+    expect(blocks).toEqual([
+      { t: 'p', x: '**Update:** ' },
+      {
+        t: 'backlink',
+        title: 'Allowed Ignorance',
+        rel: 'cites',
+        targetId: 'allowed-ignorance',
+      },
+      { t: 'p', x: ' gives a sharper name.' },
+    ]);
+  });
 });
