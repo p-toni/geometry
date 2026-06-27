@@ -327,8 +327,8 @@ export const generatedPool: Pool = {
           "x": "It is:"
         },
         {
-          "t": "callout",
-          "v": "aside",
+          "t": "thesis",
+          "k": "claim",
           "x": "What did I remove, and did the object survive the cut?"
         },
         {
@@ -337,7 +337,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "plate",
-          "cap": "A carved form: one object, made usable by subtraction.",
+          "cap": "PLATE I — One object, made usable by subtraction — the first cuts.",
           "src": "/images/pieces/allowed-ignorance/plate-cut.svg"
         },
         {
@@ -473,16 +473,10 @@ export const generatedPool: Pool = {
           "x": "But it is still only one side."
         },
         {
-          "t": "p",
-          "x": "A clean explanation can be a well-lit face."
-        },
-        {
-          "t": "p",
-          "x": "A good summary can be a flattering projection."
-        },
-        {
-          "t": "p",
-          "x": "A framework can feel complete because it hides the seam from where I happen to be standing."
+          "t": "callout",
+          "v": "aside",
+          "label": "aside",
+          "x": "A clean explanation can be a well-lit face. A framework can feel complete because it hides the seam from where I happen to be standing."
         },
         {
           "t": "p",
@@ -535,7 +529,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "plate",
-          "cap": "The same carved form under rotation: if it disappears when turned, I only owned a face.",
+          "cap": "PLATE II — The same form under rotation — if it disappears when turned, I only owned a face.",
           "src": "/images/pieces/allowed-ignorance/plate-rotation.svg"
         },
         {
@@ -652,8 +646,8 @@ export const generatedPool: Pool = {
           "x": "Allowed Ignorance makes the warning more technical:"
         },
         {
-          "t": "callout",
-          "v": "aside",
+          "t": "thesis",
+          "k": "warning",
           "x": "Be careful what you allow yourself to treat as the same."
         },
         {
@@ -669,24 +663,11 @@ export const generatedPool: Pool = {
           "x": "Failure often looks less like chaos than like the return of a difference I stopped paying for."
         },
         {
-          "t": "p",
-          "x": "The model holds."
-        },
-        {
-          "t": "p",
-          "x": "The model holds."
-        },
-        {
-          "t": "p",
-          "x": "The model holds."
-        },
-        {
-          "t": "p",
-          "x": "Then one small movement and the structure cracks along a line I had decided was cosmetic."
+          "t": "motif"
         },
         {
           "t": "plate",
-          "cap": "A fracture through the form: failure is often a difference returning from the removed material.",
+          "cap": "PLATE III — A crack reveals the difference the map stopped paying for.",
           "src": "/images/pieces/allowed-ignorance/plate-crack.svg"
         },
         {
@@ -768,6 +749,11 @@ export const generatedPool: Pool = {
           "t": "h",
           "x": "Closing",
           "level": 2
+        },
+        {
+          "t": "thesis",
+          "k": "closing",
+          "x": "Understanding is a disciplined right to leave things out."
         },
         {
           "t": "p",
@@ -902,6 +888,12 @@ export const generatedPool: Pool = {
         "Information is not what exists. It is what my bounded loop can extract, keep stable, and reuse."
       ],
       "body": [
+        {
+          "t": "callout",
+          "v": "aside",
+          "label": "aside",
+          "x": "A private metric for extractable structure, geometry, and loop stability."
+        },
         {
           "t": "thesis",
           "k": "thesis",
@@ -1218,24 +1210,13 @@ export const generatedPool: Pool = {
           "level": 2
         },
         {
+          "t": "thesis",
+          "k": "for me",
+          "x": "Information is structural signal that a bounded learner can extract, crystallize into geometry, survive chaotic training dynamics, and behave like flow through a loop."
+        },
+        {
           "t": "p",
           "x": "Information is structural signal that:"
-        },
-        {
-          "t": "p",
-          "x": "1. a bounded learner can extract,"
-        },
-        {
-          "t": "p",
-          "x": "2. crystallizes into geometry,"
-        },
-        {
-          "t": "p",
-          "x": "3. survives chaotic training dynamics,"
-        },
-        {
-          "t": "p",
-          "x": "4. behaves like flow through a loop."
         },
         {
           "t": "p",
@@ -1262,22 +1243,16 @@ export const generatedPool: Pool = {
           "x": "What changes what I do next."
         },
         {
-          "t": "p",
-          "x": "**Update (2026-03-15):** Bennett (2026) formalizes a complementary constraint: under the Chord assumptions, a unified conscious moment has a physical size limit D ≤ κvθ, where D is the support diameter, v is the signal-propagation ceiling, θ is the integration window, and κ depends on exchange architecture. A mind can only get so big — not metaphorically, but because signals travel at finite speed. The same logic can fragment cloud-hosted models when limited concurrency blocks co-instantiation, even if links are fast. This is about consciousness criteria, but it sharpens my boundedness lens. (Source: https://www.preprints.org/manuscript/202602.1708/v2)"
+          "t": "callout",
+          "v": "update",
+          "label": "update · 2026-03-15",
+          "x": "Bennett (2026) formalizes a complementary constraint: under the Chord assumptions, a unified conscious moment has a physical size limit D ≤ κvθ, where D is the support diameter, v is the signal-propagation ceiling, θ is the integration window, and κ depends on exchange architecture. A mind can only get so big — not metaphorically, but because signals travel at finite speed. The same logic can fragment cloud-hosted models when limited concurrency blocks co-instantiation, even if links are fast. This is about consciousness criteria, but it sharpens my boundedness lens. (Source: https://www.preprints.org/manuscript/202602.1708/v2)"
         },
         {
-          "t": "p",
-          "x": "**Update (2026-04-12):** "
-        },
-        {
-          "t": "backlink",
-          "title": "Allowed Ignorance",
-          "rel": "pairs",
-          "targetId": "allowed-ignorance"
-        },
-        {
-          "t": "p",
-          "x": " gives a sharper name to what boundedness forces: not only limited capacity, but mandatory equivalence-making. Every usable map already contains decisions about which differences can be treated as the same."
+          "t": "callout",
+          "v": "update",
+          "label": "update · 2026-04-12",
+          "x": "[[backlink:Allowed Ignorance|cites|allowed-ignorance]] gives a sharper name to what boundedness forces: not only limited capacity, but mandatory equivalence-making. Every usable map already contains decisions about which differences can be treated as the same."
         }
       ],
       "struct": {
@@ -1521,6 +1496,12 @@ export const generatedPool: Pool = {
           "level": 2
         },
         {
+          "t": "callout",
+          "v": "honesty",
+          "label": "seam",
+          "x": "Strong standards, weak ontology — enough structure to prevent drift, enough weakness to remain revisable."
+        },
+        {
           "t": "p",
           "x": "There is a risk here too."
         },
@@ -1530,19 +1511,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "So the loop needs two properties at once:"
-        },
-        {
-          "t": "p",
-          "x": "• enough structure to prevent drift"
-        },
-        {
-          "t": "p",
-          "x": "• enough weakness to remain revisable"
-        },
-        {
-          "t": "p",
-          "x": "That is the shape I trust: strong standards, weak ontology."
+          "x": "So the loop needs two properties at once — strong standards, weak ontology."
         },
         {
           "t": "h",
@@ -1659,7 +1628,7 @@ export const generatedPool: Pool = {
       "body": [
         {
           "t": "thesis",
-          "k": "thesis",
+          "k": "the standard",
           "x": "Understanding is what remains when the source is closed."
         },
         {
@@ -1750,10 +1719,6 @@ export const generatedPool: Pool = {
           "x": "The deeper danger is accurate prose that I do not own."
         },
         {
-          "t": "thesis",
-          "x": "**Standard** Understanding is what remains when the source is closed."
-        },
-        {
           "t": "h",
           "x": "Operator 1: points versus edges",
           "level": 2
@@ -1781,6 +1746,9 @@ export const generatedPool: Pool = {
         {
           "t": "p",
           "x": "Understanding begins when I can draw an edge and defend it:"
+        },
+        {
+          "t": "point-edge"
         },
         {
           "t": "callout",
@@ -1821,8 +1789,13 @@ export const generatedPool: Pool = {
           "x": "That pattern is what I am calling curvature."
         },
         {
-          "t": "thesis",
-          "x": "**Honesty clause** I am using “curvature” as a cognitive concept, not claiming equivalence between mathematical and mental objects. The point is navigational power."
+          "t": "curvature"
+        },
+        {
+          "t": "callout",
+          "v": "honesty",
+          "label": "honesty clause",
+          "x": "I am using \"curvature\" as a cognitive concept, not claiming equivalence between mathematical and mental objects. The point is navigational power."
         },
         {
           "t": "p",
@@ -2041,6 +2014,14 @@ export const generatedPool: Pool = {
           "level": 2
         },
         {
+          "t": "edge-taxonomy",
+          "rows": []
+        },
+        {
+          "t": "steps",
+          "items": []
+        },
+        {
           "t": "p",
           "x": "1. **Sketch the graph.** Write the core nodes. Force 5–10 edges."
         },
@@ -2102,12 +2083,8 @@ export const generatedPool: Pool = {
           "x": "So the default mode — prompt, accept, move on — reliably produces retrieval that feels like geometry."
         },
         {
-          "t": "p",
-          "x": "My standard going forward:"
-        },
-        {
-          "t": "callout",
-          "v": "aside",
+          "t": "thesis",
+          "k": "standard going forward",
           "x": "Use models to expand the search space. Use reconstruction to build the map."
         },
         {
@@ -2115,18 +2092,10 @@ export const generatedPool: Pool = {
           "x": "Use weakening to keep the map honest."
         },
         {
-          "t": "p",
-          "x": "**Update (2026-04-12):** "
-        },
-        {
-          "t": "backlink",
-          "title": "Allowed Ignorance",
-          "rel": "pairs",
-          "targetId": "allowed-ignorance"
-        },
-        {
-          "t": "p",
-          "x": " sharpens the source-closed test: understanding is reconstruction after faithful collapse of variation. The tests here are not only diagnostics of grasp. They are stress tests on declared equivalences."
+          "t": "callout",
+          "v": "update",
+          "label": "update · 2026-04-12",
+          "x": "[[backlink:Allowed Ignorance|theme|allowed-ignorance]] sharpens the source-closed test: understanding is reconstruction after faithful collapse of variation. The tests here are not only diagnostics of grasp. They are stress tests on declared equivalences."
         }
       ],
       "struct": {
@@ -2247,6 +2216,7 @@ export const generatedPool: Pool = {
         {
           "t": "callout",
           "v": "aside",
+          "label": "source",
           "x": "“if you value intelligence above all other human qualities, you’re gonna have a bad time” — Ilya Sutskever"
         },
         {
@@ -2512,6 +2482,7 @@ export const generatedPool: Pool = {
         {
           "t": "callout",
           "v": "aside",
+          "label": "source",
           "x": "“You need an awareness of the ecology you are in. If you think of different firms and products as being different species, then you have to be very aware of how that entire network of different companies operates, even if they are quite peripheral to you.” — W. Brian Arthur, *Increasing Returns and the New World of Business* (Harvard Business Review, 1996)"
         },
         {
@@ -2753,6 +2724,12 @@ export const generatedPool: Pool = {
         "I am not using AI. I am regulating a coupled feedback system."
       ],
       "body": [
+        {
+          "t": "callout",
+          "v": "aside",
+          "label": "aside",
+          "x": "A safety manual for keeping control in the human-AI loop."
+        },
         {
           "t": "thesis",
           "k": "thesis",
@@ -3215,8 +3192,10 @@ export const generatedPool: Pool = {
           "x": "If I want to stay sane and compound, I follow the loop."
         },
         {
-          "t": "p",
-          "x": "**Update (2026-03-15):** Bennett (2026) formalizes a latency ceiling for integrated hybrids under the Chord assumptions. If relevant links in the control loop exceed the integration window θ, the system can fragment into two agents taking turns rather than one enlarged mind. The bound D ≤ κvθ converts a time budget into a spatial budget. L3 has a physics. (Source: https://www.preprints.org/manuscript/202602.1708/v2)"
+          "t": "callout",
+          "v": "update",
+          "label": "update · 2026-03-15",
+          "x": "Bennett (2026) formalizes a latency ceiling for integrated hybrids under the Chord assumptions. If relevant links in the control loop exceed the integration window θ, the system can fragment into two agents taking turns rather than one enlarged mind. The bound D ≤ κvθ converts a time budget into a spatial budget. L3 has a physics. (Source: https://www.preprints.org/manuscript/202602.1708/v2)"
         }
       ],
       "struct": {
@@ -3367,8 +3346,10 @@ export const generatedPool: Pool = {
           "x": "Those constraints do not reduce expression. They make expression possible. They give the hand something to learn, the mind something to push against, and the user a way to begin."
         },
         {
-          "t": "thesis",
-          "x": "**Design rule** A good constraint is not a wall. It is a grip."
+          "t": "callout",
+          "v": "aside",
+          "label": "design rule",
+          "x": "A good constraint is not a wall. It is a grip."
         },
         {
           "t": "h",
@@ -3629,7 +3610,8 @@ export const generatedPool: Pool = {
         },
         {
           "t": "thesis",
-          "x": "**Rule** The map should commit less."
+          "k": "the figure",
+          "x": "The map should commit less."
         },
         {
           "t": "h",
@@ -4033,18 +4015,16 @@ export const generatedPool: Pool = {
           "x": "What I can rebuild, navigate, act from, and still revise without my whole inner city collapsing into its own architecture."
         },
         {
-          "t": "p",
-          "x": "**Update (2026-04-12):** "
+          "t": "callout",
+          "v": "aside",
+          "label": "pairs with",
+          "x": "[[backlink:Allowed Ignorance|pairs|allowed-ignorance]]: be careful what you allow yourself to treat as the same."
         },
         {
-          "t": "backlink",
-          "title": "Allowed Ignorance",
-          "rel": "pairs",
-          "targetId": "allowed-ignorance"
-        },
-        {
-          "t": "p",
-          "x": " gives “staying less committed” a more precise operator: a cut is equivalence-making, and weak geometry is restraint about which equivalences I license."
+          "t": "callout",
+          "v": "update",
+          "label": "update · 2026-04-12",
+          "x": "[[backlink:Allowed Ignorance|pairs|allowed-ignorance]] gives “staying less committed” a more precise operator: a cut is equivalence-making, and weak geometry is restraint about which equivalences I license."
         }
       ],
       "struct": {

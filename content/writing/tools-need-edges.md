@@ -54,7 +54,7 @@ A haiku has edges. A piano has edges. A camera lens has edges. The OP-1 has edge
 
 Those constraints do not reduce expression. They make expression possible. They give the hand something to learn, the mind something to push against, and the user a way to begin.
 
-> **Design rule**  
+> [aside|design rule]
 > A good constraint is not a wall. It is a grip.
 
 ## Operator

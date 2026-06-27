@@ -35,6 +35,9 @@ struct:
       concepts: ["final", "constraint"]
 ---
 
+> [aside|aside]
+> A safety manual for keeping control in the human-AI loop.
+
 > [thesis|thesis]
 > I am not using AI. I am regulating a coupled feedback system.
 
@@ -219,4 +222,5 @@ If I want to feel impressed, I can read papers.
 
 If I want to stay sane and compound, I follow the loop.
 
-**Update (2026-03-15):** Bennett (2026) formalizes a latency ceiling for integrated hybrids under the Chord assumptions. If relevant links in the control loop exceed the integration window θ, the system can fragment into two agents taking turns rather than one enlarged mind. The bound D ≤ κvθ converts a time budget into a spatial budget. L3 has a physics. (Source: https://www.preprints.org/manuscript/202602.1708/v2)
+> [update|update · 2026-03-15]
+> Bennett (2026) formalizes a latency ceiling for integrated hybrids under the Chord assumptions. If relevant links in the control loop exceed the integration window θ, the system can fragment into two agents taking turns rather than one enlarged mind. The bound D ≤ κvθ converts a time budget into a spatial budget. L3 has a physics. (Source: https://www.preprints.org/manuscript/202602.1708/v2)

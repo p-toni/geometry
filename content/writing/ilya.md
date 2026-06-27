@@ -34,6 +34,7 @@ struct:
 
 ## Source
 
+> [aside|source]
 > “if you value intelligence above all other human qualities, you’re gonna have a bad time”
 >
 > — Ilya Sutskever

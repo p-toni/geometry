@@ -96,16 +96,14 @@ AI can reduce that leakage if it is wired into the loop, not just invited into t
 
 ## Seam
 
+> [honesty|seam]
+> Strong standards, weak ontology — enough structure to prevent drift, enough weakness to remain revisable.
+
 There is a risk here too.
 
 A repo that protects itself can become rigid. A model that remembers standards can also preserve bad standards. Tooling can become culture, and culture can become inertia.
 
-So the loop needs two properties at once:
-
-- enough structure to prevent drift
-- enough weakness to remain revisable
-
-That is the shape I trust: strong standards, weak ontology.
+So the loop needs two properties at once — strong standards, weak ontology.
 
 ## Test
 

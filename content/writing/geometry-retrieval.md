@@ -41,7 +41,7 @@ struct:
       concepts: ["discipline", "limits"]
 ---
 
-> [thesis|thesis]
+> [thesis|the standard]
 > Understanding is what remains when the source is closed.
 
 ## Frame
@@ -80,9 +80,6 @@ The danger is not only error.
 
 The deeper danger is accurate prose that I do not own.
 
-> **Standard**  
-> Understanding is what remains when the source is closed.
-
 ## Operator 1: points versus edges
 
 A fact by itself is a point: isolated, repeatable, inert.
@@ -95,6 +92,8 @@ Two points are still not a structure.
 Proximity is not relationship.
 
 Understanding begins when I can draw an edge and defend it:
+
+[fig|point-to-edge]
 
 > Cache misses increased database load, which increased tail latency; the hit-rate drop is upstream of the spike.
 
@@ -112,8 +111,10 @@ A local edge can be right while the global map is wrong.
 
 That pattern is what I am calling curvature.
 
-> **Honesty clause**  
-> I am using “curvature” as a cognitive concept, not claiming equivalence between mathematical and mental objects. The point is navigational power.
+[fig|curvature-test]
+
+> [honesty|honesty clause]
+> I am using "curvature" as a cognitive concept, not claiming equivalence between mathematical and mental objects. The point is navigational power.
 
 Example:
 
@@ -195,6 +196,10 @@ The diagnostic table tells me whether I actually walked.
 
 ## Protocol
 
+<!-- block:edge-taxonomy -->
+
+<!-- block:steps -->
+
 1. **Sketch the graph.** Write the core nodes. Force 5–10 edges.
 2. **Type each edge.** Causal, constraint, tradeoff, dependency, analogy, speculation.
 3. **Grade its force.** Necessary, likely, working bridge, speculative.
@@ -217,10 +222,10 @@ Humans are fluency-biased.
 
 So the default mode — prompt, accept, move on — reliably produces retrieval that feels like geometry.
 
-My standard going forward:
-
+> [thesis|standard going forward]
 > Use models to expand the search space. Use reconstruction to build the map.
 
 Use weakening to keep the map honest.
 
-**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] sharpens the source-closed test: understanding is reconstruction after faithful collapse of variation. The tests here are not only diagnostics of grasp. They are stress tests on declared equivalences.
+> [update|update · 2026-04-12]
+> [[backlink:Allowed Ignorance|theme|allowed-ignorance]] sharpens the source-closed test: understanding is reconstruction after faithful collapse of variation. The tests here are not only diagnostics of grasp. They are stress tests on declared equivalences.

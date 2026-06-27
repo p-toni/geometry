@@ -29,6 +29,9 @@ struct:
       concepts: ["rule"]
 ---
 
+> [aside|aside]
+> A private metric for extractable structure, geometry, and loop stability.
+
 > [thesis|thesis]
 > Information is not what exists. It is what my bounded loop can extract, keep stable, and reuse.
 
@@ -168,12 +171,10 @@ That means the draft has to contain my constraints, not just my references.
 
 ## Rule
 
-Information is structural signal that:
+> [thesis|for me]
+> Information is structural signal that a bounded learner can extract, crystallize into geometry, survive chaotic training dynamics, and behave like flow through a loop.
 
-1. a bounded learner can extract,
-2. crystallizes into geometry,
-3. survives chaotic training dynamics,
-4. behaves like flow through a loop.
+Information is structural signal that:
 
 It is what my loop can extract under constraints, keep stable, and reuse.
 
@@ -187,6 +188,8 @@ Not what sounds right.
 
 What changes what I do next.
 
-**Update (2026-03-15):** Bennett (2026) formalizes a complementary constraint: under the Chord assumptions, a unified conscious moment has a physical size limit D ≤ κvθ, where D is the support diameter, v is the signal-propagation ceiling, θ is the integration window, and κ depends on exchange architecture. A mind can only get so big — not metaphorically, but because signals travel at finite speed. The same logic can fragment cloud-hosted models when limited concurrency blocks co-instantiation, even if links are fast. This is about consciousness criteria, but it sharpens my boundedness lens. (Source: https://www.preprints.org/manuscript/202602.1708/v2)
+> [update|update · 2026-03-15]
+> Bennett (2026) formalizes a complementary constraint: under the Chord assumptions, a unified conscious moment has a physical size limit D ≤ κvθ, where D is the support diameter, v is the signal-propagation ceiling, θ is the integration window, and κ depends on exchange architecture. A mind can only get so big — not metaphorically, but because signals travel at finite speed. The same logic can fragment cloud-hosted models when limited concurrency blocks co-instantiation, even if links are fast. This is about consciousness criteria, but it sharpens my boundedness lens. (Source: https://www.preprints.org/manuscript/202602.1708/v2)
 
-**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] gives a sharper name to what boundedness forces: not only limited capacity, but mandatory equivalence-making. Every usable map already contains decisions about which differences can be treated as the same.
+> [update|update · 2026-04-12]
+> [[backlink:Allowed Ignorance|cites|allowed-ignorance]] gives a sharper name to what boundedness forces: not only limited capacity, but mandatory equivalence-making. Every usable map already contains decisions about which differences can be treated as the same.

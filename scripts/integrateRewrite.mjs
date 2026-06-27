@@ -197,3 +197,5 @@ for (const { src, dest, skipThesisTag } of FILES) {
   writeFileSync(join(root, dest), out);
   console.log(`wrote ${dest} (${sections.length} sections)`);
 }
+
+console.log('\nRun: node scripts/enrichFigures.mjs && pnpm pool:build');

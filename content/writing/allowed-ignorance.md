@@ -66,11 +66,13 @@ So the question is no longer only whether I compressed well.
 
 It is:
 
+> [thesis|claim]
 > What did I remove, and did the object survive the cut?
 
 That feels closer to the real work of understanding than anything cleaner.
 
-![A carved form: one object, made usable by subtraction.](/images/pieces/allowed-ignorance/plate-cut.svg)
+[plate|PLATE I]
+*One object, made usable by subtraction — the first cuts.* `/images/pieces/allowed-ignorance/plate-cut.svg`
 
 ## I. Block
 
@@ -130,11 +132,8 @@ A face is real. It is not fake. It is part of the object.
 
 But it is still only one side.
 
-A clean explanation can be a well-lit face.
-
-A good summary can be a flattering projection.
-
-A framework can feel complete because it hides the seam from where I happen to be standing.
+> [aside|aside]
+> A clean explanation can be a well-lit face. A framework can feel complete because it hides the seam from where I happen to be standing.
 
 Retrieval gives me the face back quickly.
 
@@ -157,7 +156,8 @@ I do not understand a thing when I can repeat the same face.
 
 I understand it when I can turn it and keep contact.
 
-![The same carved form under rotation: if it disappears when turned, I only owned a face.](/images/pieces/allowed-ignorance/plate-rotation.svg)
+[plate|PLATE II]
+*The same form under rotation — if it disappears when turned, I only owned a face.* `/images/pieces/allowed-ignorance/plate-rotation.svg`
 
 The tests read differently now:
 
@@ -204,6 +204,7 @@ Because the void is not inert. It is the exact place where a difference I stoppe
 
 Allowed Ignorance makes the warning more technical:
 
+> [thesis|warning]
 > Be careful what you allow yourself to treat as the same.
 
 A neat cut is seductive precisely because it deletes. It lowers the cost of thought. It gives me something I can stand inside. It makes the domain feel solved enough to move in.
@@ -212,15 +213,10 @@ But reality does not care whether the cut felt good.
 
 Failure often looks less like chaos than like the return of a difference I stopped paying for.
 
-The model holds.
+[fig|late-failure-motif]
 
-The model holds.
-
-The model holds.
-
-Then one small movement and the structure cracks along a line I had decided was cosmetic.
-
-![A fracture through the form: failure is often a difference returning from the removed material.](/images/pieces/allowed-ignorance/plate-crack.svg)
+[plate|PLATE III]
+*A crack reveals the difference the map stopped paying for.* `/images/pieces/allowed-ignorance/plate-crack.svg`
 
 The dangerous map is often the elegant one.
 
@@ -255,6 +251,9 @@ That is no longer only a question about understanding.
 It is a question about who gets to decide what I ignore.
 
 ## Closing
+
+> [thesis|closing]
+> Understanding is a disciplined right to leave things out.
 
 Understanding is not possession.
 

@@ -70,7 +70,7 @@ A good internal map is not the shortest one, the neatest one, or the one with th
 
 It is the one that preserves the most navigable possibility while still letting me act.
 
-> **Rule**  
+> [thesis|the figure]
 > The map should commit less.
 
 ## Where the earlier pieces were too eager
@@ -242,4 +242,8 @@ Not what compresses best.
 
 What I can rebuild, navigate, act from, and still revise without my whole inner city collapsing into its own architecture.
 
-**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] gives “staying less committed” a more precise operator: a cut is equivalence-making, and weak geometry is restraint about which equivalences I license.
+> [aside|pairs with]
+> [[backlink:Allowed Ignorance|pairs|allowed-ignorance]]: be careful what you allow yourself to treat as the same.
+
+> [update|update · 2026-04-12]
+> [[backlink:Allowed Ignorance|pairs|allowed-ignorance]] gives “staying less committed” a more precise operator: a cut is equivalence-making, and weak geometry is restraint about which equivalences I license.
