@@ -66,7 +66,17 @@ The shader converts **screen pixels → world coords** via `u_cam` + `u_scale`. 
 
 ## Minimap
 
-SVG hypsometric rings per node — matches v2 `terrain` array in `renderVals()`. Not WebGL. Re-weights on mode change via `terrainHeight()`.
+Layered survey map (`Minimap.tsx`, `minimapVisual.ts`):
+
+| z | Layer |
+|---|--------|
+| 0 | WebGL terrain thumbnail (same shader, `u_time = 0`, 1:1 world coords) |
+| 1 | Cluster mass washes (`multiply` blend) |
+| 2 | Edge skeleton (mode-aware opacity) |
+| 3 | Summit dots (cobalt / gold / muted gray) |
+| 4 | Hover crosshair + viewport corner ticks |
+
+Re-weights on mode change via `terrainHeight()`.
 
 ## Shared elevation rules
 

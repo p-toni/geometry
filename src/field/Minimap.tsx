@@ -1,7 +1,15 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { FIELD_HEIGHT, FIELD_WIDTH, pool } from '../pool';
 import { clusterTone } from './clusterTone';
-import { terrainHeight } from './terrainHeight';
+import {
+  buildMinimapClusterMass,
+  buildMinimapEdges,
+  buildMinimapSummits,
+  MINIMAP_FIELD,
+  terrainStateKey,
+} from './minimapVisual';
+import { packNodeUniforms } from './shader/packNodes';
+import { WebglTerrainRenderer } from './shader/webglTerrain';
 import type { TerrainCtx } from './terrainHeight';
 import type { useFieldTransform } from './hooks/useFieldTransform';
 
@@ -10,185 +18,138 @@ type MinimapProps = {
   terrainCtx: TerrainCtx;
 };
 
-const MINIMAP_TERRAIN_COL: Record<string, string> = {
-  writing: '#9a7344',
-  work: '#4a68a8',
-  play: '#657963',
-  you: '#8a7578',
-};
-
-function terrainStateKey(ctx: TerrainCtx): string {
-  return [
-    ctx.mode,
-    ctx.readId ?? '',
-    [...ctx.matched].sort().join(','),
-    Object.keys(ctx.neighborRels).sort().join(','),
-  ].join('|');
-}
-
-/** SVG hypsometric rings — matches v2 single-spine minimap terrain. */
-function buildMinimapTerrain(ctx: TerrainCtx) {
-  const readId = ctx.readId;
-  const circles: {
-    cx: number;
-    cy: number;
-    r: number;
-    fill: string;
-    stroke: string;
-    sw: number;
-    op: number;
-  }[] = [];
-
-  for (const [id, node] of Object.entries(pool.nodes)) {
-    const pos = pool.layout.positions[id];
-    if (!pos) continue;
-    const col = MINIMAP_TERRAIN_COL[node.cluster] ?? '#4a68a8';
-    const { h, lit } = terrainHeight(id, node, ctx);
-    const [x, y] = pos;
-    const R = 28 + h * 18;
-
-    circles.push({
-      cx: x,
-      cy: y,
-      r: Math.round(R * 1.18),
-      fill: col,
-      stroke: 'none',
-      sw: 0,
-      op: Math.min(0.5, 0.045 * h),
-    });
-    circles.push({
-      cx: x,
-      cy: y,
-      r: Math.round(R * 0.72),
-      fill: col,
-      stroke: 'none',
-      sw: 0,
-      op: Math.min(0.6, 0.06 * h),
-    });
-    circles.push({
-      cx: x,
-      cy: y,
-      r: Math.round(R),
-      fill: 'none',
-      stroke: col,
-      sw: 1,
-      op: Math.min(0.7, 0.16 + 0.1 * h),
-    });
-    circles.push({
-      cx: x,
-      cy: y,
-      r: Math.round(R * 0.6),
-      fill: 'none',
-      stroke: col,
-      sw: 1,
-      op: Math.min(0.7, 0.13 + 0.09 * h),
-    });
-    circles.push({
-      cx: x,
-      cy: y,
-      r: readId === id ? 8 : lit ? 6 : 5,
-      fill: readId === id ? '#1c1f24' : col,
-      stroke: 'none',
-      sw: 0,
-      op: lit ? 0.95 : 0.5,
-    });
-  }
-
-  return circles;
-}
-
 export function Minimap({ field, terrainCtx }: MinimapProps) {
+  const terrainCanvasRef = useRef<HTMLCanvasElement>(null);
+  const [hover, setHover] = useState<{ x: number; y: number } | null>(null);
+
   const terrainKey = useMemo(() => terrainStateKey(terrainCtx), [terrainCtx]);
-  const terrain = useMemo(() => buildMinimapTerrain(terrainCtx), [terrainKey]);
+  const packed = useMemo(() => packNodeUniforms(terrainCtx), [terrainKey]);
+  const clusterMass = useMemo(() => buildMinimapClusterMass(), []);
+  const edges = useMemo(() => buildMinimapEdges(terrainCtx), [terrainKey]);
+  const summits = useMemo(() => buildMinimapSummits(terrainCtx), [terrainKey]);
+  const dimmed = terrainCtx.mode !== 'field';
+
+  useEffect(() => {
+    const canvas = terrainCanvasRef.current;
+    if (!canvas) return;
+
+    let renderer: WebglTerrainRenderer;
+    try {
+      renderer = new WebglTerrainRenderer(canvas);
+    } catch {
+      return;
+    }
+
+    renderer.resize(MINIMAP_FIELD.width, MINIMAP_FIELD.height);
+    renderer.render({
+      width: MINIMAP_FIELD.width,
+      height: MINIMAP_FIELD.height,
+      time: 0,
+      dimmed: dimmed ? 1 : 0,
+      cam: [0, 0],
+      scale: 1,
+      nodeCount: packed.count,
+      nodePositions: packed.positions,
+      nodeWeights: packed.weights,
+    });
+    renderer.destroy();
+  }, [terrainKey, dimmed, packed]);
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * FIELD_WIDTH;
+    const y = ((e.clientY - r.top) / r.height) * FIELD_HEIGHT;
+    setHover({ x, y });
+  };
 
   return (
     <div
       onClick={field.onMiniClick}
+      onMouseMove={onMove}
+      onMouseLeave={() => setHover(null)}
       title="survey map · click to fly there"
-      style={{
-        position: 'absolute',
-        left: 14,
-        bottom: 14,
-        width: 138,
-        height: 84,
-        background: '#f4f1ea',
-        border: '1px solid var(--line)',
-        borderRadius: 4,
-        boxShadow: '0 2px 8px rgba(20,23,26,.06)',
-        overflow: 'hidden',
-        cursor: 'crosshair',
-      }}
+      className="field-minimap"
     >
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          pointerEvents: 'none',
-          opacity: 0.45,
-          backgroundImage:
-            'linear-gradient(to right,rgba(28,31,36,.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(28,31,36,.04) 1px,transparent 1px)',
-          backgroundSize: '11.5px 11.5px',
-        }}
+      <div className="field-minimap-grid" aria-hidden />
+      <canvas
+        ref={terrainCanvasRef}
+        className="field-minimap-terrain"
+        width={FIELD_WIDTH}
+        height={FIELD_HEIGHT}
+        aria-hidden
       />
       <svg
         viewBox={`0 0 ${FIELD_WIDTH} ${FIELD_HEIGHT}`}
         preserveAspectRatio="none"
+        className="field-minimap-overlay"
         aria-hidden
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
       >
-        {terrain.map((t, i) => (
-          <circle
-            key={i}
-            cx={t.cx}
-            cy={t.cy}
-            r={t.r}
-            fill={t.fill}
-            stroke={t.stroke}
-            strokeWidth={t.sw}
+        <g style={{ mixBlendMode: 'multiply' }}>
+          {clusterMass.map((m, i) => (
+            <circle key={`mass-${i}`} cx={m.cx} cy={m.cy} r={m.r} fill={m.fill} opacity={m.op} />
+          ))}
+        </g>
+        {edges.map((e, i) => (
+          <line
+            key={`edge-${i}`}
+            x1={e.x1}
+            y1={e.y1}
+            x2={e.x2}
+            y2={e.y2}
+            stroke={e.stroke}
+            strokeWidth={e.sw}
             vectorEffect="non-scaling-stroke"
-            opacity={t.op}
+            opacity={e.op}
           />
         ))}
+        {summits.map((s, i) => (
+          <circle key={`summit-${i}`} cx={s.cx} cy={s.cy} r={s.r} fill={s.fill} opacity={s.op} />
+        ))}
+        {hover ? (
+          <g pointerEvents="none" opacity={0.55}>
+            <line
+              x1={hover.x}
+              y1={0}
+              x2={hover.x}
+              y2={FIELD_HEIGHT}
+              stroke="var(--signal)"
+              strokeWidth={0.75}
+              vectorEffect="non-scaling-stroke"
+            />
+            <line
+              x1={0}
+              y1={hover.y}
+              x2={FIELD_WIDTH}
+              y2={hover.y}
+              stroke="var(--signal)"
+              strokeWidth={0.75}
+              vectorEffect="non-scaling-stroke"
+            />
+          </g>
+        ) : null}
       </svg>
       {pool.layout.regions.map((r) => {
         const tone = clusterTone(r.label);
         return (
           <div
             key={r.label}
+            className="field-minimap-region"
             style={{
-              position: 'absolute',
               left: `${(r.x / FIELD_WIDTH) * 100}%`,
               top: `${(r.y / FIELD_HEIGHT) * 100}%`,
-              transform: 'translate(-50%,-50%)',
-              fontFamily: 'var(--font-mono)',
-              fontSize: 8,
-              fontWeight: 700,
-              letterSpacing: '0.04em',
               color: tone.label,
-              opacity: 0.55,
-              pointerEvents: 'none',
             }}
           >
             {r.label[0]?.toUpperCase()}
           </div>
         );
       })}
-      <div
-        ref={field.miniVpRef}
-        style={{
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          width: '100%',
-          height: '100%',
-          transformOrigin: '0 0',
-          border: '1px solid var(--signal)',
-          borderRadius: 1,
-          pointerEvents: 'none',
-          boxShadow:
-            'inset 0 0 0 1px rgba(255,255,255,.6), 0 0 0 1px rgba(31,77,184,.15)',
-        }}
-      />
+      <div ref={field.miniVpRef} className="field-minimap-vp">
+        <span className="field-minimap-vp-tick field-minimap-vp-tick--tl" />
+        <span className="field-minimap-vp-tick field-minimap-vp-tick--tr" />
+        <span className="field-minimap-vp-tick field-minimap-vp-tick--bl" />
+        <span className="field-minimap-vp-tick field-minimap-vp-tick--br" />
+      </div>
     </div>
   );
 }
