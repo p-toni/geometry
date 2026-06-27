@@ -10,6 +10,8 @@ uniform float u_time;
 uniform float u_dim;
 uniform vec2 u_cam;
 uniform float u_scale;
+uniform float u_overview;
+uniform vec2 u_world_size;
 uniform int u_node_count;
 uniform vec2 u_nodes[24];
 uniform float u_node_weights[24];
@@ -45,7 +47,9 @@ float fbm(vec2 p) {
 
 void main() {
   vec2 screen = vec2(gl_FragCoord.x, u_res.y - gl_FragCoord.y);
-  vec2 world = (screen - u_cam) / max(u_scale, 0.0001);
+  vec2 world = u_overview > 0.5
+    ? screen / u_res * u_world_size
+    : (screen - u_cam) / max(u_scale, 0.0001);
   vec2 p = world * 0.0042;
 
   float elev = 0.0;

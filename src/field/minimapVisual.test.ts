@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   buildMinimapEdges,
   buildMinimapSummits,
+  MINIMAP_PIXEL_RATIO,
   terrainStateKey,
 } from './minimapVisual';
 import type { TerrainCtx } from './terrainHeight';
@@ -50,6 +51,12 @@ describe('buildMinimapEdges', () => {
         (e.x2 === 952 && e.y2 === 208 && e.x1 === 1124),
     );
     expect(live?.op).toBeGreaterThan(0.9);
+  });
+});
+
+describe('MINIMAP_PIXEL_RATIO', () => {
+  it('renders far fewer pixels than the full field canvas', () => {
+    expect(MINIMAP_PIXEL_RATIO).toBeLessThan(0.05);
   });
 });
 

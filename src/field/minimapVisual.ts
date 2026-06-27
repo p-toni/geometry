@@ -1,7 +1,5 @@
 import { uniqueEdges } from '../lib/graph';
 import { FIELD_HEIGHT, FIELD_WIDTH, pool } from '../pool';
-import type { Cluster } from '../pool/types';
-import { clusterTone } from './clusterTone';
 import { terrainHeight, type TerrainCtx } from './terrainHeight';
 
 const SIGNAL = '#1f4db8';
@@ -27,13 +25,14 @@ export type MinimapSummit = {
   op: number;
 };
 
-export type MinimapClusterMass = {
-  cx: number;
-  cy: number;
-  r: number;
-  fill: string;
-  op: number;
-};
+/** Display size in CSS px — matches .field-minimap */
+export const MINIMAP_DISPLAY = { width: 138, height: 84 } as const;
+/** Internal render resolution (2× display for crisp downscale). ~100× fewer pixels than full field. */
+export const MINIMAP_DPR = 2;
+export const MINIMAP_RENDER = {
+  width: MINIMAP_DISPLAY.width * MINIMAP_DPR,
+  height: MINIMAP_DISPLAY.height * MINIMAP_DPR,
+} as const;
 
 export function terrainStateKey(ctx: TerrainCtx): string {
   return [
@@ -42,33 +41,6 @@ export function terrainStateKey(ctx: TerrainCtx): string {
     [...ctx.matched].sort().join(','),
     Object.keys(ctx.neighborRels).sort().join(','),
   ].join('|');
-}
-
-/** Soft cluster washes — dense areas read as higher ground when composited with multiply. */
-export function buildMinimapClusterMass(): MinimapClusterMass[] {
-  const byCluster: Record<string, { x: number; y: number }[]> = {};
-  for (const [id, node] of Object.entries(pool.nodes)) {
-    const pos = pool.layout.positions[id];
-    if (!pos) continue;
-    (byCluster[node.cluster] ??= []).push({ x: pos[0], y: pos[1] });
-  }
-
-  return Object.entries(byCluster).map(([cluster, pts]) => {
-    const cx = pts.reduce((s, p) => s + p.x, 0) / pts.length;
-    const cy = pts.reduce((s, p) => s + p.y, 0) / pts.length;
-    let r = 120;
-    for (const p of pts) {
-      const d = Math.hypot(p.x - cx, p.y - cy);
-      if (d + 120 > r) r = d + 120;
-    }
-    return {
-      cx,
-      cy,
-      r: Math.round(r * 0.55),
-      fill: clusterTone(cluster as Cluster).accent,
-      op: 0.14,
-    };
-  });
 }
 
 export function buildMinimapEdges(ctx: TerrainCtx): MinimapEdge[] {
@@ -127,3 +99,7 @@ export function buildMinimapSummits(ctx: TerrainCtx): MinimapSummit[] {
 }
 
 export const MINIMAP_FIELD = { width: FIELD_WIDTH, height: FIELD_HEIGHT } as const;
+
+/** Pixel count ratio vs rendering the full field canvas. */
+export const MINIMAP_PIXEL_RATIO =
+  (MINIMAP_RENDER.width * MINIMAP_RENDER.height) / (FIELD_WIDTH * FIELD_HEIGHT);

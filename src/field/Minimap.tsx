@@ -2,10 +2,10 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { FIELD_HEIGHT, FIELD_WIDTH, pool } from '../pool';
 import { clusterTone } from './clusterTone';
 import {
-  buildMinimapClusterMass,
   buildMinimapEdges,
   buildMinimapSummits,
   MINIMAP_FIELD,
+  MINIMAP_RENDER,
   terrainStateKey,
 } from './minimapVisual';
 import { packNodeUniforms } from './shader/packNodes';
@@ -20,11 +20,11 @@ type MinimapProps = {
 
 export function Minimap({ field, terrainCtx }: MinimapProps) {
   const terrainCanvasRef = useRef<HTMLCanvasElement>(null);
+  const rendererRef = useRef<WebglTerrainRenderer | null>(null);
   const [hover, setHover] = useState<{ x: number; y: number } | null>(null);
 
   const terrainKey = useMemo(() => terrainStateKey(terrainCtx), [terrainCtx]);
   const packed = useMemo(() => packNodeUniforms(terrainCtx), [terrainKey]);
-  const clusterMass = useMemo(() => buildMinimapClusterMass(), []);
   const edges = useMemo(() => buildMinimapEdges(terrainCtx), [terrainKey]);
   const summits = useMemo(() => buildMinimapSummits(terrainCtx), [terrainKey]);
   const dimmed = terrainCtx.mode !== 'field';
@@ -32,27 +32,34 @@ export function Minimap({ field, terrainCtx }: MinimapProps) {
   useEffect(() => {
     const canvas = terrainCanvasRef.current;
     if (!canvas) return;
-
-    let renderer: WebglTerrainRenderer;
     try {
-      renderer = new WebglTerrainRenderer(canvas);
+      rendererRef.current = new WebglTerrainRenderer(canvas);
     } catch {
       return;
     }
+    return () => {
+      rendererRef.current?.destroy();
+      rendererRef.current = null;
+    };
+  }, []);
 
-    renderer.resize(MINIMAP_FIELD.width, MINIMAP_FIELD.height);
+  useEffect(() => {
+    const renderer = rendererRef.current;
+    if (!renderer) return;
+    renderer.resize(MINIMAP_RENDER.width, MINIMAP_RENDER.height);
     renderer.render({
-      width: MINIMAP_FIELD.width,
-      height: MINIMAP_FIELD.height,
+      width: MINIMAP_RENDER.width,
+      height: MINIMAP_RENDER.height,
       time: 0,
       dimmed: dimmed ? 1 : 0,
       cam: [0, 0],
       scale: 1,
+      overview: 1,
+      worldSize: [MINIMAP_FIELD.width, MINIMAP_FIELD.height],
       nodeCount: packed.count,
       nodePositions: packed.positions,
       nodeWeights: packed.weights,
     });
-    renderer.destroy();
   }, [terrainKey, dimmed, packed]);
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -74,8 +81,8 @@ export function Minimap({ field, terrainCtx }: MinimapProps) {
       <canvas
         ref={terrainCanvasRef}
         className="field-minimap-terrain"
-        width={FIELD_WIDTH}
-        height={FIELD_HEIGHT}
+        width={MINIMAP_RENDER.width}
+        height={MINIMAP_RENDER.height}
         aria-hidden
       />
       <svg
@@ -84,11 +91,6 @@ export function Minimap({ field, terrainCtx }: MinimapProps) {
         className="field-minimap-overlay"
         aria-hidden
       >
-        <g style={{ mixBlendMode: 'multiply' }}>
-          {clusterMass.map((m, i) => (
-            <circle key={`mass-${i}`} cx={m.cx} cy={m.cy} r={m.r} fill={m.fill} opacity={m.op} />
-          ))}
-        </g>
         {edges.map((e, i) => (
           <line
             key={`edge-${i}`}

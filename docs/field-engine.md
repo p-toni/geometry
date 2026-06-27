@@ -70,11 +70,12 @@ Layered survey map (`Minimap.tsx`, `minimapVisual.ts`):
 
 | z | Layer |
 |---|--------|
-| 0 | WebGL terrain thumbnail (same shader, `u_time = 0`, 1:1 world coords) |
-| 1 | Cluster mass washes (`multiply` blend) |
-| 2 | Edge skeleton (mode-aware opacity) |
-| 3 | Summit dots (cobalt / gold / muted gray) |
-| 4 | Hover crosshair + viewport corner ticks |
+| 0 | WebGL terrain — **same shader**, overview mode (`u_overview = 1`) |
+| 1 | Edge skeleton (mode-aware opacity, SVG) |
+| 2 | Summit dots (cobalt / gold / muted gray, SVG) |
+| 3 | Hover crosshair + viewport corner ticks |
+
+**Perf:** Renders at 276×168 (~4% of full-field pixels), CSS-downscaled to 138×84. Persistent `WebglTerrainRenderer` — compile once, repaint on mode change only. Cluster elevation comes from the shader's node-density term, not SVG washes.
 
 Re-weights on mode change via `terrainHeight()`.
 

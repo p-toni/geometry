@@ -9,6 +9,9 @@ export type TerrainUniforms = {
   dimmed: number;
   cam: readonly [number, number];
   scale: number;
+  /** 1 = fit full field into framebuffer (minimap overview). */
+  overview?: number;
+  worldSize?: readonly [number, number];
   nodeCount: number;
   nodePositions: Float32Array;
   nodeWeights: Float32Array;
@@ -55,6 +58,8 @@ export class WebglTerrainRenderer {
   private locNodes: WebGLUniformLocation | null;
   private locWeights: WebGLUniformLocation | null;
   private locInk: WebGLUniformLocation | null;
+  private locOverview: WebGLUniformLocation | null;
+  private locWorldSize: WebGLUniformLocation | null;
 
   constructor(canvas: HTMLCanvasElement) {
     const gl = canvas.getContext('webgl', {
@@ -96,6 +101,8 @@ export class WebglTerrainRenderer {
     this.locNodes = gl.getUniformLocation(program, 'u_nodes[0]');
     this.locWeights = gl.getUniformLocation(program, 'u_node_weights[0]');
     this.locInk = gl.getUniformLocation(program, 'u_ink');
+    this.locOverview = gl.getUniformLocation(program, 'u_overview');
+    this.locWorldSize = gl.getUniformLocation(program, 'u_world_size');
   }
 
   resize(width: number, height: number): void {
@@ -127,6 +134,11 @@ export class WebglTerrainRenderer {
       gl.uniform1fv(this.locWeights, uniforms.nodeWeights.subarray(0, uniforms.nodeCount));
     }
     if (this.locInk) gl.uniform3f(this.locInk, ink[0], ink[1], ink[2]);
+    if (this.locOverview) gl.uniform1f(this.locOverview, uniforms.overview ?? 0);
+    if (this.locWorldSize) {
+      const ws = uniforms.worldSize ?? [uniforms.width, uniforms.height];
+      gl.uniform2f(this.locWorldSize, ws[0], ws[1]);
+    }
 
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
