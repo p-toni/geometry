@@ -257,34 +257,16 @@
           "level": 2
         },
         {
-          "t": "backlink",
-          "title": "Bounded Me",
-          "rel": "pairs",
-          "targetId": "bounded-me"
+          "t": "p",
+          "x": "[[Bounded Me|bounded-me]] gave me the pressure: my loop is finite, so any usable map has to fit inside real limits."
         },
         {
           "t": "p",
-          "x": " gave me the pressure: my loop is finite, so any usable map has to fit inside real limits."
-        },
-        {
-          "t": "backlink",
-          "title": "Geometry Over Retrieval",
-          "rel": "pairs",
-          "targetId": "geometry-retrieval"
+          "x": "[[Geometry Over Retrieval|geometry-retrieval]] gave me the test: if the source closes and the structure does not come back, I do not own it."
         },
         {
           "t": "p",
-          "x": " gave me the test: if the source closes and the structure does not come back, I do not own it."
-        },
-        {
-          "t": "backlink",
-          "title": "Weak Geometry",
-          "rel": "pairs",
-          "targetId": "weak-geometry"
-        },
-        {
-          "t": "p",
-          "x": " gave me the warning: a map can be owned and still harden too early."
+          "x": "[[Weak Geometry|weak-geometry]] gave me the warning: a map can be owned and still harden too early."
         },
         {
           "t": "p",
@@ -380,17 +362,7 @@
         },
         {
           "t": "p",
-          "x": "This is the part I was circling in "
-        },
-        {
-          "t": "backlink",
-          "title": "Bounded Me",
-          "rel": "pairs",
-          "targetId": "bounded-me"
-        },
-        {
-          "t": "p",
-          "x": " without quite naming. My problem is not only finite capacity. It is forced selectivity over variation."
+          "x": "This is the part I was circling in [[Bounded Me|bounded-me]] without quite naming. My problem is not only finite capacity. It is forced selectivity over variation."
         },
         {
           "t": "p",
@@ -629,14 +601,8 @@
           "level": 2
         },
         {
-          "t": "backlink",
-          "title": "Weak Geometry",
-          "rel": "pairs",
-          "targetId": "weak-geometry"
-        },
-        {
           "t": "p",
-          "x": " warned me to stay less committed."
+          "x": "[[Weak Geometry|weak-geometry]] warned me to stay less committed."
         },
         {
           "t": "p",
@@ -710,17 +676,7 @@
         },
         {
           "t": "p",
-          "x": "And this is the bridge back to "
-        },
-        {
-          "t": "backlink",
-          "title": "Me + AI",
-          "rel": "pairs",
-          "targetId": "me-plus-ai"
-        },
-        {
-          "t": "p",
-          "x": "."
+          "x": "And this is the bridge back to [[Me + AI|me-plus-ai]]."
         },
         {
           "t": "p",
@@ -1634,24 +1590,12 @@
           "level": 2
         },
         {
-          "t": "backlink",
-          "title": "Bounded Me",
-          "rel": "pairs",
-          "targetId": "bounded-me"
+          "t": "p",
+          "x": "[[Bounded Me|bounded-me]] defined the pressure: memory as geometry, not storage."
         },
         {
           "t": "p",
-          "x": " defined the pressure: memory as geometry, not storage."
-        },
-        {
-          "t": "backlink",
-          "title": "Me + AI",
-          "rel": "pairs",
-          "targetId": "me-plus-ai"
-        },
-        {
-          "t": "p",
-          "x": " defined the control problem: how to keep ownership while coupling with a model."
+          "x": "[[Me + AI|me-plus-ai]] defined the control problem: how to keep ownership while coupling with a model."
         },
         {
           "t": "p",
@@ -1972,14 +1916,8 @@
           "level": 2
         },
         {
-          "t": "backlink",
-          "title": "Me + AI",
-          "rel": "pairs",
-          "targetId": "me-plus-ai"
-        },
-        {
           "t": "p",
-          "x": " gave me R3+2+1 as a verification gate."
+          "x": "[[Me + AI|me-plus-ai]] gave me R3+2+1 as a verification gate."
         },
         {
           "t": "p",
@@ -3499,34 +3437,16 @@
           "level": 2
         },
         {
-          "t": "backlink",
-          "title": "Bounded Me",
-          "rel": "pairs",
-          "targetId": "bounded-me"
+          "t": "p",
+          "x": "[[Bounded Me|bounded-me]] gave me the pressure: memory as geometry, not storage."
         },
         {
           "t": "p",
-          "x": " gave me the pressure: memory as geometry, not storage."
-        },
-        {
-          "t": "backlink",
-          "title": "Me + AI",
-          "rel": "pairs",
-          "targetId": "me-plus-ai"
+          "x": "[[Me + AI|me-plus-ai]] gave me the control problem: I am regulating a coupled feedback system."
         },
         {
           "t": "p",
-          "x": " gave me the control problem: I am regulating a coupled feedback system."
-        },
-        {
-          "t": "backlink",
-          "title": "Geometry Over Retrieval",
-          "rel": "pairs",
-          "targetId": "geometry-retrieval"
-        },
-        {
-          "t": "p",
-          "x": " gave me the standard: understanding is what remains when the source is closed."
+          "x": "[[Geometry Over Retrieval|geometry-retrieval]] gave me the standard: understanding is what remains when the source is closed."
         },
         {
           "t": "p",
@@ -3589,45 +3509,15 @@
         },
         {
           "t": "p",
-          "x": "In "
-        },
-        {
-          "t": "backlink",
-          "title": "Bounded Me",
-          "rel": "pairs",
-          "targetId": "bounded-me"
+          "x": "In [[Bounded Me|bounded-me]], I was already suspicious of definitions that arrived too cleanly: information as entropy, intelligence as compression. Weakness gives that suspicion a better knife. The problem is not only that those definitions fail to cash out in lived cognition. The deeper problem is that they smuggle in a preference for tightness itself."
         },
         {
           "t": "p",
-          "x": ", I was already suspicious of definitions that arrived too cleanly: information as entropy, intelligence as compression. Weakness gives that suspicion a better knife. The problem is not only that those definitions fail to cash out in lived cognition. The deeper problem is that they smuggle in a preference for tightness itself."
+          "x": "In [[Geometry Over Retrieval|geometry-retrieval]], I said understanding begins when I can draw an edge and defend it. Still true. But incomplete. Some edges deserve to exist only as temporary bridges, not permanent beams."
         },
         {
           "t": "p",
-          "x": "In "
-        },
-        {
-          "t": "backlink",
-          "title": "Geometry Over Retrieval",
-          "rel": "pairs",
-          "targetId": "geometry-retrieval"
-        },
-        {
-          "t": "p",
-          "x": ", I said understanding begins when I can draw an edge and defend it. Still true. But incomplete. Some edges deserve to exist only as temporary bridges, not permanent beams."
-        },
-        {
-          "t": "p",
-          "x": "In "
-        },
-        {
-          "t": "backlink",
-          "title": "Me + AI",
-          "rel": "pairs",
-          "targetId": "me-plus-ai"
-        },
-        {
-          "t": "p",
-          "x": ", I framed the central risk as drift: exchange rises, feedback control weakens, and the loop moves faster than I can author it. Weak geometry adds a subtler danger. I can preserve authorship and still close too early."
+          "x": "In [[Me + AI|me-plus-ai]], I framed the central risk as drift: exchange rises, feedback control weakens, and the loop moves faster than I can author it. Weak geometry adds a subtler danger. I can preserve authorship and still close too early."
         },
         {
           "t": "p",
@@ -3876,14 +3766,8 @@
           "level": 2
         },
         {
-          "t": "backlink",
-          "title": "Geometry Over Retrieval",
-          "rel": "pairs",
-          "targetId": "geometry-retrieval"
-        },
-        {
           "t": "p",
-          "x": " gave me the core tests: rephrase, rebuild, predict, teach, break."
+          "x": "[[Geometry Over Retrieval|geometry-retrieval]] gave me the core tests: rephrase, rebuild, predict, teach, break."
         },
         {
           "t": "p",

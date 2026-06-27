@@ -148,13 +148,14 @@ export function renderBlock(block: Block, key: number, opts: RenderOpts = {}): R
       return <Curvature key={key} />;
     case 'backlink':
       return (
-        <Backlink
-          key={key}
-          title={block.title}
-          rel={block.rel}
-          targetId={block.targetId}
-          onOpen={onOpenNode}
-        />
+        <p key={key} style={{ margin: '0 0 17px' }}>
+          <Backlink
+            title={block.title}
+            rel={block.rel}
+            targetId={block.targetId}
+            onOpen={onOpenNode}
+          />
+        </p>
       );
     default: {
       const _exhaustive: never = block;

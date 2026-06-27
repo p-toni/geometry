@@ -16,9 +16,9 @@ export function Backlink({ title, targetId, onOpen }: BacklinkProps) {
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: 7,
-        margin: '0 2px',
-        padding: '3px 10px 3px 8px',
+        gap: 6,
+        margin: '0 1px',
+        padding: '1px 8px 1px 6px',
         background: 'var(--card)',
         border: '1px solid var(--line-soft)',
         borderRight: '3px solid var(--signal)',
@@ -26,9 +26,12 @@ export function Backlink({ title, targetId, onOpen }: BacklinkProps) {
         cursor: onOpen ? 'pointer' : 'default',
         fontFamily: 'var(--font-body)',
         fontWeight: 500,
-        fontSize: 14,
+        fontSize: '0.92em',
         color: 'var(--ink)',
         verticalAlign: 'baseline',
+        lineHeight: 1.4,
+        whiteSpace: 'nowrap',
+        maxWidth: '100%',
       }}
     >
       <span

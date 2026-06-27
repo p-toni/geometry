@@ -1,4 +1,3 @@
-import { hasInlineBacklink, splitInlineBacklinks } from './inlineBacklink';
 import type { Block } from '../pool/types';
 
 const FIG_BLOCKS: Record<string, Block> = {
@@ -25,20 +24,8 @@ export function parseBlocks(markdown: string): Block[] {
       buf.length = 0;
       return;
     }
-    if (hasInlineBacklink(text)) {
-      for (const part of splitInlineBacklinks(text)) {
-        if (part.kind === 'text') blocks.push({ t: 'p', x: part.text });
-        else
-          blocks.push({
-            t: 'backlink',
-            title: part.title,
-            rel: part.rel,
-            targetId: part.targetId,
-          });
-      }
-    } else {
-      blocks.push({ t: 'p', x: text });
-    }
+    // Keep [[Title|id]] inside the paragraph — renderBlock inlines the pill.
+    blocks.push({ t: 'p', x: text });
     buf.length = 0;
   };
 

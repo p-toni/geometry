@@ -59,33 +59,22 @@ describe('parseBlocks', () => {
     expect(blocks).toContainEqual({ t: 'plate', cap: 'PLATE I — caption', src: '/img.svg' });
   });
 
-  it('parses shorthand backlinks', () => {
+  it('keeps shorthand backlinks inside one paragraph block', () => {
     const blocks = parseBlocks('See [[Allowed Ignorance|allowed-ignorance]] for more.');
     expect(blocks).toEqual([
-      { t: 'p', x: 'See ' },
-      {
-        t: 'backlink',
-        title: 'Allowed Ignorance',
-        rel: 'pairs',
-        targetId: 'allowed-ignorance',
-      },
-      { t: 'p', x: ' for more.' },
+      { t: 'p', x: 'See [[Allowed Ignorance|allowed-ignorance]] for more.' },
     ]);
   });
 
-  it('splits inline backlinks inside paragraphs', () => {
+  it('keeps inline backlinks inside one paragraph block', () => {
     const blocks = parseBlocks(
       '**Update:** [[backlink:Allowed Ignorance|cites|allowed-ignorance]] gives a sharper name.',
     );
     expect(blocks).toEqual([
-      { t: 'p', x: '**Update:** ' },
       {
-        t: 'backlink',
-        title: 'Allowed Ignorance',
-        rel: 'cites',
-        targetId: 'allowed-ignorance',
+        t: 'p',
+        x: '**Update:** [[backlink:Allowed Ignorance|cites|allowed-ignorance]] gives a sharper name.',
       },
-      { t: 'p', x: ' gives a sharper name.' },
     ]);
   });
 });
