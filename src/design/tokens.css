@@ -33,6 +33,9 @@
 
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --motion-focus: 200ms;
+  --motion-nav-open: 240ms;
+  --motion-nav-hop: 180ms;
   --header-h: 50px;
   --status-h: 30px;
   --grid-opacity: 0.5;

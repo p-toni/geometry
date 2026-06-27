@@ -17,7 +17,7 @@ import { ConstellationDescent } from './ConstellationDescent';
 import { loadEssayStructure } from './loadEssayStructure';
 import type { EssayStructure } from '../pool/essayStructure';
 import { getFieldMode, statusForMode } from './fieldState';
-import { useFieldTransform } from './hooks/useFieldTransform';
+import { NAV_HOP_MS, NAV_OPEN_MS, useFieldTransform } from './hooks/useFieldTransform';
 import { clusterTone } from './clusterTone';
 import { nodeLayout } from './nodeLayout';
 import { nodeVisual } from './nodeVisual';
@@ -40,8 +40,11 @@ export function FieldApp() {
   const [activeChip, setActiveChip] = useState<string | null>(
     activeChipForQuery(urlState.query, pool.layout.lenses),
   );
-  const [readingAnim, setReadingAnim] = useState(false);
   const [cascading, setCascading] = useState(false);
+  /** Snap field highlights during read-to-read hops — avoids opacity crossfade blink. */
+  const hopNavRef = useRef(false);
+  const [, bumpHopNav] = useState(0);
+  const hopTimerRef = useRef<number | null>(null);
   /** Immediate read/trail — keeps the read panel in sync with field card clicks. */
   const [readTarget, setReadTarget] = useState<string | null>(urlState.read);
   const [trailTarget, setTrailTarget] = useState<string[]>(urlState.trail);
@@ -173,12 +176,12 @@ export function FieldApp() {
   }, [fieldReady, field.transform, params, setParams]);
 
   const focusNode = useCallback(
-    (id: string, animate = true) => {
+    (id: string, animate = true, hop = false) => {
       const pos = pool.layout.positions[id];
       if (!pos) return;
       suppressViewportSync.current = Date.now() + 1200;
       const view = transformForPoint(pos);
-      flyTo(pos, animate);
+      flyTo(pos, animate, hop ? NAV_HOP_MS : NAV_OPEN_MS);
       return view;
     },
     [flyTo, transformForPoint],
@@ -187,13 +190,18 @@ export function FieldApp() {
   const openNode = useCallback(
     (id: string) => {
       const trail = readTarget ? [...trailTarget, readTarget].slice(-16) : trailTarget;
-      const view = focusNode(id, true);
-      setDescent(null);
-      const fromField = !readTarget;
-      if (fromField) {
-        setReadingAnim(true);
-        window.setTimeout(() => setReadingAnim(false), 600);
+      const wasReading = Boolean(readTarget);
+      if (hopTimerRef.current != null) window.clearTimeout(hopTimerRef.current);
+      hopNavRef.current = wasReading;
+      if (wasReading) {
+        hopTimerRef.current = window.setTimeout(() => {
+          hopNavRef.current = false;
+          hopTimerRef.current = null;
+          bumpHopNav((n) => n + 1);
+        }, NAV_HOP_MS);
       }
+      const view = focusNode(id, true, wasReading);
+      setDescent(null);
       pushUrl({
         read: id,
         query: '',
@@ -217,6 +225,8 @@ export function FieldApp() {
   );
 
   const home = useCallback(() => {
+    if (hopTimerRef.current != null) window.clearTimeout(hopTimerRef.current);
+    hopNavRef.current = false;
     triggerCascade();
     setDescent(null);
     setLensInput('');
@@ -239,7 +249,14 @@ export function FieldApp() {
     const prev = trailTarget.at(-1);
     const nextTrail = trailTarget.slice(0, -1);
     if (prev) {
-      const view = focusNode(prev, true);
+      if (hopTimerRef.current != null) window.clearTimeout(hopTimerRef.current);
+      hopNavRef.current = true;
+      hopTimerRef.current = window.setTimeout(() => {
+        hopNavRef.current = false;
+        hopTimerRef.current = null;
+        bumpHopNav((n) => n + 1);
+      }, NAV_HOP_MS);
+      const view = focusNode(prev, true, true);
       pushUrl({
         read: prev,
         full: false,
@@ -261,11 +278,13 @@ export function FieldApp() {
         return;
       }
       setComposing(true);
-      window.setTimeout(() => setComposing(false), 450);
       const ids = resolveLens(pool, q, pool.layout.lenses);
       setMatched(ids);
       pushUrl({ query: q, now: false, read: null, trail: [] });
-      requestAnimationFrame(() => frameIds(ids, pool.layout.positions, false));
+      requestAnimationFrame(() => {
+        frameIds(ids, pool.layout.positions, false);
+        requestAnimationFrame(() => setComposing(false));
+      });
     },
     [frameIds, pushUrl],
   );
@@ -275,10 +294,12 @@ export function FieldApp() {
       setActiveChip(label);
       setLensInput(query);
       setComposing(true);
-      window.setTimeout(() => setComposing(false), 450);
       setMatched(nodeIds);
       pushUrl({ query, now: false, read: null, trail: [] });
-      requestAnimationFrame(() => frameIds(nodeIds, pool.layout.positions, true));
+      requestAnimationFrame(() => {
+        frameIds(nodeIds, pool.layout.positions, true);
+        requestAnimationFrame(() => setComposing(false));
+      });
     },
     [frameIds, pushUrl],
   );
@@ -313,6 +334,7 @@ export function FieldApp() {
     [readId, lensActive, nowOn, neighborRels, matchedSet],
   );
   const edges = useMemo(() => uniqueEdges(pool), []);
+  const fieldFocused = Boolean(readId || lensActive || nowOn);
 
   const status = statusForMode(mode, pool, {
     read: readId,
@@ -321,7 +343,6 @@ export function FieldApp() {
     matched,
     composing,
     cascading,
-    readingAnim,
   });
 
   const composeVerb = composing
@@ -523,6 +544,7 @@ export function FieldApp() {
       <div style={{ position: 'relative', flex: 1, display: 'flex', overflow: 'hidden' }}>
         <div
           ref={field.vpRef}
+          className={fieldFocused ? 'field-viewport field-viewport--focus' : 'field-viewport'}
           onPointerDown={field.onPointerDown}
           onPointerMove={field.onPointerMove}
           onPointerUp={field.onPointerUp}
@@ -548,6 +570,7 @@ export function FieldApp() {
 
           <div
             ref={field.worldRef}
+            className={`field-world${fieldFocused ? ' field-world--focus' : ''}${hopNavRef.current ? ' field-world--hop' : ''}`}
             style={{
               position: 'absolute',
               left: 0,
@@ -580,6 +603,7 @@ export function FieldApp() {
                 return (
                   <line
                     key={`${a}-${b}`}
+                    className="field-edge"
                     x1={pa[0]}
                     y1={pa[1]}
                     x2={pb[0]}
@@ -815,20 +839,7 @@ export function FieldApp() {
             z 100%
           </div>
 
-          {readFull ? (
-            <div
-              className="field-read-scrim"
-              style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'rgba(238,240,237,.58)',
-                backdropFilter: 'blur(2px)',
-                WebkitBackdropFilter: 'blur(2px)',
-                pointerEvents: 'none',
-                zIndex: 8,
-              }}
-            />
-          ) : null}
+          {readFull ? <div className="field-read-scrim" aria-hidden /> : null}
         </div>
 
         {readNode ? (
@@ -840,9 +851,9 @@ export function FieldApp() {
                 ? (pool.nodes[trailTarget.at(-1)!]?.title ?? null)
                 : null
             }
-            reading={readingAnim}
             full={readFull}
             onBack={back}
+            onClose={home}
             onOpen={openNode}
             onOpenNode={openNode}
             onToggleFull={(next) => pushUrl({ full: next })}

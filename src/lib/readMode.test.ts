@@ -5,10 +5,13 @@ import { effectiveReadFull, isWholePiece } from './readMode';
 describe('isWholePiece', () => {
   it('treats notes as whole pieces', () => {
     expect(isWholePiece(pool.nodes.ilya!)).toBe(true);
+    expect(isWholePiece(pool.nodes['increasing-returns']!)).toBe(true);
   });
 
   it('does not treat essays as whole pieces', () => {
     expect(isWholePiece(pool.nodes['allowed-ignorance']!)).toBe(false);
+    expect(isWholePiece(pool.nodes['bounded-me']!)).toBe(false);
+    expect(isWholePiece(pool.nodes['me-plus-ai']!)).toBe(false);
   });
 });
 

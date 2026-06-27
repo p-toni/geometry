@@ -2,8 +2,10 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import { FIELD_HEIGHT, FIELD_WIDTH } from '../../pool';
 
 const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
-const FLY_MS = 290;
-const MINI_MS = 290;
+export const NAV_OPEN_MS = 240;
+export const NAV_HOP_MS = 180;
+const FLY_MS = 220;
+const MINI_MS = 220;
 
 function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -31,14 +33,14 @@ export function useFieldTransform(initial?: Partial<Transform>) {
   const [transform, setTransform] = useState<Transform>(transformRef.current);
   const [ready, setReady] = useState(false);
 
-  const applyDom = useCallback((t: Transform, animate: boolean) => {
+  const applyDom = useCallback((t: Transform, animate: boolean, ms = FLY_MS) => {
     transformRef.current = t;
     const world = worldRef.current;
     const vp = vpRef.current;
     if (!world || !vp) return;
     const reduce = prefersReducedMotion();
     world.style.transition =
-      animate && !reduce ? `transform ${FLY_MS}ms var(--ease-out-strong)` : 'none';
+      animate && !reduce ? `transform ${ms}ms var(--ease-out-strong)` : 'none';
     world.style.transform = `translate(${t.x}px,${t.y}px) scale(${t.z})`;
     if (readoutRef.current) {
       const el = readoutRef.current;
@@ -57,15 +59,15 @@ export function useFieldTransform(initial?: Partial<Transform>) {
       const W = clamp(vr.width / t.z / FIELD_WIDTH, 0.04, 1 - L);
       const H = clamp(vr.height / t.z / FIELD_HEIGHT, 0.04, 1 - T);
       miniVp.style.transition =
-        animate && !reduce ? `transform ${MINI_MS}ms var(--ease-out-strong)` : 'none';
+        animate && !reduce ? `transform ${ms}ms var(--ease-out-strong)` : 'none';
       miniVp.style.transform = `translate(${L * 100}%, ${T * 100}%) scale(${W}, ${H})`;
     }
   }, []);
 
   const setT = useCallback(
-    (next: Transform, animate = false) => {
+    (next: Transform, animate = false, ms?: number) => {
       setTransform(next);
-      applyDom(next, animate);
+      applyDom(next, animate, ms ?? FLY_MS);
     },
     [applyDom],
   );
@@ -110,8 +112,8 @@ export function useFieldTransform(initial?: Partial<Transform>) {
   }, []);
 
   const flyTo = useCallback(
-    (pos: readonly [number, number], animate = true) => {
-      setT(transformForPoint(pos), animate);
+    (pos: readonly [number, number], animate = true, ms?: number) => {
+      setT(transformForPoint(pos), animate, ms);
     },
     [setT, transformForPoint],
   );

@@ -1,10 +1,21 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { pool } from '../pool';
 import { ReadPanel } from './ReadPanel';
 
 const allowed = pool.nodes['allowed-ignorance']!;
+const bounded = pool.nodes['bounded-me']!;
 const ilya = pool.nodes.ilya!;
+
+const panelHandlers = {
+  onBack: vi.fn(),
+  onClose: vi.fn(),
+  onOpen: vi.fn(),
+  onOpenNode: vi.fn(),
+  onToggleFull: vi.fn(),
+  onDescend: vi.fn(),
+  canDescend: true,
+};
 
 describe('ReadPanel', () => {
   it('shows excerpt and read full affordance by default', () => {
@@ -13,9 +24,9 @@ describe('ReadPanel', () => {
         node={allowed}
         pool={pool}
         historyTitle={null}
-        reading={false}
         full={false}
         onBack={vi.fn()}
+        onClose={vi.fn()}
         onOpen={vi.fn()}
         onOpenNode={vi.fn()}
         onToggleFull={vi.fn()}
@@ -35,9 +46,9 @@ describe('ReadPanel', () => {
         node={ilya}
         pool={pool}
         historyTitle={null}
-        reading={false}
         full={false}
         onBack={vi.fn()}
+        onClose={vi.fn()}
         onOpen={vi.fn()}
         onOpenNode={vi.fn()}
         onToggleFull={vi.fn()}
@@ -59,9 +70,9 @@ describe('ReadPanel', () => {
         node={allowed}
         pool={pool}
         historyTitle={null}
-        reading={false}
         full
         onBack={vi.fn()}
+        onClose={vi.fn()}
         onOpen={vi.fn()}
         onOpenNode={vi.fn()}
         onToggleFull={vi.fn()}
@@ -77,5 +88,60 @@ describe('ReadPanel', () => {
     const source = screen.getByTestId('read-source-line');
     expect(prose.compareDocumentPosition(source) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(screen.getByRole('button', { name: /collapse/i })).toBeInTheDocument();
+  });
+
+  it('resets scroll position when the open node changes', () => {
+    const { rerender } = render(
+      <ReadPanel
+        node={allowed}
+        pool={pool}
+        historyTitle={null}
+        full={false}
+        {...panelHandlers}
+      />,
+    );
+
+    const scroll = screen.getByTestId('read-panel-scroll');
+    scroll.scrollTop = 320;
+
+    rerender(
+      <ReadPanel
+        node={bounded}
+        pool={pool}
+        historyTitle={null}
+        full={false}
+        {...panelHandlers}
+      />,
+    );
+
+    expect(scroll.scrollTop).toBe(0);
+  });
+
+  it('close dismisses to field; back walks history', () => {
+    const onBack = vi.fn();
+    const onClose = vi.fn();
+
+    render(
+      <ReadPanel
+        node={allowed}
+        pool={pool}
+        historyTitle="bounded me"
+        full
+        onBack={onBack}
+        onClose={onClose}
+        onOpen={vi.fn()}
+        onOpenNode={vi.fn()}
+        onToggleFull={vi.fn()}
+        onDescend={vi.fn()}
+        canDescend
+      />,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /close/i }));
+    expect(onClose).toHaveBeenCalledTimes(1);
+    expect(onBack).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByRole('button', { name: /← back/i }));
+    expect(onBack).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, type RefObject } from 'react';
-import { packNodeUniforms } from './shader/packNodes';
+import { packNodeUniforms, type PackedNodes } from './shader/packNodes';
 import { prefersReducedMotion, WebglTerrainRenderer } from './shader/webglTerrain';
 import type { TerrainCtx } from './terrainHeight';
 import type { Transform } from './hooks/useFieldTransform';
@@ -11,6 +11,8 @@ type FieldTerrainCanvasProps = {
   transform: Transform;
 };
 
+const WEIGHT_LERP = 0.26;
+
 function terrainStateKey(ctx: TerrainCtx, dimmed: boolean): string {
   return [
     ctx.mode,
@@ -19,6 +21,26 @@ function terrainStateKey(ctx: TerrainCtx, dimmed: boolean): string {
     Object.keys(ctx.neighborRels).sort().join(','),
     dimmed ? '1' : '0',
   ].join('|');
+}
+
+function clonePacked(p: PackedNodes): PackedNodes {
+  return {
+    count: p.count,
+    positions: new Float32Array(p.positions),
+    weights: new Float32Array(p.weights),
+  };
+}
+
+function lerpPacked(shown: PackedNodes, target: PackedNodes, t: number): PackedNodes {
+  const next = clonePacked(shown);
+  const n = Math.min(shown.count, target.count);
+  next.count = n;
+  for (let i = 0; i < n; i++) {
+    next.weights[i] = shown.weights[i]! + (target.weights[i]! - shown.weights[i]!) * t;
+    next.positions[i * 2] = target.positions[i * 2]!;
+    next.positions[i * 2 + 1] = target.positions[i * 2 + 1]!;
+  }
+  return next;
 }
 
 export function FieldTerrainCanvas({
@@ -39,12 +61,16 @@ export function FieldTerrainCanvas({
   );
   const packed = useMemo(() => packNodeUniforms(terrainCtx), [terrainKey]);
 
-  const dimmedRef = useRef(dimmed);
-  dimmedRef.current = dimmed;
+  const packedTargetRef = useRef(packed);
+  packedTargetRef.current = packed;
+  const packedShownRef = useRef<PackedNodes | null>(null);
+
+  const dimTargetRef = useRef(dimmed ? 1 : 0);
+  const dimShownRef = useRef(dimmed ? 1 : 0);
+  dimTargetRef.current = dimmed ? 1 : 0;
+
   const transformRef = useRef(transform);
   transformRef.current = transform;
-  const packedRef = useRef(packed);
-  packedRef.current = packed;
 
   const draw = (now: number) => {
     const renderer = rendererRef.current;
@@ -61,16 +87,37 @@ export function FieldTerrainCanvas({
     const reduce = prefersReducedMotion();
     const t = reduce ? 0 : (now - startRef.current) * 0.001;
     const tr = transformRef.current;
+    const target = dimTargetRef.current;
+    if (reduce) {
+      dimShownRef.current = target;
+    } else {
+      const delta = target - dimShownRef.current;
+      if (Math.abs(delta) > 0.004) {
+        dimShownRef.current += delta * 0.24;
+      } else {
+        dimShownRef.current = target;
+      }
+    }
+
+    const packedTarget = packedTargetRef.current;
+    if (!packedShownRef.current) {
+      packedShownRef.current = clonePacked(packedTarget);
+    } else if (reduce) {
+      packedShownRef.current = clonePacked(packedTarget);
+    } else {
+      packedShownRef.current = lerpPacked(packedShownRef.current, packedTarget, WEIGHT_LERP);
+    }
+
     renderer.render({
       width: w,
       height: h,
       time: t,
-      dimmed: dimmedRef.current ? 1 : 0,
+      dimmed: dimShownRef.current,
       cam: [tr.x, tr.y],
       scale: tr.z,
-      nodeCount: packedRef.current.count,
-      nodePositions: packedRef.current.positions,
-      nodeWeights: packedRef.current.weights,
+      nodeCount: packedShownRef.current.count,
+      nodePositions: packedShownRef.current.positions,
+      nodeWeights: packedShownRef.current.weights,
     });
   };
 
@@ -108,10 +155,6 @@ export function FieldTerrainCanvas({
       rendererRef.current = null;
     };
   }, [vpRef]);
-
-  useEffect(() => {
-    draw(performance.now());
-  }, [terrainKey, dimmed, packed, transform.x, transform.y, transform.z]);
 
   return (
     <canvas

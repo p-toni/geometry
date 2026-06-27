@@ -1,6 +1,18 @@
 import { hasInlineBacklink, splitInlineBacklinks } from './inlineBacklink';
 import type { Block } from '../pool/types';
 
+const FIG_BLOCKS: Record<string, Block> = {
+  'late-failure-motif': { t: 'motif' },
+  motif: { t: 'motif' },
+  'point-to-edge': { t: 'point-edge' },
+  'point-edge': { t: 'point-edge' },
+  'curvature-test': { t: 'curvature' },
+  curvature: { t: 'curvature' },
+  table: { t: 'table', headers: [], rows: [] },
+  steps: { t: 'steps', items: [] },
+  'edge-taxonomy': { t: 'edge-taxonomy', rows: [] },
+};
+
 /** Parse markdown body (no frontmatter) into typed Blocks for Figures. */
 export function parseBlocks(markdown: string): Block[] {
   const lines = markdown.replace(/\r\n/g, '\n').split('\n');
@@ -36,7 +48,7 @@ export function parseBlocks(markdown: string): Block[] {
     const line = lines[i]!;
     const trimmed = line.trim();
 
-    if (!trimmed) {
+    if (!trimmed || trimmed === '---' || trimmed === '***') {
       flushParagraph(paraBuf);
       i++;
       continue;
@@ -46,27 +58,65 @@ export function parseBlocks(markdown: string): Block[] {
     if (figMatch) {
       flushParagraph(paraBuf);
       const kind = figMatch[1]!;
-      if (kind === 'motif') blocks.push({ t: 'motif' });
-      else if (kind === 'point-edge') blocks.push({ t: 'point-edge' });
-      else if (kind === 'curvature') blocks.push({ t: 'curvature' });
-      else if (kind === 'table') blocks.push({ t: 'table', headers: [], rows: [] });
-      else if (kind === 'steps') blocks.push({ t: 'steps', items: [] });
+      const block = FIG_BLOCKS[kind];
+      if (block) blocks.push({ ...block });
+      i++;
+      continue;
+    }
+
+    const registryFig = trimmed.match(/^\[fig\|([\w-]+)\]$/);
+    if (registryFig) {
+      flushParagraph(paraBuf);
+      const block = FIG_BLOCKS[registryFig[1]!];
+      if (block) blocks.push({ ...block });
+      i++;
+      continue;
+    }
+
+    const plateTag = trimmed.match(/^\[plate\|([^\]]+)\]$/);
+    if (plateTag) {
+      flushParagraph(paraBuf);
+      i++;
+      let cap = plateTag[1]!.trim();
+      let src: string | undefined;
+      if (i < lines.length) {
+        const next = lines[i]!.trim();
+        const pathMatch = next.match(/`([^`]+)`/);
+        const textMatch = next.match(/^\*(.+?)\*/);
+        if (textMatch) cap = `${cap} — ${textMatch[1]!.trim()}`;
+        if (pathMatch) src = pathMatch[1];
+        if (pathMatch || textMatch) i++;
+      }
+      blocks.push({ t: 'plate', cap, src });
+      continue;
+    }
+
+    if (trimmed.startsWith('### ')) {
+      flushParagraph(paraBuf);
+      blocks.push({ t: 'h', x: trimmed.slice(4).trim(), level: 3 });
       i++;
       continue;
     }
 
     if (trimmed.startsWith('## ')) {
       flushParagraph(paraBuf);
-      blocks.push({ t: 'h', x: trimmed.slice(3).trim() });
+      blocks.push({ t: 'h', x: trimmed.slice(3).trim(), level: 2 });
       i++;
       continue;
     }
 
-    if (trimmed.startsWith('> ')) {
+    if (/^>\s*$/.test(trimmed)) {
+      flushParagraph(paraBuf);
+      i++;
+      continue;
+    }
+
+    if (trimmed.startsWith('>')) {
       flushParagraph(paraBuf);
       const quoteLines: string[] = [];
-      while (i < lines.length && lines[i]!.trim().startsWith('> ')) {
-        quoteLines.push(lines[i]!.trim().slice(2));
+      while (i < lines.length && lines[i]!.trim().startsWith('>')) {
+        const quoteText = lines[i]!.trim().replace(/^>\s?/, '');
+        if (quoteText) quoteLines.push(quoteText);
         i++;
       }
       const text = quoteLines.join('\n').trim();
@@ -78,19 +128,19 @@ export function parseBlocks(markdown: string): Block[] {
           x: thesisTag[2]!.trim().replace(/\n/g, ' '),
         });
       } else {
-      const callout = text.match(/^\[(aside|honesty|update)(?:\|([^\]]+))?\]\s*\n?(.*)$/is);
-      if (callout) {
-        blocks.push({
-          t: 'callout',
-          v: callout[1]!.toLowerCase() as 'aside' | 'honesty' | 'update',
-          label: callout[2]?.trim(),
-          x: callout[3]!.trim().replace(/\n/g, ' '),
-        });
-      } else if (/^thesis[:\s]/i.test(text) || quoteLines[0]?.startsWith('**')) {
-        blocks.push({ t: 'thesis', x: text.replace(/^thesis:\s*/i, '').replace(/\n/g, ' ') });
-      } else {
-        blocks.push({ t: 'callout', v: 'aside', x: text.replace(/\n/g, ' ') });
-      }
+        const callout = text.match(/^\[(aside|honesty|update)(?:\|([^\]]+))?\]\s*\n?(.*)$/is);
+        if (callout) {
+          blocks.push({
+            t: 'callout',
+            v: callout[1]!.toLowerCase() as 'aside' | 'honesty' | 'update',
+            label: callout[2]?.trim().replace(/^[◇⚖✚]\s*/, ''),
+            x: callout[3]!.trim().replace(/\n/g, ' '),
+          });
+        } else if (/^thesis[:\s]/i.test(text) || quoteLines[0]?.startsWith('**')) {
+          blocks.push({ t: 'thesis', x: text.replace(/^thesis:\s*/i, '').replace(/\n/g, ' ') });
+        } else {
+          blocks.push({ t: 'callout', v: 'aside', x: text.replace(/\n/g, ' ') });
+        }
       }
       continue;
     }
@@ -112,26 +162,46 @@ export function parseBlocks(markdown: string): Block[] {
         );
       if (rows.length) {
         const [headers, ...body] = rows;
-        if (headers?.every((c) => c === 'type' || c === 'force' || c.length < 24)) {
+        const isEdgeTaxonomy =
+          headers?.length === 2 &&
+          headers[0]?.toLowerCase() === 'type' &&
+          headers[1]?.toLowerCase() === 'force';
+        if (isEdgeTaxonomy) {
           const taxRows = body
             .filter((r) => r.length >= 2)
             .map((r) => ({ type: r[0]!, force: r[1]! }));
           if (taxRows.length) blocks.push({ t: 'edge-taxonomy', rows: taxRows });
         } else if (headers) {
-          blocks.push({ t: 'table', headers, rows: body });
+          const dataRows = body.filter((r) => !r.every((c) => /^:?-+:?$/.test(c.trim())));
+          blocks.push({ t: 'table', headers, rows: dataRows });
         }
       }
       continue;
     }
 
-    if (/^\d+\.\s/.test(trimmed)) {
+    const numbered = trimmed.match(/^\d+\.\s+/);
+    if (numbered) {
       flushParagraph(paraBuf);
-      const items: string[] = [];
-      while (i < lines.length && /^\d+\.\s/.test(lines[i]!.trim())) {
-        items.push(lines[i]!.trim().replace(/^\d+\.\s*/, ''));
+      while (i < lines.length && /^\d+\.\s+/.test(lines[i]!.trim())) {
+        blocks.push({ t: 'p', x: lines[i]!.trim() });
         i++;
       }
-      blocks.push({ t: 'steps', items });
+      continue;
+    }
+
+    const bullet = trimmed.match(/^[*-]\s+(.+)$/);
+    if (bullet) {
+      flushParagraph(paraBuf);
+      const items: string[] = [];
+      while (i < lines.length) {
+        const m = lines[i]!.trim().match(/^[*-]\s+(.+)$/);
+        if (!m) break;
+        items.push(m[1]!.trim());
+        i++;
+      }
+      for (const item of items) {
+        blocks.push({ t: 'p', x: `• ${item}` });
+      }
       continue;
     }
 
@@ -164,9 +234,14 @@ export function parseBlocks(markdown: string): Block[] {
 
     if (trimmed.startsWith('[[sidenote:')) {
       flushParagraph(paraBuf);
-      const m = trimmed.match(/\[\[sidenote:([^|]+)\|([^\]]+)\]\]/);
+      const m = trimmed.match(/\[\[sidenote:([^|]+)\|([^|\]]+)(?:\|([^\]]+))?\]\]/);
       if (m) {
-        blocks.push({ t: 'sidenote', anchor: m[1]!.trim(), x: m[2]!.trim() });
+        blocks.push({
+          t: 'sidenote',
+          anchor: m[1]!.trim(),
+          x: m[2]!.trim(),
+          body: m[3]?.trim(),
+        });
       }
       i++;
       continue;

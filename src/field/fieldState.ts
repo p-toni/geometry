@@ -27,7 +27,6 @@ export function statusForMode(
     matched: string[] | null;
     composing: boolean;
     cascading?: boolean;
-    readingAnim?: boolean;
   },
 ): { left: string; right: string; verb: SpinVerb; hint: string } {
   const total = Object.keys(pool.nodes).length;
@@ -38,7 +37,7 @@ export function statusForMode(
     return {
       left: `reading · ${node?.cluster ?? '—'} › neighborhood lit`,
       right: `${node?.links.length ?? 0} edges from here`,
-      verb: args.readingAnim ? 'plot' : 'orbit',
+      verb: 'orbit',
       hint:
         node && isWholePiece(node)
           ? 'the note is whole — the field holds; its neighbors are lit'

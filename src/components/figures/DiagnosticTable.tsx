@@ -15,7 +15,7 @@ export function DiagnosticTable() {
       style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',
-        border: '1px solid #e4e7e3',
+        border: '1px solid #E8E2D8',
         borderRadius: 4,
         overflow: 'hidden',
         margin: '8px 0 20px',
@@ -25,14 +25,14 @@ export function DiagnosticTable() {
         <div
           key={h}
           style={{
-            padding: '9px 12px',
-            background: i === 1 ? '#eef2fd' : '#f6f7f4',
+            padding: '11px 14px',
+            background: i === 1 ? '#eef2fd' : '#F4F1EA',
             fontFamily: 'var(--font-mono)',
-            fontSize: 9,
+            fontSize: 10,
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
             color: i === 1 ? 'var(--signal)' : i === 0 ? 'var(--muted)' : 'var(--kicker)',
-            borderLeft: i ? '1px solid #e4e7e3' : undefined,
+            borderLeft: i ? '1px solid #E8E2D8' : undefined,
           }}
         >
           {h}
@@ -43,14 +43,14 @@ export function DiagnosticTable() {
           <div
             key={`${ri}-${ci}`}
             style={{
-              padding: '10px 12px',
-              borderTop: '1px solid #eef0ec',
-              borderLeft: ci ? '1px solid #e4e7e3' : undefined,
-              fontFamily: 'var(--font-body)',
+              padding: '12px 14px',
+              borderTop: '1px solid #F2EDE6',
+              borderLeft: ci ? '1px solid #E8E2D8' : undefined,
+              fontFamily: ci === 0 ? 'var(--font-display)' : 'var(--font-body)',
               fontWeight: ci === 0 ? 600 : 400,
-              fontSize: 12,
-              color: ci === 1 ? 'var(--ink)' : ci === 2 ? 'var(--kicker)' : 'var(--ink)',
-              background: ci === 1 ? '#fbfcff' : undefined,
+              fontSize: 13,
+              color: ci === 1 ? '#1C1F24' : ci === 2 ? '#9aa39c' : '#1C1F24',
+              background: ci === 1 ? '#FAF8F4' : undefined,
             }}
           >
             {cell}

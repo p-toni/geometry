@@ -33,10 +33,10 @@ export type Link = readonly [targetId: string, rel: Rel];
 /** Essay body primitives — maps 1:1 to Figures registry (FIG.01–12). */
 export type Block =
   | { t: 'p'; x: string }
-  | { t: 'h'; x: string }
+  | { t: 'h'; x: string; level?: 2 | 3 }
   | { t: 'thesis'; x: string; k?: string }
   | { t: 'callout'; v: 'aside' | 'honesty' | 'update'; x: string; label?: string }
-  | { t: 'sidenote'; anchor: string; x: string }
+  | { t: 'sidenote'; anchor: string; x: string; body?: string }
   | { t: 'plate'; cap: string; src?: string }
   | { t: 'table'; headers: string[]; rows: string[][] }
   | { t: 'edge-taxonomy'; rows: { type: string; force: string }[] }

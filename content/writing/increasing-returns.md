@@ -1,6 +1,6 @@
 ---
 id: increasing-returns
-kind: essay
+kind: note
 cluster: writing
 title: increasing returns
 date: 3 days

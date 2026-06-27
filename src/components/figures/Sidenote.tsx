@@ -1,3 +1,5 @@
+import { renderInlineMarkdown } from '../../lib/inlineMarkdown';
+
 type SidenoteProps = {
   anchor: string;
   x: string;
@@ -27,7 +29,7 @@ export function Sidenote({ anchor, x, body }: SidenoteProps) {
             margin: 0,
           }}
         >
-          {body}
+          {renderInlineMarkdown(body)}
           <sup
             style={{
               fontFamily: 'var(--font-mono)',
@@ -44,7 +46,7 @@ export function Sidenote({ anchor, x, body }: SidenoteProps) {
       )}
       <div
         style={{
-          borderLeft: '2px solid var(--line)',
+          borderLeft: '2px solid #D5CEC3',
           padding: '2px 0 2px 13px',
         }}
       >
@@ -62,13 +64,13 @@ export function Sidenote({ anchor, x, body }: SidenoteProps) {
         <p
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: 12,
+            fontSize: 12.5,
             lineHeight: 1.5,
             margin: 0,
-            color: 'var(--muted)',
+            color: '#6B7280',
           }}
         >
-          {x}
+          {renderInlineMarkdown(x)}
         </p>
       </div>
     </aside>

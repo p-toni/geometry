@@ -10,6 +10,7 @@ type Props = {
 type Particle = { e: [string, string]; t: number };
 
 const NODE_STAGGER_S = 0.04;
+const INTRO_S = 0.6;
 
 export function ConstellationDescent({ structure, onClose }: Props) {
   const [exiting, setExiting] = useState(false);
@@ -60,8 +61,8 @@ export function ConstellationDescent({ structure, onClose }: Props) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       const { nodes, edges, byId } = layoutRef.current;
-      const t = reduce ? 1.1 : (performance.now() - startRef.current) / 1000;
-      const intro = Math.min(1, t / 1.1);
+      const t = reduce ? INTRO_S : (performance.now() - startRef.current) / 1000;
+      const intro = Math.min(1, t / INTRO_S);
       const cx = w / 2;
       const cy = h / 2;
       const S = Math.min(w, h) * 0.82;

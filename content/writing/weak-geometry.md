@@ -36,4 +36,4 @@ Loose structure that still holds. Enough grid to align to, enough slack to stay 
 Leave some seams visible. Leave some cuts provisional. Do not merge faster than reality has licensed. Not because I want vagueness — because I want contact.
 
 > [aside|pairs with]
-> Allowed Ignorance: be careful what you allow yourself to treat as the same. The deeper warning was never just "stay humble."
+> [[backlink:Allowed Ignorance|pairs|allowed-ignorance]]: be careful what you allow yourself to treat as the same. The deeper warning was never just "stay humble."

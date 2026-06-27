@@ -77,14 +77,18 @@
 }
 
 .field-read-scrim {
-  transition: opacity 280ms var(--ease-out-strong);
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+  background: rgba(238, 240, 237, 0.58);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
 .field-read {
   width: 480px;
-  transition:
-    opacity 200ms var(--ease-out-strong),
-    width 320ms var(--ease-drawer);
+  transition: width 320ms var(--ease-drawer);
 }
 
 .field-read--full {
@@ -98,21 +102,6 @@
     top: 0;
     bottom: 0;
     z-index: 12;
-  }
-}
-
-@keyframes field-read-enter {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@media (min-width: 901px) {
-  .field-read--enter {
-    animation: field-read-enter 120ms var(--ease-out-strong) both;
   }
 }
 
@@ -159,22 +148,53 @@
   }
 }
 
-@keyframes crackdraw {
-  from {
-    stroke-dashoffset: 220;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
+.crackdraw-path {
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  transition: stroke-dashoffset 480ms var(--ease-out-strong);
 }
 
-.crackdraw {
-  stroke-dasharray: 220;
-  animation: crackdraw 480ms var(--ease-out-strong) forwards;
+.crackdraw-path.is-drawn {
+  stroke-dashoffset: 0;
+}
+
+.field-grain,
+.field-grid {
+  transition: opacity var(--motion-focus) var(--ease-out-strong);
+}
+
+.field-viewport--focus .field-grain {
+  opacity: calc(var(--grain-opacity) * 0.35);
+}
+
+.field-viewport--focus .field-grid {
+  opacity: calc(var(--grid-opacity) * 0.45);
+}
+
+/* Smooth dim only when entering focus — not when hopping between nodes */
+.field-world--focus:not(.field-world--hop) .field-node {
+  transition:
+    opacity var(--motion-focus) var(--ease-out-strong),
+    transform var(--motion-focus) var(--ease-out-strong);
+}
+
+.field-world--focus.field-world--hop .field-node {
+  transition: transform var(--motion-nav-hop) var(--ease-out-strong);
 }
 
 .field-node {
-  transition: opacity 200ms var(--ease-out-strong), transform 200ms var(--ease-out-strong);
+  position: relative;
+  transition: transform 140ms var(--ease-out-strong);
+}
+
+.field-world--focus:not(.field-world--hop) .field-edge {
+  transition:
+    opacity var(--motion-focus) var(--ease-out-strong),
+    stroke-width var(--motion-focus) var(--ease-out-strong);
+}
+
+.field-world--hop .field-edge {
+  transition: none;
 }
 
 .field-node--link {
@@ -255,18 +275,26 @@
   transform: translateY(0) scale(0.98) !important;
 }
 
-@keyframes nowpulse {
+@keyframes nowpulse-glow {
   0%,
   100% {
-    box-shadow: var(--shadow-raised);
+    opacity: 0.35;
+    transform: scale(1);
   }
   50% {
-    box-shadow: 0 2px 18px color-mix(in srgb, var(--fresh) 50%, transparent);
+    opacity: 1;
+    transform: scale(1.03);
   }
 }
 
-.field-node--hot {
-  animation: nowpulse 2.4s ease-in-out infinite;
+.field-node--hot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 2px 18px color-mix(in srgb, var(--fresh) 50%, transparent);
+  animation: nowpulse-glow 2.4s ease-in-out infinite;
 }
 
 .field-grain {
@@ -293,7 +321,7 @@
 }
 
 .field-region-label {
-  transition: opacity 280ms var(--ease-out-strong);
+  transition: opacity var(--motion-focus) var(--ease-out-strong);
 }
 
 .field-minimap {
@@ -400,9 +428,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .field-node--hot {
+  .field-node--hot::after {
     animation: none !important;
-    box-shadow: var(--shadow-raised) !important;
+    opacity: 0.65 !important;
+    transform: none !important;
   }
 
   .field-node,
@@ -410,11 +439,15 @@
   .edge-continues,
   .field-read,
   .field-read-scrim,
+  .field-edge,
+  .field-grain,
+  .field-grid,
   .constellation-overlay,
   .curvature-path-layer,
   .lens-form,
-  .field-zoom-readout {
-    transition: opacity 150ms ease-out !important;
+  .field-zoom-readout,
+  .field-region-label {
+    transition: none !important;
     animation: none !important;
   }
 
@@ -424,10 +457,6 @@
   .field-read,
   .constellation-overlay {
     transform: none !important;
-  }
-
-  .field-read--enter {
-    opacity: 1;
   }
 
   .constellation-overlay--enter,

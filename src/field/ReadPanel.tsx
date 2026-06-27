@@ -1,18 +1,19 @@
+import { useEffect, useRef } from 'react';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { FigureReader } from '../components/figures';
 import { Masthead } from '../components/figures/Masthead';
 import { neighbors } from '../lib/graph';
 import { isWholePiece } from '../lib/readMode';
 import type { Cluster, Pool, PoolNode } from '../pool';
-import { Spin } from '../components/Spin';
 
 type ReadPanelProps = {
   node: PoolNode;
   pool: Pool;
   historyTitle: string | null;
-  reading: boolean;
   full: boolean;
   onBack: () => void;
+  /** Dismiss read panel and return to the whole field. */
+  onClose: () => void;
   onOpen: (id: string) => void;
   onOpenNode: (id: string) => void;
   onToggleFull: (full: boolean) => void;
@@ -53,9 +54,9 @@ export function ReadPanel({
   node,
   pool,
   historyTitle,
-  reading,
   full,
   onBack,
+  onClose,
   onOpen,
   onOpenNode,
   onToggleFull,
@@ -68,10 +69,17 @@ export function ReadPanel({
   const showFullBody = wholePiece ? hasFull : full && hasFull;
   const dek = node.excerpt[0];
   const excerptTail = dek ? node.excerpt.slice(1) : node.excerpt;
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollTop = 0;
+  }, [node.id]);
 
   return (
     <aside
-      className={`field-read field-read-sheet edge-emphasis${showFullBody && !wholePiece ? ' field-read--full' : ''}${reading ? ' field-read--enter' : ''}`}
+      className={`field-read field-read-sheet edge-emphasis${showFullBody && !wholePiece ? ' field-read--full' : ''}`}
       style={{
         background: 'var(--card)',
         boxShadow: '-18px 0 48px rgba(28,31,36,.16)',
@@ -143,11 +151,10 @@ export function ReadPanel({
             ⤡ collapse
           </button>
         ) : null}
-        {reading ? <Spin verb="plot" /> : null}
         <button
           type="button"
           className="pressable pressable--ghost"
-          onClick={onBack}
+          onClick={onClose}
           aria-label="Close"
           style={{
             fontFamily: 'var(--font-mono)',
@@ -163,6 +170,8 @@ export function ReadPanel({
       </header>
 
       <div
+        ref={scrollRef}
+        data-testid="read-panel-scroll"
         style={{
           flex: 1,
           overflow: 'auto',

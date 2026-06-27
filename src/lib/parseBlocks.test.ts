@@ -4,7 +4,7 @@ import { parseBlocks } from './parseBlocks';
 describe('parseBlocks', () => {
   it('parses paragraphs and headings', () => {
     const blocks = parseBlocks('## Preamble\n\nGood tools have edges.\n\nMore prose.');
-    expect(blocks).toContainEqual({ t: 'h', x: 'Preamble' });
+    expect(blocks).toContainEqual({ t: 'h', x: 'Preamble', level: 2 });
     expect(blocks).toContainEqual({ t: 'p', x: 'Good tools have edges.' });
   });
 
@@ -27,6 +27,50 @@ describe('parseBlocks', () => {
       rel: 'cites',
       targetId: 'bounded-me',
     });
+  });
+
+  it('skips empty blockquote continuation lines after callouts', () => {
+    const blocks = parseBlocks(
+      '> [aside|A safety manual for keeping control in the human-AI loop.]\n>\n\nI am not "using AI."',
+    );
+    expect(blocks).toEqual([
+      {
+        t: 'callout',
+        v: 'aside',
+        label: 'A safety manual for keeping control in the human-AI loop.',
+        x: '',
+      },
+      { t: 'p', x: 'I am not "using AI."' },
+    ]);
+  });
+
+  it('parses h3 subheadings and numbered lists as separate blocks', () => {
+    const blocks = parseBlocks('### Signals\n\n1. First item\n2. Second item');
+    expect(blocks).toContainEqual({ t: 'h', x: 'Signals', level: 3 });
+    expect(blocks).toContainEqual({ t: 'p', x: '1. First item' });
+    expect(blocks).toContainEqual({ t: 'p', x: '2. Second item' });
+  });
+
+  it('parses registry figure and plate tags', () => {
+    const blocks = parseBlocks(
+      '[fig|late-failure-motif]\n\n[plate|PLATE I]\n*caption* `/img.svg`',
+    );
+    expect(blocks).toContainEqual({ t: 'motif' });
+    expect(blocks).toContainEqual({ t: 'plate', cap: 'PLATE I — caption', src: '/img.svg' });
+  });
+
+  it('parses shorthand backlinks', () => {
+    const blocks = parseBlocks('See [[Allowed Ignorance|allowed-ignorance]] for more.');
+    expect(blocks).toEqual([
+      { t: 'p', x: 'See ' },
+      {
+        t: 'backlink',
+        title: 'Allowed Ignorance',
+        rel: 'pairs',
+        targetId: 'allowed-ignorance',
+      },
+      { t: 'p', x: ' for more.' },
+    ]);
   });
 
   it('splits inline backlinks inside paragraphs', () => {

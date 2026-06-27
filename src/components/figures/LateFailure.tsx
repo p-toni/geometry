@@ -49,6 +49,17 @@ export function LateFailure({ inline = true }: LateFailureProps) {
 
   const cracked = stress >= CRACK_AT;
   const strain = Math.min(1, stress / CRACK_AT);
+  const [crackDrawn, setCrackDrawn] = useState(false);
+
+  useEffect(() => {
+    if (!cracked) {
+      setCrackDrawn(false);
+      return undefined;
+    }
+    setCrackDrawn(false);
+    const id = requestAnimationFrame(() => setCrackDrawn(true));
+    return () => cancelAnimationFrame(id);
+  }, [cracked]);
 
   if (inline) {
     return (
@@ -120,7 +131,7 @@ export function LateFailure({ inline = true }: LateFailureProps) {
                 fill="none"
                 stroke="#c2410c"
                 strokeWidth={1.5}
-                className="crackdraw"
+                className={`crackdraw-path${crackDrawn ? ' is-drawn' : ''}`}
               />
             </svg>
           ) : null}
