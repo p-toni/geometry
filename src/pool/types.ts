@@ -70,7 +70,7 @@ export type PoolNode = {
 };
 
 export type FieldRegion = {
-  label: string;
+  label: Cluster;
   x: number;
   y: number;
   accent?: boolean;

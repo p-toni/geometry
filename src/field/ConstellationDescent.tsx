@@ -39,9 +39,10 @@ export function ConstellationDescent({ structure, onClose }: Props) {
 
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const accent = getComputedStyle(document.documentElement)
-      .getPropertyValue('--signal')
-      .trim() || '#283ac3';
+    const rootStyle = getComputedStyle(document.documentElement);
+    const accent = rootStyle.getPropertyValue('--signal').trim() || '#1f4db8';
+    const fontDisplay = rootStyle.getPropertyValue('--font-display').trim() || 'Newsreader, serif';
+    const fontMono = rootStyle.getPropertyValue('--font-mono').trim() || 'Space Mono, monospace';
 
     const draw = () => {
       const cv = canvasRef.current;
@@ -150,8 +151,7 @@ export function ConstellationDescent({ structure, onClose }: Props) {
             n.kind === 'concept'
               ? 'rgba(150,160,170,0.75)'
               : 'rgba(245,247,250,0.92)';
-          const family =
-            n.kind === 'concept' ? "'Space Mono', monospace" : "'Space Grotesk', sans-serif";
+          const family = n.kind === 'concept' ? fontMono : fontDisplay;
           ctx.font = `${n.kind === 'lens' ? 600 : 400} ${n.kind === 'lens' ? 14 : n.kind === 'section' ? 11 : 9.5}px ${family}`;
           ctx.textAlign = 'center';
           ctx.fillText(
@@ -224,8 +224,8 @@ export function ConstellationDescent({ structure, onClose }: Props) {
             inside the argument
           </div>
           <div
+            className="type-display"
             style={{
-              fontFamily: 'var(--font-display)',
               fontWeight: 600,
               fontSize: 19,
               letterSpacing: '-0.01em',

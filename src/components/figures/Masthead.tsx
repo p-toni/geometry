@@ -31,8 +31,8 @@ export function Masthead({ kind, title, date, cluster, dek }: MastheadProps) {
         {kindLabel(kind)}
       </div>
       <h1
+        className="type-display"
         style={{
-          fontFamily: 'var(--font-display)',
           fontWeight: 600,
           fontSize: 30,
           letterSpacing: '-0.025em',

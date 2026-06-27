@@ -68,10 +68,10 @@ export function ReadPanel({
 
   return (
     <aside
-      className={`field-read edge-emphasis${full ? ' field-read--full' : ''}${reading ? ' field-read--enter' : ''}`}
+      className={`field-read field-read-sheet edge-emphasis${full ? ' field-read--full' : ''}${reading ? ' field-read--enter' : ''}`}
       style={{
         background: 'var(--card)',
-        boxShadow: '-18px 0 48px rgba(20,23,26,.16)',
+        boxShadow: '-18px 0 48px rgba(28,31,36,.16)',
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
@@ -98,7 +98,7 @@ export function ReadPanel({
             textTransform: 'uppercase',
             color: 'var(--muted)',
             background: 'var(--card)',
-            border: '1px solid #cfd4cf',
+            border: '1px solid var(--line)',
             borderRadius: 3,
             padding: '6px 10px',
             cursor: 'pointer',
@@ -131,7 +131,7 @@ export function ReadPanel({
               textTransform: 'uppercase',
               color: 'var(--muted)',
               background: 'var(--card)',
-              border: '1px solid #cfd4cf',
+              border: '1px solid var(--line)',
               borderRadius: 3,
               padding: '6px 10px',
               cursor: 'pointer',
@@ -179,7 +179,7 @@ export function ReadPanel({
             style={{
               marginTop: 22,
               height: 220,
-              border: '1px solid #cfd4cf',
+              border: '1px solid var(--line)',
               borderRadius: 3,
               background:
                 'repeating-linear-gradient(135deg,#dfe3df,#dfe3df 8px,#e9ece8 8px,#e9ece8 16px)',
@@ -366,7 +366,7 @@ export function ReadPanel({
                       <span style={neighborDot(n.kind)} />
                       <span
                         style={{
-                          fontFamily: 'var(--font-display)',
+                          fontFamily: 'var(--font-body)',
                           fontWeight: 500,
                           fontSize: 14,
                           color: 'var(--ink)',

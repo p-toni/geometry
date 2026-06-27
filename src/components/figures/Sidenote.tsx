@@ -44,7 +44,7 @@ export function Sidenote({ anchor, x, body }: SidenoteProps) {
       )}
       <div
         style={{
-          borderLeft: '2px solid #cfd4cf',
+          borderLeft: '2px solid var(--line)',
           padding: '2px 0 2px 13px',
         }}
       >

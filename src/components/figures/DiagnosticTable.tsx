@@ -31,7 +31,7 @@ export function DiagnosticTable() {
             fontSize: 9,
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
-            color: i === 1 ? 'var(--signal)' : i === 0 ? '#6f7872' : '#9aa39c',
+            color: i === 1 ? 'var(--signal)' : i === 0 ? 'var(--muted)' : 'var(--kicker)',
             borderLeft: i ? '1px solid #e4e7e3' : undefined,
           }}
         >
@@ -46,11 +46,10 @@ export function DiagnosticTable() {
               padding: '10px 12px',
               borderTop: '1px solid #eef0ec',
               borderLeft: ci ? '1px solid #e4e7e3' : undefined,
-              fontFamily:
-                ci === 0 ? 'var(--font-display)' : 'var(--font-body)',
+              fontFamily: 'var(--font-body)',
               fontWeight: ci === 0 ? 600 : 400,
               fontSize: 12,
-              color: ci === 1 ? '#14171a' : ci === 2 ? '#9aa39c' : '#14171a',
+              color: ci === 1 ? 'var(--ink)' : ci === 2 ? 'var(--kicker)' : 'var(--ink)',
               background: ci === 1 ? '#fbfcff' : undefined,
             }}
           >

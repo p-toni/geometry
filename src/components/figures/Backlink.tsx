@@ -24,7 +24,7 @@ export function Backlink({ title, targetId, onOpen }: BacklinkProps) {
         borderRight: '3px solid var(--signal)',
         borderRadius: 3,
         cursor: onOpen ? 'pointer' : 'default',
-        fontFamily: 'var(--font-display)',
+        fontFamily: 'var(--font-body)',
         fontWeight: 500,
         fontSize: 14,
         color: 'var(--ink)',

@@ -21,12 +21,12 @@ export function ProtocolStepper() {
         <div
           key={s.n}
           style={{
-            background: '#fcfcfb',
+            background: 'var(--card)',
             border: '1px solid #e4e7e3',
             borderTop: '3px solid var(--signal)',
             borderRadius: 3,
             padding: 13,
-            boxShadow: '0 2px 8px rgba(20,23,26,.06)',
+            boxShadow: 'var(--shadow-raised)',
           }}
         >
           <div
@@ -40,7 +40,7 @@ export function ProtocolStepper() {
           </div>
           <div
             style={{
-              fontFamily: 'var(--font-display)',
+              fontFamily: 'var(--font-body)',
               fontWeight: 600,
               fontSize: 14,
               margin: '5px 0 3px',
@@ -53,7 +53,7 @@ export function ProtocolStepper() {
               fontFamily: 'var(--font-body)',
               fontSize: 12,
               lineHeight: 1.45,
-              color: '#6f7872',
+              color: 'var(--muted)',
               margin: 0,
             }}
           >

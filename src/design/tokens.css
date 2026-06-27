@@ -1,30 +1,40 @@
 :root {
-  --paper: #f2f3f1;
-  --paper-2: #eef0ed;
-  --card: #fcfcfb;
-  --field: #eef0ed;
-  --ink: #14171a;
-  --muted: #6f7872;
-  --ink-2: #3c434a;
-  --line: #d6dad7;
-  --line-soft: #e4e7e3;
-  --signal: #283ac3;
+  --paper: #f6f4ef;
+  --paper-2: #f0ebe3;
+  --card: #faf8f4;
+  --field: #f0ebe3;
+  --ink: #1c1f24;
+  --muted: #6b7280;
+  --ink-2: #4a4f56;
+  --line: #ddd6cb;
+  --line-soft: #e8e2d8;
+  --signal: #1f4db8;
+  --fresh: #d4a53a;
+
+  /* Cluster temperature — ochre / cobalt-family / sage / mauve (gold is --fresh only) */
+  --cluster-writing: #9a7344;
+  --cluster-work: #4a68a8;
+  --cluster-play: #657963;
+  --cluster-you: #8a7578;
   --accent: var(--signal);
   --accent-ink: var(--signal);
-  --kicker: #9aa39c;
+  --kicker: #94908a;
 
-  --font-display: 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+  /* Canela stand-in — large headlines only */
+  --font-display: 'Newsreader', 'Georgia', serif;
+  /* Söhne stand-in — navigation, body, UI, captions */
+  --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'Space Mono', 'SF Mono', monospace;
 
-  --shadow-raised: 0 2px 8px rgba(20, 23, 26, 0.08);
-  --shadow-lifted: 0 8px 20px rgba(20, 23, 26, 0.14);
-  --shadow-overlay: 0 16px 36px rgba(20, 23, 26, 0.24);
-  --shadow-inset: inset 0 2px 8px rgba(20, 23, 26, 0.09);
+  --shadow-raised: 0 2px 8px rgba(28, 31, 36, 0.08);
+  --shadow-lifted: 0 8px 20px rgba(28, 31, 36, 0.14);
+  --shadow-overlay: 0 16px 36px rgba(28, 31, 36, 0.24);
+  --shadow-inset: inset 0 2px 8px rgba(28, 31, 36, 0.09);
 
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
   --header-h: 50px;
   --status-h: 30px;
   --grid-opacity: 0.5;
+  --grain-opacity: 0.035;
 }

@@ -59,8 +59,8 @@ export function renderBlock(block: Block, key: number, opts: RenderOpts = {}): R
       return (
         <h2
           key={key}
+          className="type-display"
           style={{
-            fontFamily: 'var(--font-display)',
             fontWeight: 600,
             fontSize: 20,
             letterSpacing: '-0.015em',

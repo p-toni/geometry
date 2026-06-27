@@ -11,7 +11,7 @@ export function Plate({ cap, src, inline = true }: PlateProps) {
     <div
       style={{
         minHeight: inline ? 160 : 180,
-        border: '1px solid #cfd4cf',
+        border: '1px solid var(--line)',
         borderRadius: 3,
         background: src
           ? `url(${src}) center/cover no-repeat`

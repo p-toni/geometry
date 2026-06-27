@@ -17,9 +17,14 @@ import { loadEssayStructure } from './loadEssayStructure';
 import type { EssayStructure } from '../pool/essayStructure';
 import { getFieldMode, statusForMode } from './fieldState';
 import { useFieldTransform } from './hooks/useFieldTransform';
+import { clusterTone } from './clusterTone';
+import { nodeLayout } from './nodeLayout';
 import { nodeVisual } from './nodeVisual';
+import { FieldTerrainCanvas } from './FieldTerrainCanvas';
 import { ReadPanel } from './ReadPanel';
-import { terrainHeight } from './terrainHeight';
+import { Minimap } from './Minimap';
+import type { TerrainCtx } from './terrainHeight';
+import toniLtdLogo from '../assets/toni-ltd.svg';
 
 export function FieldApp() {
   const [params, setParams] = useSearchParams();
@@ -298,6 +303,15 @@ export function FieldApp() {
   }, [readNode]);
 
   const matchedSet = useMemo(() => new Set(matched ?? []), [matched]);
+  const terrainCtx = useMemo<TerrainCtx>(
+    () => ({
+      mode: readId ? 'read' : lensActive ? 'lens' : nowOn ? 'now' : 'field',
+      readId,
+      neighborRels,
+      matched: matchedSet,
+    }),
+    [readId, lensActive, nowOn, neighborRels, matchedSet],
+  );
   const edges = useMemo(() => uniqueEdges(pool), []);
 
   const status = statusForMode(mode, pool, {
@@ -344,24 +358,24 @@ export function FieldApp() {
         <button
           type="button"
           className="pressable pressable--ghost"
+          aria-label="toni.ltd"
           onClick={home}
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 8,
             background: 'none',
             border: 'none',
             cursor: 'pointer',
             padding: 0,
-            fontFamily: 'var(--font-display)',
-            fontWeight: 600,
-            fontSize: 15,
-            letterSpacing: '-0.01em',
-            color: 'var(--ink)',
-            whiteSpace: 'nowrap',
           }}
         >
-          toni.ltd <span style={{ color: 'var(--signal)', fontSize: 15 }}>◈</span>
+          <img
+            src={toniLtdLogo}
+            alt=""
+            width={132}
+            height={33}
+            style={{ display: 'block', height: 20, width: 'auto' }}
+          />
         </button>
 
         <form
@@ -377,10 +391,10 @@ export function FieldApp() {
             alignItems: 'center',
             gap: 11,
             background: 'var(--field)',
-            border: `1.5px solid ${lensActive ? 'var(--signal)' : '#cfd4cf'}`,
+            border: `1.5px solid ${lensActive ? 'var(--signal)' : 'var(--line)'}`,
             borderRadius: 4,
             padding: '9px 14px',
-            boxShadow: 'inset 0 2px 8px rgba(20,23,26,.09)',
+            boxShadow: 'var(--shadow-inset)',
           }}
         >
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--signal)' }}>
@@ -395,7 +409,7 @@ export function FieldApp() {
               border: 'none',
               outline: 'none',
               background: 'transparent',
-              fontFamily: 'var(--font-display)',
+              fontFamily: 'var(--font-body)',
               fontSize: 15,
               color: 'var(--ink)',
             }}
@@ -419,7 +433,7 @@ export function FieldApp() {
                 textTransform: 'uppercase',
                 color: 'var(--muted)',
                 background: 'var(--card)',
-                border: '1px solid #cfd4cf',
+                border: '1px solid var(--line)',
                 borderRadius: 3,
                 padding: '5px 8px',
                 cursor: 'pointer',
@@ -466,7 +480,7 @@ export function FieldApp() {
                   fontSize: 12,
                   color: on ? '#fff' : 'var(--ink-2)',
                   background: on ? 'var(--ink)' : 'var(--card)',
-                  border: `1px solid ${on ? 'var(--ink)' : '#cfd4cf'}`,
+                  border: `1px solid ${on ? 'var(--ink)' : 'var(--line)'}`,
                   borderRadius: 999,
                   padding: '6px 12px',
                   cursor: 'pointer',
@@ -494,8 +508,8 @@ export function FieldApp() {
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
             color: nowOn ? '#fff' : 'var(--muted)',
-            background: nowOn ? 'var(--ink)' : 'var(--card)',
-            border: `1px solid ${nowOn ? 'var(--ink)' : '#cfd4cf'}`,
+            background: nowOn ? 'var(--fresh)' : 'var(--card)',
+            border: `1px solid ${nowOn ? 'var(--fresh)' : 'var(--line)'}`,
             borderRadius: 3,
             padding: '8px 12px',
             cursor: 'pointer',
@@ -523,18 +537,14 @@ export function FieldApp() {
             touchAction: 'none',
           }}
         >
-          <div
-            className="field-grid"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              pointerEvents: 'none',
-              opacity: 'var(--grid-opacity)',
-              backgroundImage:
-                'linear-gradient(to right,rgba(20,23,26,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(20,23,26,.05) 1px,transparent 1px)',
-              backgroundSize: '34px 34px',
-            }}
+          <FieldTerrainCanvas
+            vpRef={field.vpRef}
+            terrainCtx={terrainCtx}
+            dimmed={Boolean(readId)}
+            transform={field.transform}
           />
+          <div className="field-grain" aria-hidden />
+          <div className="field-grid" aria-hidden />
 
           <div
             ref={field.worldRef}
@@ -582,28 +592,31 @@ export function FieldApp() {
               })}
             </svg>
 
-            {pool.layout.regions.map((r) => (
-              <div
-                key={r.label}
-                className="field-region-label"
-                style={{
-                  position: 'absolute',
-                  left: r.x,
-                  top: r.y,
-                  transform: 'translate(-50%,-50%)',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 13,
-                  letterSpacing: '0.3em',
-                  textTransform: 'uppercase',
-                  color: r.accent ? 'var(--signal)' : '#aab2ad',
-                  opacity: readId || lensActive || nowOn ? 0.3 : 0.55,
-                  fontWeight: 700,
-                  pointerEvents: 'none',
-                }}
-              >
-                {r.label}
-              </div>
-            ))}
+            {pool.layout.regions.map((r) => {
+              const tone = clusterTone(r.label);
+              return (
+                <div
+                  key={r.label}
+                  className="field-region-label"
+                  style={{
+                    position: 'absolute',
+                    left: r.x,
+                    top: r.y,
+                    transform: 'translate(-50%,-50%)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 13,
+                    letterSpacing: '0.3em',
+                    textTransform: 'uppercase',
+                    color: tone.label,
+                    opacity: readId || lensActive || nowOn ? 0.32 : 0.62,
+                    fontWeight: 700,
+                    pointerEvents: 'none',
+                  }}
+                >
+                  {r.label}
+                </div>
+              );
+            })}
 
             {Object.entries(pool.nodes).map(([id, node]) => {
               const pos = pool.layout.positions[id];
@@ -614,8 +627,17 @@ export function FieldApp() {
                 neighborRels,
                 matched: matchedSet,
               });
+              const layout = nodeLayout(node);
+              const isPill = layout.variant === 'pill';
+              const isLinkLit = isPill && lensActive && matchedSet.has(id);
+              const fieldMode = !readId && !lensActive && !nowOn;
+              const rankLift = fieldMode && node.rank <= 1 ? 1 : 0;
               const z =
-                readId === id ? 5 : neighborRels[id] || matchedSet.has(id) ? 4 : 2;
+                readId === id
+                  ? 5
+                  : neighborRels[id] || matchedSet.has(id)
+                    ? 4
+                    : 2 + rankLift;
               return (
                 <div
                   key={id}
@@ -632,21 +654,22 @@ export function FieldApp() {
                     data-testid={`field-node-${id}`}
                     onPointerDown={(e) => e.stopPropagation()}
                     onClick={() => onNodeClick(id)}
-                    className={`pressable field-node${vis.hot ? ' field-node--hot' : ''}`}
+                    className={`pressable field-node${vis.hot ? ' field-node--hot' : ''}${isPill ? ' field-node--link' : ''}${isLinkLit ? ' field-node--link-lit' : ''}`}
                     style={{
                       position: 'relative',
-                      minWidth: 108,
-                      maxWidth: 188,
-                      padding: '10px 13px',
-                      borderRadius: 3,
+                      minWidth: isPill ? undefined : layout.minWidth,
+                      maxWidth: layout.maxWidth,
+                      padding: layout.padding,
+                      borderRadius: layout.borderRadius,
                       background: vis.bg,
                       border: vis.border,
-                      borderLeft: vis.leftAccent
-                        ? '3px solid var(--signal)'
-                        : vis.border === 'none'
-                          ? 'none'
-                          : '1px solid #cfd4cf',
-                      borderRight: vis.rightAccent ? '3px solid var(--signal)' : undefined,
+                      borderLeft: isPill
+                        ? 'none'
+                        : vis.leftAccent
+                          ? `3px solid ${vis.accentEdge === 'fresh' ? 'var(--fresh)' : 'var(--signal)'}`
+                          : vis.border === 'none'
+                            ? 'none'
+                            : vis.border,
                       boxShadow: vis.shadow,
                       cursor: 'pointer',
                       opacity: vis.dim,
@@ -654,45 +677,57 @@ export function FieldApp() {
                       textAlign: 'left',
                     }}
                   >
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: 8.5,
-                        letterSpacing: '0.1em',
-                        textTransform: 'uppercase',
-                        color: vis.kickerColor,
-                        display: 'block',
-                      }}
-                    >
-                      {kindLabel(node.kind)}
-                    </span>
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-display)',
-                        fontWeight: 600,
-                        fontSize: 13,
-                        color: vis.textColor,
-                        marginTop: 4,
-                        lineHeight: 1.15,
-                        letterSpacing: '-0.01em',
-                      }}
-                    >
-                      {node.title}
-                    </div>
-                    {vis.showRel ? (
-                      <div
-                        style={{
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: 8,
-                          letterSpacing: '0.06em',
-                          textTransform: 'uppercase',
-                          color: 'var(--signal)',
-                          marginTop: 5,
-                        }}
-                      >
-                        {vis.rel} →
-                      </div>
-                    ) : null}
+                    {isPill ? (
+                      <>
+                        <span className="field-node--link-kicker">link</span>
+                        <span className="field-node--link-title">{node.title}</span>
+                        <span className="field-node--link-badge" aria-hidden>
+                          ↗
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <span
+                          style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: layout.kickerSize,
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase',
+                            color: vis.kickerColor,
+                            display: 'block',
+                          }}
+                        >
+                          {kindLabel(node.kind)}
+                        </span>
+                        <div
+                          style={{
+                            fontFamily: 'var(--font-body)',
+                            fontWeight: 600,
+                            fontSize: layout.titleSize,
+                            color: vis.textColor,
+                            marginTop: 4,
+                            lineHeight: 1.15,
+                            letterSpacing: '-0.01em',
+                          }}
+                        >
+                          {node.title}
+                        </div>
+                        {vis.showRel ? (
+                          <div
+                            style={{
+                              fontFamily: 'var(--font-mono)',
+                              fontSize: 8,
+                              letterSpacing: '0.06em',
+                              textTransform: 'uppercase',
+                              color: 'var(--signal)',
+                              marginTop: 5,
+                            }}
+                          >
+                            {vis.rel} →
+                          </div>
+                        ) : null}
+                      </>
+                    )}
                   </button>
                 </div>
               );
@@ -711,7 +746,7 @@ export function FieldApp() {
               borderRadius: 4,
               overflow: 'hidden',
             background: 'var(--card)',
-            boxShadow: '0 2px 8px rgba(20,23,26,.06)',
+            boxShadow: 'var(--shadow-raised)',
           }}
         >
           {(
@@ -743,14 +778,7 @@ export function FieldApp() {
             ))}
           </div>
 
-          <Minimap
-            field={field}
-            mode={mode}
-            readId={readId}
-            matchedSet={matchedSet}
-            neighborRels={neighborRels}
-            nowOn={nowOn}
-          />
+          <Minimap field={field} terrainCtx={terrainCtx} />
 
           <p
             style={{
@@ -860,183 +888,6 @@ export function FieldApp() {
         </span>
         <span>{status.right}</span>
       </footer>
-    </div>
-  );
-}
-
-function Minimap({
-  field,
-  mode,
-  readId,
-  matchedSet,
-  neighborRels,
-  nowOn,
-}: {
-  field: ReturnType<typeof useFieldTransform>;
-  mode: string;
-  readId: string | null;
-  matchedSet: Set<string>;
-  neighborRels: Record<string, Rel>;
-  nowOn: boolean;
-}) {
-  const terrain = useMemo(() => {
-    const items: {
-      cx: number;
-      cy: number;
-      r: number;
-      fill: string;
-      stroke: string;
-      sw: number;
-      op: number;
-    }[] = [];
-    const accent = 'var(--signal)';
-    const terrainMode =
-      readId ? 'read' : mode === 'lens' ? 'lens' : nowOn ? 'now' : 'field';
-    for (const [id, node] of Object.entries(pool.nodes)) {
-      const pos = pool.layout.positions[id];
-      if (!pos) continue;
-      const [x, y] = pos;
-      const { h, lit } = terrainHeight(id, node, {
-        mode: terrainMode,
-        readId,
-        neighborRels,
-        matched: matchedSet,
-      });
-      const R = 15 + h * 13;
-      const col = lit ? accent : '#93a1ad';
-      items.push({
-        cx: x,
-        cy: y,
-        r: Math.round(R * 1.18),
-        fill: col,
-        stroke: 'none',
-        sw: 0,
-        op: Math.min(0.5, 0.045 * h),
-      });
-      items.push({
-        cx: x,
-        cy: y,
-        r: Math.round(R * 0.72),
-        fill: col,
-        stroke: 'none',
-        sw: 0,
-        op: Math.min(0.6, 0.06 * h),
-      });
-      items.push({
-        cx: x,
-        cy: y,
-        r: Math.round(R),
-        fill: 'none',
-        stroke: col,
-        sw: 1,
-        op: Math.min(0.7, 0.16 + 0.1 * h),
-      });
-      items.push({
-        cx: x,
-        cy: y,
-        r: Math.round(R * 0.6),
-        fill: 'none',
-        stroke: col,
-        sw: 1,
-        op: Math.min(0.7, 0.13 + 0.09 * h),
-      });
-      items.push({
-        cx: x,
-        cy: y,
-        r: readId === id ? 8 : lit ? 8 : 5,
-        fill: readId === id ? '#14171a' : col,
-        stroke: 'none',
-        sw: 0,
-        op: lit ? 0.95 : 0.5,
-      });
-    }
-    return items;
-  }, [readId, neighborRels, matchedSet, mode, nowOn]);
-
-  return (
-    <div
-      onClick={field.onMiniClick}
-      title="survey map · click to fly there"
-      style={{
-        position: 'absolute',
-        left: 14,
-        bottom: 14,
-        width: 138,
-        height: 84,
-        background: '#f6f7f4',
-        border: '1px solid var(--line)',
-        borderRadius: 4,
-        boxShadow: '0 2px 8px rgba(20,23,26,.06)',
-        overflow: 'hidden',
-        cursor: 'crosshair',
-      }}
-    >
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          pointerEvents: 'none',
-          opacity: 0.45,
-          backgroundImage:
-            'linear-gradient(to right,rgba(20,23,26,.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(20,23,26,.04) 1px,transparent 1px)',
-          backgroundSize: '11.5px 11.5px',
-        }}
-      />
-      <svg
-        viewBox={`0 0 ${FIELD_WIDTH} ${FIELD_HEIGHT}`}
-        preserveAspectRatio="none"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
-      >
-        {terrain.map((t, i) => (
-          <circle
-            key={i}
-            cx={t.cx}
-            cy={t.cy}
-            r={t.r}
-            fill={t.fill}
-            stroke={t.stroke}
-            strokeWidth={t.sw}
-            vectorEffect="non-scaling-stroke"
-            opacity={t.op}
-          />
-        ))}
-      </svg>
-      {pool.layout.regions.map((r) => (
-        <div
-          key={r.label}
-          style={{
-            position: 'absolute',
-            left: `${(r.x / FIELD_WIDTH) * 100}%`,
-            top: `${(r.y / FIELD_HEIGHT) * 100}%`,
-            transform: 'translate(-50%,-50%)',
-            fontFamily: 'var(--font-mono)',
-            fontSize: 8,
-            fontWeight: 700,
-            letterSpacing: '0.04em',
-            color: r.accent ? 'var(--signal)' : '#7e8a93',
-            opacity: 0.7,
-            pointerEvents: 'none',
-          }}
-        >
-          {r.label[0]?.toUpperCase()}
-        </div>
-      ))}
-      <div
-        ref={field.miniVpRef}
-        style={{
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          width: '100%',
-          height: '100%',
-          transformOrigin: '0 0',
-          border: '1px solid var(--signal)',
-          borderRadius: 1,
-          pointerEvents: 'none',
-          boxShadow:
-            'inset 0 0 0 1px rgba(255,255,255,.6), 0 0 0 1px rgba(40,58,195,.15)',
-        }}
-      />
     </div>
   );
 }

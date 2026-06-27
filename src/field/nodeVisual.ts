@@ -1,4 +1,5 @@
 import { freshScore } from '../lib/freshness';
+import { clusterTone } from './clusterTone';
 import { terrainHeight } from './terrainHeight';
 import type { PoolNode, Rel } from '../pool/types';
 
@@ -13,6 +14,7 @@ export type NodeVisual = {
   leftAccent: boolean;
   rightAccent: boolean;
   hot: boolean;
+  accentEdge: 'signal' | 'fresh';
   showRel: boolean;
   rel: Rel | '';
 };
@@ -42,7 +44,7 @@ export function nodeVisual(
   if (ctx.mode === 'read') {
     dim = lit ? 1 : 0.26;
     if (isActive) {
-      shadow = '0 18px 44px rgba(20,23,26,.26)';
+      shadow = '0 18px 44px rgba(28,31,36,.26)';
       lift = -2;
     } else if (isNbr) shadow = 'var(--shadow-lifted)';
   } else if (ctx.mode === 'lens') {
@@ -52,10 +54,11 @@ export function nodeVisual(
     dim = lit ? 1 : 0.32;
   }
 
-  let bg = 'var(--card)';
+  const tone = clusterTone(node.cluster);
+  let bg = tone.card;
   let textColor = 'var(--ink)';
   let kickerColor = 'var(--kicker)';
-  let border = '1px solid #cfd4cf';
+  let border = `1px solid ${tone.border}`;
 
   if (isActive || isLink) {
     bg = 'var(--ink)';
@@ -64,17 +67,22 @@ export function nodeVisual(
     border = 'none';
   } else if (node.media) {
     bg =
-      'repeating-linear-gradient(135deg,#dfe3df,#dfe3df 6px,#e9ece8 6px,#e9ece8 12px)';
+      'repeating-linear-gradient(135deg,#e5dfd6,#e5dfd6 6px,#f0ebe3 6px,#f0ebe3 12px)';
   }
 
   const featured = node.rank === 0 && fs >= 2;
-  const leftAccent =
-    isActive ||
-    isNbr ||
-    isMatch ||
-    isHot ||
-    (featured && ctx.mode === 'field');
-  const rightAccent = isLink;
+  const isNowLit = ctx.mode === 'now' && fs >= 1;
+  const leftAccent = isLink
+    ? false
+    : isActive ||
+      isNbr ||
+      isMatch ||
+      isHot ||
+      isNowLit ||
+      (featured && ctx.mode === 'field');
+  const rightAccent = false;
+  const accentEdge: 'signal' | 'fresh' =
+    isHot || isNowLit ? 'fresh' : 'signal';
 
   return {
     dim,
@@ -87,6 +95,7 @@ export function nodeVisual(
     leftAccent,
     rightAccent,
     hot: isHot,
+    accentEdge,
     showRel: isNbr,
     rel: ctx.neighborRels[node.id] ?? '',
   };

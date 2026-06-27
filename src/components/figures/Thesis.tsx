@@ -28,8 +28,8 @@ export function Thesis({ x, k }: ThesisProps) {
         </div>
       ) : null}
       <p
+        className="type-display"
         style={{
-          fontFamily: 'var(--font-display)',
           fontWeight: 600,
           fontSize: 21,
           lineHeight: 1.28,

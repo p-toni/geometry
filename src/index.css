@@ -44,7 +44,7 @@ input {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.66;
-  color: #2c333a;
+  color: var(--ink-2);
 }
 
 @media (max-width: 900px) {

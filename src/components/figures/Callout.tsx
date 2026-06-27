@@ -24,7 +24,7 @@ const SKIN: Record<
       border: '1px solid #e4e7e3',
       borderLeft: '3px solid #9aa39c',
     },
-    label: '#6f7872',
+    label: 'var(--muted)',
     glyph: '◇',
   },
   honesty: {

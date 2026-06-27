@@ -1,3 +1,10 @@
+/* Newsreader Display optical size — use on large headlines only */
+.type-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-variation-settings: 'opsz' 72;
+}
+
 .edge-emphasis {
   border-left: 3px solid var(--signal) !important;
 }
@@ -9,7 +16,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .edge-continues:hover {
-    background: #f4f6f3 !important;
+    background: #f4f0e8 !important;
   }
 }
 
@@ -75,16 +82,23 @@
 
 .field-read {
   width: 480px;
-  flex: 0 0 480px;
   transition:
     opacity 200ms var(--ease-out-strong),
-    width 320ms var(--ease-drawer),
-    flex-basis 320ms var(--ease-drawer);
+    width 320ms var(--ease-drawer);
 }
 
 .field-read--full {
   width: 728px;
-  flex: 0 0 728px;
+}
+
+@media (min-width: 901px) {
+  .field-read-sheet {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 12;
+  }
 }
 
 @keyframes field-read-enter {
@@ -163,6 +177,73 @@
   transition: opacity 200ms var(--ease-out-strong), transform 200ms var(--ease-out-strong);
 }
 
+.field-node--link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  min-width: 0 !important;
+  white-space: nowrap;
+  text-align: left;
+  border-right: none !important;
+}
+
+.field-node--link-kicker {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b939c;
+  flex: none;
+}
+
+.field-node--link-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+.field-node--link-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--signal);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1;
+  flex: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.field-node--link-lit {
+  box-shadow:
+    var(--shadow-lifted),
+    0 0 0 2px color-mix(in srgb, var(--signal) 55%, transparent) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .field-node--link:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 8px 22px rgba(28, 31, 36, 0.28) !important;
+  }
+
+  .field-node--link.field-node--link-lit:hover {
+    box-shadow:
+      0 8px 22px rgba(28, 31, 36, 0.28),
+      0 0 0 2px color-mix(in srgb, var(--signal) 55%, transparent) !important;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .field-node:hover {
     transform: translateY(-2px) !important;
@@ -174,8 +255,41 @@
   transform: translateY(0) scale(0.98) !important;
 }
 
+@keyframes nowpulse {
+  0%,
+  100% {
+    box-shadow: var(--shadow-raised);
+  }
+  50% {
+    box-shadow: 0 2px 18px color-mix(in srgb, var(--fresh) 50%, transparent);
+  }
+}
+
 .field-node--hot {
-  box-shadow: 0 2px 18px color-mix(in srgb, var(--signal) 35%, transparent);
+  animation: nowpulse 2.4s ease-in-out infinite;
+}
+
+.field-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 7;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  mix-blend-mode: multiply;
+}
+
+.field-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--grid-opacity);
+  background-image:
+    linear-gradient(to right, rgba(28, 31, 36, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(28, 31, 36, 0.05) 1px, transparent 1px);
+  background-size: 34px 34px;
 }
 
 .field-region-label {
@@ -185,6 +299,7 @@
 @media (prefers-reduced-motion: reduce) {
   .field-node--hot {
     animation: none !important;
+    box-shadow: var(--shadow-raised) !important;
   }
 
   .field-node,
