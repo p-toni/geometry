@@ -1,0 +1,496 @@
+{
+  "id": "reference",
+  "title": "Reference · Poetic Interaction",
+  "method": "curated",
+  "embeddingModel": null,
+  "scope": "reference",
+  "people": [
+    {
+      "id": "humid-knowing",
+      "name": "humid knowing",
+      "meta": "seeping · perception before language",
+      "topicIds": [
+        "wu",
+        "shi-du",
+        "wen-du-gan",
+        "shen-tou",
+        "qian-yu-yan",
+        "chu-jue",
+        "hu-xi-gan",
+        "shen-ti",
+        "zhi-jue",
+        "qi-xi",
+        "gan-shou-li",
+        "gong-ming-qiang",
+        "jin",
+        "pi-fu",
+        "ethereal",
+        "liu-dong-xing",
+        "ephemeral",
+        "jiu-wu",
+        "fa-jiao",
+        "long-exposure",
+        "ke-zhi",
+        "chen-mo-de-yu-fa",
+        "ambient",
+        "tong-tou",
+        "tong-shi-cheng-li",
+        "zhen-dong",
+        "chuan-guo",
+        "rong-jie",
+        "men-kan",
+        "can-xiang",
+        "ichigo-ichie",
+        "regret",
+        "shen-fen-liu-dong",
+        "yin-mi",
+        "sonder",
+        "entropy"
+      ]
+    },
+    {
+      "id": "still-dissolving",
+      "name": "still dissolving",
+      "meta": "vanishing · the process, not the end",
+      "topicIds": [
+        "men-kan",
+        "wan-guang",
+        "bo-mu",
+        "can-xiang",
+        "wu-chang",
+        "liu-dong-xing",
+        "xiao-rong",
+        "wei-ming-ming",
+        "mono-no-aware",
+        "zheng-zai-xiao-shi",
+        "wei-jing",
+        "bian-yuan",
+        "guo-du",
+        "zai-yu-bu-zai",
+        "oblivion",
+        "ephemeral",
+        "ichigo-ichie",
+        "entropy",
+        "jin",
+        "wu",
+        "ethereal",
+        "ji-jie-gan",
+        "yu-bai",
+        "fu-kong-jian",
+        "shen-fen-liu-dong",
+        "wei-wan-cheng",
+        "ci-dian",
+        "yin-mi",
+        "sonder",
+        "regret",
+        "hen-ji",
+        "eternal-recurrence"
+      ]
+    },
+    {
+      "id": "slow-sediment",
+      "name": "slow sediment",
+      "meta": "sediment · time as texture",
+      "topicIds": [
+        "hen-ji",
+        "jiu-wu",
+        "mo-sun",
+        "deng-dai",
+        "huan-man",
+        "ji-jie-gan",
+        "ji-lei",
+        "fa-jiao",
+        "ceng-die",
+        "yi-liu-wu",
+        "shi-jian-cha",
+        "chen-mo-de-ji-lei",
+        "fei-xian-xing-shi-jian",
+        "chen-dian",
+        "regret",
+        "long-exposure",
+        "eternal-recurrence",
+        "wen-du-gan",
+        "gong-ming-qiang",
+        "pi-fu",
+        "can-xiang",
+        "mono-no-aware",
+        "ichigo-ichie",
+        "jian-ma",
+        "liu-bai",
+        "wu-wei",
+        "gong-ju-de-tui-yin",
+        "qin-shi"
+      ]
+    },
+    {
+      "id": "withheld-presence",
+      "name": "withheld presence",
+      "meta": "Ma · the gaze without the face",
+      "topicIds": [
+        "jian-ma",
+        "yu-bai",
+        "liu-bai",
+        "tui-yin",
+        "fu-kong-jian",
+        "wu-wei",
+        "an-chu",
+        "yin-ni",
+        "ke-zhi",
+        "chen-mo-de-yu-fa",
+        "zai-chang-gan",
+        "xu-shi",
+        "gong-ju-de-tui-yin",
+        "zan-ting",
+        "ambient",
+        "wu",
+        "hu-xi-gan",
+        "qi-xi",
+        "gan-shou-li",
+        "ethereal",
+        "wan-guang",
+        "bo-mu",
+        "bian-yuan",
+        "zai-yu-bu-zai",
+        "oblivion",
+        "deng-dai",
+        "chen-dian",
+        "she-she",
+        "mei-li"
+      ]
+    },
+    {
+      "id": "subtle-tension",
+      "name": "subtle tension",
+      "meta": "tangle · two truths, simultaneous",
+      "topicIds": [
+        "ning-ba",
+        "bao-lu-yu-zhe-bi",
+        "di-kang-yu-shun-cong",
+        "shang-wei-cheng-xing",
+        "shen-fen-liu-dong",
+        "tong-tou",
+        "bei-lun",
+        "bei-kan-jian-de-ke-wang",
+        "zi-wo-cheng-xian",
+        "mo-hu-zuo-wei-jing-que",
+        "wei-wan-cheng",
+        "tong-shi-cheng-li",
+        "meta",
+        "chaos",
+        "shen-ti",
+        "zhi-jue",
+        "chu-jue",
+        "wu-chang",
+        "wei-ming-ming",
+        "ceng-die",
+        "shi-jian-cha",
+        "fei-xian-xing-shi-jian"
+      ]
+    },
+    {
+      "id": "soft-rupture",
+      "name": "soft rupture",
+      "meta": "punctum · the shift you didn't see coming",
+      "topicIds": [
+        "ci-dian",
+        "qin-shi",
+        "she-she",
+        "chong-xin",
+        "zhen-dong",
+        "yin-mi",
+        "zhuan-hua",
+        "yu-zhen",
+        "chuan-guo",
+        "bei-chu-peng-de-shi-ke",
+        "qi-yun",
+        "mei-li",
+        "po-huai-xing-de-mei",
+        "rong-jie",
+        "sonder",
+        "shi-du",
+        "shen-tou",
+        "qian-yu-yan",
+        "men-kan",
+        "entropy"
+      ]
+    }
+  ],
+  "topicLabels": {
+    "wu": "mist",
+    "shi-du": "moisture",
+    "wen-du-gan": "warmth",
+    "shen-tou": "seeping",
+    "qian-yu-yan": "prelingual",
+    "chu-jue": "tactile",
+    "hu-xi-gan": "breath",
+    "shen-ti": "body",
+    "zhi-jue": "intuition",
+    "qi-xi": "emanation",
+    "gan-shou-li": "receptivity",
+    "gong-ming-qiang": "resonance",
+    "jin": "immersed",
+    "pi-fu": "skin",
+    "ethereal": "ethereal",
+    "men-kan": "threshold",
+    "wan-guang": "afterglow",
+    "bo-mu": "dusk",
+    "can-xiang": "afterimage",
+    "wu-chang": "flux",
+    "liu-dong-xing": "fluidity",
+    "xiao-rong": "melting",
+    "wei-ming-ming": "unnamed",
+    "mono-no-aware": "pathos",
+    "zheng-zai-xiao-shi": "vanishing",
+    "wei-jing": "unfinished",
+    "bian-yuan": "edge",
+    "guo-du": "passage",
+    "zai-yu-bu-zai": "between",
+    "oblivion": "oblivion",
+    "ephemeral": "ephemeral",
+    "ichigo-ichie": "ichigo ichie",
+    "entropy": "entropy",
+    "hen-ji": "trace",
+    "jiu-wu": "relic",
+    "mo-sun": "wear",
+    "deng-dai": "waiting",
+    "huan-man": "slowness",
+    "ji-jie-gan": "seasonality",
+    "ji-lei": "accrual",
+    "fa-jiao": "ferment",
+    "ceng-die": "layering",
+    "yi-liu-wu": "vestige",
+    "shi-jian-cha": "delay",
+    "chen-mo-de-ji-lei": "silent accrual",
+    "fei-xian-xing-shi-jian": "spiral time",
+    "chen-dian": "sediment",
+    "regret": "regret",
+    "long-exposure": "long exposure",
+    "eternal-recurrence": "eternal recurrence",
+    "jian-ma": "Ma",
+    "yu-bai": "margin",
+    "liu-bai": "blank",
+    "tui-yin": "withdrawal",
+    "fu-kong-jian": "void",
+    "wu-wei": "wu wei",
+    "an-chu": "shadow",
+    "yin-ni": "concealment",
+    "ke-zhi": "restraint",
+    "chen-mo-de-yu-fa": "silent grammar",
+    "zai-chang-gan": "presence",
+    "xu-shi": "illusion",
+    "gong-ju-de-tui-yin": "efface",
+    "zan-ting": "pause",
+    "ambient": "ambient",
+    "ning-ba": "tangle",
+    "bao-lu-yu-zhe-bi": "exposure",
+    "di-kang-yu-shun-cong": "surrender",
+    "shang-wei-cheng-xing": "unformed",
+    "shen-fen-liu-dong": "drift",
+    "tong-tou": "lucid",
+    "bei-lun": "paradox",
+    "bei-kan-jian-de-ke-wang": "seen",
+    "zi-wo-cheng-xian": "display",
+    "mo-hu-zuo-wei-jing-que": "blur",
+    "wei-wan-cheng": "incomplete",
+    "tong-shi-cheng-li": "coexist",
+    "meta": "meta",
+    "chaos": "chaos",
+    "ci-dian": "punctum",
+    "qin-shi": "erosion",
+    "she-she": "refraction",
+    "chong-xin": "anew",
+    "zhen-dong": "tremor",
+    "yin-mi": "secret",
+    "zhuan-hua": "transmute",
+    "yu-zhen": "aftershock",
+    "chuan-guo": "traverse",
+    "bei-chu-peng-de-shi-ke": "touched",
+    "qi-yun": "spirit",
+    "mei-li": "allure",
+    "po-huai-xing-de-mei": "ruin",
+    "rong-jie": "dissolve",
+    "sonder": "sonder"
+  },
+  "extraEdges": [
+    [
+      "mo-hu-zuo-wei-jing-que",
+      "xu-shi"
+    ],
+    [
+      "mo-hu-zuo-wei-jing-que",
+      "wu"
+    ],
+    [
+      "mo-hu-zuo-wei-jing-que",
+      "can-xiang"
+    ],
+    [
+      "mo-hu-zuo-wei-jing-que",
+      "ephemeral"
+    ],
+    [
+      "mo-hu-zuo-wei-jing-que",
+      "entropy"
+    ],
+    [
+      "mo-hu-zuo-wei-jing-que",
+      "yin-mi"
+    ],
+    [
+      "men-kan",
+      "bo-mu"
+    ],
+    [
+      "men-kan",
+      "zai-yu-bu-zai"
+    ],
+    [
+      "men-kan",
+      "wei-jing"
+    ],
+    [
+      "men-kan",
+      "zan-ting"
+    ],
+    [
+      "men-kan",
+      "sonder"
+    ],
+    [
+      "xu-shi",
+      "ning-ba"
+    ],
+    [
+      "xu-shi",
+      "zai-yu-bu-zai"
+    ],
+    [
+      "xu-shi",
+      "ephemeral"
+    ],
+    [
+      "xu-shi",
+      "yin-ni"
+    ],
+    [
+      "entropy",
+      "wu-chang"
+    ],
+    [
+      "entropy",
+      "can-xiang"
+    ],
+    [
+      "entropy",
+      "fei-xian-xing-shi-jian"
+    ],
+    [
+      "entropy",
+      "oblivion"
+    ],
+    [
+      "entropy",
+      "mono-no-aware"
+    ],
+    [
+      "sonder",
+      "zai-yu-bu-zai"
+    ],
+    [
+      "sonder",
+      "bei-kan-jian-de-ke-wang"
+    ],
+    [
+      "sonder",
+      "wan-guang"
+    ],
+    [
+      "sonder",
+      "regret"
+    ],
+    [
+      "ephemeral",
+      "ichigo-ichie"
+    ],
+    [
+      "ephemeral",
+      "mono-no-aware"
+    ],
+    [
+      "ephemeral",
+      "bo-mu"
+    ],
+    [
+      "ephemeral",
+      "wan-guang"
+    ],
+    [
+      "ephemeral",
+      "oblivion"
+    ],
+    [
+      "regret",
+      "can-xiang"
+    ],
+    [
+      "regret",
+      "hen-ji"
+    ],
+    [
+      "regret",
+      "eternal-recurrence"
+    ],
+    [
+      "regret",
+      "wei-jing"
+    ],
+    [
+      "regret",
+      "zai-yu-bu-zai"
+    ],
+    [
+      "yin-mi",
+      "an-chu"
+    ],
+    [
+      "yin-mi",
+      "oblivion"
+    ],
+    [
+      "yin-mi",
+      "ning-ba"
+    ],
+    [
+      "yin-mi",
+      "zai-chang-gan"
+    ],
+    [
+      "can-xiang",
+      "hen-ji"
+    ],
+    [
+      "can-xiang",
+      "yu-zhen"
+    ],
+    [
+      "can-xiang",
+      "wan-guang"
+    ],
+    [
+      "can-xiang",
+      "ichigo-ichie"
+    ],
+    [
+      "can-xiang",
+      "eternal-recurrence"
+    ]
+  ],
+  "meta": {
+    "scope": "reference",
+    "inquiryCount": 6,
+    "conceptCount": 94,
+    "edgeCount": 167,
+    "extraEdgeCount": 43,
+    "generatedAt": "2026-06-26T17:15:26.655Z"
+  }
+}

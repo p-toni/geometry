@@ -1,0 +1,79 @@
+{
+  "id": "09-allowed-ignorance",
+  "title": "Allowed Ignorance",
+  "method": "heuristic",
+  "embeddingModel": null,
+  "scope": "intra",
+  "people": [
+    {
+      "id": "09-allowed-ignorance-lens",
+      "name": "allowed ignorance",
+      "meta": "Understanding is what remains after the right cuts.",
+      "topicIds": [
+        "allowed-ignorance",
+        "understanding",
+        "remains",
+        "right"
+      ]
+    },
+    {
+      "id": "09-allowed-ignorance-quote",
+      "name": "understanding is what rema",
+      "meta": "pull quote · field anchor",
+      "topicIds": [
+        "understanding"
+      ]
+    },
+    {
+      "id": "09-allowed-ignorance-section-0-preamble",
+      "name": "preamble",
+      "meta": "section · argument move",
+      "topicIds": [
+        "preamble"
+      ]
+    },
+    {
+      "id": "09-allowed-ignorance-section-1-thesis",
+      "name": "thesis",
+      "meta": "section · argument move",
+      "topicIds": [
+        "thesis"
+      ]
+    },
+    {
+      "id": "09-allowed-ignorance-section-2-i-block",
+      "name": "i. block",
+      "meta": "section · argument move",
+      "topicIds": [
+        "i-block"
+      ]
+    }
+  ],
+  "topicLabels": {
+    "preamble": "Preamble",
+    "thesis": "Thesis",
+    "i-block": "I. Block",
+    "ii-face": "II. Face",
+    "iii-rotation": "III. Rotation",
+    "iv-void": "IV. Void",
+    "v-crack": "V. Crack",
+    "vi-workshop": "VI. Workshop",
+    "closing": "Closing",
+    "allowed-ignorance": "Allowed Ignorance",
+    "understanding": "understanding",
+    "remains": "remains",
+    "right": "right",
+    "rephrase": "Rephrase",
+    "rebuild": "Rebuild",
+    "transfer": "Transfer"
+  },
+  "extraEdges": [],
+  "meta": {
+    "scope": "intra",
+    "inquiryCount": 5,
+    "conceptCount": 16,
+    "edgeCount": 8,
+    "extraEdgeCount": 0,
+    "generatedAt": "2026-06-26T17:15:26.652Z"
+  }
+}

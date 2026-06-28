@@ -1,0 +1,49 @@
+{
+  "id": "02-increasing-returns",
+  "title": "Increasing Returns",
+  "method": "heuristic",
+  "embeddingModel": null,
+  "scope": "intra",
+  "people": [
+    {
+      "id": "02-increasing-returns-lens",
+      "name": "increasing returns",
+      "meta": "W. Brian Arthur on Business Ecology",
+      "topicIds": [
+        "increasing-returns",
+        "brian",
+        "arthur",
+        "business",
+        "ecology"
+      ]
+    },
+    {
+      "id": "02-increasing-returns-quote",
+      "name": "w. brian arthur on busines",
+      "meta": "pull quote · field anchor",
+      "topicIds": [
+        "brian",
+        "arthur"
+      ]
+    }
+  ],
+  "topicLabels": {
+    "increasing-returns": "Increasing Returns",
+    "brian": "brian",
+    "arthur": "arthur",
+    "business": "business",
+    "ecology": "ecology",
+    "why-it-matters": "Why it matters",
+    "2025-10-17": "2025.10.17",
+    "ecological-web": "Ecological Web"
+  },
+  "extraEdges": [],
+  "meta": {
+    "scope": "intra",
+    "inquiryCount": 2,
+    "conceptCount": 8,
+    "edgeCount": 7,
+    "extraEdgeCount": 0,
+    "generatedAt": "2026-06-26T17:15:26.644Z"
+  }
+}

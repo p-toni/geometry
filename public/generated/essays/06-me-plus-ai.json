@@ -1,0 +1,65 @@
+{
+  "id": "06-me-plus-ai",
+  "title": "Me + AI",
+  "method": "heuristic",
+  "embeddingModel": null,
+  "scope": "intra",
+  "people": [
+    {
+      "id": "06-me-plus-ai-lens",
+      "name": "me + ai",
+      "meta": "A safety manual for keeping control in the human-AI loop.",
+      "topicIds": [
+        "safety",
+        "manual",
+        "keeping",
+        "control",
+        "human"
+      ]
+    },
+    {
+      "id": "06-me-plus-ai-quote",
+      "name": "a safety manual for keepin",
+      "meta": "pull quote · field anchor",
+      "topicIds": [
+        "safety",
+        "manual"
+      ]
+    },
+    {
+      "id": "06-me-plus-ai-section-2-5-earned-resonance-when-",
+      "name": "5) earned resonance (when l3",
+      "meta": "section · argument move",
+      "topicIds": [
+        "l3-integrated-requires-earned-entry"
+      ]
+    }
+  ],
+  "topicLabels": {
+    "9-non-negotiable-constraints": "9) Non-negotiable constraints",
+    "6-geometry-over-retrieval": "6) Geometry over retrieval",
+    "10-a-final-constraint-this-is-for-me": "10) A final constraint: this is for me",
+    "me-ai": "Me + AI",
+    "safety": "safety",
+    "manual": "manual",
+    "keeping": "keeping",
+    "control": "control",
+    "human": "human",
+    "continuous-variable": "continuous variable",
+    "l0-tool": "L0 — Tool",
+    "l1-scout": "L1 — Scout",
+    "l2-co-author-default-zone": "L2 — Co-author (default zone)",
+    "l3-integrated-requires-earned-entry": "L3 — Integrated (requires earned entry)",
+    "landmarks-on-a-continuum": "landmarks on a continuum",
+    "never-arrive-at-l3-passively": "never arrive at L3 passively."
+  },
+  "extraEdges": [],
+  "meta": {
+    "scope": "intra",
+    "inquiryCount": 3,
+    "conceptCount": 16,
+    "edgeCount": 8,
+    "extraEdgeCount": 0,
+    "generatedAt": "2026-06-26T17:15:26.647Z"
+  }
+}

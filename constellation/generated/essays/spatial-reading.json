@@ -1,0 +1,92 @@
+{
+  "id": "spatial-reading",
+  "title": "Spatial Reading",
+  "method": "heuristic",
+  "embeddingModel": null,
+  "scope": "intra",
+  "people": [
+    {
+      "id": "spatial-reading-lens",
+      "name": "spatial reading",
+      "meta": "Layout is not decoration. It is part of the argument.",
+      "topicIds": [
+        "spatial-reading",
+        "layout",
+        "decoration",
+        "argument",
+        "i-linear-vs-spatial-attention",
+        "layout-as-memory-infrastructure"
+      ]
+    },
+    {
+      "id": "spatial-reading-quote",
+      "name": "layout is not decoration. ",
+      "meta": "pull quote · field anchor",
+      "topicIds": [
+        "layout",
+        "decoration",
+        "layout-as-memory-infrastructure"
+      ]
+    },
+    {
+      "id": "spatial-reading-section-0-thesis",
+      "name": "thesis",
+      "meta": "section · argument move",
+      "topicIds": [
+        "thesis",
+        "argument"
+      ]
+    },
+    {
+      "id": "spatial-reading-section-1-i-linear-vs-spatial-at",
+      "name": "i. linear vs spatial attenti",
+      "meta": "section · argument move",
+      "topicIds": [
+        "i-linear-vs-spatial-attention",
+        "argument",
+        "spatial-reading"
+      ]
+    },
+    {
+      "id": "spatial-reading-section-2-ii-what-an-interactive",
+      "name": "ii. what an interactive essa",
+      "meta": "section · argument move",
+      "topicIds": [
+        "argument",
+        "ii-what-an-interactive-essay-needs"
+      ]
+    }
+  ],
+  "topicLabels": {
+    "thesis": "Thesis",
+    "i-linear-vs-spatial-attention": "I. Linear vs spatial attention",
+    "ii-what-an-interactive-essay-needs": "II. What an interactive essay needs",
+    "iii-instrument-not-archive": "III. Instrument, not archive",
+    "spatial-reading": "Spatial Reading",
+    "layout": "layout",
+    "decoration": "decoration",
+    "argument": "argument",
+    "memory-infrastructure": "memory infrastructure",
+    "throughput": "throughput",
+    "relations": "relations",
+    "a-widget-registry": "A widget registry",
+    "a-dedicated-canvas": "A dedicated canvas",
+    "agent-readable-conventions": "Agent-readable conventions",
+    "layout-as-memory-infrastructure": "layout as memory infrastructure",
+    "site-you-can-think-on": "site you can think on"
+  },
+  "extraEdges": [
+    [
+      "memory-infrastructure",
+      "layout-as-memory-infrastructure"
+    ]
+  ],
+  "meta": {
+    "scope": "intra",
+    "inquiryCount": 5,
+    "conceptCount": 16,
+    "edgeCount": 16,
+    "extraEdgeCount": 1,
+    "generatedAt": "2026-06-26T17:15:26.652Z"
+  }
+}

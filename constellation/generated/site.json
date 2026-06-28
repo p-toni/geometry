@@ -1,0 +1,65 @@
+{
+  "id": "site",
+  "title": "Site · Inquiry lenses",
+  "method": "heuristic",
+  "embeddingModel": null,
+  "scope": "inter",
+  "people": [
+    {
+      "id": "agency-under-abundance",
+      "name": "agency under abundance",
+      "meta": "edges · tools that return grip, not fog",
+      "topicIds": [
+        "tools-need-edges"
+      ]
+    },
+    {
+      "id": "human-ai-loop",
+      "name": "human–AI loop",
+      "meta": "coupling · verification before trust",
+      "topicIds": [
+        "human"
+      ]
+    },
+    {
+      "id": "spatial-argument",
+      "name": "spatial argument",
+      "meta": "layout · relations beside, not only through",
+      "topicIds": [
+        "layout",
+        "argument",
+        "relations"
+      ]
+    },
+    {
+      "id": "allowed-cuts",
+      "name": "allowed cuts",
+      "meta": "ignorance · understanding after the right omissions",
+      "topicIds": [
+        "allowed-ignorance"
+      ]
+    }
+  ],
+  "topicLabels": {
+    "thesis": "Thesis",
+    "structure": "structure",
+    "preamble": "Preamble",
+    "closing": "Closing",
+    "rebuild": "Rebuild",
+    "tools-need-edges": "Tools Need Edges",
+    "human": "human",
+    "allowed-ignorance": "Allowed Ignorance",
+    "layout": "layout",
+    "argument": "argument",
+    "relations": "relations"
+  },
+  "extraEdges": [],
+  "meta": {
+    "scope": "inter",
+    "inquiryCount": 4,
+    "conceptCount": 11,
+    "edgeCount": 6,
+    "extraEdgeCount": 0,
+    "generatedAt": "2026-06-26T17:15:26.654Z"
+  }
+}

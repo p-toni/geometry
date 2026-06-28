@@ -13,7 +13,8 @@ import { kindLabel } from '../lib/glyph';
 
 import { pool, FIELD_HEIGHT, FIELD_WIDTH } from '../pool';
 import type { PoolNode, Rel } from '../pool/types';
-import { ConstellationDescent, type DescentOrigin } from './ConstellationDescent';
+import { SpatialConstellation, type DescentOrigin } from './SpatialConstellation';
+import { hasSpatialGraph } from './spatialConstellationMap';
 
 import { getFieldMode, statusForMode } from './fieldState';
 import { NAV_HOP_MS, NAV_OPEN_MS, useFieldTransform } from './hooks/useFieldTransform';
@@ -888,19 +889,14 @@ export function FieldApp() {
               }
               setDescent(readNode);
             }}
-            canDescend={
-              !readNode.media &&
-              readNode.kind !== 'link' &&
-              (Boolean(readNode.struct) ||
-                readNode.excerpt.length > 0 ||
-                readNode.body.length > 0)
-            }
+            canDescend={hasSpatialGraph(readNode.id)}
           />
         ) : null}
 
         {descent ? (
-          <ConstellationDescent
-            node={descent}
+          <SpatialConstellation
+            nodeId={descent.id}
+            title={descent.title}
             origin={descentOrigin ?? undefined}
             onClose={() => {
               setDescent(null);

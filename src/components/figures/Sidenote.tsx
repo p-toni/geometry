@@ -1,5 +1,5 @@
 import { renderInlineMarkdown } from '../../lib/inlineMarkdown';
-import { body } from './styles';
+import { body as proseBody } from './styles';
 
 type SidenoteProps = {
   anchor: string;
@@ -21,7 +21,7 @@ export function Sidenote({ anchor, x, body }: SidenoteProps) {
       }}
     >
       {body ? (
-        <p style={{ ...body, margin: 0 }}>
+        <p style={{ ...proseBody, margin: 0 }}>
           {renderInlineMarkdown(body)}
           <sup
             style={{

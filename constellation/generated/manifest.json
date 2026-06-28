@@ -1,0 +1,122 @@
+{
+  "generatedAt": "2026-06-26T17:15:26.655Z",
+  "method": "heuristic",
+  "embeddingModel": null,
+  "graphs": [
+    {
+      "id": "reference",
+      "title": "Reference · Poetic Interaction",
+      "path": "reference",
+      "kind": "reference"
+    },
+    {
+      "id": "site",
+      "title": "Site · Inquiry lenses",
+      "path": "site",
+      "kind": "site",
+      "scope": "inter",
+      "inquiryCount": 4,
+      "conceptCount": 11
+    },
+    {
+      "id": "01-tools-need-edges",
+      "title": "Tools Need Edges",
+      "path": "essays/01-tools-need-edges",
+      "kind": "essay",
+      "scope": "intra",
+      "method": "heuristic",
+      "inquiryCount": 2,
+      "conceptCount": 6
+    },
+    {
+      "id": "02-increasing-returns",
+      "title": "Increasing Returns",
+      "path": "essays/02-increasing-returns",
+      "kind": "essay",
+      "scope": "intra",
+      "method": "heuristic",
+      "inquiryCount": 2,
+      "conceptCount": 8
+    },
+    {
+      "id": "03-ilya",
+      "title": "Ilya",
+      "path": "essays/03-ilya",
+      "kind": "essay",
+      "scope": "intra",
+      "method": "heuristic",
+      "inquiryCount": 2,
+      "conceptCount": 5
+    },
+    {
+      "id": "04-co-owning-the-loop",
+      "title": "Co-owning The Loop",
+      "path": "essays/04-co-owning-the-loop",
+      "kind": "essay",
+      "scope": "intra",
+      "method": "heuristic",
+      "inquiryCount": 4,
+      "conceptCount": 15
+    },
+    {
+      "id": "05-bounded-me",
+      "title": "Bounded Me",
+      "path": "essays/05-bounded-me",
+      "kind": "essay",
+      "scope": "intra",
+      "method": "heuristic",
+      "inquiryCount": 5,
+      "conceptCount": 16
+    },
+    {
+      "id": "06-me-plus-ai",
+      "title": "Me + AI",
+      "path": "essays/06-me-plus-ai",
+      "kind": "essay",
+      "scope": "intra",
+      "method": "heuristic",
+      "inquiryCount": 3,
+      "conceptCount": 16
+    },
+    {
+      "id": "07-geometry-over-retrieval",
+      "title": "Geometry Over Retrieval",
+      "path": "essays/07-geometry-over-retrieval",
+      "kind": "essay",
+      "scope": "intra",
+      "method": "heuristic",
+      "inquiryCount": 5,
+      "conceptCount": 16
+    },
+    {
+      "id": "08-weak-geometry",
+      "title": "Weak Geometry",
+      "path": "essays/08-weak-geometry",
+      "kind": "essay",
+      "scope": "intra",
+      "method": "heuristic",
+      "inquiryCount": 4,
+      "conceptCount": 16
+    },
+    {
+      "id": "09-allowed-ignorance",
+      "title": "Allowed Ignorance",
+      "path": "essays/09-allowed-ignorance",
+      "kind": "essay",
+      "scope": "intra",
+      "method": "heuristic",
+      "inquiryCount": 5,
+      "conceptCount": 16
+    },
+    {
+      "id": "spatial-reading",
+      "title": "Spatial Reading",
+      "path": "essays/spatial-reading",
+      "kind": "essay",
+      "scope": "intra",
+      "method": "heuristic",
+      "inquiryCount": 5,
+      "conceptCount": 16
+    }
+  ]
+}

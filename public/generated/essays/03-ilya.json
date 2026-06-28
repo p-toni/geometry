@@ -1,0 +1,46 @@
+{
+  "id": "03-ilya",
+  "title": "Ilya",
+  "method": "heuristic",
+  "embeddingModel": null,
+  "scope": "intra",
+  "people": [
+    {
+      "id": "03-ilya-lens",
+      "name": "ilya",
+      "meta": "Value of intelligence",
+      "topicIds": [
+        "ilya",
+        "value",
+        "intelligence",
+        "value-tilt"
+      ]
+    },
+    {
+      "id": "03-ilya-quote",
+      "name": "value of intelligence",
+      "meta": "pull quote · field anchor",
+      "topicIds": [
+        "value",
+        "intelligence",
+        "value-tilt"
+      ]
+    }
+  ],
+  "topicLabels": {
+    "ilya": "Ilya",
+    "value": "value",
+    "intelligence": "intelligence",
+    "2025-10-18": "2025.10.18",
+    "value-tilt": "Value Tilt"
+  },
+  "extraEdges": [],
+  "meta": {
+    "scope": "intra",
+    "inquiryCount": 2,
+    "conceptCount": 5,
+    "edgeCount": 7,
+    "extraEdgeCount": 0,
+    "generatedAt": "2026-06-26T17:15:26.644Z"
+  }
+}

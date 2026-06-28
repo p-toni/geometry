@@ -1,0 +1,79 @@
+{
+  "id": "08-weak-geometry",
+  "title": "Weak Geometry",
+  "method": "heuristic",
+  "embeddingModel": null,
+  "scope": "intra",
+  "people": [
+    {
+      "id": "08-weak-geometry-lens",
+      "name": "weak geometry",
+      "meta": "Why owned structure must stay less committed than I want it to.",
+      "topicIds": [
+        "iv-weak-geometry",
+        "weak-geometry",
+        "owned",
+        "structure",
+        "committed",
+        "ii-weak-is-not-vague"
+      ]
+    },
+    {
+      "id": "08-weak-geometry-quote",
+      "name": "why owned structure must s",
+      "meta": "pull quote · field anchor",
+      "topicIds": [
+        "owned",
+        "structure"
+      ]
+    },
+    {
+      "id": "08-weak-geometry-section-0-preamble",
+      "name": "preamble",
+      "meta": "section · argument move",
+      "topicIds": [
+        "preamble"
+      ]
+    },
+    {
+      "id": "08-weak-geometry-section-1-thesis",
+      "name": "thesis",
+      "meta": "section · argument move",
+      "topicIds": [
+        "thesis"
+      ]
+    }
+  ],
+  "topicLabels": {
+    "preamble": "Preamble",
+    "thesis": "Thesis",
+    "ii-weak-is-not-vague": "II. Weak is not vague",
+    "iii-when-a-map-becomes-a-cage": "III. When a map becomes a cage",
+    "iv-weak-geometry": "IV. Weak geometry",
+    "v-me-ai-under-revision": "V. Me + AI under revision",
+    "vi-a-new-diagnostic": "VI. A new diagnostic",
+    "closing": "Closing",
+    "weak-geometry": "Weak Geometry",
+    "owned": "owned",
+    "structure": "structure",
+    "committed": "committed",
+    "relax": "Relax.",
+    "update-2026-04-12": "Update (2026-04-12):",
+    "2026-03-15": "2026.03.15",
+    "geometry-not-storage": "\"geometry, not storage.\""
+  },
+  "extraEdges": [
+    [
+      "update-2026-04-12",
+      "2026-03-15"
+    ]
+  ],
+  "meta": {
+    "scope": "intra",
+    "inquiryCount": 4,
+    "conceptCount": 16,
+    "edgeCount": 10,
+    "extraEdgeCount": 1,
+    "generatedAt": "2026-06-26T17:15:26.651Z"
+  }
+}

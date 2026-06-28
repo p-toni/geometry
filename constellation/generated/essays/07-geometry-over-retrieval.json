@@ -1,0 +1,82 @@
+{
+  "id": "07-geometry-over-retrieval",
+  "title": "Geometry Over Retrieval",
+  "method": "heuristic",
+  "embeddingModel": null,
+  "scope": "intra",
+  "people": [
+    {
+      "id": "07-geometry-over-retrieval-lens",
+      "name": "geometry over retrieval",
+      "meta": "Why structure is prior to information — and how to tell if you a",
+      "topicIds": [
+        "geometry-over-retrieval",
+        "structure",
+        "prior",
+        "information",
+        "iv-what-geometry-feels-like"
+      ]
+    },
+    {
+      "id": "07-geometry-over-retrieval-quote",
+      "name": "why structure is prior to ",
+      "meta": "pull quote · field anchor",
+      "topicIds": [
+        "structure",
+        "prior"
+      ]
+    },
+    {
+      "id": "07-geometry-over-retrieval-section-0-preamble",
+      "name": "preamble",
+      "meta": "section · argument move",
+      "topicIds": [
+        "preamble"
+      ]
+    },
+    {
+      "id": "07-geometry-over-retrieval-section-1-thesis",
+      "name": "thesis",
+      "meta": "section · argument move",
+      "topicIds": [
+        "thesis"
+      ]
+    },
+    {
+      "id": "07-geometry-over-retrieval-section-2-i-fluency-i",
+      "name": "i. fluency is not understand",
+      "meta": "section · argument move",
+      "topicIds": [
+        "understand",
+        "i-fluency-is-not-understanding"
+      ]
+    }
+  ],
+  "topicLabels": {
+    "predict": "Predict",
+    "teach": "Teach",
+    "rebuild": "Rebuild",
+    "preamble": "Preamble",
+    "thesis": "Thesis",
+    "i-fluency-is-not-understanding": "I. Fluency is not understanding",
+    "ii-points-versus-edges": "II. Points versus edges",
+    "iii-the-missing-dimension-curvature": "III. The missing dimension: curvature",
+    "iv-what-geometry-feels-like": "IV. What geometry feels like",
+    "closing": "Closing",
+    "geometry-over-retrieval": "Geometry Over Retrieval",
+    "structure": "structure",
+    "prior": "prior",
+    "information": "information",
+    "actually": "actually",
+    "understand": "understand"
+  },
+  "extraEdges": [],
+  "meta": {
+    "scope": "intra",
+    "inquiryCount": 5,
+    "conceptCount": 16,
+    "edgeCount": 11,
+    "extraEdgeCount": 0,
+    "generatedAt": "2026-06-26T17:15:26.649Z"
+  }
+}

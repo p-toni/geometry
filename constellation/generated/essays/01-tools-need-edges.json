@@ -1,0 +1,45 @@
+{
+  "id": "01-tools-need-edges",
+  "title": "Tools Need Edges",
+  "method": "heuristic",
+  "embeddingModel": null,
+  "scope": "intra",
+  "people": [
+    {
+      "id": "01-tools-need-edges-lens",
+      "name": "tools need edges",
+      "meta": "A tool without constraints is not liberating. It is unfinished.",
+      "topicIds": [
+        "tools-need-edges",
+        "constraints",
+        "liberating",
+        "unfinished"
+      ]
+    },
+    {
+      "id": "01-tools-need-edges-quote",
+      "name": "a tool without constraints",
+      "meta": "pull quote · field anchor",
+      "topicIds": [
+        "constraints"
+      ]
+    }
+  ],
+  "topicLabels": {
+    "tools-need-edges": "Tools Need Edges",
+    "constraints": "constraints",
+    "liberating": "liberating",
+    "unfinished": "unfinished",
+    "2026-04-28": "2026.04.28",
+    "edge-grip": "Edge Grip"
+  },
+  "extraEdges": [],
+  "meta": {
+    "scope": "intra",
+    "inquiryCount": 2,
+    "conceptCount": 6,
+    "edgeCount": 5,
+    "extraEdgeCount": 0,
+    "generatedAt": "2026-06-26T17:15:26.642Z"
+  }
+}

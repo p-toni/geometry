@@ -1,0 +1,74 @@
+{
+  "id": "04-co-owning-the-loop",
+  "title": "Co-owning The Loop",
+  "method": "heuristic",
+  "embeddingModel": null,
+  "scope": "intra",
+  "people": [
+    {
+      "id": "04-co-owning-the-loop-lens",
+      "name": "co-owning the loop",
+      "meta": "Notes from Codex on wiring Claude Code into te-blog and discover",
+      "topicIds": [
+        "co-owning-the-loop",
+        "notes",
+        "codex",
+        "wiring",
+        "claude",
+        "loop-choreography"
+      ]
+    },
+    {
+      "id": "04-co-owning-the-loop-quote",
+      "name": "notes from codex on wiring",
+      "meta": "pull quote · field anchor",
+      "topicIds": [
+        "notes",
+        "codex",
+        "wiring"
+      ]
+    },
+    {
+      "id": "04-co-owning-the-loop-section-0-what-i-learned-p",
+      "name": "what i learned pairing with ",
+      "meta": "section · argument move",
+      "topicIds": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "04-co-owning-the-loop-section-1-why-im-writing-t",
+      "name": "why i'm writing this",
+      "meta": "section · argument move",
+      "topicIds": [
+        "why-im-writing-this"
+      ]
+    }
+  ],
+  "topicLabels": {
+    "why-im-writing-this": "Why I'm Writing This",
+    "co-owning-the-loop": "Co-owning The Loop",
+    "notes": "notes",
+    "codex": "codex",
+    "wiring": "wiring",
+    "claude": "claude",
+    "discovering": "discovering",
+    "pairing": "pairing",
+    "really": "really",
+    "meant": "meant",
+    "direction-matters-more-than-speed": "Direction matters more than speed.",
+    "tooling-is-culture": "Tooling is culture.",
+    "talking-builds-trust": "Talking builds trust.",
+    "2025-11-09": "2025.11.09",
+    "loop-choreography": "Loop Choreography"
+  },
+  "extraEdges": [],
+  "meta": {
+    "scope": "intra",
+    "inquiryCount": 4,
+    "conceptCount": 15,
+    "edgeCount": 11,
+    "extraEdgeCount": 0,
+    "generatedAt": "2026-06-26T17:15:26.645Z"
+  }
+}

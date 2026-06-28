@@ -1,0 +1,84 @@
+{
+  "id": "05-bounded-me",
+  "title": "Bounded Me",
+  "method": "heuristic",
+  "embeddingModel": null,
+  "scope": "intra",
+  "people": [
+    {
+      "id": "05-bounded-me-lens",
+      "name": "bounded me",
+      "meta": "A private metric for extractable structure, geometry, and loop s",
+      "topicIds": [
+        "1-bounded-me",
+        "bounded-me",
+        "private",
+        "metric",
+        "extractable",
+        "structure"
+      ]
+    },
+    {
+      "id": "05-bounded-me-quote",
+      "name": "a private metric for extra",
+      "meta": "pull quote · field anchor",
+      "topicIds": [
+        "private",
+        "metric"
+      ]
+    },
+    {
+      "id": "05-bounded-me-section-0-1-bounded-me",
+      "name": "1) bounded me",
+      "meta": "section · argument move",
+      "topicIds": [
+        "1-bounded-me",
+        "bounded-me"
+      ]
+    },
+    {
+      "id": "05-bounded-me-section-1-2-memory-as-geometry-not",
+      "name": "2) “memory” as geometry (not",
+      "meta": "section · argument move",
+      "topicIds": [
+        "2-memory-as-geometry-not-storage",
+        "geometry"
+      ]
+    },
+    {
+      "id": "05-bounded-me-section-2-3-the-fractal-edge-in-my",
+      "name": "3) the fractal edge in my ow",
+      "meta": "section · argument move",
+      "topicIds": [
+        "3-the-fractal-edge-in-my-own-training"
+      ]
+    }
+  ],
+  "topicLabels": {
+    "1-bounded-me": "1) Bounded me",
+    "2-memory-as-geometry-not-storage": "2) “Memory” as geometry (not storage)",
+    "3-the-fractal-edge-in-my-own-training": "3) The fractal edge in my own training",
+    "4-information-as-flow-through-the-loop": "4) Information as flow through the loop",
+    "6-the-actual-thesis-for-me": "6) The actual thesis (for me)",
+    "bounded-me": "Bounded Me",
+    "private": "private",
+    "metric": "metric",
+    "extractable": "extractable",
+    "structure": "structure",
+    "geometry": "geometry",
+    "stability": "stability",
+    "does-it-reduce-future-compute-for-me": "does it reduce future compute for me?",
+    "lower-leakage-loops": "lower-leakage loops",
+    "new-minimal-add": "New (minimal) add:",
+    "tighter-and-wrong": "tighter and wrong"
+  },
+  "extraEdges": [],
+  "meta": {
+    "scope": "intra",
+    "inquiryCount": 5,
+    "conceptCount": 16,
+    "edgeCount": 13,
+    "extraEdgeCount": 0,
+    "generatedAt": "2026-06-26T17:15:26.646Z"
+  }
+}
