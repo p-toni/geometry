@@ -3,6 +3,7 @@ import { registry } from './styles';
 
 type SectionRailProps = SectionRailMeta & {
   isFirst?: boolean;
+  sectionSlug?: string;
 };
 
 function operatorDetail(display: string): string | null {
@@ -11,7 +12,7 @@ function operatorDetail(display: string): string | null {
 }
 
 /** Registry category header — A·frame / hairline / tagline. */
-export function SectionRail({ display, letter, role, tagline, tier, isFirst }: SectionRailProps) {
+export function SectionRail({ display, letter, role, tagline, tier, isFirst, sectionSlug }: SectionRailProps) {
   const kicker =
     tier === 'grammar' ? `${letter} · ${role}` : letter === '·' ? role : `${letter} · ${role}`;
   const detail = tier === 'grammar' && role === 'operator' ? operatorDetail(display) : null;
@@ -21,6 +22,7 @@ export function SectionRail({ display, letter, role, tagline, tier, isFirst }: S
       data-figure="section-rail"
       data-tier={tier}
       data-testid="section-rail"
+      data-section={sectionSlug}
       style={{
         display: 'flex',
         alignItems: 'center',
@@ -34,7 +36,7 @@ export function SectionRail({ display, letter, role, tagline, tier, isFirst }: S
           fontSize: tier === 'grammar' ? 11 : 10,
           letterSpacing: tier === 'grammar' ? '0.2em' : '0.14em',
           textTransform: 'uppercase',
-          color: tier === 'grammar' ? 'var(--signal)' : registry.kicker,
+          color: tier === 'grammar' ? registry.readAccent : registry.kicker,
           whiteSpace: 'nowrap',
         }}
       >

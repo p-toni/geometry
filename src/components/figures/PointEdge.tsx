@@ -72,18 +72,18 @@ export function PointEdge({ inline = true }: PointEdgeProps) {
           y1={origin.y}
           x2={(drag ?? edge!.to).x}
           y2={(drag ?? edge!.to).y}
-          stroke="var(--signal)"
+          stroke="var(--read-accent)"
           strokeWidth={2.5}
           strokeLinecap="round"
         />
       )}
-      <circle cx={origin.x} cy={origin.y} r={7} fill="var(--signal)" />
+      <circle cx={origin.x} cy={origin.y} r={7} fill="var(--read-accent)" />
       <circle
         cx={(drag ?? edge?.to ?? origin).x}
         cy={(drag ?? edge?.to ?? origin).y}
         r={5}
         fill="var(--card)"
-        stroke="var(--signal)"
+        stroke="var(--read-accent)"
         strokeWidth={2}
       />
     </svg>

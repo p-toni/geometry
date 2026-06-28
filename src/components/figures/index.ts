@@ -1,5 +1,8 @@
 export { Backlink } from './Backlink';
 export { Callout } from './Callout';
+export { Citation, FootnoteMarker, SectionFootnotes, SourcesLedger } from './Citation';
+export { Contrast } from './Contrast';
+export { Diagram } from './Diagram';
 export { Curvature } from './Curvature';
 export { DiagnosticTable } from './DiagnosticTable';
 export { EdgeTaxonomy } from './EdgeTaxonomy';

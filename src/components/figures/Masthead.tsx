@@ -25,7 +25,7 @@ export function Masthead({ kind, title, date, cluster, dek }: MastheadProps) {
           ...mono,
           fontSize: 11,
           letterSpacing: '0.14em',
-          color: 'var(--signal)',
+          color: 'var(--read-accent)',
         }}
       >
         {kindLabel(kind)}

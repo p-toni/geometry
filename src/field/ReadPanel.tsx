@@ -27,7 +27,7 @@ type ReadPanelProps = {
 function neighborDot(kind: PoolNode['kind']) {
   const color =
     kind === 'project' || kind === 'doc'
-      ? 'var(--signal)'
+      ? 'var(--read-accent)'
       : kind === 'link' || kind === 'about'
         ? '#5b6b73'
         : 'var(--ink)';
@@ -230,9 +230,9 @@ export function ReadPanel({
                 fontSize: 11,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
-                color: 'var(--signal)',
-                background: '#f4f6fd',
-                border: '1px solid #d4dbf2',
+                color: 'var(--read-accent-deep)',
+                background: 'var(--read-accent-tint)',
+                border: '1px solid var(--read-accent-border)',
                 borderRadius: 3,
                 padding: '10px 15px',
                 cursor: 'pointer',

@@ -27,7 +27,7 @@ export function ProtocolStepper() {
           style={{
             background: 'var(--card)',
             border: '1px solid #E8E2D8',
-            borderTop: '3px solid var(--signal)',
+            borderTop: '3px solid var(--read-accent)',
             borderRadius: 3,
             padding: '15px 14px',
             boxShadow: '0 2px 8px rgba(28,31,36,.06)',
@@ -37,7 +37,7 @@ export function ProtocolStepper() {
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: 10,
-              color: 'var(--signal)',
+              color: 'var(--read-accent)',
             }}
           >
             {s.n}

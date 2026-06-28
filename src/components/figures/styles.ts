@@ -14,6 +14,13 @@ export const registry = {
   signal: '#1F4DB8',
   signalTint: '#eef2fd',
   signalBorder: '#d4dbf2',
+  readAccent: 'var(--read-accent)',
+  readAccentDeep: 'var(--read-accent-deep)',
+  readAccentTint: 'var(--read-accent-tint)',
+  readAccentBorder: 'var(--read-accent-border)',
+  readOwned: 'var(--read-owned)',
+  readOwnedTint: 'var(--read-owned-tint)',
+  readOwnedBorder: 'var(--read-owned-border)',
   semanticGreen: '#1F8A5B',
   semanticOrange: '#C2410C',
 } as const;

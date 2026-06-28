@@ -70,7 +70,7 @@ export function ConstellationDescent({ node, origin, onClose }: Props) {
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const rootStyle = getComputedStyle(document.documentElement);
-    const accent = rootStyle.getPropertyValue('--signal').trim() || '#1F4DB8';
+    const accent = rootStyle.getPropertyValue('--read-accent').trim() || '#9a7344';
 
     const draw = () => {
       const cv = canvasRef.current;
@@ -198,7 +198,7 @@ export function ConstellationDescent({ node, origin, onClose }: Props) {
         ctx.globalAlpha = appear;
         if (external) {
           ctx.setLineDash([3, 3]);
-          ctx.strokeStyle = '#6f8cff';
+          ctx.strokeStyle = '#c98a5e';
           ctx.lineWidth = 1.2;
           ctx.beginPath();
           ctx.arc(pp.x, pp.y, r + 2, 0, Math.PI * 2);
@@ -320,7 +320,7 @@ export function ConstellationDescent({ node, origin, onClose }: Props) {
             color: '#aab2ad',
           }}
         >
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6f8cff' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--read-accent)' }}>
             depth 2 · interior
           </div>
           <p style={{ fontSize: 13.5, lineHeight: 1.55, margin: '10px 0 0' }}>
@@ -329,7 +329,7 @@ export function ConstellationDescent({ node, origin, onClose }: Props) {
           {selectedRung ? (
             <div style={{ marginTop: 14, background: 'rgba(255,255,255,.06)', borderRadius: 5, padding: '14px 16px' }}>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 9 }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, color: '#6f8cff' }}>{selectedRung.marker}</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, color: 'var(--read-accent)' }}>{selectedRung.marker}</span>
                 <span className="type-display" style={{ fontWeight: 600, fontSize: 15, color: '#f3f4f6' }}>{selectedRung.term}</span>
               </div>
               <p style={{ fontSize: 13, lineHeight: 1.5, color: '#cdd4f5', margin: '7px 0 0' }}>{selectedRung.body}</p>

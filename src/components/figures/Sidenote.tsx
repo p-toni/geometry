@@ -27,7 +27,7 @@ export function Sidenote({ anchor, x, body }: SidenoteProps) {
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: 9,
-              color: 'var(--signal)',
+              color: 'var(--read-accent)',
               marginLeft: 2,
             }}
           >
@@ -48,7 +48,7 @@ export function Sidenote({ anchor, x, body }: SidenoteProps) {
             fontFamily: 'var(--font-mono)',
             fontSize: 9,
             letterSpacing: '0.1em',
-            color: 'var(--signal)',
+            color: 'var(--read-accent)',
             marginBottom: 6,
           }}
         >

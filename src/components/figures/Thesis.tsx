@@ -10,7 +10,7 @@ export function Thesis({ x, k }: ThesisProps) {
     <div
       data-figure="FIG.04"
       style={{
-        borderLeft: '3px solid var(--signal)',
+        borderLeft: '3px solid var(--read-accent)',
         padding: '4px 0 4px 22px',
         margin: '8px 0 20px',
       }}
@@ -22,7 +22,7 @@ export function Thesis({ x, k }: ThesisProps) {
             fontSize: 10,
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
-            color: 'var(--signal)',
+            color: 'var(--read-accent)',
             marginBottom: 10,
           }}
         >

@@ -60,11 +60,11 @@
 }
 
 .edge-emphasis {
-  border-left: 3px solid var(--signal) !important;
+  border-left: 3px solid var(--read-accent) !important;
 }
 
 .edge-continues {
-  border-right: 3px solid var(--signal) !important;
+  border-right: 3px solid var(--read-accent) !important;
   transition: transform 140ms var(--ease-out-strong);
 }
 
@@ -106,7 +106,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--signal);
+  background: var(--read-accent);
   flex: none;
 }
 

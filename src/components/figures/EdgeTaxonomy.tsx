@@ -21,14 +21,14 @@ function forceStyle(tier: (typeof DEFAULT_FORCES)[number]['tier']) {
     case 'necessary':
       return {
         color: '#fff',
-        background: 'var(--signal)',
+        background: 'var(--read-accent)',
         border: 'none',
       };
     case 'likely':
       return {
-        color: 'var(--signal)',
-        background: '#eef2fd',
-        border: '1px solid #c5cff0',
+        color: 'var(--read-accent-deep)',
+        background: 'var(--read-accent-tint)',
+        border: '1px solid var(--read-accent-border)',
       };
     case 'bridge':
       return {

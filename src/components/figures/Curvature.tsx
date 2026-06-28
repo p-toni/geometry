@@ -61,26 +61,26 @@ export function Curvature({ inline = true }: CurvatureProps) {
       <path
         d={data.left}
         fill="none"
-        stroke="var(--signal)"
+        stroke="var(--read-accent)"
         strokeWidth={2}
         strokeLinecap="round"
       />
       <path
         d={data.right}
         fill="none"
-        stroke="var(--signal)"
+        stroke="var(--read-accent)"
         strokeWidth={2}
         strokeLinecap="round"
         opacity={0.7}
       />
-      <circle cx={48} cy={28} r={4} fill="var(--signal)" opacity={0.5} />
-      <circle cx={272} cy={28} r={4} fill="var(--signal)" opacity={0.5} />
+      <circle cx={48} cy={28} r={4} fill="var(--read-accent)" opacity={0.5} />
+      <circle cx={272} cy={28} r={4} fill="var(--read-accent)" opacity={0.5} />
       <circle
         cx={160}
         cy={data.hubY}
         r={5}
         fill="none"
-        stroke="var(--signal)"
+        stroke="var(--read-accent)"
         strokeWidth={1.5}
         strokeDasharray="3 3"
       />

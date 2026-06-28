@@ -36,11 +36,11 @@ const SKIN: Record<
   },
   honesty: {
     box: {
-      background: '#f4f6fd',
-      border: '1px solid #d4dbf2',
-      borderLeft: '3px solid var(--signal)',
+      background: 'var(--read-owned-tint)',
+      border: '1px solid var(--read-owned-border)',
+      borderLeft: '3px solid var(--read-owned)',
     },
-    label: 'var(--signal)',
+    label: 'var(--read-owned)',
     glyph: '⚖',
   },
   update: {

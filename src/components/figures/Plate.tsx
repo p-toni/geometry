@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { registry } from './styles';
 
 type PlateProps = {
@@ -7,8 +8,10 @@ type PlateProps = {
 };
 
 export function Plate({ cap, src, inline = true }: PlateProps) {
+  const [srcFailed, setSrcFailed] = useState(false);
   const [label, ...rest] = cap.split(' — ');
   const caption = rest.length ? rest.join(' — ') : cap;
+  const showPlaceholder = !src || srcFailed;
 
   const image = (
     <div
@@ -17,19 +20,26 @@ export function Plate({ cap, src, inline = true }: PlateProps) {
         height: 200,
         border: `1px solid ${registry.line}`,
         borderRadius: 3,
-        background: src
-          ? `url(${src}) center/cover no-repeat, ${registry.paper2}`
-          : registry.paper2,
-        backgroundImage: src
-          ? `url(${src}) center/cover no-repeat`
-          : `repeating-linear-gradient(135deg,transparent,transparent 9px,rgba(31,77,184,.06) 9px,rgba(31,77,184,.06) 10px)`,
+        background: registry.paper2,
+        backgroundImage: showPlaceholder
+          ? `repeating-linear-gradient(135deg,transparent,transparent 9px,rgba(154,115,68,.08) 9px,rgba(154,115,68,.08) 10px)`
+          : undefined,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         boxShadow: 'inset 0 2px 7px rgba(28,31,36,.05)',
+        overflow: 'hidden',
       }}
     >
-      {!src ? (
+      {src && !srcFailed ? (
+        <img
+          src={src}
+          alt=""
+          onError={() => setSrcFailed(true)}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+      ) : null}
+      {showPlaceholder ? (
         <>
           <div
             style={{
@@ -54,7 +64,7 @@ export function Plate({ cap, src, inline = true }: PlateProps) {
               color: '#7d867f',
             }}
           >
-            plate · drop svg here
+            plate · swap asset
           </span>
         </>
       ) : null}
@@ -76,7 +86,7 @@ export function Plate({ cap, src, inline = true }: PlateProps) {
           fontSize: 10,
           fontWeight: 700,
           letterSpacing: '0.06em',
-          color: 'var(--signal)',
+          color: 'var(--read-accent)',
           whiteSpace: 'nowrap',
         }}
       >

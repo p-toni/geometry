@@ -221,7 +221,7 @@ export function LateFailure({ inline = true }: LateFailureProps) {
             <path
               d="M 48 118 Q 120 42 168 78 T 272 22"
               fill="none"
-              stroke="var(--signal)"
+              stroke="var(--read-accent)"
               strokeWidth={2}
               strokeLinecap="round"
               opacity={0.85}

@@ -11,6 +11,15 @@
   --signal: #1f4db8;
   --fresh: #d4a53a;
 
+  /* Read surface — warm editorial accent; reserve --signal for field nav */
+  --read-accent: #9a7344;
+  --read-accent-deep: #7a5a30;
+  --read-accent-tint: #f4efe6;
+  --read-accent-border: #d9cbb8;
+  --read-owned: #c2410c;
+  --read-owned-tint: #fdf4ef;
+  --read-owned-border: #e8c4b0;
+
   /* Cluster temperature — ochre / cobalt-family / sage / mauve (gold is --fresh only) */
   --cluster-writing: #9a7344;
   --cluster-work: #4a68a8;
