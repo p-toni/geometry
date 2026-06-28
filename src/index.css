@@ -41,13 +41,6 @@ input {
   font: inherit;
 }
 
-.field-prose {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.66;
-  color: var(--ink-2);
-}
-
 @media (max-width: 900px) {
   .field-read {
     position: absolute !important;

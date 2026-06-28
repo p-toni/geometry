@@ -44,16 +44,7 @@ export function Masthead({ kind, title, date, cluster, dek }: MastheadProps) {
         {title}
       </h1>
       {dek ? (
-        <p
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: 17,
-            lineHeight: 1.55,
-            color: 'var(--muted)',
-            margin: '12px 0 0',
-            maxWidth: '42em',
-          }}
-        >
+        <p className="prose-lead" style={{ margin: '12px 0 0', maxWidth: '42em' }}>
           {dek}
         </p>
       ) : null}

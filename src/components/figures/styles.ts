@@ -26,9 +26,23 @@ export const mono = {
 
 export const body = {
   fontFamily: 'var(--font-body)',
-  fontSize: 16,
-  lineHeight: 1.62,
-  color: registry.body,
+  fontSize: 'var(--prose-size)',
+  lineHeight: 'var(--prose-leading)',
+  color: 'var(--prose-color)',
+};
+
+export const proseLead = {
+  fontFamily: 'var(--font-body)',
+  fontSize: 'var(--prose-lead-size)',
+  lineHeight: 'var(--prose-lead-leading)',
+  color: 'var(--prose-lead-color)',
+};
+
+export const proseInset = {
+  fontFamily: 'var(--font-body)',
+  fontSize: 'var(--prose-inset-size)',
+  lineHeight: 'var(--prose-inset-leading)',
+  color: 'var(--prose-inset-color)',
 };
 
 export const figureShell: CSSProperties = {

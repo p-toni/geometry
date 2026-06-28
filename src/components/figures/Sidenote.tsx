@@ -1,4 +1,5 @@
 import { renderInlineMarkdown } from '../../lib/inlineMarkdown';
+import { body } from './styles';
 
 type SidenoteProps = {
   anchor: string;
@@ -20,15 +21,7 @@ export function Sidenote({ anchor, x, body }: SidenoteProps) {
       }}
     >
       {body ? (
-        <p
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: 16,
-            lineHeight: 1.62,
-            color: '#2c333a',
-            margin: 0,
-          }}
-        >
+        <p style={{ ...body, margin: 0 }}>
           {renderInlineMarkdown(body)}
           <sup
             style={{
@@ -61,15 +54,7 @@ export function Sidenote({ anchor, x, body }: SidenoteProps) {
         >
           {anchor}
         </div>
-        <p
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: 12.5,
-            lineHeight: 1.5,
-            margin: 0,
-            color: '#6B7280',
-          }}
-        >
+        <p className="prose-sm" style={{ margin: 0 }}>
           {renderInlineMarkdown(x)}
         </p>
       </div>

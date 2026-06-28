@@ -38,6 +38,24 @@
   --motion-focus: 200ms;
   --motion-nav-open: 240ms;
   --motion-nav-hop: 180ms;
+  /* Read prose — excerpt, masthead dek, and full essay body share one scale */
+  --prose-size: 16.5px;
+  --prose-leading: 1.78;
+  --prose-color: var(--ink);
+  --prose-paragraph-gap: 17px;
+  --prose-lead-size: 17px;
+  --prose-lead-leading: 1.55;
+  --prose-lead-color: var(--muted);
+  --prose-inset-size: 14.5px;
+  --prose-inset-leading: 1.55;
+  --prose-inset-color: var(--ink-2);
+  --prose-sm-size: 13px;
+  --prose-sm-leading: 1.5;
+  --prose-sm-color: var(--muted);
+  --prose-h2-size: 20px;
+  --prose-h3-size: 16px;
+  --prose-h3-color: var(--ink-2);
+
   --header-h: 50px;
   --status-h: 30px;
   --grid-opacity: 0.5;

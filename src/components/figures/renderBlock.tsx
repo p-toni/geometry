@@ -1,71 +1,96 @@
 import { Fragment, type ReactNode } from 'react';
+import { splitCitationTokens } from '../../lib/citation';
+import type { FootnoteRegistry } from '../../lib/footnotes';
 import { splitInlineBacklinks } from '../../lib/inlineBacklink';
 import { renderInlineMarkdown } from '../../lib/inlineMarkdown';
 import type { Block } from '../../pool/types';
+import { Citation, FootnoteMarker, SourcesLedger } from './Citation';
+import { Diagram } from './Diagram';
 import { Backlink } from './Backlink';
 import { Callout } from './Callout';
 import { Curvature } from './Curvature';
-import { DiagnosticTable } from './DiagnosticTable';
+import { Contrast } from './Contrast';
 import { MarkdownTable } from './MarkdownTable';
 import { EdgeTaxonomy } from './EdgeTaxonomy';
 import { LateFailure } from './LateFailure';
 import { Plate } from './Plate';
 import { PointEdge } from './PointEdge';
+import { Ladder } from './Ladder';
 import { ProtocolStepper } from './ProtocolStepper';
 import { Sidenote } from './Sidenote';
 import { SectionRail } from './SectionRail';
+import { Pull } from './Pull';
 import { Thesis } from './Thesis';
 import { sectionRailMeta } from '../../lib/argumentGrammar';
+import { sectionSlug } from '../../lib/sectionSlug';
 
 type RenderOpts = {
   onOpenNode?: (id: string) => void;
   isFirstSection?: boolean;
+  footnotes: FootnoteRegistry;
 };
 
-export function renderBlock(block: Block, key: number, opts: RenderOpts = {}): ReactNode {
-  const { onOpenNode, isFirstSection } = opts;
+const proseParagraphStyle = { margin: '0 0 var(--prose-paragraph-gap)' } as const;
+
+function renderProseWithFootnotes(
+  text: string,
+  footnotes: FootnoteRegistry,
+  onOpenNode?: (id: string) => void,
+): ReactNode[] {
+  const parts = splitInlineBacklinks(text);
+  const out: ReactNode[] = [];
+  let key = 0;
+
+  for (const part of parts) {
+    if (part.kind === 'backlink') {
+      out.push(
+        <Backlink
+          key={key++}
+          title={part.title}
+          rel={part.rel}
+          targetId={part.targetId}
+          onOpen={onOpenNode}
+        />,
+      );
+      continue;
+    }
+    for (const seg of splitCitationTokens(part.text, footnotes)) {
+      if (seg.kind === 'text') {
+        out.push(<Fragment key={key++}>{renderInlineMarkdown(seg.text)}</Fragment>);
+      } else {
+        out.push(<FootnoteMarker key={key++} n={seg.n} />);
+      }
+    }
+  }
+  return out;
+}
+
+export function renderBlock(block: Block, key: number, opts: RenderOpts): ReactNode {
+  const { onOpenNode, isFirstSection, footnotes } = opts;
 
   switch (block.t) {
     case 'p': {
       const parts = splitInlineBacklinks(block.x);
-      const pStyle = {
-        fontFamily: 'var(--font-body)',
-        fontSize: 16,
-        lineHeight: 1.66,
-        color: '#2c333a',
-        margin: '0 0 17px',
-      } as const;
-      const renderPart = (part: (typeof parts)[number], i: number) =>
-        part.kind === 'text' ? (
-          <Fragment key={i}>{renderInlineMarkdown(part.text)}</Fragment>
-        ) : (
-          <Backlink
-            key={i}
-            title={part.title}
-            rel={part.rel}
-            targetId={part.targetId}
-            onOpen={onOpenNode}
-          />
-        );
+      const hasFootnotes =
+        parts.some((p) => p.kind === 'text' && splitCitationTokens(p.text, footnotes).some((s) => s.kind === 'footnote')) ||
+        (parts.length === 1 &&
+          parts[0]!.kind === 'text' &&
+          splitCitationTokens(parts[0]!.text, footnotes).some((s) => s.kind === 'footnote'));
 
       if (parts.length === 1 && parts[0]!.kind === 'text') {
         const text = parts[0]!.text;
-        if (text.startsWith('• ')) {
+        if (text.startsWith('• ') && !hasFootnotes) {
           return (
-            <p key={key} style={{ ...pStyle, paddingLeft: 18, textIndent: -14 }}>
+            <p key={key} style={{ ...proseParagraphStyle, paddingLeft: 18, textIndent: -14 }}>
               {renderInlineMarkdown(text)}
             </p>
           );
         }
-        return (
-          <p key={key} style={pStyle}>
-            {renderInlineMarkdown(text)}
-          </p>
-        );
       }
+
       return (
-        <p key={key} style={pStyle}>
-          {parts.map(renderPart)}
+        <p key={key} style={proseParagraphStyle}>
+          {renderProseWithFootnotes(block.x, footnotes, onOpenNode)}
         </p>
       );
     }
@@ -73,37 +98,18 @@ export function renderBlock(block: Block, key: number, opts: RenderOpts = {}): R
       const isSub = block.level === 3;
       if (isSub) {
         return (
-          <h3
-            key={key}
-            className="type-display"
-            style={{
-              fontWeight: 600,
-              fontSize: 16,
-              letterSpacing: '-0.01em',
-              color: '#3C434A',
-              margin: '20px 0 10px',
-            }}
-          >
+          <h3 key={key} className="type-display">
             {block.x}
           </h3>
         );
       }
+      const slug = sectionSlug(block.x);
       const rail = sectionRailMeta(block.x, 2);
       if (rail) {
-        return <SectionRail key={key} {...rail} isFirst={isFirstSection} />;
+        return <SectionRail key={key} {...rail} isFirst={isFirstSection} sectionSlug={slug} />;
       }
       return (
-        <h2
-          key={key}
-          className="type-display"
-          style={{
-            fontWeight: 600,
-            fontSize: 20,
-            letterSpacing: '-0.015em',
-            color: 'var(--ink)',
-            margin: '26px 0 12px',
-          }}
-        >
+        <h2 key={key} data-section={slug} className="type-display">
           {block.x}
         </h2>
       );
@@ -120,24 +126,29 @@ export function renderBlock(block: Block, key: number, opts: RenderOpts = {}): R
           onOpenNode={onOpenNode}
         />
       );
+    case 'pull':
+      return <Pull key={key} x={block.x} onOpenNode={onOpenNode} />;
     case 'sidenote':
       return <Sidenote key={key} anchor={block.anchor} x={block.x} body={block.body} />;
     case 'plate':
       return <Plate key={key} cap={block.cap} src={block.src} />;
-    case 'table': {
-      const isDiagnostic =
-        block.headers.length === 3 &&
-        block.headers[0]?.toLowerCase() === 'test' &&
-        block.headers[1]?.toLowerCase() === 'geometry' &&
-        block.headers[2]?.toLowerCase() === 'retrieval';
-      return isDiagnostic ? (
-        <DiagnosticTable key={key} />
-      ) : (
-        <MarkdownTable key={key} headers={block.headers} rows={block.rows} />
+    case 'table':
+      return <MarkdownTable key={key} headers={block.headers} rows={block.rows} />;
+    case 'contrast':
+      return (
+        <Contrast
+          key={key}
+          mode={block.mode}
+          poles={block.poles}
+          ownedPole={block.ownedPole}
+          axisLabel={block.axisLabel}
+          rows={block.rows}
+        />
       );
-    }
     case 'edge-taxonomy':
       return <EdgeTaxonomy key={key} rows={block.rows} />;
+    case 'ladder':
+      return <Ladder key={key} mode={block.mode} rungs={block.rungs} />;
     case 'steps':
       return <ProtocolStepper key={key} />;
     case 'motif':
@@ -148,7 +159,7 @@ export function renderBlock(block: Block, key: number, opts: RenderOpts = {}): R
       return <Curvature key={key} />;
     case 'backlink':
       return (
-        <p key={key} style={{ margin: '0 0 17px' }}>
+        <p key={key} style={proseParagraphStyle}>
           <Backlink
             title={block.title}
             rel={block.rel}
@@ -157,10 +168,29 @@ export function renderBlock(block: Block, key: number, opts: RenderOpts = {}): R
           />
         </p>
       );
+    case 'diagram':
+      return (
+        <Fragment key={key}>
+          {block.lead ? (
+            <p key={`${key}-lead`} style={proseParagraphStyle}>
+              {renderInlineMarkdown(block.lead)}
+            </p>
+          ) : null}
+          <Diagram {...block} />
+          {block.follow ? (
+            <p key={`${key}-follow`} style={proseParagraphStyle}>
+              {renderInlineMarkdown(block.follow)}
+            </p>
+          ) : null}
+        </Fragment>
+      );
+    case 'citation':
+      return <Citation key={key} {...block} />;
+    case 'sources-ledger':
+      return <SourcesLedger key={key} items={block.items} />;
     default: {
       const _exhaustive: never = block;
       return _exhaustive;
     }
   }
 }
-

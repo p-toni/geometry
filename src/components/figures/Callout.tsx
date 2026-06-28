@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import { hasInlineBacklink, splitInlineBacklinks } from '../../lib/inlineBacklink';
 import { renderInlineMarkdown } from '../../lib/inlineMarkdown';
 import { Backlink } from './Backlink';
+import { proseInset } from './styles';
 
 type CalloutVariant = 'aside' | 'honesty' | 'update';
 
@@ -99,15 +100,7 @@ export function Callout({ v, x, label, onOpenNode }: CalloutProps) {
       >
         {skin.glyph} {label ?? v}
       </div>
-      <p
-        style={{
-          fontFamily: 'var(--font-body)',
-          fontSize: 14.5,
-          lineHeight: 1.55,
-          color: '#2C333A',
-          margin: 0,
-        }}
-      >
+      <p style={{ ...proseInset, margin: 0 }}>
         <CalloutBody x={x} onOpenNode={onOpenNode} />
       </p>
     </div>

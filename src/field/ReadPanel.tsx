@@ -209,21 +209,10 @@ export function ReadPanel({
           </a>
         ) : null}
 
-        <div style={{ marginTop: 22 }}>
+        <div className={showFullBody ? undefined : 'field-prose'} style={{ marginTop: 22 }}>
           {!showFullBody && excerptTail.length > 0
             ? excerptTail.map((p) => (
-                <p
-                  key={p}
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: 16,
-                    lineHeight: 1.62,
-                    color: '#2c333a',
-                    margin: '0 0 16px',
-                  }}
-                >
-                  {p}
-                </p>
+                <p key={p}>{p}</p>
               ))
             : null}
 

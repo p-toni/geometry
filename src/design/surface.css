@@ -5,6 +5,60 @@
   font-variation-settings: 'opsz' 72;
 }
 
+.field-prose {
+  font-family: var(--font-body);
+  font-size: var(--prose-size);
+  line-height: var(--prose-leading);
+  color: var(--prose-color);
+}
+
+.field-prose p {
+  margin: 0 0 var(--prose-paragraph-gap);
+  font: inherit;
+  color: inherit;
+}
+
+.field-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.field-prose h2 {
+  font-weight: 600;
+  font-size: var(--prose-h2-size);
+  letter-spacing: -0.015em;
+  color: var(--prose-color);
+  margin: 26px 0 12px;
+}
+
+.field-prose h3 {
+  font-weight: 600;
+  font-size: var(--prose-h3-size);
+  letter-spacing: -0.01em;
+  color: var(--prose-h3-color);
+  margin: 20px 0 10px;
+}
+
+.prose-lead {
+  font-family: var(--font-body);
+  font-size: var(--prose-lead-size);
+  line-height: var(--prose-lead-leading);
+  color: var(--prose-lead-color);
+}
+
+.prose-inset {
+  font-family: var(--font-body);
+  font-size: var(--prose-inset-size);
+  line-height: var(--prose-inset-leading);
+  color: var(--prose-inset-color);
+}
+
+.prose-sm {
+  font-family: var(--font-body);
+  font-size: var(--prose-sm-size);
+  line-height: var(--prose-sm-leading);
+  color: var(--prose-sm-color);
+}
+
 .edge-emphasis {
   border-left: 3px solid var(--signal) !important;
 }
