@@ -87,9 +87,8 @@ describe('ReadPanel', () => {
     expect(reader).toBeInTheDocument();
     expect(screen.getAllByTestId('section-rail').length).toBeGreaterThan(0);
     expect(screen.getAllByTestId('section-rail')[0]?.textContent).toMatch(/Preamble/i);
-    const prose = await screen.findByText(/usable map is not the whole object/i);
-    const source = screen.getByTestId('read-source-line');
-    expect(prose.compareDocumentPosition(source) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(await screen.findByText(/usable map is not the whole object/i)).toBeInTheDocument();
+    expect(screen.queryByTestId('read-source-line')).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: /collapse/i })).toBeInTheDocument();
   });
 

@@ -4,7 +4,7 @@ import { FigureReader } from '../components/figures';
 import { Masthead } from '../components/figures/Masthead';
 import { neighbors } from '../lib/graph';
 import { isWholePiece } from '../lib/readMode';
-import type { Cluster, Pool, PoolNode } from '../pool';
+import type { Pool, PoolNode } from '../pool';
 
 type ReadPanelProps = {
   node: PoolNode;
@@ -32,25 +32,6 @@ function neighborDot(kind: PoolNode['kind']) {
         ? '#5b6b73'
         : 'var(--ink)';
   return { width: 6, height: 6, borderRadius: '50%', background: color, flex: 'none' as const };
-}
-
-function SourceLine({ cluster, id }: { cluster: Cluster; id: string }) {
-  return (
-    <div
-      data-testid="read-source-line"
-      style={{
-        marginTop: 18,
-        paddingTop: 13,
-        borderTop: '2px solid var(--line-soft)',
-        fontFamily: 'var(--font-mono)',
-        fontSize: 10,
-        letterSpacing: '0.04em',
-        color: 'var(--kicker)',
-      }}
-    >
-      ⌁ source · content/{cluster}/{id}.md
-    </div>
-  );
 }
 
 export function ReadPanel({
@@ -143,7 +124,7 @@ export function ReadPanel({
             color: 'var(--kicker)',
           }}
         >
-          {historyTitle ? `⟵ ${historyTitle} › ` : 'field › '}
+          {historyTitle ? `${historyTitle} · ` : null}
           {node.title}
         </span>
         <div style={{ flex: 1 }} />
@@ -202,34 +183,6 @@ export function ReadPanel({
           cluster={node.cluster}
           dek={showFullBody && !wholePiece ? undefined : dek}
         />
-
-        {node.media ? (
-          <div
-            style={{
-              marginTop: 22,
-              height: 220,
-              border: '1px solid var(--line)',
-              borderRadius: 3,
-              background:
-                'repeating-linear-gradient(135deg,#dfe3df,#dfe3df 8px,#e9ece8 8px,#e9ece8 16px)',
-              display: 'flex',
-              alignItems: 'flex-end',
-              padding: 13,
-            }}
-          >
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: 10,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: '#7d867f',
-              }}
-            >
-              {node.kind} block · drop a render here
-            </span>
-          </div>
-        ) : null}
 
         {node.kind === 'link' && node.href ? (
           <a
@@ -309,8 +262,6 @@ export function ReadPanel({
           ) : null}
         </div>
 
-        <SourceLine cluster={node.cluster} id={node.id} />
-
         {canDescend ? (
           <>
             <button
@@ -322,7 +273,7 @@ export function ReadPanel({
                 onDescend({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
               }}
               style={{
-                marginTop: 16,
+                marginTop: 28,
                 width: '100%',
                 scrollMarginBottom: 56,
                 display: 'flex',
@@ -343,36 +294,13 @@ export function ReadPanel({
             >
               <span style={{ fontSize: 13 }}>✦</span> enter its constellation →
             </button>
-            <p
-              style={{
-                marginTop: 7,
-                fontFamily: 'var(--font-body)',
-                fontSize: 12,
-                color: 'var(--kicker)',
-                textAlign: 'center',
-              }}
-            >
-              map the essay&apos;s sections — click a node to jump
-            </p>
           </>
         ) : null}
 
         {next.length > 0 ? (
           <>
-            <div
-              style={{
-                marginTop: 26,
-                fontFamily: 'var(--font-mono)',
-                fontSize: 10,
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--muted)',
-              }}
-            >
-              walk the edges
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 11 }}>
-              {next.map(({ id, rel }) => {
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: canDescend ? 20 : 26 }}>
+              {next.map(({ id }) => {
                 const n = pool.nodes[id];
                 if (!n) return null;
                 return (
@@ -406,17 +334,6 @@ export function ReadPanel({
                       >
                         {n.title}
                       </span>
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: 9,
-                        letterSpacing: '0.06em',
-                        textTransform: 'uppercase',
-                        color: 'var(--kicker)',
-                      }}
-                    >
-                      {rel} →
                     </span>
                   </button>
                 );

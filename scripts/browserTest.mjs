@@ -226,7 +226,7 @@ shot('14-zoom.png');
 // 15. Media node
 goto('http://localhost:5173/?read=sea');
 ab('wait 1000');
-assert('media placeholder', /shader|render|drop|media/i.test(pageText()));
+assert('media node excerpt', pageText().includes('motion without narrative') || pageText().includes('sequin'));
 shot('15-media.png');
 
 // 16. Browser history back + forward with trail
