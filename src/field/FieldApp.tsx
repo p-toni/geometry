@@ -321,14 +321,30 @@ export function FieldApp() {
   }, [nowOn, pushUrl, triggerCascade]);
 
   const readNode = readId ? pool.nodes[readId] : null;
+  const [pendingSpatialExit, setPendingSpatialExit] = useState(false);
+  const suppressSpatialExitDetect = useRef(false);
+  const wasSpatialOpen = useRef(false);
+
   const spatialOpen =
     urlState.spatial && readNode != null && hasSpatialGraph(readNode.id);
-  const descentNode = spatialOpen ? readNode : null;
-  const descentGraphPath = descentNode ? graphPathForNode(descentNode.id) : null;
+  const spatialGraphPath =
+    readNode && hasSpatialGraph(readNode.id) ? graphPathForNode(readNode.id) : null;
+  const spatialActive = spatialOpen || pendingSpatialExit;
 
   useEffect(() => {
-    if (!urlState.spatial) setDescentOrigin(null);
-  }, [urlState.spatial]);
+    if (spatialOpen) {
+      wasSpatialOpen.current = true;
+      setPendingSpatialExit(false);
+      return;
+    }
+    if (!wasSpatialOpen.current) return;
+    wasSpatialOpen.current = false;
+    if (suppressSpatialExitDetect.current) {
+      suppressSpatialExitDetect.current = false;
+      return;
+    }
+    setPendingSpatialExit(true);
+  }, [spatialOpen]);
 
   useEffect(() => {
     if (!urlState.spatial) return;
@@ -346,10 +362,14 @@ export function FieldApp() {
     [pushUrl, readNode],
   );
 
-  const closeSpatial = useCallback(() => {
+  const onHandoffClose = useCallback(() => {
+    setPendingSpatialExit(false);
     setDescentOrigin(null);
     const state = parseFieldState(new URLSearchParams(window.location.search));
-    if (state.spatial) window.history.back();
+    if (state.spatial) {
+      suppressSpatialExitDetect.current = true;
+      window.history.back();
+    }
   }, []);
   const neighborRels = useMemo(() => {
     const m: Record<string, Rel> = {};
@@ -585,7 +605,7 @@ export function FieldApp() {
           ref={field.vpRef}
           className={[
             fieldFocused ? 'field-viewport field-viewport--focus' : 'field-viewport',
-            spatialOpen ? 'field-viewport--descending' : '',
+
           ]
             .filter(Boolean)
             .join(' ')}
@@ -883,7 +903,7 @@ export function FieldApp() {
             z 100%
           </div>
 
-          {spatialOpen ? (
+          {spatialActive ? (
             <div className="field-read-scrim field-read-scrim--descent" aria-hidden />
           ) : readFull ? (
             <div className="field-read-scrim" aria-hidden />
@@ -907,17 +927,18 @@ export function FieldApp() {
             onToggleFull={(next) => pushUrl({ full: next, spatial: false })}
             onDescend={openSpatial}
             canDescend={hasSpatialGraph(readNode.id)}
-            descending={spatialOpen}
+            descending={spatialActive}
           />
         ) : null}
       </div>
 
-      {descentNode && descentGraphPath ? (
+      {spatialActive && spatialGraphPath && readNode ? (
         <SpatialConstellationHandoff
-          graphPath={descentGraphPath}
-          fallbackTitle={descentNode.title}
+          graphPath={spatialGraphPath}
+          fallbackTitle={readNode.title}
           origin={descentOrigin ?? undefined}
-          onClose={closeSpatial}
+          exitRequested={pendingSpatialExit && !spatialOpen}
+          onClose={onHandoffClose}
         />
       ) : null}
 

@@ -139,7 +139,7 @@
 
 .spatial-view-title--loading {
   opacity: 0.72;
-  transition: opacity 600ms var(--ease-out-strong);
+  transition: opacity 240ms var(--ease-out-strong);
 }
 
 .spatial-view-meta {
@@ -169,7 +169,7 @@
   transform: scale(1);
   transition:
     opacity 280ms var(--ease-out-strong),
-    transform 400ms var(--ease-out-strong);
+    transform 300ms var(--ease-out-strong);
 }
 
 .spatial-handoff-motion--enter {
@@ -189,10 +189,16 @@
 @media (prefers-reduced-motion: reduce) {
   .spatial-handoff-motion {
     transition: opacity 120ms var(--ease-out-strong);
+    opacity: 1;
   }
 
-  .spatial-handoff-motion--enter,
+  .spatial-handoff-motion--enter {
+    opacity: 0;
+    transform: none;
+  }
+
   .spatial-handoff-motion--exit {
+    opacity: 0;
     transform: none;
   }
 }

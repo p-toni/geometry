@@ -4,14 +4,24 @@ import { SpatialConstellationView } from './SpatialConstellationView';
 
 export type DescentOrigin = { x: number; y: number };
 
+const EXIT_MS = 260;
+
 type Props = {
   graphPath: string;
   fallbackTitle?: string;
   origin?: DescentOrigin;
+  /** Browser back removed spatial=1 — play exit before unmounting. */
+  exitRequested?: boolean;
   onClose: () => void;
 };
 
-export function SpatialConstellationHandoff({ graphPath, fallbackTitle, origin, onClose }: Props) {
+export function SpatialConstellationHandoff({
+  graphPath,
+  fallbackTitle,
+  origin,
+  exitRequested = false,
+  onClose,
+}: Props) {
   const motionRef = useRef<HTMLDivElement>(null);
   const [exiting, setExiting] = useState(false);
   const [entered, setEntered] = useState(false);
@@ -36,7 +46,7 @@ export function SpatialConstellationHandoff({ graphPath, fallbackTitle, origin, 
     };
 
     el.addEventListener('transitionend', onTransitionEnd);
-    const fallback = window.setTimeout(enableMount, 420);
+    const fallback = window.setTimeout(enableMount, 320);
 
     return () => {
       el.removeEventListener('transitionend', onTransitionEnd);
@@ -44,11 +54,20 @@ export function SpatialConstellationHandoff({ graphPath, fallbackTitle, origin, 
     };
   }, [entered, exiting]);
 
-  const requestClose = useCallback(() => {
+  const beginExit = useCallback(() => {
     setMountReady(false);
     setExiting(true);
-    window.setTimeout(() => onClose(), 260);
+    window.setTimeout(() => onClose(), EXIT_MS);
   }, [onClose]);
+
+  const requestClose = useCallback(() => {
+    beginExit();
+  }, [beginExit]);
+
+  useEffect(() => {
+    if (!exitRequested || exiting) return;
+    beginExit();
+  }, [exitRequested, exiting, beginExit]);
 
   const motionClass = [
     'spatial-handoff-motion',

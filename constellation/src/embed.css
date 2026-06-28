@@ -34,14 +34,20 @@
   user-select: none;
   cursor: pointer;
   transition:
-    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-    color 0.45s ease,
-    transform 0.45s cubic-bezier(0.22, 1.25, 0.36, 1);
+    transform 140ms cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 140ms cubic-bezier(0.23, 1, 0.32, 1),
+    color 140ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.constellation-view-toggle:hover {
-  color: rgba(255, 255, 255, 0.96);
-  transform: translateX(-50%) scale(1.025);
+@media (hover: hover) and (pointer: fine) {
+  .constellation-view-toggle:hover {
+    color: rgba(255, 255, 255, 0.96);
+    transform: translateX(-50%) scale(1.02);
+  }
+}
+
+.constellation-view-toggle:active {
+  transform: translateX(-50%) scale(0.97);
 }
 
 .constellation-embed.is-selected .constellation-view-toggle {

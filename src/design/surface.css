@@ -173,17 +173,12 @@
   transition: background 280ms var(--ease-out-strong);
 }
 
-.field-viewport {
-  transition: filter 420ms var(--ease-drawer);
-}
-
 .field-read {
   width: 480px;
   transition:
     width 320ms var(--ease-drawer),
-    transform 440ms var(--ease-drawer),
-    opacity 320ms var(--ease-out-strong),
-    filter 320ms var(--ease-out-strong);
+    transform 320ms var(--ease-out-strong),
+    opacity 280ms var(--ease-out-strong);
 }
 
 .field-read--full {
@@ -200,10 +195,6 @@
   }
 }
 
-.field-viewport--descending {
-  filter: saturate(0.88) brightness(0.94);
-}
-
 .field-read--descending {
   transform: scale(0.96) translateX(10px);
   opacity: 0.5;
@@ -212,9 +203,9 @@
 }
 
 .field-read-scrim--descent {
-  background: rgba(28, 31, 36, 0.22);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(28, 31, 36, 0.42);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .curvature-svg {
