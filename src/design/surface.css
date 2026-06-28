@@ -139,20 +139,52 @@
 
 .constellation-overlay {
   opacity: 1;
-  clip-path: inset(0 0 0 0);
-  transition: opacity 260ms var(--ease-out-strong), clip-path 260ms var(--ease-out-strong);
+  transform: scale(1);
+  filter: brightness(1);
+  transition:
+    opacity 380ms var(--ease-out-strong),
+    transform 520ms var(--ease-out-strong),
+    filter 380ms var(--ease-out-strong);
 }
 
 .constellation-overlay--enter {
   opacity: 0;
-  clip-path: inset(0 100% 0 0);
+  transform: scale(0.06);
+  filter: brightness(1.35);
 }
 
 .constellation-overlay--exit {
   opacity: 0;
-  clip-path: inset(0 100% 0 0);
-  transition: opacity 160ms var(--ease-out-strong), clip-path 160ms var(--ease-out-strong);
+  transform: scale(0.94);
+  filter: brightness(0.85);
+  transition:
+    opacity 200ms var(--ease-out-strong),
+    transform 240ms var(--ease-out-strong),
+    filter 200ms var(--ease-out-strong);
   pointer-events: none;
+}
+
+.field-viewport--descending {
+  filter: saturate(0.88) brightness(0.94);
+  transition: filter 420ms var(--ease-drawer);
+}
+
+.field-read--descending {
+  transform: scale(0.96) translateX(10px);
+  opacity: 0.5;
+  filter: blur(2px);
+  transition:
+    transform 440ms var(--ease-drawer),
+    opacity 320ms var(--ease-out-strong),
+    filter 320ms var(--ease-out-strong);
+  pointer-events: none;
+}
+
+.field-read-scrim--descent {
+  background: rgba(28, 31, 36, 0.22);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 380ms var(--ease-out-strong), backdrop-filter 380ms var(--ease-out-strong);
 }
 
 .curvature-svg {

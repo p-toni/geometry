@@ -17,8 +17,11 @@ type ReadPanelProps = {
   onOpen: (id: string) => void;
   onOpenNode: (id: string) => void;
   onToggleFull: (full: boolean) => void;
-  onDescend: () => void;
+  onDescend: (origin: { x: number; y: number }) => void;
   canDescend: boolean;
+  descending?: boolean;
+  scrollToSection?: string | null;
+  onScrolledToSection?: () => void;
 };
 
 function neighborDot(kind: PoolNode['kind']) {
@@ -62,6 +65,9 @@ export function ReadPanel({
   onToggleFull,
   onDescend,
   canDescend,
+  descending = false,
+  scrollToSection,
+  onScrolledToSection,
 }: ReadPanelProps) {
   const next = neighbors(pool, node.id);
   const wholePiece = isWholePiece(node);
@@ -77,9 +83,20 @@ export function ReadPanel({
     el.scrollTop = 0;
   }, [node.id]);
 
+  useEffect(() => {
+    if (!scrollToSection || !showFullBody) return;
+    const root = scrollRef.current;
+    if (!root) return;
+    const target = root.querySelector(`[data-section="${scrollToSection}"]`);
+    if (target instanceof HTMLElement) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      onScrolledToSection?.();
+    }
+  }, [scrollToSection, showFullBody, onScrolledToSection, node.id]);
+
   return (
     <aside
-      className={`field-read field-read-sheet edge-emphasis${showFullBody && !wholePiece ? ' field-read--full' : ''}`}
+      className={`field-read field-read-sheet edge-emphasis${showFullBody && !wholePiece ? ' field-read--full' : ''}${descending ? ' field-read--descending' : ''}`}
       style={{
         background: 'var(--card)',
         boxShadow: '-18px 0 48px rgba(28,31,36,.16)',
@@ -300,7 +317,10 @@ export function ReadPanel({
               type="button"
               className="pressable"
               data-testid="constellation-descend"
-              onClick={onDescend}
+              onClick={(e) => {
+                const r = e.currentTarget.getBoundingClientRect();
+                onDescend({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
+              }}
               style={{
                 marginTop: 16,
                 width: '100%',
@@ -332,7 +352,7 @@ export function ReadPanel({
                 textAlign: 'center',
               }}
             >
-              descend into the argument&apos;s internal shape
+              map the essay&apos;s sections — click a node to jump
             </p>
           </>
         ) : null}

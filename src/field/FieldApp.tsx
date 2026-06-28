@@ -12,10 +12,9 @@ import { effectiveReadFull } from '../lib/readMode';
 import { kindLabel } from '../lib/glyph';
 
 import { pool, FIELD_HEIGHT, FIELD_WIDTH } from '../pool';
-import type { Rel } from '../pool/types';
-import { ConstellationDescent } from './ConstellationDescent';
-import { loadEssayStructure } from './loadEssayStructure';
-import type { EssayStructure } from '../pool/essayStructure';
+import type { PoolNode, Rel } from '../pool/types';
+import { ConstellationDescent, type DescentOrigin } from './ConstellationDescent';
+
 import { getFieldMode, statusForMode } from './fieldState';
 import { NAV_HOP_MS, NAV_OPEN_MS, useFieldTransform } from './hooks/useFieldTransform';
 import { clusterTone } from './clusterTone';
@@ -34,8 +33,10 @@ export function FieldApp() {
   const [matched, setMatched] = useState<string[] | null>(
     urlState.query ? resolveLens(pool, urlState.query, pool.layout.lenses) : null,
   );
+  const mainRef = useRef<HTMLDivElement>(null);
   const suppressViewportSync = useRef(0);
-  const [descent, setDescent] = useState<EssayStructure | null>(null);
+  const [descent, setDescent] = useState<PoolNode | null>(null);
+  const [descentOrigin, setDescentOrigin] = useState<DescentOrigin | null>(null);
   const [composing, setComposing] = useState(false);
   const [activeChip, setActiveChip] = useState<string | null>(
     activeChipForQuery(urlState.query, pool.layout.lenses),
@@ -202,6 +203,7 @@ export function FieldApp() {
       }
       const view = focusNode(id, true, wasReading);
       setDescent(null);
+      setDescentOrigin(null);
       pushUrl({
         read: id,
         query: '',
@@ -229,6 +231,7 @@ export function FieldApp() {
     hopNavRef.current = false;
     triggerCascade();
     setDescent(null);
+    setDescentOrigin(null);
     setLensInput('');
     setMatched(null);
     setActiveChip(null);
@@ -238,6 +241,7 @@ export function FieldApp() {
 
   const back = useCallback(() => {
     setDescent(null);
+    setDescentOrigin(null);
     const state = parseFieldState(new URLSearchParams(window.location.search));
     const fullNow =
       state.full &&
@@ -307,6 +311,7 @@ export function FieldApp() {
   const toggleNow = useCallback(() => {
     triggerCascade();
     setDescent(null);
+    setDescentOrigin(null);
     const next = !nowOn;
     pushUrl({ now: next, read: null, query: '', trail: [] });
     setLensInput('');
@@ -442,6 +447,7 @@ export function FieldApp() {
               onClick={() => {
                 triggerCascade();
                 setDescent(null);
+                setDescentOrigin(null);
                 setLensInput('');
                 setMatched(null);
                 setActiveChip(null);
@@ -541,10 +547,18 @@ export function FieldApp() {
         </button>
       </header>
 
-      <div style={{ position: 'relative', flex: 1, display: 'flex', overflow: 'hidden' }}>
+      <div
+        ref={mainRef}
+        style={{ position: 'relative', flex: 1, display: 'flex', overflow: 'hidden' }}
+      >
         <div
           ref={field.vpRef}
-          className={fieldFocused ? 'field-viewport field-viewport--focus' : 'field-viewport'}
+          className={[
+            fieldFocused ? 'field-viewport field-viewport--focus' : 'field-viewport',
+            descent ? 'field-viewport--descending' : '',
+          ]
+            .filter(Boolean)
+            .join(' ')}
           onPointerDown={field.onPointerDown}
           onPointerMove={field.onPointerMove}
           onPointerUp={field.onPointerUp}
@@ -839,7 +853,12 @@ export function FieldApp() {
             z 100%
           </div>
 
-          {readFull ? <div className="field-read-scrim" aria-hidden /> : null}
+          {readFull || descent ? (
+            <div
+              className={`field-read-scrim${descent ? ' field-read-scrim--descent' : ''}`}
+              aria-hidden
+            />
+          ) : null}
         </div>
 
         {readNode ? (
@@ -852,14 +871,22 @@ export function FieldApp() {
                 : null
             }
             full={readFull}
+            descending={Boolean(descent)}
             onBack={back}
             onClose={home}
             onOpen={openNode}
             onOpenNode={openNode}
             onToggleFull={(next) => pushUrl({ full: next })}
-            onDescend={() => {
+            onDescend={(origin) => {
               if (!readNode) return;
-              setDescent(loadEssayStructure(readNode));
+              const container = mainRef.current;
+              if (container) {
+                const r = container.getBoundingClientRect();
+                setDescentOrigin({ x: origin.x - r.left, y: origin.y - r.top });
+              } else {
+                setDescentOrigin(origin);
+              }
+              setDescent(readNode);
             }}
             canDescend={
               !readNode.media &&
@@ -870,11 +897,18 @@ export function FieldApp() {
             }
           />
         ) : null}
-      </div>
 
-      {descent ? (
-        <ConstellationDescent structure={descent} onClose={() => setDescent(null)} />
-      ) : null}
+        {descent ? (
+          <ConstellationDescent
+            node={descent}
+            origin={descentOrigin ?? undefined}
+            onClose={() => {
+              setDescent(null);
+              setDescentOrigin(null);
+            }}
+          />
+        ) : null}
+      </div>
 
       <footer
         style={{

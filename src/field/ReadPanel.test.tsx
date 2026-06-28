@@ -86,7 +86,7 @@ describe('ReadPanel', () => {
     const reader = screen.getByTestId('figure-reader');
     expect(reader).toBeInTheDocument();
     expect(screen.getAllByTestId('section-rail').length).toBeGreaterThan(0);
-    expect(screen.getByText(/A · frame/i)).toBeInTheDocument();
+    expect(screen.getAllByTestId('section-rail')[0]?.textContent).toMatch(/Preamble/i);
     const prose = await screen.findByText(/usable map is not the whole object/i);
     const source = screen.getByTestId('read-source-line');
     expect(prose.compareDocumentPosition(source) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
