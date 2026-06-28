@@ -1,0 +1,42 @@
+{
+  "people": [
+    {
+      "id": "ilya-lens",
+      "name": "value of intelligence",
+      "meta": "warning · fluency is not the only human quality",
+      "topicIds": ["intelligence-worship", "bad-time", "human-qualities"]
+    },
+    {
+      "id": "ilya-quote",
+      "name": "gonna have a bad time",
+      "meta": "quoting · when intelligence ranks above all else",
+      "topicIds": ["intelligence-worship", "bad-time"]
+    },
+    {
+      "id": "ilya-increasing-returns",
+      "name": "ecological reading",
+      "meta": "cites · strategy beyond single metrics",
+      "topicIds": ["ecology"]
+    },
+    {
+      "id": "ilya-tools-edges",
+      "name": "edges over power",
+      "meta": "echoes · grip beats raw capability",
+      "topicIds": ["constraints", "agency"]
+    }
+  ],
+  "topicLabels": {
+    "intelligence-worship": "intelligence worship",
+    "bad-time": "bad time",
+    "human-qualities": "other human qualities",
+    "ecology": "ecology",
+    "constraints": "constraints",
+    "agency": "agency"
+  },
+  "extraEdges": [
+    ["intelligence-worship", "bad-time"],
+    ["intelligence-worship", "human-qualities"],
+    ["constraints", "agency"],
+    ["ecology", "human-qualities"]
+  ]
+}

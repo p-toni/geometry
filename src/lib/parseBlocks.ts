@@ -1,3 +1,7 @@
+import { ledgerCitations } from './citation';
+import { collectContrastFence, contrastFromTable } from './contrast';
+import { collectDiagramFence, parseDiagramLine } from './diagram';
+import { collectLadder } from './ladder';
 import type { Block } from '../pool/types';
 
 const FIG_BLOCKS: Record<string, Block> = {
@@ -19,13 +23,22 @@ export function parseBlocks(markdown: string): Block[] {
   let i = 0;
 
   const flushParagraph = (buf: string[]) => {
-    const text = buf.join(' ').trim();
-    if (!text) {
-      buf.length = 0;
-      return;
+    if (!buf.length) return;
+    const prose: string[] = [];
+    for (const line of buf) {
+      const trimmed = line.trim();
+      if (!trimmed) continue;
+      if (!trimmed.startsWith('**') && !trimmed.startsWith('•')) {
+        const diagram = parseDiagramLine(trimmed);
+        if (diagram) {
+          blocks.push({ t: 'diagram', ...diagram });
+          continue;
+        }
+      }
+      prose.push(trimmed);
     }
-    // Keep [[Title|id]] inside the paragraph — renderBlock inlines the pill.
-    blocks.push({ t: 'p', x: text });
+    const text = prose.join(' ').trim();
+    if (text) blocks.push({ t: 'p', x: text });
     buf.length = 0;
   };
 
@@ -87,7 +100,11 @@ export function parseBlocks(markdown: string): Block[] {
 
     if (trimmed.startsWith('## ')) {
       flushParagraph(paraBuf);
-      blocks.push({ t: 'h', x: trimmed.slice(3).trim(), level: 2 });
+      const heading = trimmed.slice(3).trim();
+      blocks.push({ t: 'h', x: heading, level: 2 });
+      if (/^sources$/i.test(heading)) {
+        blocks.push({ t: 'sources-ledger', items: ledgerCitations() });
+      }
       i++;
       continue;
     }
@@ -126,7 +143,7 @@ export function parseBlocks(markdown: string): Block[] {
         } else if (/^thesis[:\s]/i.test(text) || quoteLines[0]?.startsWith('**')) {
           blocks.push({ t: 'thesis', x: text.replace(/^thesis:\s*/i, '').replace(/\n/g, ' ') });
         } else {
-          blocks.push({ t: 'callout', v: 'aside', x: text.replace(/\n/g, ' ') });
+          blocks.push({ t: 'pull', x: text.replace(/\n/g, ' ') });
         }
       }
       continue;
@@ -160,9 +177,38 @@ export function parseBlocks(markdown: string): Block[] {
           if (taxRows.length) blocks.push({ t: 'edge-taxonomy', rows: taxRows });
         } else if (headers) {
           const dataRows = body.filter((r) => !r.every((c) => /^:?-+:?$/.test(c.trim())));
-          blocks.push({ t: 'table', headers, rows: dataRows });
+          const contrast = headers.length === 3 ? contrastFromTable(headers, dataRows) : null;
+          if (contrast) {
+            blocks.push({ t: 'contrast', ...contrast });
+          } else {
+            blocks.push({ t: 'table', headers, rows: dataRows });
+          }
         }
       }
+      continue;
+    }
+
+    const contrastFence = collectContrastFence(lines, i);
+    if (contrastFence) {
+      flushParagraph(paraBuf);
+      blocks.push({ t: 'contrast', ...contrastFence.data });
+      i = contrastFence.end;
+      continue;
+    }
+
+    const ladder = collectLadder(lines, i);
+    if (ladder) {
+      flushParagraph(paraBuf);
+      blocks.push({ t: 'ladder', mode: ladder.data.mode, rungs: ladder.data.rungs });
+      i = ladder.end;
+      continue;
+    }
+
+    const diagramFence = collectDiagramFence(lines, i);
+    if (diagramFence) {
+      flushParagraph(paraBuf);
+      blocks.push({ t: 'diagram', ...diagramFence.data });
+      i = diagramFence.end;
       continue;
     }
 

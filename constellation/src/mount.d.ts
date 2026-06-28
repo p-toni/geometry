@@ -9,6 +9,7 @@ export type ConstellationGraph = {
   extraEdges?: Array<[string, string]>;
   title?: string;
   method?: string;
+  scope?: string;
   embeddingModel?: string | null;
   meta?: Record<string, unknown>;
 };

@@ -66,6 +66,25 @@ describe('parseBlocks', () => {
     ]);
   });
 
+  it('parses untagged blockquotes as pull lines, not asides', () => {
+    const blocks = parseBlocks(
+      'The question is not:\n\n> How much information is there?\n\nThe question is:\n\n> What structure is extractable for me, right now, with my limits?',
+    );
+    expect(blocks).toContainEqual({ t: 'pull', x: 'How much information is there?' });
+    expect(blocks).toContainEqual({
+      t: 'pull',
+      x: 'What structure is extractable for me, right now, with my limits?',
+    });
+  });
+
+  it('parses bold blockquotes as thesis blocks', () => {
+    const blocks = parseBlocks('> **what did I remove, and did the object survive the cut?**');
+    expect(blocks).toContainEqual({
+      t: 'thesis',
+      x: '**what did I remove, and did the object survive the cut?**',
+    });
+  });
+
   it('keeps inline backlinks inside one paragraph block', () => {
     const blocks = parseBlocks(
       '**Update:** [[backlink:Allowed Ignorance|cites|allowed-ignorance]] gives a sharper name.',

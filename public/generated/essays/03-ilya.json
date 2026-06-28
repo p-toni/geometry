@@ -1,46 +1,81 @@
 {
   "id": "03-ilya",
   "title": "Ilya",
-  "method": "heuristic",
+  "method": "agent",
   "embeddingModel": null,
   "scope": "intra",
   "people": [
     {
-      "id": "03-ilya-lens",
-      "name": "ilya",
-      "meta": "Value of intelligence",
+      "id": "ilya-lens",
+      "name": "value of intelligence",
+      "meta": "warning · fluency is not the only human quality",
       "topicIds": [
-        "ilya",
-        "value",
-        "intelligence",
-        "value-tilt"
+        "intelligence-worship",
+        "bad-time",
+        "human-qualities"
       ]
     },
     {
-      "id": "03-ilya-quote",
-      "name": "value of intelligence",
-      "meta": "pull quote · field anchor",
+      "id": "ilya-quote",
+      "name": "gonna have a bad time",
+      "meta": "quoting · when intelligence ranks above all else",
       "topicIds": [
-        "value",
-        "intelligence",
-        "value-tilt"
+        "intelligence-worship",
+        "bad-time"
+      ]
+    },
+    {
+      "id": "ilya-increasing-returns",
+      "name": "ecological reading",
+      "meta": "cites · strategy beyond single metrics",
+      "topicIds": [
+        "ecology"
+      ]
+    },
+    {
+      "id": "ilya-tools-edges",
+      "name": "edges over power",
+      "meta": "echoes · grip beats raw capability",
+      "topicIds": [
+        "constraints",
+        "agency"
       ]
     }
   ],
   "topicLabels": {
-    "ilya": "Ilya",
-    "value": "value",
-    "intelligence": "intelligence",
-    "2025-10-18": "2025.10.18",
-    "value-tilt": "Value Tilt"
+    "intelligence-worship": "intelligence worship",
+    "bad-time": "bad time",
+    "human-qualities": "other human qualities",
+    "ecology": "ecology",
+    "constraints": "constraints",
+    "agency": "agency"
   },
-  "extraEdges": [],
+  "extraEdges": [
+    [
+      "intelligence-worship",
+      "bad-time"
+    ],
+    [
+      "intelligence-worship",
+      "human-qualities"
+    ],
+    [
+      "constraints",
+      "agency"
+    ],
+    [
+      "ecology",
+      "human-qualities"
+    ]
+  ],
   "meta": {
     "scope": "intra",
-    "inquiryCount": 2,
-    "conceptCount": 5,
-    "edgeCount": 7,
-    "extraEdgeCount": 0,
-    "generatedAt": "2026-06-26T17:15:26.644Z"
+    "inquiryCount": 4,
+    "conceptCount": 6,
+    "edgeCount": 8,
+    "extraEdgeCount": 4,
+    "generatedAt": "2026-06-28T16:58:56.427Z",
+    "poolId": "ilya",
+    "sectionSlugs": []
   }
 }

@@ -1,84 +1,174 @@
 {
   "id": "05-bounded-me",
   "title": "Bounded Me",
-  "method": "heuristic",
+  "method": "agent",
   "embeddingModel": null,
   "scope": "intra",
   "people": [
     {
-      "id": "05-bounded-me-lens",
+      "id": "bounded-me-lens",
       "name": "bounded me",
-      "meta": "A private metric for extractable structure, geometry, and loop s",
+      "meta": "extracting · structure a finite loop can keep",
       "topicIds": [
-        "1-bounded-me",
-        "bounded-me",
-        "private",
-        "metric",
-        "extractable",
-        "structure"
+        "extractable-structure",
+        "finite-loop",
+        "private-metric"
       ]
     },
     {
-      "id": "05-bounded-me-quote",
-      "name": "a private metric for extra",
-      "meta": "pull quote · field anchor",
+      "id": "bounded-me-bounded-learner",
+      "name": "bounded learner",
+      "meta": "defining · information as what I can pull in now",
       "topicIds": [
-        "private",
-        "metric"
+        "bounded-learner",
+        "constraints",
+        "future-compute"
       ]
     },
     {
-      "id": "05-bounded-me-section-0-1-bounded-me",
-      "name": "1) bounded me",
-      "meta": "section · argument move",
+      "id": "bounded-me-memory-geometry",
+      "name": "memory as geometry",
+      "meta": "navigating · shape instead of storage",
       "topicIds": [
-        "1-bounded-me",
-        "bounded-me"
+        "geometry-not-storage",
+        "navigable",
+        "flat-text"
       ]
     },
     {
-      "id": "05-bounded-me-section-1-2-memory-as-geometry-not",
-      "name": "2) “memory” as geometry (not",
-      "meta": "section · argument move",
+      "id": "bounded-me-fractal-edge",
+      "name": "fractal edge",
+      "meta": "stabilizing · convergent basin vs trash week",
       "topicIds": [
-        "2-memory-as-geometry-not-storage",
-        "geometry"
+        "convergent-basin",
+        "trainability",
+        "hyperparameters"
       ]
     },
     {
-      "id": "05-bounded-me-section-2-3-the-fractal-edge-in-my",
-      "name": "3) the fractal edge in my ow",
-      "meta": "section · argument move",
+      "id": "bounded-me-flow",
+      "name": "flow through loop",
+      "meta": "plugging · leakage at transitions",
       "topicIds": [
-        "3-the-fractal-edge-in-my-own-training"
+        "low-leakage",
+        "re-entry",
+        "writing-as-stabilizer"
+      ]
+    },
+    {
+      "id": "bounded-me-private-metric",
+      "name": "private metric",
+      "meta": "testing · did this piece change my geometry",
+      "topicIds": [
+        "extractable-structure",
+        "ghostwriter",
+        "coupling-problem"
+      ]
+    },
+    {
+      "id": "bounded-me-thesis",
+      "name": "structural signal",
+      "meta": "claiming · information as flow under constraints",
+      "topicIds": [
+        "structural-signal",
+        "geometry",
+        "premature-closure"
+      ]
+    },
+    {
+      "id": "bounded-me-me-plus-ai",
+      "name": "coupling ahead",
+      "meta": "cites · exchange vs feedback control",
+      "topicIds": [
+        "coupling-problem",
+        "feedback-control"
       ]
     }
   ],
   "topicLabels": {
-    "1-bounded-me": "1) Bounded me",
-    "2-memory-as-geometry-not-storage": "2) “Memory” as geometry (not storage)",
-    "3-the-fractal-edge-in-my-own-training": "3) The fractal edge in my own training",
-    "4-information-as-flow-through-the-loop": "4) Information as flow through the loop",
-    "6-the-actual-thesis-for-me": "6) The actual thesis (for me)",
-    "bounded-me": "Bounded Me",
-    "private": "private",
-    "metric": "metric",
-    "extractable": "extractable",
-    "structure": "structure",
+    "extractable-structure": "extractable structure",
+    "finite-loop": "finite loop",
+    "private-metric": "private metric",
+    "bounded-learner": "bounded learner",
+    "constraints": "constraints",
+    "future-compute": "future compute",
+    "geometry-not-storage": "geometry not storage",
+    "navigable": "navigable",
+    "flat-text": "flat text",
+    "convergent-basin": "convergent basin",
+    "trainability": "trainability",
+    "hyperparameters": "hyperparameters",
+    "low-leakage": "low-leakage loops",
+    "re-entry": "re-entry",
+    "writing-as-stabilizer": "writing as stabilizer",
+    "ghostwriter": "ghostwriter",
+    "coupling-problem": "coupling problem",
+    "structural-signal": "structural signal",
     "geometry": "geometry",
-    "stability": "stability",
-    "does-it-reduce-future-compute-for-me": "does it reduce future compute for me?",
-    "lower-leakage-loops": "lower-leakage loops",
-    "new-minimal-add": "New (minimal) add:",
-    "tighter-and-wrong": "tighter and wrong"
+    "premature-closure": "premature closure",
+    "feedback-control": "feedback control"
   },
-  "extraEdges": [],
+  "extraEdges": [
+    [
+      "geometry-not-storage",
+      "navigable"
+    ],
+    [
+      "flat-text",
+      "geometry-not-storage"
+    ],
+    [
+      "convergent-basin",
+      "trainability"
+    ],
+    [
+      "low-leakage",
+      "re-entry"
+    ],
+    [
+      "extractable-structure",
+      "future-compute"
+    ],
+    [
+      "ghostwriter",
+      "extractable-structure"
+    ],
+    [
+      "coupling-problem",
+      "feedback-control"
+    ],
+    [
+      "structural-signal",
+      "geometry"
+    ],
+    [
+      "geometry",
+      "premature-closure"
+    ],
+    [
+      "finite-loop",
+      "bounded-learner"
+    ],
+    [
+      "writing-as-stabilizer",
+      "re-entry"
+    ]
+  ],
   "meta": {
     "scope": "intra",
-    "inquiryCount": 5,
-    "conceptCount": 16,
-    "edgeCount": 13,
-    "extraEdgeCount": 0,
-    "generatedAt": "2026-06-26T17:15:26.646Z"
+    "inquiryCount": 8,
+    "conceptCount": 21,
+    "edgeCount": 23,
+    "extraEdgeCount": 11,
+    "generatedAt": "2026-06-28T16:58:56.426Z",
+    "poolId": "bounded-me",
+    "sectionSlugs": [
+      "bounded-me",
+      "memory-as-geometry-not-storage",
+      "the-fractal-edge-in-my-own-training",
+      "information-as-flow-through-the-loop",
+      "a-private-metric-did-the-piece-increase-extractable-structure",
+      "the-actual-thesis-for-me"
+    ]
   }
 }

@@ -10,6 +10,7 @@ describe('fieldUrl trail', () => {
         trail: ['allowed-ignorance', 'increasing-returns'],
         query: '',
         now: false,
+        spatial: false,
         x: null,
         y: null,
         z: null,
@@ -21,6 +22,27 @@ describe('fieldUrl trail', () => {
       'allowed-ignorance',
       'increasing-returns',
     ]);
+  });
+
+  it('round-trips spatial flag in the URL', () => {
+    const params = writeFieldState(
+      {
+        read: 'allowed-ignorance',
+        full: false,
+        trail: [],
+        query: '',
+        now: false,
+        spatial: false,
+        x: null,
+        y: null,
+        z: null,
+      },
+      { spatial: true },
+    );
+    expect(params.get('spatial')).toBe('1');
+    expect(parseFieldState(params).spatial).toBe(true);
+    const cleared = writeFieldState(parseFieldState(params), { spatial: false });
+    expect(cleared.get('spatial')).toBeNull();
   });
 
   it('clears trail when patched to empty', () => {

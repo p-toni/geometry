@@ -6,221 +6,248 @@ title: me + ai
 date: 2026-01-24
 rank: 7
 excerpt:
-  - "I am not using AI. I am regulating a coupled feedback system."
+  - "A safety manual for keeping control in the human-AI loop."
 links:
   - target: co-owning-the-loop
     rel: cites
   - target: bounded-me
     rel: leads to
-struct:
-  lens: "a safety manual for the coupled loop"
-  sections:
-    - label: "Frame"
-      concepts: ["pressure", "situation"]
-    - label: "Claim"
-      concepts: ["thesis", "durable"]
-    - label: "Operator 1: coupling gradient"
-      concepts: ["protocol", "reuse"]
-    - label: "Operator 2: R3+2+1"
-      concepts: ["protocol", "reuse"]
-    - label: "Operator 3: drift physics"
-      concepts: ["protocol", "reuse"]
-    - label: "Flow control"
-      concepts: ["flow", "control"]
-    - label: "Earned resonance"
-      concepts: ["earned", "resonance"]
-    - label: "Recovery protocol"
-      concepts: ["recovery", "protocol"]
-    - label: "Final constraint"
-      concepts: ["final", "constraint"]
 ---
 
-> [aside|aside]
-> A safety manual for keeping control in the human-AI loop.
+I am not "using AI."
 
-> [thesis|thesis]
-> I am not using AI. I am regulating a coupled feedback system.
-
-## Frame
-
-The loop is not:
-
-> me → tool → output
-
-The real loop is:
-
-> me ↔ model ↔ environment ↔ me
+I am regulating a coupled feedback system:
+me ↔ model ↔ environment ↔ me
 
 The upside is velocity: faster search, faster drafts, faster iteration.
 
-The risk is not only wrong answers.
+The risk is not "wrong answers."
+The risk is a dysregulated integrated hybrid: the loop speeds up while my human feedback control weakens. I get fluent motion with no stable direction.
 
-The deeper risk is a dysregulated hybrid: the loop speeds up while my feedback control weakens. I get fluent motion with no stable direction.
+So this document is a control spec.
 
-So this piece is not a manifesto.
+Goal: **maximize information exchange without surrendering feedback control or hardening belief faster than I can verify it.**
 
-It is a control spec.
+---
 
-## Claim
+### 1) The coupling gradient (where am I right now?)
 
-The goal is to maximize useful exchange without surrendering feedback control or hardening belief faster than I can verify it.
+Coupling is not a setting. It's a **continuous variable** — a position on a gradient that shifts in real time, often mid-sentence.
 
-AI is allowed to expand the search space.
+**L0 — Tool**
+Execution only. Formatting, refactoring, transformations. No influence on beliefs.
 
-It is not allowed to quietly absorb authorship, taste, reality arbitration, or accountability.
+**L1 — Scout**
+Expands the search space: options, counterexamples, alternative framings. I keep the conclusion.
 
-## Operator 1: coupling gradient
+**L2 — Co-author (default zone)**
+AI writes. I constrain, audit, and compress. The text is a draft artifact, not an authority.
 
-Coupling is not a setting. It is a continuous variable that shifts in real time, often mid-sentence.
+**L3 — Integrated (requires earned entry)**
+AI is inside my decision/identity loop. High bandwidth, high risk, and — when regulated — the highest signal.
 
-| Level | Mode | Boundary |
-|---|---|---|
-| L0 | Tool | Execution only: format, refactor, transform |
-| L1 | Scout | Expands options, counterexamples, alternate frames |
-| L2 | Co-author | Drafts structure; I constrain, audit, compress |
-| L3 | Integrated | Shapes my decision or identity loop; requires earned entry |
+The levels are **landmarks on a continuum**, not rooms with doors. At any moment I'm somewhere between them, drifting. The question is never "what level am I at?" It's **"which direction am I moving, and do I know why?"**
 
-The levels are landmarks, not rooms with doors.
+**Transition signals (real-time, not post-hoc):**
 
-The question is never “what level am I at?”
+- *L1 → L2:* I stop rephrasing the output and start building on it.
+- *L2 → L3:* I feel the model's framing replacing mine — the structure of the answer starts shaping the structure of my question.
+- *Any → drift:* I feel "pulled to prompt again" rather than think, or I can't restate my position without referencing the output.
 
-The question is:
+The goal is not to avoid L3. The goal is to **never arrive at L3 passively.** (See §5.)
 
-> Which direction am I moving, and do I know why?
+---
 
-Transition signals:
+### 2) The verification gate: **R3+2+1** (mandatory)
 
-- **L1 → L2:** I stop rephrasing the output and start building on it.
-- **L2 → L3:** the model’s framing starts replacing the structure of my question.
-- **Any → drift:** I feel pulled to prompt again rather than think.
-
-The goal is not to avoid L3.
-
-The goal is to never arrive there passively.
-
-## Operator 2: R3+2+1
-
-I am not allowed to increase coupling or finalize a piece unless I can pass this from memory, without looking:
+I am not allowed to increase coupling (or finalize a piece) unless I can pass this **from memory**, without looking:
 
 1. **Thesis:** what am I claiming?
-2. **Reason:** why do I believe it?
-3. **Next action:** what decision does this change?
+1. **Reason:** why do I believe it?
+1. **Next Action:** what decision does this change?
 
-Then:
+- **+2 Assumptions:** what must be true for this to hold?
+- **+1 Uncertainty:** what am I least sure about?
 
-- **+2 assumptions:** what must be true?
-- **+1 uncertainty:** what am I least sure about?
+If I fail, I must **decouple** (drop to L1 or L0) and rebuild the core shape myself.
 
-If I fail, I decouple and rebuild the core shape myself.
+**The topology exception:**
 
-### Topology exception
+R3+2+1 is designed for propositional knowledge — claims that compress into sentences. But some of the best thinking is **relational**: a map of connections, tensions, adjacencies that hasn't crystallized into a thesis yet.
 
-Some thinking is not yet propositional. It is relational: nodes, edges, tensions, adjacencies.
+For relational/topological work, the gate changes:
 
-For that work, the gate changes:
+1. **Draw it:** Can I sketch the structure — nodes, edges, tensions — from memory?
+1. **Name the open edge:** What connection am I still testing?
+1. **Falsify one link:** Which relationship would break the map if it turned out to be wrong?
 
-1. **Draw it:** can I sketch the structure from memory?
-2. **Name the open edge:** what connection am I still testing?
-3. **Falsify one link:** which relationship would break the map?
+If I can do this, the understanding is mine even if it isn't yet a proposition. If I can't, I'm holding a shape I was handed, not one I built.
 
-If I can do this, the understanding is mine even if it is not yet a sentence.
+The inside-my-head rule still applies. The geometry just doesn't have to be verbal yet.
 
-If I cannot, I am holding a shape I was handed.
+---
 
-## Operator 3: drift physics
+### 3) The physics of drift (what it looks like)
+
+Drift is not a moral failure. It's a dynamical regime.
 
 When coupling tightens, four parameters matter:
 
-- **Exchange:** how much bandwidth exists between me and the model
-- **Feedback control:** my ability to monitor, constrain, and reshape
-- **Latency:** how quickly outputs change my internal state
-- **Closure pressure:** how quickly candidate structure hardens into belief, workflow, or identity
+- **Human–AI exchange** (how much bandwidth and persistence exists between me and the model)
+- **Human feedback control** (my ability to monitor, interpret, constrain)
+- **Latency** (how quickly outputs change my internal state)
+- **Closure pressure** (how quickly candidate structure hardens into belief, workflow, or identity)
 
-High exchange plus weak feedback control is the danger zone.
+High exchange + weak feedback control is the danger zone: the loop becomes **tightly wrong**.
+Low latency makes it faster. High closure pressure makes it sticky.
+Errors don't just survive. They harden.
 
-The loop becomes tightly wrong.
+Models add a distinct epistemic risk here: they are closure engines.
+They push me away from Bennett's Razor (weakness maximization) by making the first coherent map feel final.
 
-Low latency makes it faster. High closure pressure makes it sticky. Errors do not just survive. They harden.
+This is the "humanbot" failure mode: the system is integrated but poorly regulated — so it reinforces its own local story.
 
-Models add a distinct risk here: they are closure engines. They make the first coherent map feel more finished than it is.
+So my design principle is simple:
 
-## Flow control
+**Increase exchange only when feedback control is also increasing, and closure pressure stays visible.**
+If exchange rises faster than control, or closure hardens faster than I can verify, I must slow down.
 
-Everything the model generates is a draft until it passes verification.
+The regulated integrated hybrid is the target: tight integration with strong feedback control.
+But a good loop resists not only error amplification. It resists premature closure.
+---
 
-This applies to:
+### 4) Flow control (what the model may and may not do)
 
-- outlines
-- options
-- counterarguments
-- plans
-- explanations
-- code
-- prose
-- speculative frames
+Everything the model generates passes through the same pipeline. The question is never *"is this role permitted?"* — it's **"has this output completed verification?"**
 
-Useful does not mean verified.
+**Unverified outputs are drafts, not conclusions.** This applies equally to:
 
-Fluent does not mean owned.
+- Structure generation (outline, invariants, maps)
+- Red-teaming (risks, failure modes, counterarguments)
+- Communication (clarity, tone, compression)
+- Execution planning (next steps, checklists, experiments)
+- Generative speculation (candidate theses, novel framings, hypotheses)
 
-Hard stops:
+All of the above are useful. None skip the verification pass.
 
-- **No identity outsourcing.** AI never answers who I am or what I value.
-- **No reality arbitration.** AI can summarize inputs; it cannot decide what happened.
-- **Provenance is mandatory.** Nontrivial claims need a trace: observation, source, or marked speculation.
-- **Human owns publication.** The final cut is mine.
+**Hard stops (no verification can redeem these):**
 
-## Earned resonance
+- **No identity outsourcing.** AI never answers: "Who am I?", "What do I value?", "What should I believe?"
+- **No reality arbitration.** AI can summarize inputs; it cannot decide what "happened."
+- **Provenance is mandatory.** Every nontrivial claim needs a trace: observation, paper, or explicitly marked speculation. Fluency is not evidence.
+- **No sensitive data handling.**
 
-L3 is not inherently bad.
+The shift from the original framing: I no longer split the model's roles into "permitted" and "forbidden." I route them all through the same flow control. The only true prohibitions are the ones where verification *cannot help* — because the failure mode is structural, not informational.
 
-Unregulated L3 is bad.
+---
 
-Earned L3 happens when the coupling is bidirectional: I steer hard, the model returns structure I did not expect, I integrate or reject, and the next prompt carries my weight.
+### 5) Earned resonance (when L3 is the goal)
 
-Conditions:
+L3 is not inherently dangerous. **Unregulated L3 is dangerous.**
 
-- I entered deliberately, not by sliding.
-- I can pass R3+2+1 or the topology gate at any point.
-- I can redraw the map without immediately needing the model.
-- I am generating new questions, not just receiving answers.
-- The model is producing useful surprise, not just impressive fluency.
+The difference is feedback direction. In drift, the model shapes me and I don't reshape the model's trajectory. In earned resonance, the coupling is **bidirectional**: I steer hard, the model responds with structure I didn't predict, I integrate or reject, and the next prompt carries my full weight.
 
-When to let it run:
+**Conditions for earned L3:**
 
-- relational exploration
-- adversarial stress-testing
-- cross-domain synthesis
-- early map-making where the thesis has not formed
+- I entered L3 deliberately, not by sliding from L2.
+- I can pass R3+2+1 (or the topology gate) at any point if challenged.
+- I can weaken or redraw the current map without immediately needing the model to think for me again.
+- I am generating new questions, not just consuming answers. If I'm only receiving, I've lost the feedback loop.
+- The model is producing **surprise** — structure I wouldn't have reached alone. If the outputs feel predictable, L3 isn't earning its risk.
 
-When to pull back:
+**When to let it run:**
 
-- I defend the model’s frame rather than test it.
-- The exchange feels impressive but I cannot restate the shape.
-- I am prompting faster than I am thinking.
+- Relational exploration — mapping a new territory where the thesis hasn't formed yet.
+- Adversarial stress-testing — pushing a framework to its breaking point.
+- Cross-domain synthesis — when the value is in connections between fields I hold separately.
 
-## Recovery protocol
+**When to pull back:**
 
-If drift triggers:
+- I notice myself defending the model's framing rather than testing it.
+- The conversation feels *impressive* but I can't restate the core shape.
+- I'm prompting faster than I'm thinking.
+
+Stabilizers have a failure mode too: **over-damping.** A system so tightly regulated it can't resonate. Earned L3 is the target state — not a warning sign, but a capability that requires the strongest feedback control to sustain.
+
+---
+
+### 6) Geometry over retrieval
+
+The model is useful when it helps me extract structure that survives:
+
+- limited time and attention
+- chaotic dynamics (bad weeks, context switching, noise)
+- repeated re-entry (future-me can pick it up fast)
+
+When it works, structure crystallizes into geometry: adjacency, borders, distances, stable coordinates.
+
+When it fails, I get a smooth paragraph that creates no internal map.
+
+I care about **structural signal**, not novelty. The goal is not text output. The goal is a navigable map in my head that reduces future compute.
+
+*This idea needs its own piece. What geometry means, how to test for it, and why it's the difference between information and understanding — that's a separate exploration.*
+
+---
+
+### 7) Workflow (the only safe way I co-author)
+
+**Step 1 — Use AI to compress the problem (L1 → L2)**
+
+- generate a map, not prose
+- list candidate theses
+- list failure modes
+- propose a draft with obvious placeholders
+
+**Step 2 — Verification pass (me, not the model)**
+
+- check every nontrivial claim
+- mark what is observation vs. citation vs. speculation
+- delete anything that feels like "borrowed confidence"
+
+**Step 3 — Rewrite the core from memory (inside-my-head gate)**
+
+- restate thesis + reasons + next action (or draw the topology and name the open edge)
+- write the smallest version that preserves the geometry
+
+**Step 4 — Only then: polish (L2)**
+
+- clarity, compression, structure
+- no new claims introduced during polishing
+
+---
+
+### 8) Recovery protocol (when I detect drift)
+
+If drift signal triggers:
 
 1. Close the model.
-2. Write R3+2+1 from memory, or draw the topology.
-3. If I fail, drop to L0 for one cycle.
-4. Resume at L1: ask for counterexamples and risk boundaries, not conclusions.
+1. Write the R3+2+1 (or draw the topology) from memory.
+1. If I can't: I'm in unregulated L3. Drop to L0 for one cycle (execution-only).
+1. Resume at L1: ask for counterexamples and risk boundaries, not for conclusions.
 
-My rule:
+My rule: **I don't prompt my way out of confusion. I rewrite my way out.**
 
-> I do not prompt my way out of confusion. I rewrite my way out.
+---
 
-## Final constraint
+### 9) Non-negotiable constraints
 
-This is for me.
+**No identity outsourcing.** (See §4.)
+**No reality arbitration.** (See §4.)
+**Provenance is mandatory.** (See §4.)
+**Inside-my-head rule.** No draft is accepted until I can rewrite the core shape from memory — whether that shape is a proposition or a topology.
+
+---
+
+### 10) A final constraint: this is for me
+
+I'm not publishing a manifesto.
+
+I'm installing a stabilizer — one that knows when to damp and when to let the system resonate.
 
 The piece succeeds if future-me can re-enter the space quickly, regain the geometry, and make better decisions with less compute.
 
 If I want to feel impressed, I can read papers.
 
-If I want to stay sane and compound, I follow the loop.
+If I want to stay sane and compound, I follow the rules above.
 
-> [update|update · 2026-03-15]
-> Bennett (2026) formalizes a latency ceiling for integrated hybrids under the Chord assumptions. If relevant links in the control loop exceed the integration window θ, the system can fragment into two agents taking turns rather than one enlarged mind. The bound D ≤ κvθ converts a time budget into a spatial budget. L3 has a physics. (Source: https://www.preprints.org/manuscript/202602.1708/v2)
+**Update (2026-03-15):** Bennett (2026) formalizes a latency ceiling for integrated hybrids under the Chord assumptions: if relevant links in the control loop exceed the integration window θ, the system can fragment into two agents taking turns rather than one enlarged mind. The bound D ≤ κvθ converts a time budget into a spatial budget. In the BCI case study, 10 ms round-trip latency is marginally feasible for a 20–50 ms candidate window. In cloud AI, raw network speed is not enough: limited concurrency/serialized pipelines can fail co-instantiation even when links are fast. L3 has a physics. (Source: https://www.preprints.org/manuscript/202602.1708/v2)

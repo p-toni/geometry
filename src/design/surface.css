@@ -170,9 +170,7 @@
   background: rgba(238, 240, 237, 0.58);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  transition:
-    background 380ms var(--ease-out-strong),
-    backdrop-filter 380ms var(--ease-out-strong);
+  transition: background 280ms var(--ease-out-strong);
 }
 
 .field-viewport {
@@ -200,33 +198,6 @@
     bottom: 0;
     z-index: 12;
   }
-}
-
-.constellation-overlay {
-  opacity: 1;
-  transform: scale(1);
-  filter: brightness(1);
-  transition:
-    opacity 380ms var(--ease-out-strong),
-    transform 520ms var(--ease-out-strong),
-    filter 380ms var(--ease-out-strong);
-}
-
-.constellation-overlay--enter {
-  opacity: 0;
-  transform: scale(0.06);
-  filter: brightness(1.35);
-}
-
-.constellation-overlay--exit {
-  opacity: 0;
-  transform: scale(0.94);
-  filter: brightness(0.85);
-  transition:
-    opacity 200ms var(--ease-out-strong),
-    transform 240ms var(--ease-out-strong),
-    filter 200ms var(--ease-out-strong);
-  pointer-events: none;
 }
 
 .field-viewport--descending {
@@ -565,7 +536,6 @@
   .field-edge,
   .field-grain,
   .field-grid,
-  .constellation-overlay,
   .curvature-path-layer,
   .lens-form,
   .field-zoom-readout,
@@ -577,14 +547,11 @@
   .field-node,
   .pressable,
   .edge-continues,
-  .field-read,
-  .constellation-overlay {
+  .field-read {
     transform: none !important;
   }
 
-  .constellation-overlay--enter,
-  .constellation-overlay--exit {
-    opacity: 1;
-    clip-path: inset(0 0 0 0);
+  .field-read--descending {
+    filter: none !important;
   }
 }

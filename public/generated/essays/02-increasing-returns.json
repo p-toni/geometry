@@ -1,49 +1,113 @@
 {
   "id": "02-increasing-returns",
   "title": "Increasing Returns",
-  "method": "heuristic",
+  "method": "agent",
   "embeddingModel": null,
   "scope": "intra",
   "people": [
     {
-      "id": "02-increasing-returns-lens",
+      "id": "increasing-returns-lens",
       "name": "increasing returns",
-      "meta": "W. Brian Arthur on Business Ecology",
+      "meta": "ecological · strategy inside interdependent networks",
       "topicIds": [
-        "increasing-returns",
-        "brian",
-        "arthur",
-        "business",
+        "ecology",
+        "co-evolution",
+        "feedback-loops"
+      ]
+    },
+    {
+      "id": "increasing-returns-arthur-quote",
+      "name": "awareness of ecology",
+      "meta": "quoting · peripheral actors still reshape the field",
+      "topicIds": [
+        "peripheral-actors",
+        "weak-ties",
+        "network-awareness"
+      ]
+    },
+    {
+      "id": "increasing-returns-blind-spots",
+      "name": "blind spots",
+      "meta": "watching · what looks peripheral until it isn't",
+      "topicIds": [
+        "blind-spots",
+        "weak-ties",
+        "shifts"
+      ]
+    },
+    {
+      "id": "increasing-returns-compounding",
+      "name": "compounding loops",
+      "meta": "anticipating · feedback that changes the terrain",
+      "topicIds": [
+        "feedback-loops",
+        "niche-opportunities",
+        "co-evolution"
+      ]
+    },
+    {
+      "id": "increasing-returns-allowed-ignorance",
+      "name": "allowed ignorance",
+      "meta": "cites · cuts inside bounded strategy",
+      "topicIds": [
         "ecology"
       ]
     },
     {
-      "id": "02-increasing-returns-quote",
-      "name": "w. brian arthur on busines",
-      "meta": "pull quote · field anchor",
+      "id": "increasing-returns-tools-edges",
+      "name": "tools need edges",
+      "meta": "theme · constraints inside abundant systems",
       "topicIds": [
-        "brian",
-        "arthur"
+        "constraints"
       ]
     }
   ],
   "topicLabels": {
-    "increasing-returns": "Increasing Returns",
-    "brian": "brian",
-    "arthur": "arthur",
-    "business": "business",
     "ecology": "ecology",
-    "why-it-matters": "Why it matters",
-    "2025-10-17": "2025.10.17",
-    "ecological-web": "Ecological Web"
+    "co-evolution": "co-evolution",
+    "feedback-loops": "feedback loops",
+    "peripheral-actors": "peripheral actors",
+    "weak-ties": "weak ties",
+    "network-awareness": "network awareness",
+    "blind-spots": "blind spots",
+    "shifts": "shifts",
+    "niche-opportunities": "niche opportunities",
+    "constraints": "constraints"
   },
-  "extraEdges": [],
+  "extraEdges": [
+    [
+      "peripheral-actors",
+      "weak-ties"
+    ],
+    [
+      "weak-ties",
+      "blind-spots"
+    ],
+    [
+      "feedback-loops",
+      "co-evolution"
+    ],
+    [
+      "network-awareness",
+      "shifts"
+    ],
+    [
+      "niche-opportunities",
+      "feedback-loops"
+    ],
+    [
+      "ecology",
+      "co-evolution"
+    ]
+  ],
   "meta": {
     "scope": "intra",
-    "inquiryCount": 2,
-    "conceptCount": 8,
-    "edgeCount": 7,
-    "extraEdgeCount": 0,
-    "generatedAt": "2026-06-26T17:15:26.644Z"
+    "inquiryCount": 6,
+    "conceptCount": 10,
+    "edgeCount": 14,
+    "extraEdgeCount": 6,
+    "generatedAt": "2026-06-28T16:58:56.427Z",
+    "poolId": "increasing-returns",
+    "sectionSlugs": []
   }
 }

@@ -1,0 +1,141 @@
+{
+  "people": [
+    {
+      "id": "geometry-retrieval-lens",
+      "name": "geometry over retrieval",
+      "meta": "prioritizing · structure before information",
+      "topicIds": ["structure-prior", "operational-standard", "weakest-map"]
+    },
+    {
+      "id": "geometry-retrieval-preamble",
+      "name": "three definitions",
+      "meta": "situating · bounded goal, guardrails, and test",
+      "topicIds": ["bounded-me", "me-plus-ai", "operational-standard"],
+      "sectionSlug": "preamble"
+    },
+    {
+      "id": "geometry-retrieval-thesis",
+      "name": "rebuild with source closed",
+      "meta": "claiming · geometry vs recall",
+      "topicIds": ["source-closed", "retrieval", "geometry", "overcommitted-map"],
+      "sectionSlug": "thesis"
+    },
+    {
+      "id": "geometry-retrieval-fluency-trap",
+      "name": "fluency trap",
+      "meta": "naming · explanatory depth and processing ease",
+      "topicIds": ["illusion-of-depth", "processing-fluency", "borrowed-prose"],
+      "sectionSlug": "fluency-is-not-understanding"
+    },
+    {
+      "id": "geometry-retrieval-points-edges",
+      "name": "points versus edges",
+      "meta": "drawing · relationship before prediction",
+      "topicIds": ["point", "edge", "predict", "debug", "teach"],
+      "sectionSlug": "points-versus-edges"
+    },
+    {
+      "id": "geometry-retrieval-curvature",
+      "name": "curvature",
+      "meta": "bending · structured wrongness in coupled systems",
+      "topicIds": ["curvature", "hidden-coupling", "missing-dimension"],
+      "sectionSlug": "the-missing-dimension-curvature"
+    },
+    {
+      "id": "geometry-retrieval-standing",
+      "name": "standing somewhere",
+      "meta": "feeling · retrieval reaches, geometry stands",
+      "topicIds": ["retrieval", "geometry", "predictions", "graceful-degrade"],
+      "sectionSlug": "what-geometry-feels-like"
+    },
+    {
+      "id": "geometry-retrieval-six-tests",
+      "name": "six tests",
+      "meta": "verifying · reconstruction not recognition",
+      "topicIds": ["rephrase", "rebuild", "predict", "teach", "break", "relax"],
+      "sectionSlug": "the-tests-diagnostics-that-resist-eloquence"
+    },
+    {
+      "id": "geometry-retrieval-r3-bridge",
+      "name": "walk and know",
+      "meta": "bridging · R3+2+1 meets the table",
+      "topicIds": ["r3-plus-2-plus-1", "rebuild", "counterexamples"],
+      "sectionSlug": "one-system-how-this-relates-to-r321"
+    },
+    {
+      "id": "geometry-retrieval-protocol",
+      "name": "build protocol",
+      "meta": "operating · sketch, collapse, reconstruct",
+      "topicIds": ["edge-typing", "edge-force", "reconstruction-loop"],
+      "sectionSlug": "how-to-build-geometry-tight-protocol"
+    },
+    {
+      "id": "geometry-retrieval-closing",
+      "name": "coherence engines",
+      "meta": "consequencing · expand search, rebuild map",
+      "topicIds": ["coherence-engine", "reconstruction", "weakening"],
+      "sectionSlug": "closing"
+    },
+    {
+      "id": "geometry-retrieval-weak-geometry",
+      "name": "weak geometry",
+      "meta": "pairs · maps that harden too early",
+      "topicIds": ["overcommitted-map", "weakest-map"]
+    }
+  ],
+  "topicLabels": {
+    "structure-prior": "structure prior",
+    "operational-standard": "operational standard",
+    "weakest-map": "weakest navigable map",
+    "bounded-me": "bounded me",
+    "me-plus-ai": "me + AI",
+    "source-closed": "source closed",
+    "retrieval": "retrieval",
+    "geometry": "geometry",
+    "overcommitted-map": "overcommitted map",
+    "illusion-of-depth": "illusion of explanatory depth",
+    "processing-fluency": "processing fluency",
+    "borrowed-prose": "borrowed prose",
+    "point": "point",
+    "edge": "edge",
+    "predict": "Predict",
+    "debug": "Debug",
+    "teach": "Teach",
+    "curvature": "curvature",
+    "hidden-coupling": "hidden coupling",
+    "missing-dimension": "missing dimension",
+    "predictions": "predictions",
+    "graceful-degrade": "graceful degradation",
+    "rephrase": "Rephrase",
+    "rebuild": "Rebuild",
+    "break": "Break",
+    "relax": "Relax",
+    "r3-plus-2-plus-1": "R3+2+1",
+    "counterexamples": "counterexamples",
+    "edge-typing": "edge typing",
+    "edge-force": "edge force",
+    "reconstruction-loop": "reconstruction loop",
+    "coherence-engine": "coherence engine",
+    "reconstruction": "reconstruction",
+    "weakening": "weakening"
+  },
+  "extraEdges": [
+    ["retrieval", "geometry"],
+    ["point", "edge"],
+    ["edge", "predict"],
+    ["illusion-of-depth", "processing-fluency"],
+    ["borrowed-prose", "retrieval"],
+    ["curvature", "hidden-coupling"],
+    ["curvature", "missing-dimension"],
+    ["rephrase", "geometry"],
+    ["rebuild", "source-closed"],
+    ["break", "edge"],
+    ["relax", "weakening"],
+    ["r3-plus-2-plus-1", "rebuild"],
+    ["edge-typing", "edge-force"],
+    ["coherence-engine", "retrieval"],
+    ["reconstruction", "geometry"],
+    ["overcommitted-map", "weakest-map"],
+    ["source-closed", "geometry"]
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "people": [
+    {
+      "id": "increasing-returns-lens",
+      "name": "increasing returns",
+      "meta": "ecological · strategy inside interdependent networks",
+      "topicIds": ["ecology", "co-evolution", "feedback-loops"]
+    },
+    {
+      "id": "increasing-returns-arthur-quote",
+      "name": "awareness of ecology",
+      "meta": "quoting · peripheral actors still reshape the field",
+      "topicIds": ["peripheral-actors", "weak-ties", "network-awareness"]
+    },
+    {
+      "id": "increasing-returns-blind-spots",
+      "name": "blind spots",
+      "meta": "watching · what looks peripheral until it isn't",
+      "topicIds": ["blind-spots", "weak-ties", "shifts"]
+    },
+    {
+      "id": "increasing-returns-compounding",
+      "name": "compounding loops",
+      "meta": "anticipating · feedback that changes the terrain",
+      "topicIds": ["feedback-loops", "niche-opportunities", "co-evolution"]
+    },
+    {
+      "id": "increasing-returns-allowed-ignorance",
+      "name": "allowed ignorance",
+      "meta": "cites · cuts inside bounded strategy",
+      "topicIds": ["ecology"]
+    },
+    {
+      "id": "increasing-returns-tools-edges",
+      "name": "tools need edges",
+      "meta": "theme · constraints inside abundant systems",
+      "topicIds": ["constraints"]
+    }
+  ],
+  "topicLabels": {
+    "ecology": "ecology",
+    "co-evolution": "co-evolution",
+    "feedback-loops": "feedback loops",
+    "peripheral-actors": "peripheral actors",
+    "weak-ties": "weak ties",
+    "network-awareness": "network awareness",
+    "blind-spots": "blind spots",
+    "shifts": "shifts",
+    "niche-opportunities": "niche opportunities",
+    "constraints": "constraints"
+  },
+  "extraEdges": [
+    ["peripheral-actors", "weak-ties"],
+    ["weak-ties", "blind-spots"],
+    ["feedback-loops", "co-evolution"],
+    ["network-awareness", "shifts"],
+    ["niche-opportunities", "feedback-loops"],
+    ["ecology", "co-evolution"]
+  ]
+}

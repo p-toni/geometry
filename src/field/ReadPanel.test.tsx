@@ -1,4 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import type { ReactElement } from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 import { pool } from '../pool';
 import { ReadPanel } from './ReadPanel';
@@ -6,6 +8,10 @@ import { ReadPanel } from './ReadPanel';
 const allowed = pool.nodes['allowed-ignorance']!;
 const bounded = pool.nodes['bounded-me']!;
 const ilya = pool.nodes.ilya!;
+
+function renderPanel(ui: ReactElement) {
+  return render(<MemoryRouter>{ui}</MemoryRouter>);
+}
 
 const panelHandlers = {
   onBack: vi.fn(),
@@ -19,7 +25,7 @@ const panelHandlers = {
 
 describe('ReadPanel', () => {
   it('shows excerpt and read full affordance by default', () => {
-    render(
+    renderPanel(
       <ReadPanel
         node={allowed}
         pool={pool}
@@ -37,11 +43,11 @@ describe('ReadPanel', () => {
 
     expect(screen.getByText(allowed.excerpt[0]!)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /▤ read full/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /enter its constellation/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /see the argument/i })).toBeInTheDocument();
   });
 
   it('shows note body whole with no read full affordance', async () => {
-    render(
+    renderPanel(
       <ReadPanel
         node={ilya}
         pool={pool}
@@ -65,7 +71,7 @@ describe('ReadPanel', () => {
   });
 
   it('loads essay body in full mode', async () => {
-    render(
+    renderPanel(
       <ReadPanel
         node={allowed}
         pool={pool}
@@ -93,7 +99,7 @@ describe('ReadPanel', () => {
   });
 
   it('resets scroll position when the open node changes', () => {
-    const { rerender } = render(
+    const { rerender } = renderPanel(
       <ReadPanel
         node={allowed}
         pool={pool}
@@ -107,13 +113,15 @@ describe('ReadPanel', () => {
     scroll.scrollTop = 320;
 
     rerender(
-      <ReadPanel
-        node={bounded}
-        pool={pool}
-        historyTitle={null}
-        full={false}
-        {...panelHandlers}
-      />,
+      <MemoryRouter>
+        <ReadPanel
+          node={bounded}
+          pool={pool}
+          historyTitle={null}
+          full={false}
+          {...panelHandlers}
+        />
+      </MemoryRouter>,
     );
 
     expect(scroll.scrollTop).toBe(0);
@@ -123,7 +131,7 @@ describe('ReadPanel', () => {
     const onBack = vi.fn();
     const onClose = vi.fn();
 
-    render(
+    renderPanel(
       <ReadPanel
         node={allowed}
         pool={pool}

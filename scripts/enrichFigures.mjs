@@ -147,30 +147,7 @@ patch('content/writing/weak-geometry.md', (b) => {
   return s;
 });
 
-patch('content/writing/bounded-me.md', (b) => {
-  let s = b;
-  s = s.replace(
-    '> [thesis|thesis]\n> Information is not what exists.',
-    '> [aside|aside]\n> A private metric for extractable structure, geometry, and loop stability.\n\n> [thesis|thesis]\n> Information is not what exists.',
-  );
-  s = s.replace(
-    '## Rule\n\nInformation is structural signal that:',
-    '## Rule\n\n> [thesis|for me]\n> Information is structural signal that a bounded learner can extract, crystallize into geometry, survive chaotic training dynamics, and behave like flow through a loop.\n\nInformation is structural signal that:',
-  );
-  s = s.replace(
-    /1\. a bounded learner can extract,\n2\. crystallizes into geometry,\n3\. survives chaotic training dynamics,\n4\. behaves like flow through a loop\.\n\nIt is what my loop/,
-    'It is what my loop',
-  );
-  s = s.replace(
-    '**Update (2026-03-15):** Bennett',
-    '> [update|update · 2026-03-15]\n> Bennett',
-  );
-  s = s.replace(
-    '**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]]',
-    '> [update|update · 2026-04-12]\n> [[backlink:Allowed Ignorance|cites|allowed-ignorance]]',
-  );
-  return s;
-});
+// bounded-me styling is authored directly in content/writing/bounded-me.md
 
 patch('content/writing/tools-need-edges.md', (b) => {
   let s = b;

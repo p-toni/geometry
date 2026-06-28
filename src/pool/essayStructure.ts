@@ -5,22 +5,27 @@ export type EssaySection = {
 };
 
 export type EssayStructure = {
-  /** Header title in descent overlay (clens) */
+  /** Header title in spatial handoff chrome */
   lens: string;
   /** Center node label — essay title */
   centerLabel: string;
   sections: EssaySection[];
 };
 
+export type ConstellationPerson = {
+  id: string;
+  name: string;
+  meta?: string;
+  topicIds?: string[];
+  /** When this inquiry is a section move — scroll anchor in read panel. */
+  sectionSlug?: string;
+};
+
 export type ConstellationGraphJson = {
-  people?: {
-    id: string;
-    name: string;
-    meta?: string;
-    topicIds?: string[];
-  }[];
+  people?: ConstellationPerson[];
   topicLabels?: Record<string, string>;
   title?: string;
+  extraEdges?: [string, string][];
 };
 
 const STRUCTURAL = new Set(['preamble', 'thesis', 'closing']);

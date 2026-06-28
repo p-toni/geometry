@@ -13,8 +13,11 @@ import { kindLabel } from '../lib/glyph';
 
 import { pool, FIELD_HEIGHT, FIELD_WIDTH } from '../pool';
 import type { PoolNode, Rel } from '../pool/types';
-import { SpatialConstellation, type DescentOrigin } from './SpatialConstellation';
-import { hasSpatialGraph } from './spatialConstellationMap';
+import {
+  SpatialConstellationHandoff,
+  type DescentOrigin,
+} from './spatial/SpatialConstellationHandoff';
+import { graphPathForNode, hasSpatialGraph } from './spatialConstellationMap';
 
 import { getFieldMode, statusForMode } from './fieldState';
 import { NAV_HOP_MS, NAV_OPEN_MS, useFieldTransform } from './hooks/useFieldTransform';
@@ -36,7 +39,6 @@ export function FieldApp() {
   );
   const mainRef = useRef<HTMLDivElement>(null);
   const suppressViewportSync = useRef(0);
-  const [descent, setDescent] = useState<PoolNode | null>(null);
   const [descentOrigin, setDescentOrigin] = useState<DescentOrigin | null>(null);
   const [composing, setComposing] = useState(false);
   const [activeChip, setActiveChip] = useState<string | null>(
@@ -111,7 +113,7 @@ export function FieldApp() {
   );
 
   const skipViewportSync = useRef(true);
-  const modeKey = `${params.get('read') ?? ''}|${params.get('trail') ?? ''}|${params.get('q') ?? ''}|${params.get('now') ?? ''}|${params.get('full') ?? ''}`;
+  const modeKey = `${params.get('read') ?? ''}|${params.get('trail') ?? ''}|${params.get('q') ?? ''}|${params.get('now') ?? ''}|${params.get('full') ?? ''}|${params.get('spatial') ?? ''}`;
   const viewportKey = `${params.get('x') ?? ''}|${params.get('y') ?? ''}|${params.get('z') ?? ''}`;
 
   useEffect(() => {
@@ -203,13 +205,13 @@ export function FieldApp() {
         }, NAV_HOP_MS);
       }
       const view = focusNode(id, true, wasReading);
-      setDescent(null);
       setDescentOrigin(null);
       pushUrl({
         read: id,
         query: '',
         now: false,
         full: false,
+        spatial: false,
         trail,
         ...(view ?? {}),
       });
@@ -231,24 +233,22 @@ export function FieldApp() {
     if (hopTimerRef.current != null) window.clearTimeout(hopTimerRef.current);
     hopNavRef.current = false;
     triggerCascade();
-    setDescent(null);
     setDescentOrigin(null);
     setLensInput('');
     setMatched(null);
     setActiveChip(null);
-    pushUrl({ read: null, query: '', now: false, full: false, trail: [] });
+    pushUrl({ read: null, query: '', now: false, full: false, spatial: false, trail: [] });
     field.fitView();
   }, [field, pushUrl, triggerCascade]);
 
   const back = useCallback(() => {
-    setDescent(null);
     setDescentOrigin(null);
     const state = parseFieldState(new URLSearchParams(window.location.search));
     const fullNow =
       state.full &&
       Boolean(state.read && (pool.nodes[state.read]?.body.length ?? 0) > 0);
     if (fullNow) {
-      pushUrl({ full: false });
+      pushUrl({ full: false, spatial: false });
       return;
     }
     const prev = trailTarget.at(-1);
@@ -265,11 +265,12 @@ export function FieldApp() {
       pushUrl({
         read: prev,
         full: false,
+        spatial: false,
         trail: nextTrail,
         ...(view ?? {}),
       });
     } else {
-      pushUrl({ read: null, full: false, trail: [] });
+      pushUrl({ read: null, full: false, spatial: false, trail: [] });
       field.fitView();
     }
   }, [field, focusNode, pushUrl, trailTarget]);
@@ -277,7 +278,7 @@ export function FieldApp() {
   const runLens = useCallback(
     (q: string) => {
       if (!q.trim()) {
-        pushUrl({ query: '', now: false, read: null, trail: [] });
+        pushUrl({ query: '', now: false, read: null, spatial: false, trail: [] });
         setMatched(null);
         setActiveChip(null);
         return;
@@ -285,7 +286,7 @@ export function FieldApp() {
       setComposing(true);
       const ids = resolveLens(pool, q, pool.layout.lenses);
       setMatched(ids);
-      pushUrl({ query: q, now: false, read: null, trail: [] });
+      pushUrl({ query: q, now: false, read: null, spatial: false, trail: [] });
       requestAnimationFrame(() => {
         frameIds(ids, pool.layout.positions, false);
         requestAnimationFrame(() => setComposing(false));
@@ -300,7 +301,7 @@ export function FieldApp() {
       setLensInput(query);
       setComposing(true);
       setMatched(nodeIds);
-      pushUrl({ query, now: false, read: null, trail: [] });
+      pushUrl({ query, now: false, read: null, spatial: false, trail: [] });
       requestAnimationFrame(() => {
         frameIds(nodeIds, pool.layout.positions, true);
         requestAnimationFrame(() => setComposing(false));
@@ -311,16 +312,45 @@ export function FieldApp() {
 
   const toggleNow = useCallback(() => {
     triggerCascade();
-    setDescent(null);
     setDescentOrigin(null);
     const next = !nowOn;
-    pushUrl({ now: next, read: null, query: '', trail: [] });
+    pushUrl({ now: next, read: null, query: '', spatial: false, trail: [] });
     setLensInput('');
     setMatched(null);
     setActiveChip(null);
   }, [nowOn, pushUrl, triggerCascade]);
 
   const readNode = readId ? pool.nodes[readId] : null;
+  const spatialOpen =
+    urlState.spatial && readNode != null && hasSpatialGraph(readNode.id);
+  const descentNode = spatialOpen ? readNode : null;
+  const descentGraphPath = descentNode ? graphPathForNode(descentNode.id) : null;
+
+  useEffect(() => {
+    if (!urlState.spatial) setDescentOrigin(null);
+  }, [urlState.spatial]);
+
+  useEffect(() => {
+    if (!urlState.spatial) return;
+    if (!readNode || !hasSpatialGraph(readNode.id)) {
+      pushUrl({ spatial: false }, true);
+    }
+  }, [urlState.spatial, readNode, pushUrl]);
+
+  const openSpatial = useCallback(
+    (origin: DescentOrigin) => {
+      if (!readNode || !hasSpatialGraph(readNode.id)) return;
+      setDescentOrigin(origin);
+      pushUrl({ spatial: true });
+    },
+    [pushUrl, readNode],
+  );
+
+  const closeSpatial = useCallback(() => {
+    setDescentOrigin(null);
+    const state = parseFieldState(new URLSearchParams(window.location.search));
+    if (state.spatial) window.history.back();
+  }, []);
   const neighborRels = useMemo(() => {
     const m: Record<string, Rel> = {};
     if (readNode) {
@@ -447,12 +477,11 @@ export function FieldApp() {
               className="pressable"
               onClick={() => {
                 triggerCascade();
-                setDescent(null);
                 setDescentOrigin(null);
                 setLensInput('');
                 setMatched(null);
                 setActiveChip(null);
-                pushUrl({ query: '' });
+                pushUrl({ query: '', spatial: false });
               }}
               style={{
                 fontFamily: 'var(--font-mono)',
@@ -556,7 +585,7 @@ export function FieldApp() {
           ref={field.vpRef}
           className={[
             fieldFocused ? 'field-viewport field-viewport--focus' : 'field-viewport',
-            descent ? 'field-viewport--descending' : '',
+            spatialOpen ? 'field-viewport--descending' : '',
           ]
             .filter(Boolean)
             .join(' ')}
@@ -854,11 +883,10 @@ export function FieldApp() {
             z 100%
           </div>
 
-          {readFull || descent ? (
-            <div
-              className={`field-read-scrim${descent ? ' field-read-scrim--descent' : ''}`}
-              aria-hidden
-            />
+          {spatialOpen ? (
+            <div className="field-read-scrim field-read-scrim--descent" aria-hidden />
+          ) : readFull ? (
+            <div className="field-read-scrim" aria-hidden />
           ) : null}
         </div>
 
@@ -872,39 +900,26 @@ export function FieldApp() {
                 : null
             }
             full={readFull}
-            descending={Boolean(descent)}
             onBack={back}
             onClose={home}
             onOpen={openNode}
             onOpenNode={openNode}
-            onToggleFull={(next) => pushUrl({ full: next })}
-            onDescend={(origin) => {
-              if (!readNode) return;
-              const container = mainRef.current;
-              if (container) {
-                const r = container.getBoundingClientRect();
-                setDescentOrigin({ x: origin.x - r.left, y: origin.y - r.top });
-              } else {
-                setDescentOrigin(origin);
-              }
-              setDescent(readNode);
-            }}
+            onToggleFull={(next) => pushUrl({ full: next, spatial: false })}
+            onDescend={openSpatial}
             canDescend={hasSpatialGraph(readNode.id)}
-          />
-        ) : null}
-
-        {descent ? (
-          <SpatialConstellation
-            nodeId={descent.id}
-            title={descent.title}
-            origin={descentOrigin ?? undefined}
-            onClose={() => {
-              setDescent(null);
-              setDescentOrigin(null);
-            }}
+            descending={spatialOpen}
           />
         ) : null}
       </div>
+
+      {descentNode && descentGraphPath ? (
+        <SpatialConstellationHandoff
+          graphPath={descentGraphPath}
+          fallbackTitle={descentNode.title}
+          origin={descentOrigin ?? undefined}
+          onClose={closeSpatial}
+        />
+      ) : null}
 
       <footer
         style={{

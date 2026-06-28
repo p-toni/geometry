@@ -1,74 +1,167 @@
 {
   "id": "04-co-owning-the-loop",
   "title": "Co-owning The Loop",
-  "method": "heuristic",
+  "method": "agent",
   "embeddingModel": null,
   "scope": "intra",
   "people": [
     {
-      "id": "04-co-owning-the-loop-lens",
+      "id": "co-owning-the-loop-lens",
       "name": "co-owning the loop",
-      "meta": "Notes from Codex on wiring Claude Code into te-blog and discover",
+      "meta": "accountable · responsibility inside shared systems",
       "topicIds": [
-        "co-owning-the-loop",
-        "notes",
-        "codex",
-        "wiring",
-        "claude",
-        "loop-choreography"
+        "co-ownership",
+        "accountability",
+        "scaffolding"
       ]
     },
     {
-      "id": "04-co-owning-the-loop-quote",
-      "name": "notes from codex on wiring",
-      "meta": "pull quote · field anchor",
+      "id": "co-owning-the-loop-nervous-system",
+      "name": "nervous system",
+      "meta": "wiring · hooks, skills, and repo self-awareness",
       "topicIds": [
-        "notes",
-        "codex",
-        "wiring"
+        "claude-skills",
+        "pretooluse-guards",
+        "stop-hooks",
+        "self-aware-repo"
       ]
     },
     {
-      "id": "04-co-owning-the-loop-section-0-what-i-learned-p",
-      "name": "what i learned pairing with ",
-      "meta": "section · argument move",
+      "id": "co-owning-the-loop-choreography",
+      "name": "choreography",
+      "meta": "staging · prompt to production as practiced motion",
       "topicIds": [
-        "pairing"
+        "choreography",
+        "delivery",
+        "repeatability"
       ]
     },
     {
-      "id": "04-co-owning-the-loop-section-1-why-im-writing-t",
-      "name": "why i'm writing this",
-      "meta": "section · argument move",
+      "id": "co-owning-the-loop-direction",
+      "name": "direction over speed",
+      "meta": "steering · leverage beats shiny features",
       "topicIds": [
-        "why-im-writing-this"
+        "direction",
+        "leverage",
+        "north-star"
+      ]
+    },
+    {
+      "id": "co-owning-the-loop-tooling-culture",
+      "name": "tooling is culture",
+      "meta": "expecting · hooks as shared norms",
+      "topicIds": [
+        "tooling-culture",
+        "expectations",
+        "risky-edit-blocks"
+      ]
+    },
+    {
+      "id": "co-owning-the-loop-trust",
+      "name": "talking builds trust",
+      "meta": "conversing · small affirmations keep momentum",
+      "topicIds": [
+        "trust",
+        "conversation",
+        "momentum"
+      ]
+    },
+    {
+      "id": "co-owning-the-loop-future-model",
+      "name": "future collaboration",
+      "meta": "meeting · vision with repeatability in the middle",
+      "topicIds": [
+        "human-vision",
+        "ai-repeatability",
+        "empathy"
+      ]
+    },
+    {
+      "id": "co-owning-the-loop-me-plus-ai",
+      "name": "control spec ahead",
+      "meta": "leads to · regulating the coupled loop",
+      "topicIds": [
+        "feedback-control",
+        "coupling"
       ]
     }
   ],
   "topicLabels": {
-    "why-im-writing-this": "Why I'm Writing This",
-    "co-owning-the-loop": "Co-owning The Loop",
-    "notes": "notes",
-    "codex": "codex",
-    "wiring": "wiring",
-    "claude": "claude",
-    "discovering": "discovering",
-    "pairing": "pairing",
-    "really": "really",
-    "meant": "meant",
-    "direction-matters-more-than-speed": "Direction matters more than speed.",
-    "tooling-is-culture": "Tooling is culture.",
-    "talking-builds-trust": "Talking builds trust.",
-    "2025-11-09": "2025.11.09",
-    "loop-choreography": "Loop Choreography"
+    "co-ownership": "co-ownership",
+    "accountability": "accountability",
+    "scaffolding": "scaffolding",
+    "claude-skills": "Claude skills",
+    "pretooluse-guards": "PreToolUse guards",
+    "stop-hooks": "stop hooks",
+    "self-aware-repo": "self-aware repo",
+    "choreography": "choreography",
+    "delivery": "delivery",
+    "repeatability": "repeatability",
+    "direction": "direction",
+    "leverage": "leverage",
+    "north-star": "north star",
+    "tooling-culture": "tooling is culture",
+    "expectations": "expectations",
+    "risky-edit-blocks": "risky edit blocks",
+    "trust": "trust",
+    "conversation": "conversation",
+    "momentum": "momentum",
+    "human-vision": "human vision",
+    "ai-repeatability": "AI repeatability",
+    "empathy": "empathy",
+    "feedback-control": "feedback control",
+    "coupling": "coupling"
   },
-  "extraEdges": [],
+  "extraEdges": [
+    [
+      "claude-skills",
+      "self-aware-repo"
+    ],
+    [
+      "pretooluse-guards",
+      "risky-edit-blocks"
+    ],
+    [
+      "stop-hooks",
+      "delivery"
+    ],
+    [
+      "choreography",
+      "repeatability"
+    ],
+    [
+      "direction",
+      "north-star"
+    ],
+    [
+      "tooling-culture",
+      "expectations"
+    ],
+    [
+      "human-vision",
+      "ai-repeatability"
+    ],
+    [
+      "feedback-control",
+      "coupling"
+    ],
+    [
+      "co-ownership",
+      "accountability"
+    ],
+    [
+      "trust",
+      "momentum"
+    ]
+  ],
   "meta": {
     "scope": "intra",
-    "inquiryCount": 4,
-    "conceptCount": 15,
-    "edgeCount": 11,
-    "extraEdgeCount": 0,
-    "generatedAt": "2026-06-26T17:15:26.645Z"
+    "inquiryCount": 8,
+    "conceptCount": 24,
+    "edgeCount": 24,
+    "extraEdgeCount": 10,
+    "generatedAt": "2026-06-28T16:58:56.426Z",
+    "poolId": "co-owning-the-loop",
+    "sectionSlugs": []
   }
 }

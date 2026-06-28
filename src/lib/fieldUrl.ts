@@ -6,6 +6,8 @@ export type FieldViewState = {
   trail: string[];
   query: string;
   now: boolean;
+  /** Spatial constellation handoff open for the current read */
+  spatial: boolean;
   x: number | null;
   y: number | null;
   z: number | null;
@@ -22,6 +24,7 @@ export function parseFieldState(params: URLSearchParams): FieldViewState {
     trail,
     query: params.get('q') ?? '',
     now: params.get('now') === '1',
+    spatial: params.get('spatial') === '1',
     x: num(params.get('x')),
     y: num(params.get('y')),
     z: num(params.get('z')),
@@ -57,6 +60,7 @@ export function writeFieldState(base: FieldViewState, patch: Partial<FieldViewSt
   if (next.trail.length) p.set('trail', next.trail.join(','));
   if (next.query) p.set('q', next.query);
   if (next.now) p.set('now', '1');
+  if (next.spatial) p.set('spatial', '1');
   if (next.x != null) p.set('x', String(Math.round(next.x)));
   if (next.y != null) p.set('y', String(Math.round(next.y)));
   if (next.z != null) p.set('z', next.z.toFixed(2));

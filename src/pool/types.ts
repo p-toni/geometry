@@ -30,21 +30,39 @@ export type Cluster = 'writing' | 'work' | 'play' | 'you';
 
 export type Link = readonly [targetId: string, rel: Rel];
 
-/** Essay body primitives — maps 1:1 to Figures registry (FIG.01–12). */
+import type { CitationData } from '../lib/citation';
+import type { ContrastRow, ContrastMode } from '../lib/contrast';
+import type { DiagramData } from '../lib/diagram';
+import type { LadderRung } from '../lib/ladder';
+
+/** Essay body primitives — content blocks + node-type read skins. */
 export type Block =
   | { t: 'p'; x: string }
   | { t: 'h'; x: string; level?: 2 | 3 }
   | { t: 'thesis'; x: string; k?: string }
   | { t: 'callout'; v: 'aside' | 'honesty' | 'update'; x: string; label?: string }
+  | { t: 'pull'; x: string }
   | { t: 'sidenote'; anchor: string; x: string; body?: string }
   | { t: 'plate'; cap: string; src?: string }
   | { t: 'table'; headers: string[]; rows: string[][] }
   | { t: 'edge-taxonomy'; rows: { type: string; force: string }[] }
   | { t: 'steps'; items: string[] }
+  | { t: 'ladder'; mode: 'level' | 'step' | 'gate'; rungs: LadderRung[] }
+  | {
+      t: 'contrast';
+      mode: ContrastMode;
+      poles: [string, string];
+      ownedPole: 0 | 1;
+      axisLabel?: string;
+      rows: ContrastRow[];
+    }
   | { t: 'motif' }
   | { t: 'point-edge' }
   | { t: 'curvature' }
-  | { t: 'backlink'; title: string; rel: string; targetId: string };
+  | { t: 'backlink'; title: string; rel: string; targetId: string }
+  | ({ t: 'diagram' } & DiagramData)
+  | ({ t: 'citation' } & CitationData)
+  | { t: 'sources-ledger'; items: CitationData[] };
 
 /** Intra-essay shape for constellation descent (authored in frontmatter). */
 export type EssayStruct = {

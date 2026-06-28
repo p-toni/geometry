@@ -98,7 +98,7 @@ ab('wait 1000');
 assert('read panel opens', ab('get url').includes('read=allowed-ignorance'), ab('get url'));
 data = snap();
 assert('read full button', refByName(data, 'read full') != null);
-assert('constellation CTA', refByName(data, 'enter its constellation') != null);
+assert('constellation CTA', refByName(data, /see the argument/i) != null);
 assert('walk edges', refByName(data, 'geometry > retrieval') != null);
 shot('02-read-excerpt.png');
 
@@ -110,7 +110,7 @@ data = snap();
 assert('collapse button', refByName(data, 'collapse') != null);
 assert('essay headings', pageText().includes('block') && pageText().includes('crack'));
 assert('motif figure', refByName(data, 'hold to stress') != null);
-assert('constellation in full mode', refByName(data, 'enter its constellation') != null);
+assert('constellation in full mode', refByName(data, /see the argument/i) != null);
 shot('03-read-full.png');
 
 // 4. Collapse (before constellation — keeps full-mode context clean)
@@ -122,15 +122,29 @@ shot('04-collapsed.png');
 // 5. Constellation descent from excerpt
 goto('http://localhost:5173/?read=allowed-ignorance');
 ab('wait 1200');
-clickNamed('enter its constellation');
+clickNamed(/see the argument/i);
 ab('wait 1200');
 const txt = pageText();
-assert('constellation overlay', txt.includes('spatial reading') && txt.includes('back to the field'));
+assert(
+  'constellation handoff',
+  txt.includes('back to essay') && /inquiries/i.test(txt),
+  txt.slice(0, 200),
+);
 assert('constellation title', txt.includes('allowed ignorance'));
+assert('constellation URL', ab('get url').includes('spatial=1'), ab('get url'));
 shot('05-constellation.png');
-clickRole('back to the field');
+ab('back');
 ab('wait 700');
-assert('constellation closes', !pageText().includes('inside the argument'));
+assert('browser back closes constellation', !pageText().includes('back to essay'));
+assert('browser back keeps read', ab('get url').includes('read=allowed-ignorance'), ab('get url'));
+assert('browser back clears spatial', !ab('get url').includes('spatial=1'), ab('get url'));
+goto('http://localhost:5173/?read=allowed-ignorance&spatial=1');
+ab('wait 1600');
+assert('spatial URL opens handoff', pageText().includes('back to essay'));
+shot('05b-spatial-deeplink.png');
+clickRole('back to essay');
+ab('wait 700');
+assert('constellation closes', !pageText().includes('back to essay'));
 
 // 6. Walk edge
 clickNamed('geometry > retrieval');

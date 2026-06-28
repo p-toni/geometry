@@ -1,0 +1,134 @@
+{
+  "people": [
+    {
+      "id": "me-plus-ai-lens",
+      "name": "me + ai",
+      "meta": "regulating · coupled feedback without losing control",
+      "topicIds": ["coupled-system", "feedback-control", "velocity-risk"]
+    },
+    {
+      "id": "me-plus-ai-coupling-gradient",
+      "name": "coupling gradient",
+      "meta": "locating · L0 through L3 as continuous drift",
+      "topicIds": ["l0-tool", "l1-scout", "l2-coauthor", "l3-integrated", "transition-signals"]
+    },
+    {
+      "id": "me-plus-ai-verification-gate",
+      "name": "verification gate",
+      "meta": "mandating · R3+2+1 from memory",
+      "topicIds": ["r3-plus-2-plus-1", "topology-gate", "inside-my-head"]
+    },
+    {
+      "id": "me-plus-ai-drift-physics",
+      "name": "drift physics",
+      "meta": "measuring · exchange, latency, closure pressure",
+      "topicIds": ["tightly-wrong", "closure-pressure", "humanbot", "bennett-razor"]
+    },
+    {
+      "id": "me-plus-ai-flow-control",
+      "name": "flow control",
+      "meta": "routing · drafts until verified",
+      "topicIds": ["unverified-drafts", "identity-outsourcing", "provenance"]
+    },
+    {
+      "id": "me-plus-ai-earned-resonance",
+      "name": "earned resonance",
+      "meta": "entering · regulated L3 on purpose",
+      "topicIds": ["earned-l3", "bidirectional-feedback", "over-damping"]
+    },
+    {
+      "id": "me-plus-ai-geometry-thread",
+      "name": "geometry thread",
+      "meta": "crystallizing · structure that survives re-entry",
+      "topicIds": ["structural-signal", "navigable-map", "retrieval-failure"]
+    },
+    {
+      "id": "me-plus-ai-workflow",
+      "name": "safe co-authoring",
+      "meta": "staging · map first, verify, rewrite, polish",
+      "topicIds": ["map-not-prose", "verification-pass", "rewrite-from-memory"]
+    },
+    {
+      "id": "me-plus-ai-recovery",
+      "name": "recovery protocol",
+      "meta": "decoupling · rewrite out of confusion",
+      "topicIds": ["close-model", "drop-to-l0", "counterexamples"]
+    },
+    {
+      "id": "me-plus-ai-stabilizer",
+      "name": "stabilizer",
+      "meta": "installing · rules future-me can re-enter",
+      "topicIds": ["stabilizer", "re-entry", "less-compute"]
+    },
+    {
+      "id": "me-plus-ai-bounded-me",
+      "name": "bounded me",
+      "meta": "leads to · finite loop underneath control",
+      "topicIds": ["finite-loop", "extractable-structure"]
+    },
+    {
+      "id": "me-plus-ai-co-owning",
+      "name": "co-owning the loop",
+      "meta": "cites · shared systems with accountability",
+      "topicIds": ["co-ownership", "repeatability"]
+    }
+  ],
+  "topicLabels": {
+    "coupled-system": "coupled system",
+    "feedback-control": "feedback control",
+    "velocity-risk": "velocity risk",
+    "l0-tool": "L0 tool",
+    "l1-scout": "L1 scout",
+    "l2-coauthor": "L2 co-author",
+    "l3-integrated": "L3 integrated",
+    "transition-signals": "transition signals",
+    "r3-plus-2-plus-1": "R3+2+1",
+    "topology-gate": "topology gate",
+    "inside-my-head": "inside my head",
+    "tightly-wrong": "tightly wrong",
+    "closure-pressure": "closure pressure",
+    "humanbot": "humanbot",
+    "bennett-razor": "Bennett's Razor",
+    "unverified-drafts": "unverified drafts",
+    "identity-outsourcing": "identity outsourcing",
+    "provenance": "provenance",
+    "earned-l3": "earned L3",
+    "bidirectional-feedback": "bidirectional feedback",
+    "over-damping": "over-damping",
+    "structural-signal": "structural signal",
+    "navigable-map": "navigable map",
+    "retrieval-failure": "retrieval failure",
+    "map-not-prose": "map not prose",
+    "verification-pass": "verification pass",
+    "rewrite-from-memory": "rewrite from memory",
+    "close-model": "close the model",
+    "drop-to-l0": "drop to L0",
+    "counterexamples": "counterexamples",
+    "stabilizer": "stabilizer",
+    "re-entry": "re-entry",
+    "less-compute": "less compute",
+    "finite-loop": "finite loop",
+    "extractable-structure": "extractable structure",
+    "co-ownership": "co-ownership",
+    "repeatability": "repeatability"
+  },
+  "extraEdges": [
+    ["l2-coauthor", "l3-integrated"],
+    ["transition-signals", "l3-integrated"],
+    ["r3-plus-2-plus-1", "inside-my-head"],
+    ["topology-gate", "navigable-map"],
+    ["tightly-wrong", "closure-pressure"],
+    ["closure-pressure", "bennett-razor"],
+    ["unverified-drafts", "provenance"],
+    ["identity-outsourcing", "humanbot"],
+    ["earned-l3", "bidirectional-feedback"],
+    ["structural-signal", "navigable-map"],
+    ["retrieval-failure", "structural-signal"],
+    ["map-not-prose", "verification-pass"],
+    ["verification-pass", "rewrite-from-memory"],
+    ["close-model", "drop-to-l0"],
+    ["feedback-control", "coupled-system"],
+    ["stabilizer", "re-entry"],
+    ["finite-loop", "extractable-structure"]
+  ]
+}

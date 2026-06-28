@@ -1,0 +1,88 @@
+{
+  "people": [
+    {
+      "id": "bounded-me-lens",
+      "name": "bounded me",
+      "meta": "extracting · structure a finite loop can keep",
+      "topicIds": ["extractable-structure", "finite-loop", "private-metric"]
+    },
+    {
+      "id": "bounded-me-bounded-learner",
+      "name": "bounded learner",
+      "meta": "defining · information as what I can pull in now",
+      "topicIds": ["bounded-learner", "constraints", "future-compute"]
+    },
+    {
+      "id": "bounded-me-memory-geometry",
+      "name": "memory as geometry",
+      "meta": "navigating · shape instead of storage",
+      "topicIds": ["geometry-not-storage", "navigable", "flat-text"]
+    },
+    {
+      "id": "bounded-me-fractal-edge",
+      "name": "fractal edge",
+      "meta": "stabilizing · convergent basin vs trash week",
+      "topicIds": ["convergent-basin", "trainability", "hyperparameters"]
+    },
+    {
+      "id": "bounded-me-flow",
+      "name": "flow through loop",
+      "meta": "plugging · leakage at transitions",
+      "topicIds": ["low-leakage", "re-entry", "writing-as-stabilizer"]
+    },
+    {
+      "id": "bounded-me-private-metric",
+      "name": "private metric",
+      "meta": "testing · did this piece change my geometry",
+      "topicIds": ["extractable-structure", "ghostwriter", "coupling-problem"]
+    },
+    {
+      "id": "bounded-me-thesis",
+      "name": "structural signal",
+      "meta": "claiming · information as flow under constraints",
+      "topicIds": ["structural-signal", "geometry", "premature-closure"]
+    },
+    {
+      "id": "bounded-me-me-plus-ai",
+      "name": "coupling ahead",
+      "meta": "cites · exchange vs feedback control",
+      "topicIds": ["coupling-problem", "feedback-control"]
+    }
+  ],
+  "topicLabels": {
+    "extractable-structure": "extractable structure",
+    "finite-loop": "finite loop",
+    "private-metric": "private metric",
+    "bounded-learner": "bounded learner",
+    "constraints": "constraints",
+    "future-compute": "future compute",
+    "geometry-not-storage": "geometry not storage",
+    "navigable": "navigable",
+    "flat-text": "flat text",
+    "convergent-basin": "convergent basin",
+    "trainability": "trainability",
+    "hyperparameters": "hyperparameters",
+    "low-leakage": "low-leakage loops",
+    "re-entry": "re-entry",
+    "writing-as-stabilizer": "writing as stabilizer",
+    "ghostwriter": "ghostwriter",
+    "coupling-problem": "coupling problem",
+    "structural-signal": "structural signal",
+    "geometry": "geometry",
+    "premature-closure": "premature closure",
+    "feedback-control": "feedback control"
+  },
+  "extraEdges": [
+    ["geometry-not-storage", "navigable"],
+    ["flat-text", "geometry-not-storage"],
+    ["convergent-basin", "trainability"],
+    ["low-leakage", "re-entry"],
+    ["extractable-structure", "future-compute"],
+    ["ghostwriter", "extractable-structure"],
+    ["coupling-problem", "feedback-control"],
+    ["structural-signal", "geometry"],
+    ["geometry", "premature-closure"],
+    ["finite-loop", "bounded-learner"],
+    ["writing-as-stabilizer", "re-entry"]
+  ]
+}

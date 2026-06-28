@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { FigureReader } from '../components/figures';
 import { Masthead } from '../components/figures/Masthead';
@@ -77,7 +78,15 @@ export function ReadPanel({
 
   return (
     <aside
-      className={`field-read field-read-sheet edge-emphasis${showFullBody && !wholePiece ? ' field-read--full' : ''}${descending ? ' field-read--descending' : ''}`}
+      className={[
+        'field-read',
+        'field-read-sheet',
+        'edge-emphasis',
+        showFullBody && !wholePiece ? 'field-read--full' : '',
+        descending ? 'field-read--descending' : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
       style={{
         background: 'var(--card)',
         boxShadow: '-18px 0 48px rgba(28,31,36,.16)',
@@ -252,38 +261,33 @@ export function ReadPanel({
         </div>
 
         {canDescend ? (
-          <>
-            <button
-              type="button"
-              className="pressable"
-              data-testid="constellation-descend"
-              onClick={(e) => {
-                const r = e.currentTarget.getBoundingClientRect();
-                onDescend({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
-              }}
-              style={{
-                marginTop: 28,
-                width: '100%',
-                scrollMarginBottom: 56,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 9,
-                fontFamily: 'var(--font-mono)',
-                fontSize: 11,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: '#fff',
-                background: 'var(--ink)',
-                border: 'none',
-                borderRadius: 3,
-                padding: '13px 16px',
-                cursor: 'pointer',
-              }}
-            >
-              <span style={{ fontSize: 13 }}>✦</span> enter its constellation →
-            </button>
-          </>
+          <button
+            type="button"
+            className="pressable"
+            data-testid="constellation-descend"
+            onClick={(e) => {
+              const r = e.currentTarget.getBoundingClientRect();
+              onDescend({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
+            }}
+            style={{
+              marginTop: showFullBody ? 28 : 12,
+              scrollMarginBottom: 56,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              padding: 0,
+              border: 'none',
+              background: 'none',
+              fontFamily: 'var(--font-mono)',
+              fontSize: 11,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: 'var(--signal)',
+              cursor: 'pointer',
+            }}
+          >
+            ✦ see the argument →
+          </button>
         ) : null}
 
         {next.length > 0 ? (

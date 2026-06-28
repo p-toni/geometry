@@ -13,6 +13,7 @@ function blockText(block: Block): string {
     case 'thesis':
       return block.x;
     case 'callout':
+    case 'pull':
     case 'sidenote':
       return block.x;
     case 'plate':
@@ -23,8 +24,22 @@ function blockText(block: Block): string {
       return block.rows.map((r) => `${r.type} ${r.force}`).join(' ');
     case 'steps':
       return block.items.join(' ');
+    case 'ladder':
+      return block.rungs.map((r) => `${r.marker} ${r.term} ${r.body}`).join(' ');
+    case 'contrast':
+      return [
+        ...block.poles,
+        block.axisLabel ?? '',
+        ...block.rows.map((r) => `${r.label ?? ''} ${r.a} ${r.b}`),
+      ].join(' ');
     case 'backlink':
       return `${block.title} ${block.rel}`;
+    case 'diagram':
+      return [block.expr ?? '', ...block.nodes, ...block.edges.map((e) => e.rel)].join(' ');
+    case 'citation':
+      return `${block.source.author} ${block.source.title} ${block.source.year ?? ''}`;
+    case 'sources-ledger':
+      return block.items.map((i) => `${i.source.author} ${i.source.title}`).join(' ');
     default:
       return '';
   }

@@ -1,0 +1,114 @@
+{
+  "people": [
+    {
+      "id": "tools-need-edges-lens",
+      "name": "tools need edges",
+      "meta": "gripping · constraints that return agency",
+      "topicIds": ["constraints", "agency", "holdable", "edges"]
+    },
+    {
+      "id": "tools-need-edges-possibility-debt",
+      "name": "possibility debt",
+      "meta": "inventing · frames hidden inside infinite choice",
+      "topicIds": ["possibility-space", "orientation", "infinite-choice", "hidden-cost"]
+    },
+    {
+      "id": "tools-need-edges-less-is-incomplete",
+      "name": "less is incomplete",
+      "meta": "subtracting · minimalism without design",
+      "topicIds": ["digital-minimalism", "attention", "design-not-use"]
+    },
+    {
+      "id": "tools-need-edges-good-constraint",
+      "name": "good constraint",
+      "meta": "gripping · a wall that is actually a handle",
+      "topicIds": ["grip", "feedback", "skill-accumulation", "playable-complexity"]
+    },
+    {
+      "id": "tools-need-edges-instrument-theory",
+      "name": "instrument theory",
+      "meta": "playing · maximum function, minimum form",
+      "topicIds": ["haiku", "piano", "op-1", "command-line", "instrument"]
+    },
+    {
+      "id": "tools-need-edges-deferred-design",
+      "name": "deferred design",
+      "meta": "dumping · possibility sold as power",
+      "topicIds": ["menus", "notifications", "deferred-work", "bad-software"]
+    },
+    {
+      "id": "tools-need-edges-generative-fog",
+      "name": "generative fog",
+      "meta": "framing · abundance without evals or memory",
+      "topicIds": ["ai-abundance", "frames", "evals", "steering-fog"]
+    },
+    {
+      "id": "tools-need-edges-holdable",
+      "name": "holdable",
+      "meta": "closing · technology you can actually steer",
+      "topicIds": ["holdable", "agency", "abundance", "edges"]
+    },
+    {
+      "id": "tools-need-edges-increasing-returns",
+      "name": "ecological pressure",
+      "meta": "theme · tools inside interdependent networks",
+      "topicIds": ["ecology", "constraints"]
+    },
+    {
+      "id": "tools-need-edges-ilya-echo",
+      "name": "intelligence trap",
+      "meta": "echoes · valuing fluency over grip",
+      "topicIds": ["intelligence-worship", "bad-time"]
+    }
+  ],
+  "topicLabels": {
+    "constraints": "constraints",
+    "agency": "agency",
+    "holdable": "holdable",
+    "edges": "edges",
+    "possibility-space": "possibility space",
+    "orientation": "orientation",
+    "infinite-choice": "infinite choice",
+    "hidden-cost": "hidden cost",
+    "digital-minimalism": "digital minimalism",
+    "attention": "attention",
+    "design-not-use": "design not use",
+    "grip": "grip",
+    "feedback": "feedback",
+    "skill-accumulation": "skill accumulation",
+    "playable-complexity": "playable complexity",
+    "haiku": "haiku",
+    "piano": "piano",
+    "op-1": "OP-1",
+    "command-line": "command line",
+    "instrument": "instrument",
+    "menus": "menus",
+    "notifications": "notifications",
+    "deferred-work": "deferred design work",
+    "bad-software": "bad software",
+    "ai-abundance": "generative abundance",
+    "frames": "frames",
+    "evals": "evals",
+    "steering-fog": "steering fog",
+    "abundance": "abundance",
+    "ecology": "ecology",
+    "intelligence-worship": "intelligence worship",
+    "bad-time": "bad time"
+  },
+  "extraEdges": [
+    ["possibility-space", "orientation"],
+    ["constraints", "agency"],
+    ["constraints", "grip"],
+    ["grip", "skill-accumulation"],
+    ["instrument", "playable-complexity"],
+    ["deferred-work", "bad-software"],
+    ["ai-abundance", "steering-fog"],
+    ["frames", "evals"],
+    ["steering-fog", "edges"],
+    ["agency", "holdable"],
+    ["abundance", "frames"],
+    ["digital-minimalism", "design-not-use"],
+    ["intelligence-worship", "bad-time"],
+    ["ecology", "constraints"]
+  ]
+}

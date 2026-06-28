@@ -1,79 +1,339 @@
 {
   "id": "09-allowed-ignorance",
   "title": "Allowed Ignorance",
-  "method": "heuristic",
+  "method": "agent",
   "embeddingModel": null,
   "scope": "intra",
   "people": [
     {
-      "id": "09-allowed-ignorance-lens",
+      "id": "allowed-ignorance-lens",
       "name": "allowed ignorance",
-      "meta": "Understanding is what remains after the right cuts.",
+      "meta": "remaining · understanding after the right omissions",
       "topicIds": [
-        "allowed-ignorance",
-        "understanding",
-        "remains",
-        "right"
+        "subtraction",
+        "survive-the-cut",
+        "form-not-face",
+        "disciplined-omission"
       ]
     },
     {
-      "id": "09-allowed-ignorance-quote",
-      "name": "understanding is what rema",
-      "meta": "pull quote · field anchor",
+      "id": "allowed-ignorance-maps-of-cuts",
+      "name": "maps of cuts",
+      "meta": "sideways · sentences are not the only material",
       "topicIds": [
-        "understanding"
+        "finite-loop",
+        "cuts-not-sentences",
+        "three-pressures"
+      ],
+      "sectionSlug": "preamble"
+    },
+    {
+      "id": "allowed-ignorance-after-removal",
+      "name": "after removal",
+      "meta": "subtracting · the object once material is gone",
+      "topicIds": [
+        "boundedness",
+        "editorial-removal",
+        "survive-the-cut",
+        "compression-question"
+      ],
+      "sectionSlug": "thesis"
+    },
+    {
+      "id": "allowed-ignorance-forced-selectivity",
+      "name": "forced selectivity",
+      "meta": "collapsing · equivalence-making under pressure",
+      "topicIds": [
+        "dense-arrival",
+        "equivalence-making",
+        "licensed-collapse",
+        "coordinate-change"
+      ],
+      "sectionSlug": "block"
+    },
+    {
+      "id": "allowed-ignorance-well-lit-face",
+      "name": "well-lit face",
+      "meta": "standing · coherence from one angle only",
+      "topicIds": [
+        "visible-side",
+        "false-conviction",
+        "retrieval-danger",
+        "face",
+        "form"
+      ],
+      "sectionSlug": "face"
+    },
+    {
+      "id": "allowed-ignorance-survives-rotation",
+      "name": "survives rotation",
+      "meta": "turning · contact kept when context shifts",
+      "topicIds": [
+        "rotation-invariance",
+        "faithful-cut",
+        "rephrase",
+        "rebuild",
+        "predict"
+      ],
+      "sectionSlug": "rotation"
+    },
+    {
+      "id": "allowed-ignorance-six-tests",
+      "name": "six tests",
+      "meta": "verifying · whether the cut was faithful",
+      "topicIds": [
+        "rephrase",
+        "rebuild",
+        "transfer",
+        "predict",
+        "break",
+        "relax"
+      ],
+      "sectionSlug": "rotation"
+    },
+    {
+      "id": "allowed-ignorance-functional-void",
+      "name": "functional void",
+      "meta": "missing · absence that makes the map usable",
+      "topicIds": [
+        "portable-gap",
+        "relief-trap",
+        "hidden-fracture",
+        "low-load-comfort"
+      ],
+      "sectionSlug": "void"
+    },
+    {
+      "id": "allowed-ignorance-late-elegance",
+      "name": "late elegance",
+      "meta": "splitting · failure along a line called cosmetic",
+      "topicIds": [
+        "neat-cut",
+        "late-failure",
+        "provisional-seam",
+        "weak-geometry"
+      ],
+      "sectionSlug": "crack"
+    },
+    {
+      "id": "allowed-ignorance-borrowed-cuts",
+      "name": "borrowed cuts",
+      "meta": "rebuilding · structure already merged for you",
+      "topicIds": [
+        "writing-as-test",
+        "formatting-not-understanding",
+        "borrowed-cuts",
+        "ai-merge"
+      ],
+      "sectionSlug": "workshop"
+    },
+    {
+      "id": "allowed-ignorance-right-to-omit",
+      "name": "right to omit",
+      "meta": "leaving · disciplined permission to ignore",
+      "topicIds": [
+        "subtraction-without-loss",
+        "cheap-vs-dangerous",
+        "unfinished-turn",
+        "disciplined-omission"
+      ],
+      "sectionSlug": "closing"
+    },
+    {
+      "id": "allowed-ignorance-bounded-pressure",
+      "name": "bounded pressure",
+      "meta": "cites · finite loop as constraint",
+      "topicIds": [
+        "finite-loop",
+        "boundedness"
       ]
     },
     {
-      "id": "09-allowed-ignorance-section-0-preamble",
-      "name": "preamble",
-      "meta": "section · argument move",
+      "id": "allowed-ignorance-retrieval-test",
+      "name": "retrieval test",
+      "meta": "theme · face back without the form",
       "topicIds": [
-        "preamble"
-      ]
-    },
-    {
-      "id": "09-allowed-ignorance-section-1-thesis",
-      "name": "thesis",
-      "meta": "section · argument move",
-      "topicIds": [
-        "thesis"
-      ]
-    },
-    {
-      "id": "09-allowed-ignorance-section-2-i-block",
-      "name": "i. block",
-      "meta": "section · argument move",
-      "topicIds": [
-        "i-block"
+        "retrieval-danger",
+        "rebuild"
       ]
     }
   ],
   "topicLabels": {
-    "preamble": "Preamble",
-    "thesis": "Thesis",
-    "i-block": "I. Block",
-    "ii-face": "II. Face",
-    "iii-rotation": "III. Rotation",
-    "iv-void": "IV. Void",
-    "v-crack": "V. Crack",
-    "vi-workshop": "VI. Workshop",
-    "closing": "Closing",
-    "allowed-ignorance": "Allowed Ignorance",
-    "understanding": "understanding",
-    "remains": "remains",
-    "right": "right",
+    "subtraction": "subtraction",
+    "survive-the-cut": "survive the cut",
+    "form-not-face": "form not face",
+    "disciplined-omission": "disciplined omission",
+    "finite-loop": "finite loop",
+    "cuts-not-sentences": "cuts not sentences",
+    "three-pressures": "three pressures",
+    "boundedness": "boundedness",
+    "editorial-removal": "editorial removal",
+    "compression-question": "did the object survive",
+    "dense-arrival": "dense arrival",
+    "equivalence-making": "equivalence-making",
+    "licensed-collapse": "licensed collapse",
+    "coordinate-change": "coordinate change",
+    "visible-side": "visible side",
+    "false-conviction": "false conviction",
+    "retrieval-danger": "retrieval danger",
+    "face": "face",
+    "form": "form",
+    "rotation-invariance": "rotation invariance",
+    "faithful-cut": "faithful cut",
     "rephrase": "Rephrase",
     "rebuild": "Rebuild",
-    "transfer": "Transfer"
+    "transfer": "Transfer",
+    "predict": "Predict",
+    "break": "Break",
+    "relax": "Relax",
+    "portable-gap": "portable gap",
+    "relief-trap": "relief trap",
+    "hidden-fracture": "hidden fracture",
+    "low-load-comfort": "low-load comfort",
+    "neat-cut": "neat cut",
+    "late-failure": "late failure",
+    "provisional-seam": "provisional seam",
+    "weak-geometry": "weak geometry",
+    "writing-as-test": "writing as test",
+    "formatting-not-understanding": "formatting not understanding",
+    "borrowed-cuts": "borrowed cuts",
+    "ai-merge": "AI merge",
+    "subtraction-without-loss": "subtraction without loss",
+    "cheap-vs-dangerous": "cheap vs dangerous variation",
+    "unfinished-turn": "unfinished turn"
   },
-  "extraEdges": [],
+  "extraEdges": [
+    [
+      "face",
+      "form"
+    ],
+    [
+      "visible-side",
+      "false-conviction"
+    ],
+    [
+      "retrieval-danger",
+      "face"
+    ],
+    [
+      "retrieval-danger",
+      "rebuild"
+    ],
+    [
+      "equivalence-making",
+      "licensed-collapse"
+    ],
+    [
+      "equivalence-making",
+      "survive-the-cut"
+    ],
+    [
+      "dense-arrival",
+      "boundedness"
+    ],
+    [
+      "editorial-removal",
+      "subtraction"
+    ],
+    [
+      "rotation-invariance",
+      "form-not-face"
+    ],
+    [
+      "faithful-cut",
+      "survive-the-cut"
+    ],
+    [
+      "rephrase",
+      "form"
+    ],
+    [
+      "predict",
+      "form"
+    ],
+    [
+      "break",
+      "neat-cut"
+    ],
+    [
+      "portable-gap",
+      "subtraction"
+    ],
+    [
+      "relief-trap",
+      "low-load-comfort"
+    ],
+    [
+      "hidden-fracture",
+      "late-failure"
+    ],
+    [
+      "neat-cut",
+      "late-failure"
+    ],
+    [
+      "provisional-seam",
+      "weak-geometry"
+    ],
+    [
+      "borrowed-cuts",
+      "retrieval-danger"
+    ],
+    [
+      "borrowed-cuts",
+      "ai-merge"
+    ],
+    [
+      "writing-as-test",
+      "rebuild"
+    ],
+    [
+      "formatting-not-understanding",
+      "false-conviction"
+    ],
+    [
+      "subtraction-without-loss",
+      "form-not-face"
+    ],
+    [
+      "cheap-vs-dangerous",
+      "hidden-fracture"
+    ],
+    [
+      "disciplined-omission",
+      "licensed-collapse"
+    ],
+    [
+      "unfinished-turn",
+      "rotation-invariance"
+    ],
+    [
+      "three-pressures",
+      "boundedness"
+    ],
+    [
+      "three-pressures",
+      "weak-geometry"
+    ]
+  ],
   "meta": {
     "scope": "intra",
-    "inquiryCount": 5,
-    "conceptCount": 16,
-    "edgeCount": 8,
-    "extraEdgeCount": 0,
-    "generatedAt": "2026-06-26T17:15:26.652Z"
+    "inquiryCount": 13,
+    "conceptCount": 42,
+    "edgeCount": 51,
+    "extraEdgeCount": 28,
+    "generatedAt": "2026-06-28T16:58:56.425Z",
+    "poolId": "allowed-ignorance",
+    "sectionSlugs": [
+      "preamble",
+      "thesis",
+      "block",
+      "face",
+      "rotation",
+      "void",
+      "crack",
+      "workshop",
+      "closing"
+    ]
   }
 }

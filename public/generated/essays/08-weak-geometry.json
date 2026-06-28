@@ -1,79 +1,233 @@
 {
   "id": "08-weak-geometry",
   "title": "Weak Geometry",
-  "method": "heuristic",
+  "method": "agent",
   "embeddingModel": null,
   "scope": "intra",
   "people": [
     {
-      "id": "08-weak-geometry-lens",
+      "id": "weak-geometry-lens",
       "name": "weak geometry",
-      "meta": "Why owned structure must stay less committed than I want it to.",
+      "meta": "loosening · structure playful enough to stay true",
       "topicIds": [
-        "iv-weak-geometry",
         "weak-geometry",
-        "owned",
-        "structure",
-        "committed",
-        "ii-weak-is-not-vague"
+        "undercommitted",
+        "reconstructable"
       ]
     },
     {
-      "id": "08-weak-geometry-quote",
-      "name": "why owned structure must s",
-      "meta": "pull quote · field anchor",
+      "id": "weak-geometry-preamble",
+      "name": "necessary correction",
+      "meta": "correcting · maps that harden too early",
       "topicIds": [
-        "owned",
-        "structure"
-      ]
+        "hardening",
+        "owned-map",
+        "freedom-to-be-wrong"
+      ],
+      "sectionSlug": "preamble"
     },
     {
-      "id": "08-weak-geometry-section-0-preamble",
-      "name": "preamble",
-      "meta": "section · argument move",
+      "id": "weak-geometry-thesis",
+      "name": "weakest not shortest",
+      "meta": "claiming · owned structure without false certainty",
       "topicIds": [
-        "preamble"
-      ]
+        "bennett-razor",
+        "owned-structure",
+        "navigable-possibility"
+      ],
+      "sectionSlug": "thesis"
     },
     {
-      "id": "08-weak-geometry-section-1-thesis",
-      "name": "thesis",
-      "meta": "section · argument move",
+      "id": "weak-geometry-too-eager",
+      "name": "too eager",
+      "meta": "reviewing · where earlier pieces closed fast",
       "topicIds": [
-        "thesis"
+        "tight-definitions",
+        "temporary-bridges",
+        "borrowed-closure"
+      ],
+      "sectionSlug": "where-the-earlier-pieces-were-too-eager"
+    },
+    {
+      "id": "weak-geometry-not-vague",
+      "name": "weak not vague",
+      "meta": "ruling · less exclusion while still guiding",
+      "topicIds": [
+        "rules-out-less",
+        "brittle-map",
+        "overfit-insight"
+      ],
+      "sectionSlug": "weak-is-not-vague"
+    },
+    {
+      "id": "weak-geometry-cage",
+      "name": "map becomes cage",
+      "meta": "selecting · structure deciding what is thinkable",
+      "topicIds": [
+        "premature-geometry",
+        "temporal-gap",
+        "fake-simultaneity"
+      ],
+      "sectionSlug": "when-a-map-becomes-a-cage"
+    },
+    {
+      "id": "weak-geometry-four-properties",
+      "name": "four properties",
+      "meta": "defining · reconstructable, typed, graded, revisable",
+      "topicIds": [
+        "reconstructable",
+        "typed-edges",
+        "graded-commitment",
+        "revisable"
+      ],
+      "sectionSlug": "weak-geometry"
+    },
+    {
+      "id": "weak-geometry-pressure-chamber",
+      "name": "pressure chamber",
+      "meta": "coupling · AI as breadth without premature finish",
+      "topicIds": [
+        "pressure-chamber",
+        "closure-pressure",
+        "delayed-hardening"
+      ],
+      "sectionSlug": "me-ai-under-revision"
+    },
+    {
+      "id": "weak-geometry-relax-test",
+      "name": "relax test",
+      "meta": "weakening · one edge to see if map still orients",
+      "topicIds": [
+        "relax",
+        "verbal-arch",
+        "theater"
+      ],
+      "sectionSlug": "a-new-diagnostic"
+    },
+    {
+      "id": "weak-geometry-closing",
+      "name": "doors unlocked",
+      "meta": "holding · owned structure, weakly held",
+      "topicIds": [
+        "owned-structure",
+        "revisable",
+        "equivalence-making"
+      ],
+      "sectionSlug": "closing"
+    },
+    {
+      "id": "weak-geometry-allowed-ignorance",
+      "name": "allowed ignorance",
+      "meta": "leads to · restraint about licensed cuts",
+      "topicIds": [
+        "equivalence-making",
+        "licensed-collapse"
       ]
     }
   ],
   "topicLabels": {
-    "preamble": "Preamble",
-    "thesis": "Thesis",
-    "ii-weak-is-not-vague": "II. Weak is not vague",
-    "iii-when-a-map-becomes-a-cage": "III. When a map becomes a cage",
-    "iv-weak-geometry": "IV. Weak geometry",
-    "v-me-ai-under-revision": "V. Me + AI under revision",
-    "vi-a-new-diagnostic": "VI. A new diagnostic",
-    "closing": "Closing",
-    "weak-geometry": "Weak Geometry",
-    "owned": "owned",
-    "structure": "structure",
-    "committed": "committed",
-    "relax": "Relax.",
-    "update-2026-04-12": "Update (2026-04-12):",
-    "2026-03-15": "2026.03.15",
-    "geometry-not-storage": "\"geometry, not storage.\""
+    "weak-geometry": "weak geometry",
+    "undercommitted": "undercommitted",
+    "reconstructable": "reconstructable",
+    "hardening": "hardening too early",
+    "owned-map": "owned map",
+    "freedom-to-be-wrong": "freedom to be wrong",
+    "bennett-razor": "Bennett's Razor",
+    "owned-structure": "owned structure",
+    "navigable-possibility": "navigable possibility",
+    "tight-definitions": "tight definitions",
+    "temporary-bridges": "temporary bridges",
+    "borrowed-closure": "borrowed closure",
+    "rules-out-less": "rules out less",
+    "brittle-map": "brittle map",
+    "overfit-insight": "overfit insight",
+    "premature-geometry": "premature geometry",
+    "temporal-gap": "temporal gap",
+    "fake-simultaneity": "fake simultaneity",
+    "typed-edges": "typed edges",
+    "graded-commitment": "graded commitment",
+    "revisable": "revisable",
+    "pressure-chamber": "pressure chamber",
+    "closure-pressure": "closure pressure",
+    "delayed-hardening": "delayed hardening",
+    "relax": "Relax",
+    "verbal-arch": "verbal arch",
+    "theater": "theater",
+    "equivalence-making": "equivalence-making",
+    "licensed-collapse": "licensed collapse"
   },
   "extraEdges": [
     [
-      "update-2026-04-12",
-      "2026-03-15"
+      "hardening",
+      "premature-geometry"
+    ],
+    [
+      "bennett-razor",
+      "navigable-possibility"
+    ],
+    [
+      "brittle-map",
+      "overfit-insight"
+    ],
+    [
+      "premature-geometry",
+      "temporal-gap"
+    ],
+    [
+      "typed-edges",
+      "graded-commitment"
+    ],
+    [
+      "reconstructable",
+      "owned-structure"
+    ],
+    [
+      "pressure-chamber",
+      "delayed-hardening"
+    ],
+    [
+      "closure-pressure",
+      "borrowed-closure"
+    ],
+    [
+      "relax",
+      "verbal-arch"
+    ],
+    [
+      "relax",
+      "theater"
+    ],
+    [
+      "equivalence-making",
+      "licensed-collapse"
+    ],
+    [
+      "weak-geometry",
+      "undercommitted"
+    ],
+    [
+      "owned-structure",
+      "revisable"
     ]
   ],
   "meta": {
     "scope": "intra",
-    "inquiryCount": 4,
-    "conceptCount": 16,
-    "edgeCount": 10,
-    "extraEdgeCount": 1,
-    "generatedAt": "2026-06-26T17:15:26.651Z"
+    "inquiryCount": 11,
+    "conceptCount": 29,
+    "edgeCount": 33,
+    "extraEdgeCount": 13,
+    "generatedAt": "2026-06-28T16:58:56.428Z",
+    "poolId": "weak-geometry",
+    "sectionSlugs": [
+      "preamble",
+      "thesis",
+      "where-the-earlier-pieces-were-too-eager",
+      "weak-is-not-vague",
+      "when-a-map-becomes-a-cage",
+      "weak-geometry",
+      "me-ai-under-revision",
+      "a-new-diagnostic",
+      "closing"
+    ]
   }
 }
