@@ -273,7 +273,7 @@ export function ConstellationDescent({ node, origin, onClose }: Props) {
 
   const requestClose = useCallback(() => {
     setExiting(true);
-    window.setTimeout(() => onClose(), 160);
+    window.setTimeout(() => onClose(), 260);
   }, [onClose]);
 
   const selectedRung = sel && essayGraph ? rungById(essayGraph, sel) : undefined;

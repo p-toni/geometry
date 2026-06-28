@@ -116,11 +116,22 @@
   background: rgba(238, 240, 237, 0.58);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
+  transition:
+    background 380ms var(--ease-out-strong),
+    backdrop-filter 380ms var(--ease-out-strong);
+}
+
+.field-viewport {
+  transition: filter 420ms var(--ease-drawer);
 }
 
 .field-read {
   width: 480px;
-  transition: width 320ms var(--ease-drawer);
+  transition:
+    width 320ms var(--ease-drawer),
+    transform 440ms var(--ease-drawer),
+    opacity 320ms var(--ease-out-strong),
+    filter 320ms var(--ease-out-strong);
 }
 
 .field-read--full {
@@ -166,17 +177,12 @@
 
 .field-viewport--descending {
   filter: saturate(0.88) brightness(0.94);
-  transition: filter 420ms var(--ease-drawer);
 }
 
 .field-read--descending {
   transform: scale(0.96) translateX(10px);
   opacity: 0.5;
   filter: blur(2px);
-  transition:
-    transform 440ms var(--ease-drawer),
-    opacity 320ms var(--ease-out-strong),
-    filter 320ms var(--ease-out-strong);
   pointer-events: none;
 }
 
@@ -184,7 +190,6 @@
   background: rgba(28, 31, 36, 0.22);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  transition: background 380ms var(--ease-out-strong), backdrop-filter 380ms var(--ease-out-strong);
 }
 
 .curvature-svg {
