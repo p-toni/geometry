@@ -1,13 +1,23 @@
 import { useCallback, useEffect, useRef, useState, type RefObject } from 'react';
 import { loadGraph } from '../../../constellation/src/graph/loadGraph.js';
 import { mount } from '../../../constellation/src/mount.js';
-import type { ConstellationGraph } from '../../../constellation/src/mount.d.ts';
+import type {
+  ConstellationGraph,
+  ConstellationSelection,
+} from '../../../constellation/src/mount.d.ts';
 
 export type SpatialView = 'A' | 'B';
 
 export type SpatialGraphMeta = {
   title: string;
   metaLine: string;
+};
+
+export type SpatialLabelSafeInset = {
+  left?: number;
+  right?: number;
+  top?: number;
+  bottom?: number;
 };
 
 function formatGeneratedAt(iso: string): string {
@@ -33,8 +43,14 @@ export function metaFromGraph(graph: ConstellationGraph, path: string): SpatialG
   };
 }
 
-export function useSpatialMount(graphPath: string | null, hostRef: RefObject<HTMLDivElement | null>) {
+export function useSpatialMount(
+  graphPath: string | null,
+  hostRef: RefObject<HTMLDivElement | null>,
+  labelSafeInset?: SpatialLabelSafeInset,
+) {
   const mountRef = useRef<ReturnType<typeof mount> | null>(null);
+  const [graph, setGraph] = useState<ConstellationGraph | null>(null);
+  const [selectedNode, setSelectedNode] = useState<ConstellationSelection>(null);
   const [meta, setMeta] = useState<SpatialGraphMeta | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
@@ -45,12 +61,18 @@ export function useSpatialMount(graphPath: string | null, hostRef: RefObject<HTM
     setCurrentView(view);
   }, []);
 
+  const selectNode = useCallback((id: string | null) => {
+    mountRef.current?.selectNode(id);
+  }, []);
+
   useEffect(() => {
     const host = hostRef.current;
     if (!host || !graphPath) return;
 
     let dead = false;
     setError(null);
+    setGraph(null);
+    setSelectedNode(null);
     setMeta(null);
     setReady(false);
     setCurrentView('A');
@@ -58,9 +80,16 @@ export function useSpatialMount(graphPath: string | null, hostRef: RefObject<HTM
     loadGraph(graphPath)
       .then((graph) => {
         if (dead || !hostRef.current) return;
+        setGraph(graph);
         setMeta(metaFromGraph(graph, graphPath));
         mountRef.current?.destroy();
-        mountRef.current = mount(hostRef.current, { graph });
+        mountRef.current = mount(hostRef.current, {
+          graph,
+          suppressLensLabel: true,
+          labelSafeInset,
+          onSelectionChange: setSelectedNode,
+          onViewChange: setCurrentView,
+        });
         mountRef.current.resize();
         setCurrentView('A');
         setReady(true);
@@ -79,10 +108,14 @@ export function useSpatialMount(graphPath: string | null, hostRef: RefObject<HTM
   }, [graphPath, hostRef]);
 
   useEffect(() => {
+    mountRef.current?.setLabelSafeInset(labelSafeInset);
+  }, [labelSafeInset]);
+
+  useEffect(() => {
     const onResize = () => mountRef.current?.resize();
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  return { meta, error, ready, currentView, switchView };
+  return { graph, selectedNode, meta, error, ready, currentView, switchView, selectNode };
 }

@@ -22,7 +22,8 @@
       "topicIds": [
         "intelligence-worship",
         "bad-time"
-      ]
+      ],
+      "sectionSlug": "value-of-intelligence"
     },
     {
       "id": "ilya-increasing-returns",
@@ -74,8 +75,10 @@
     "conceptCount": 6,
     "edgeCount": 8,
     "extraEdgeCount": 4,
-    "generatedAt": "2026-06-28T16:58:56.427Z",
+    "generatedAt": "2026-06-29T01:15:04.440Z",
     "poolId": "ilya",
-    "sectionSlugs": []
+    "sectionSlugs": [
+      "value-of-intelligence"
+    ]
   }
 }

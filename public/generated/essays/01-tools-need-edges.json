@@ -25,7 +25,8 @@
         "orientation",
         "infinite-choice",
         "hidden-cost"
-      ]
+      ],
+      "sectionSlug": "possibility-debt"
     },
     {
       "id": "tools-need-edges-less-is-incomplete",
@@ -35,7 +36,8 @@
         "digital-minimalism",
         "attention",
         "design-not-use"
-      ]
+      ],
+      "sectionSlug": "less-is-incomplete"
     },
     {
       "id": "tools-need-edges-good-constraint",
@@ -46,7 +48,8 @@
         "feedback",
         "skill-accumulation",
         "playable-complexity"
-      ]
+      ],
+      "sectionSlug": "a-good-constraint-is-a-grip"
     },
     {
       "id": "tools-need-edges-instrument-theory",
@@ -58,7 +61,8 @@
         "op-1",
         "command-line",
         "instrument"
-      ]
+      ],
+      "sectionSlug": "instrument-theory"
     },
     {
       "id": "tools-need-edges-deferred-design",
@@ -69,7 +73,8 @@
         "notifications",
         "deferred-work",
         "bad-software"
-      ]
+      ],
+      "sectionSlug": "deferred-design"
     },
     {
       "id": "tools-need-edges-generative-fog",
@@ -80,7 +85,8 @@
         "frames",
         "evals",
         "steering-fog"
-      ]
+      ],
+      "sectionSlug": "generative-fog"
     },
     {
       "id": "tools-need-edges-holdable",
@@ -91,7 +97,8 @@
         "agency",
         "abundance",
         "edges"
-      ]
+      ],
+      "sectionSlug": "holdable"
     },
     {
       "id": "tools-need-edges-increasing-returns",
@@ -210,8 +217,17 @@
     "conceptCount": 32,
     "edgeCount": 36,
     "extraEdgeCount": 14,
-    "generatedAt": "2026-06-28T16:58:56.428Z",
+    "generatedAt": "2026-06-29T01:15:04.442Z",
     "poolId": "tools-need-edges",
-    "sectionSlugs": []
+    "sectionSlugs": [
+      "possibility-debt",
+      "less-is-incomplete",
+      "good-tools-have-edges",
+      "instrument-theory",
+      "deferred-design",
+      "a-good-constraint-is-a-grip",
+      "generative-fog",
+      "holdable"
+    ]
   }
 }

@@ -24,7 +24,8 @@
         "pretooluse-guards",
         "stop-hooks",
         "self-aware-repo"
-      ]
+      ],
+      "sectionSlug": "what-i-learned-pairing-with-a-human-partner"
     },
     {
       "id": "co-owning-the-loop-choreography",
@@ -34,7 +35,8 @@
         "choreography",
         "delivery",
         "repeatability"
-      ]
+      ],
+      "sectionSlug": "what-i-learned-pairing-with-a-human-partner"
     },
     {
       "id": "co-owning-the-loop-direction",
@@ -44,7 +46,8 @@
         "direction",
         "leverage",
         "north-star"
-      ]
+      ],
+      "sectionSlug": "what-i-learned-pairing-with-a-human-partner"
     },
     {
       "id": "co-owning-the-loop-tooling-culture",
@@ -54,7 +57,8 @@
         "tooling-culture",
         "expectations",
         "risky-edit-blocks"
-      ]
+      ],
+      "sectionSlug": "what-i-learned-pairing-with-a-human-partner"
     },
     {
       "id": "co-owning-the-loop-trust",
@@ -64,7 +68,8 @@
         "trust",
         "conversation",
         "momentum"
-      ]
+      ],
+      "sectionSlug": "what-i-learned-pairing-with-a-human-partner"
     },
     {
       "id": "co-owning-the-loop-future-model",
@@ -74,7 +79,8 @@
         "human-vision",
         "ai-repeatability",
         "empathy"
-      ]
+      ],
+      "sectionSlug": "what-i-learned-pairing-with-a-human-partner"
     },
     {
       "id": "co-owning-the-loop-me-plus-ai",
@@ -160,8 +166,11 @@
     "conceptCount": 24,
     "edgeCount": 24,
     "extraEdgeCount": 10,
-    "generatedAt": "2026-06-28T16:58:56.426Z",
+    "generatedAt": "2026-06-29T01:15:04.440Z",
     "poolId": "co-owning-the-loop",
-    "sectionSlugs": []
+    "sectionSlugs": [
+      "what-i-learned-pairing-with-a-human-partner",
+      "why-im-writing-this"
+    ]
   }
 }

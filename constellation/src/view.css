@@ -1,9 +1,9 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: #080808;
-  color: #f0f0f0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #070707;
+  color: #f4eee2;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 .view-chrome {
@@ -23,14 +23,15 @@ body {
 .view-back {
   pointer-events: auto;
   font-size: 12px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(244, 238, 226, 0.5);
   text-decoration: none;
+  transition: color 140ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .view-back:hover {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(244, 238, 226, 0.88);
 }
 
 .view-heading {
@@ -40,8 +41,8 @@ body {
 .view-title {
   margin: 0;
   font-size: 13px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.82);
+  font-weight: 500;
+  color: rgba(244, 238, 226, 0.86);
 }
 
 .view-meta {
@@ -49,7 +50,7 @@ body {
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.28);
+  color: rgba(215, 208, 191, 0.34);
 }
 
 #app {
@@ -59,6 +60,6 @@ body {
 
 .view-error {
   padding: 24px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(244, 238, 226, 0.72);
   font-size: 14px;
 }

@@ -1,3 +1,5 @@
+import { classifyInquiries, sectionSlugOrder } from './authoredEssayLayout.js';
+
 export function resolveGraph(graph) {
   if (!graph?.people?.length) {
     throw new Error('Constellation graph requires at least one inquiry in people[]');
@@ -23,6 +25,18 @@ export function resolveGraph(graph) {
   }));
 
   const topicOrder = [...topics].sort((a, b) => b.personIds.length - a.personIds.length);
+  const { lens, sectionInquiries, linkInquiries } = classifyInquiries(PEOPLE);
+  const sectionSlugs = sectionSlugOrder(sectionInquiries, graph.meta?.sectionSlugs);
 
-  return { PEOPLE, topics, topicOrder, EXTRA_EDGES, meta: graph.meta ?? null };
+  return {
+    PEOPLE,
+    topics,
+    topicOrder,
+    EXTRA_EDGES,
+    meta: graph.meta ?? null,
+    lens,
+    sectionInquiries,
+    linkInquiries,
+    sectionSlugs,
+  };
 }

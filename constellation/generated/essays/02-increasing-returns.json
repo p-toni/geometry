@@ -23,7 +23,8 @@
         "peripheral-actors",
         "weak-ties",
         "network-awareness"
-      ]
+      ],
+      "sectionSlug": "why-it-matters"
     },
     {
       "id": "increasing-returns-blind-spots",
@@ -33,7 +34,8 @@
         "blind-spots",
         "weak-ties",
         "shifts"
-      ]
+      ],
+      "sectionSlug": "why-it-matters"
     },
     {
       "id": "increasing-returns-compounding",
@@ -43,7 +45,8 @@
         "feedback-loops",
         "niche-opportunities",
         "co-evolution"
-      ]
+      ],
+      "sectionSlug": "why-it-matters"
     },
     {
       "id": "increasing-returns-allowed-ignorance",
@@ -106,8 +109,10 @@
     "conceptCount": 10,
     "edgeCount": 14,
     "extraEdgeCount": 6,
-    "generatedAt": "2026-06-28T16:58:56.427Z",
+    "generatedAt": "2026-06-29T01:15:04.441Z",
     "poolId": "increasing-returns",
-    "sectionSlugs": []
+    "sectionSlugs": [
+      "why-it-matters"
+    ]
   }
 }

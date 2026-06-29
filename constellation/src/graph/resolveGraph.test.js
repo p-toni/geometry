@@ -23,6 +23,20 @@ describe('resolveGraph', () => {
     expect(resolved.EXTRA_EDGES).toEqual([['one', 'two']]);
   });
 
+  it('classifies lens and section inquiries from essay graphs', () => {
+    const resolved = resolveGraph({
+      people: [
+        { id: 'x-lens', name: 'lens', meta: 'm', topicIds: ['one'] },
+        { id: 'x-sec', name: 'move', meta: 'm', topicIds: ['two'], sectionSlug: 'thesis' },
+      ],
+      topicLabels: { one: 'one', two: 'two' },
+      meta: { sectionSlugs: ['thesis'] },
+    });
+    expect(resolved.lens?.id).toBe('x-lens');
+    expect(resolved.sectionInquiries).toHaveLength(1);
+    expect(resolved.sectionSlugs).toEqual(['thesis']);
+  });
+
   it('includes topic labels that only appear in concept mesh edges', () => {
     const resolved = resolveGraph({
       people: [{ id: 'field', name: 'Field', meta: 'intra', topicIds: ['alpha'] }],

@@ -25,7 +25,8 @@
         "l2-coauthor",
         "l3-integrated",
         "transition-signals"
-      ]
+      ],
+      "sectionSlug": "the-coupling-gradient-where-am-i-right-now"
     },
     {
       "id": "me-plus-ai-verification-gate",
@@ -35,7 +36,8 @@
         "r3-plus-2-plus-1",
         "topology-gate",
         "inside-my-head"
-      ]
+      ],
+      "sectionSlug": "the-verification-gate-r321-mandatory"
     },
     {
       "id": "me-plus-ai-drift-physics",
@@ -46,7 +48,8 @@
         "closure-pressure",
         "humanbot",
         "bennett-razor"
-      ]
+      ],
+      "sectionSlug": "the-physics-of-drift-what-it-looks-like"
     },
     {
       "id": "me-plus-ai-flow-control",
@@ -56,7 +59,8 @@
         "unverified-drafts",
         "identity-outsourcing",
         "provenance"
-      ]
+      ],
+      "sectionSlug": "flow-control-what-the-model-may-and-may-not-do"
     },
     {
       "id": "me-plus-ai-earned-resonance",
@@ -66,7 +70,8 @@
         "earned-l3",
         "bidirectional-feedback",
         "over-damping"
-      ]
+      ],
+      "sectionSlug": "earned-resonance-when-l3-is-the-goal"
     },
     {
       "id": "me-plus-ai-geometry-thread",
@@ -76,7 +81,8 @@
         "structural-signal",
         "navigable-map",
         "retrieval-failure"
-      ]
+      ],
+      "sectionSlug": "geometry-over-retrieval"
     },
     {
       "id": "me-plus-ai-workflow",
@@ -86,7 +92,8 @@
         "map-not-prose",
         "verification-pass",
         "rewrite-from-memory"
-      ]
+      ],
+      "sectionSlug": "workflow-the-only-safe-way-i-co-author"
     },
     {
       "id": "me-plus-ai-recovery",
@@ -96,7 +103,8 @@
         "close-model",
         "drop-to-l0",
         "counterexamples"
-      ]
+      ],
+      "sectionSlug": "recovery-protocol-when-i-detect-drift"
     },
     {
       "id": "me-plus-ai-stabilizer",
@@ -106,7 +114,8 @@
         "stabilizer",
         "re-entry",
         "less-compute"
-      ]
+      ],
+      "sectionSlug": "a-final-constraint-this-is-for-me"
     },
     {
       "id": "me-plus-ai-bounded-me",
@@ -242,8 +251,19 @@
     "conceptCount": 37,
     "edgeCount": 37,
     "extraEdgeCount": 17,
-    "generatedAt": "2026-06-28T16:58:56.428Z",
+    "generatedAt": "2026-06-29T01:15:04.441Z",
     "poolId": "me-plus-ai",
-    "sectionSlugs": []
+    "sectionSlugs": [
+      "the-coupling-gradient-where-am-i-right-now",
+      "the-verification-gate-r321-mandatory",
+      "the-physics-of-drift-what-it-looks-like",
+      "flow-control-what-the-model-may-and-may-not-do",
+      "earned-resonance-when-l3-is-the-goal",
+      "geometry-over-retrieval",
+      "workflow-the-only-safe-way-i-co-author",
+      "recovery-protocol-when-i-detect-drift",
+      "non-negotiable-constraints",
+      "a-final-constraint-this-is-for-me"
+    ]
   }
 }

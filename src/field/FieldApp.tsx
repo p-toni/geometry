@@ -12,7 +12,7 @@ import { effectiveReadFull } from '../lib/readMode';
 import { kindLabel } from '../lib/glyph';
 
 import { pool, FIELD_HEIGHT, FIELD_WIDTH } from '../pool';
-import type { PoolNode, Rel } from '../pool/types';
+import type { Rel } from '../pool/types';
 import {
   SpatialConstellationHandoff,
   type DescentOrigin,
@@ -368,9 +368,9 @@ export function FieldApp() {
     const state = parseFieldState(new URLSearchParams(window.location.search));
     if (state.spatial) {
       suppressSpatialExitDetect.current = true;
-      window.history.back();
+      pushUrl({ spatial: false }, true);
     }
-  }, []);
+  }, [pushUrl]);
   const neighborRels = useMemo(() => {
     const m: Record<string, Rel> = {};
     if (readNode) {

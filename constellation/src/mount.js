@@ -21,6 +21,11 @@ import {
   P_B,
 } from './constants.js';
 import { getDefaultGraph } from './data/index.js';
+import {
+  authoredIntroOrder,
+  canUseAuthoredLayout,
+  layoutAuthoredEssay,
+} from './graph/authoredEssayLayout.js';
 import { resolveGraph } from './graph/resolveGraph.js';
 import {
   easeOutCubic,
@@ -38,9 +43,18 @@ import {
 export function mount(root, options = {}) {
     if (!root) throw new Error('ConstellationEmbed.mount requires a root element.');
 
-    const { PEOPLE, topics, topicOrder, EXTRA_EDGES } = resolveGraph(
-      options.graph ?? getDefaultGraph(),
-    );
+    const resolved = resolveGraph(options.graph ?? getDefaultGraph());
+    const {
+      PEOPLE,
+      topics,
+      topicOrder,
+      EXTRA_EDGES,
+      lens,
+      sectionInquiries,
+      linkInquiries,
+      sectionSlugs,
+    } = resolved;
+    const useAuthoredLayout = canUseAuthoredLayout(resolved);
 
     root.classList.add('constellation-embed');
     root.innerHTML = [
@@ -79,6 +93,9 @@ export function mount(root, options = {}) {
       cursorVisible: false,
       destroyed: false,
       resizeObserver: null,
+      layoutMode: useAuthoredLayout ? 'authored' : 'radial',
+      authoredNodes: null,
+      labelSafeInset: options.labelSafeInset,
     };
 
     function activeView() {
@@ -87,6 +104,32 @@ export function mount(root, options = {}) {
 
     function otherView() {
       return state.currentView === 'A' ? viewB : viewA;
+    }
+
+    function selectionPayload(view) {
+      const id = view.selectedId;
+      if (!id) return null;
+      const node = view.nodes[id];
+      if (!node) return null;
+      return {
+        id,
+        name: node.type === 'person' ? node.name : node.label,
+        meta: node.type === 'person' ? node.meta : `topic · ${node.personIds?.length ?? 0} connections`,
+        type: node.type,
+        kind: node.kind,
+        view: view.key,
+        topicIds: node.topicIds,
+        personIds: node.personIds,
+        sectionSlug: node.sectionSlug,
+      };
+    }
+
+    function notifySelection(view = activeView()) {
+      options.onSelectionChange?.(selectionPayload(view));
+    }
+
+    function notifyViewChange() {
+      options.onViewChange?.(state.currentView);
     }
 
     function screenToGraphPoint(x, y) {
@@ -123,30 +166,61 @@ export function mount(root, options = {}) {
       }
     }
 
-    function placeNodesA() {
+    function placeNodesRadialA() {
       const innerR = graphRadius(viewA.P.innerRFrac);
       const outerR = graphRadius(viewA.P.outerRFrac);
       viewA.nodes = {};
       PEOPLE.forEach((p, i) => {
         const a = (i / PEOPLE.length) * Math.PI * 2 - Math.PI / 2;
-        viewA.nodes[p.id] = { ...p, type: 'person', x: state.cx + Math.cos(a) * innerR, y: state.cy + Math.sin(a) * innerR, angle: a };
+        viewA.nodes[p.id] = { ...p, type: 'person', kind: 'inquiry', x: state.cx + Math.cos(a) * innerR, y: state.cy + Math.sin(a) * innerR, angle: a };
       });
       topicOrder.forEach((t, i) => {
         const a = (i / topicOrder.length) * Math.PI * 2 - Math.PI / 2;
-        viewA.nodes[t.id] = { ...t, type: 'topic', x: state.cx + Math.cos(a) * outerR, y: state.cy + Math.sin(a) * outerR, angle: a };
+        viewA.nodes[t.id] = { ...t, type: 'topic', kind: 'concept', x: state.cx + Math.cos(a) * outerR, y: state.cy + Math.sin(a) * outerR, angle: a };
       });
     }
 
-    function placeNodesB() {
+    function placeNodesRadialB() {
       const outerR = graphRadius(viewB.P.outerRFrac);
       viewB.nodes = {};
       topicOrder.forEach((t, i) => {
         const a = (i / topicOrder.length) * Math.PI * 2 - Math.PI / 2;
-        viewB.nodes[t.id] = { ...t, type: 'topic', x: state.cx + Math.cos(a) * outerR, y: state.cy + Math.sin(a) * outerR, angle: a };
+        viewB.nodes[t.id] = { ...t, type: 'topic', kind: 'concept', x: state.cx + Math.cos(a) * outerR, y: state.cy + Math.sin(a) * outerR, angle: a };
       });
     }
 
+    function placeNodesAuthored() {
+      const { nodes } = layoutAuthoredEssay({
+        cx: state.cx,
+        cy: state.cy,
+        graphRadius,
+        lens,
+        sectionInquiries,
+        linkInquiries,
+        topics,
+        slugOrder: sectionSlugs,
+      });
+      state.authoredNodes = nodes;
+      viewA.nodes = { ...nodes };
+      viewB.nodes = {};
+      for (const topic of topics) {
+        if (nodes[topic.id]) viewB.nodes[topic.id] = { ...nodes[topic.id] };
+      }
+    }
+
+    function placeNodes() {
+      if (state.layoutMode === 'authored') placeNodesAuthored();
+      else {
+        placeNodesRadialA();
+        placeNodesRadialB();
+      }
+    }
+
     function buildIntroOrder(view) {
+      if (state.layoutMode === 'authored' && view.key === 'A') {
+        view.nodeIntroOrder = authoredIntroOrder(view.nodes, sectionSlugs, PEOPLE, topics);
+        return;
+      }
       const peopleIds = PEOPLE.map(p => p.id).filter(id => view.nodes[id]);
       const topicIds = topicOrder.map(t => t.id).filter(id => view.nodes[id]);
       view.nodeIntroOrder = [...peopleIds, ...topicIds];
@@ -163,11 +237,25 @@ export function mount(root, options = {}) {
             from: p.id,
             to: tid,
             shared: tn.personIds.length,
-            edgeKind: 'theme',
+            edgeKind: 'structural',
             path: makeBundledPath(pn.x, pn.y, tn.x, tn.y, viewA.P, state.cx, state.cy),
           });
         });
       });
+      if (state.layoutMode === 'authored') {
+        EXTRA_EDGES.forEach(([a, b]) => {
+          const na = viewA.nodes[a];
+          const nb = viewA.nodes[b];
+          if (!na || !nb) return;
+          out.push({
+            from: a,
+            to: b,
+            shared: 1,
+            edgeKind: 'tension',
+            path: makeBundledPath(na.x, na.y, nb.x, nb.y, viewA.P, state.cx, state.cy),
+          });
+        });
+      }
       return out;
     }
 
@@ -205,7 +293,7 @@ export function mount(root, options = {}) {
           to: b,
           shared: 1,
           bridgePeople: [],
-          edgeKind: 'direct',
+          edgeKind: 'tension',
           path: makeBundledPath(viewB.nodes[a].x, viewB.nodes[a].y, viewB.nodes[b].x, viewB.nodes[b].y, viewB.P, state.cx, state.cy),
         });
       });
@@ -244,8 +332,7 @@ export function mount(root, options = {}) {
       state.cy = state.H / 2;
       resizeCanvas(viewA);
       resizeCanvas(viewB);
-      placeNodesA();
-      placeNodesB();
+      placeNodes();
       viewA.edges = buildEdgesA();
       viewB.edges = buildTopicEdges();
       if (!viewA.nodeIntroOrder.length) buildIntroOrder(viewA);
@@ -264,7 +351,7 @@ export function mount(root, options = {}) {
       const naturalDuration = Math.max(intro.duration, nodeRevealDuration);
       if (elapsed / naturalDuration >= 1) {
         intro.active = false;
-        for (let i = 0; i < 40; i++) spawnParticle(view);
+        for (let i = 0; i < 12; i++) spawnParticle(view);
       }
     }
 
@@ -332,7 +419,7 @@ export function mount(root, options = {}) {
     function fireBurst(view, nodeId) {
       const activeIndices = [...view.activeEdgeSet];
       if (!activeIndices.length) return;
-      const count = Math.min(14, activeIndices.length * 2);
+      const count = Math.min(6, activeIndices.length);
       for (let i = 0; i < count; i++) {
         const idx = activeIndices[i % activeIndices.length];
         const edge = view.edges[idx];
@@ -377,7 +464,8 @@ export function mount(root, options = {}) {
       }
       const node = view.nodes[id];
       if (!node) return;
-      infoNameEl.textContent = node.type === 'person' ? node.name : node.label;
+      const rawName = node.type === 'person' ? node.name : node.label;
+      infoNameEl.textContent = rawName.toUpperCase();
       if (view.key === 'A') {
         infoMetaEl.textContent = node.type === 'person' ? node.meta : `topic — ${node.personIds.length} connections`;
       } else {
@@ -395,8 +483,8 @@ export function mount(root, options = {}) {
       root.classList.add('is-selected');
     }
 
-    function selectNode(view, id) {
-      const wasSelected = view.selectedId === id;
+    function selectNode(view, id, toggle = true) {
+      const wasSelected = toggle && view.selectedId === id;
       const prevId = view.selectedId;
       const isCrossSelect = !wasSelected && prevId !== null;
       if (isCrossSelect) {
@@ -418,7 +506,10 @@ export function mount(root, options = {}) {
         view.selectionTransition.fromId = id;
         fireBurst(view, id);
       }
-      if (view.key === state.currentView) setInfoForView(view);
+      if (view.key === state.currentView) {
+        setInfoForView(view);
+        notifySelection(view);
+      }
     }
 
     function clearSelection(view) {
@@ -432,7 +523,23 @@ export function mount(root, options = {}) {
       if (view.key === state.currentView) {
         infoEl.style.opacity = '0';
         root.classList.remove('is-selected');
+        notifySelection(view);
       }
+    }
+
+    function selectNodeById(id) {
+      if (!id) {
+        clearSelection(activeView());
+        return;
+      }
+      let view = activeView();
+      if (!view.nodes[id]) {
+        const targetView = viewA.nodes[id] ? viewA : (viewB.nodes[id] ? viewB : null);
+        if (!targetView) return;
+        if (targetView.key !== state.currentView) switchView(targetView.key);
+        view = targetView;
+      }
+      selectNode(view, id, false);
     }
 
     function spawnParticle(view, edge) {
@@ -457,8 +564,8 @@ export function mount(root, options = {}) {
       const idleParticleFactor = 1 - state.renderedIdleness * 0.72;
       const baseMax = view.selectedId ? Math.floor(view.P.maxParticles * 1.6) : view.P.maxParticles;
       const max = Math.floor(baseMax * idleParticleFactor);
-      if (view.frame % 3 === 0 && view.particles.length < max) spawnParticle(view);
-      if (view.selectedId && view.frame % 2 === 0 && view.particles.length < max) spawnParticle(view);
+      if (!view.selectedId && view.frame % 8 === 0 && view.particles.length < max) spawnParticle(view);
+      if (view.selectedId && view.frame % 4 === 0 && view.particles.length < max) spawnParticle(view);
     }
 
     function hitTest(mx, my, view) {
@@ -566,7 +673,7 @@ export function mount(root, options = {}) {
       state.currentView = viewKey;
       canvasA.style.display = viewKey === 'A' ? 'block' : 'none';
       canvasB.style.display = viewKey === 'B' ? 'block' : 'none';
-      toggleEl.textContent = viewKey === 'A' ? 'Inquiries + Concepts' : 'Concepts';
+      toggleEl.textContent = viewKey === 'A' ? (state.layoutMode === 'authored' ? 'ARGUMENT DESCENT' : 'INQUIRIES + CONCEPTS') : 'CONCEPT MESH';
       otherView().hoverId = null;
       otherView().hoverProximity = 0;
       const view = activeView();
@@ -579,11 +686,17 @@ export function mount(root, options = {}) {
         infoEl.style.opacity = '0';
         root.classList.remove('is-selected');
       }
+      notifyViewChange();
+      notifySelection(view);
     }
 
     function drawBackground(view) {
       const ctx = view.ctx;
-      ctx.fillStyle = view.P.colorBg;
+      const bg = ctx.createLinearGradient(0, 0, 0, state.H);
+      bg.addColorStop(0, view.P.colorBgTop ?? view.P.colorBg);
+      bg.addColorStop(0.58, view.P.colorBg);
+      bg.addColorStop(1, view.P.colorBgBottom ?? view.P.colorBg);
+      ctx.fillStyle = bg;
       ctx.fillRect(0, 0, state.W, state.H);
       const g = ctx.createRadialGradient(state.cx, state.cy, 0, state.cx, state.cy, Math.max(state.W, state.H) * 0.66);
       g.addColorStop(0, 'rgba(0,0,0,0)');
@@ -598,13 +711,21 @@ export function mount(root, options = {}) {
       const ctx = viewA.ctx;
       ctx.save();
       ctx.setLineDash([2, 12]);
-      ctx.strokeStyle = rgba('#ffffff', ring);
+      ctx.strokeStyle = rgba(viewA.P.colorStructural ?? '#ffffff', ring);
       ctx.lineWidth = 1;
-      [viewA.P.innerRFrac, viewA.P.outerRFrac].forEach(frac => {
-        ctx.beginPath();
-        ctx.arc(state.cx, state.cy, graphRadius(frac), 0, Math.PI * 2);
-        ctx.stroke();
-      });
+      if (state.layoutMode === 'authored') {
+        [0.2, 0.34].forEach((frac) => {
+          ctx.beginPath();
+          ctx.arc(state.cx, state.cy, graphRadius(frac), 0, Math.PI * 2);
+          ctx.stroke();
+        });
+      } else {
+        [viewA.P.innerRFrac, viewA.P.outerRFrac].forEach(frac => {
+          ctx.beginPath();
+          ctx.arc(state.cx, state.cy, graphRadius(frac), 0, Math.PI * 2);
+          ctx.stroke();
+        });
+      }
       ctx.restore();
     }
 
@@ -614,7 +735,7 @@ export function mount(root, options = {}) {
       const ctx = viewB.ctx;
       ctx.save();
       ctx.setLineDash([2, 12]);
-      ctx.strokeStyle = rgba('#ffffff', ring);
+      ctx.strokeStyle = rgba(viewB.P.colorEdge ?? '#ffffff', ring);
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.arc(state.cx, state.cy, graphRadius(viewB.P.outerRFrac), 0, Math.PI * 2);
@@ -630,14 +751,55 @@ export function mount(root, options = {}) {
       ctx.stroke();
     }
 
+    function edgeBaseColor(view, edge) {
+      if (edge.edgeKind === 'tension') return view.P.colorTension ?? view.P.colorEdge;
+      if (edge.edgeKind === 'structural') return view.P.colorStructural ?? view.P.colorEdge;
+      return view.P.colorEdge;
+    }
+
+    function nodeFillColor(view, node) {
+      if (!node) return view.P.colorPerson ?? view.P.colorEdge;
+      if (node.type === 'topic') return view.P.colorTopic ?? view.P.colorEdge;
+      if (node.kind === 'lens') return view.P.colorPerson ?? view.P.colorEdge;
+      if (node.kind === 'linkInquiry') return view.P.colorLink ?? view.P.colorPerson ?? view.P.colorEdge;
+      return view.P.colorSection ?? view.P.colorPerson ?? view.P.colorEdge;
+    }
+
+    function nodeLabelColor(view, node) {
+      if (!node) return view.P.colorLabelP ?? view.P.colorLabelT ?? '#ffffff';
+      if (node.type === 'topic') return view.P.colorLabelT ?? view.P.colorTopic ?? view.P.colorEdge;
+      if (node.kind === 'linkInquiry') return view.P.colorLink ?? view.P.colorLabelP;
+      return view.P.colorLabelP ?? view.P.colorPerson ?? '#ffffff';
+    }
+
+    function drawNode(ctx, node, radius, color, alpha) {
+      if (!node || alpha <= 0) return;
+      ctx.fillStyle = rgba(color, alpha);
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = rgba(color, Math.min(0.42, alpha * 0.5));
+      ctx.lineWidth = node.kind === 'lens' ? 1.1 : 0.7;
+      ctx.stroke();
+      if (node.kind === 'lens') {
+        ctx.strokeStyle = rgba(color, Math.min(0.26, alpha * 0.32));
+        ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, radius + 3.4, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+
     function drawEdgesA() {
       const ctx = viewA.ctx;
       const idleEdgeFactor = 1 - state.renderedIdleness * 0.48;
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
       viewA.edges.forEach((edge, idx) => {
-        let alpha = (viewA.P.edgeAlpha + Math.sin(viewA.frame * 0.008 + idx * 0.3) * viewA.P.edgeAlpha * 0.2) * idleEdgeFactor;
-        let width = viewA.P.edgeWidth;
+        const pulse = (viewA.P.edgePulse ?? 0) * Math.sin(viewA.frame * 0.008 + idx * 0.3);
+        let alpha = (viewA.P.edgeAlpha + viewA.P.edgeAlpha * pulse) * idleEdgeFactor;
+        let width = edge.edgeKind === 'tension' ? viewA.P.edgeWidth * 0.85 : viewA.P.edgeWidth;
+        if (edge.edgeKind === 'tension') alpha *= 0.82;
         const hasSelection = viewA.selectedId || (viewA.selectionTransition.active && viewA.selectionTransition.phase === 'out');
         if (hasSelection) {
           const ripple = getRippleProgress(viewA, edge, idx);
@@ -668,8 +830,10 @@ export function mount(root, options = {}) {
         }
         const progress = introEdgeProgress(viewA, idx);
         if (progress <= 0) return;
-        ctx.strokeStyle = rgba(viewA.P.colorEdge, alpha);
+        ctx.strokeStyle = rgba(edgeBaseColor(viewA, edge), alpha);
         ctx.lineWidth = width;
+        if (edge.edgeKind === 'tension') ctx.setLineDash([3, 5]);
+        else ctx.setLineDash([]);
         drawPath(ctx, edge.path, progress);
       });
       ctx.restore();
@@ -681,7 +845,8 @@ export function mount(root, options = {}) {
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
       viewB.edges.forEach((edge, idx) => {
-        let alpha = (viewB.P.edgeAlpha + Math.sin(viewB.frame * 0.008 + idx * 0.3) * viewB.P.edgeAlpha * 0.2) * idleEdgeFactor;
+        const pulse = (viewB.P.edgePulse ?? 0) * Math.sin(viewB.frame * 0.008 + idx * 0.3);
+        let alpha = (viewB.P.edgeAlpha + viewB.P.edgeAlpha * pulse) * idleEdgeFactor;
         let width = viewB.P.edgeWidth * edge.shared * viewB.P.sharedWeightScale;
         const hasSelection = viewB.selectedId || (viewB.selectionTransition.active && viewB.selectionTransition.phase === 'out');
         if (hasSelection) {
@@ -710,8 +875,10 @@ export function mount(root, options = {}) {
         }
         const progress = introEdgeProgress(viewB, idx);
         if (progress <= 0) return;
-        ctx.strokeStyle = rgba(viewB.P.colorEdge, alpha);
+        ctx.strokeStyle = rgba(edgeBaseColor(viewB, edge), alpha);
         ctx.lineWidth = width;
+        if (edge.edgeKind === 'tension') ctx.setLineDash([3, 5]);
+        else ctx.setLineDash([]);
         drawPath(ctx, edge.path, progress);
       });
       ctx.restore();
@@ -734,7 +901,8 @@ export function mount(root, options = {}) {
         const active = view.selectedId && view.activeEdgeSet.has(p.edgeIndex);
         const alpha = isBurst ? p.life : (view.selectedId ? (active ? p.life * 0.9 : 0.04) : p.life * 0.48);
         const [x, y] = pointOnPath(p.edge.path, p.t);
-        ctx.fillStyle = rgba(view.P.colorParticle, alpha);
+        const color = isBurst ? edgeBaseColor(view, p.edge) : (view.P.colorParticle ?? edgeBaseColor(view, p.edge));
+        ctx.fillStyle = rgba(color, alpha);
         ctx.beginPath();
         ctx.arc(x, y, p.size, 0, Math.PI * 2);
         ctx.fill();
@@ -762,25 +930,29 @@ export function mount(root, options = {}) {
     function drawNodesA() {
       const ctx = viewA.ctx;
       ctx.save();
-      if (viewA.selectedId) viewA.activeNodeIds.forEach(id => drawGlow(ctx, viewA.nodes[id], viewA.P.glowRadius, viewA.P.colorPerson));
-      if (viewA.hoverId && !viewA.selectedId) drawGlow(ctx, viewA.nodes[viewA.hoverId], viewA.P.glowRadius * 0.5 * viewA.hoverProximity, viewA.P.colorPerson);
+      if (viewA.selectedId) {
+        viewA.activeNodeIds.forEach((id) => {
+          const node = viewA.nodes[id];
+          drawGlow(ctx, node, viewA.P.glowRadius, nodeFillColor(viewA, node));
+        });
+      }
+      if (viewA.hoverId && !viewA.selectedId) {
+        const node = viewA.nodes[viewA.hoverId];
+        drawGlow(ctx, node, viewA.P.glowRadius * 0.55 * viewA.hoverProximity, nodeFillColor(viewA, node));
+      }
       PEOPLE.forEach(p => {
         const n = viewA.nodes[p.id];
+        if (!n) return;
         const prox = viewA.hoverId === p.id ? viewA.hoverProximity : 0;
-        const r = nodeRadius(viewA.P.personNodeR) * (1 + (HOVER_MAX_SCALE - 1) * prox);
-        ctx.fillStyle = rgba(viewA.P.colorPerson, nodeAlpha(viewA, p.id) * introNodeAlpha(viewA, p.id));
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
-        ctx.fill();
+        const baseR = n.kind === 'lens' ? (viewA.P.lensNodeR ?? viewA.P.personNodeR) : viewA.P.personNodeR;
+        const r = nodeRadius(baseR) * (1 + (HOVER_MAX_SCALE - 1) * prox);
+        drawNode(ctx, n, r, nodeFillColor(viewA, n), nodeAlpha(viewA, p.id) * introNodeAlpha(viewA, p.id));
       });
       topics.forEach(t => {
         const n = viewA.nodes[t.id];
         const prox = viewA.hoverId === t.id ? viewA.hoverProximity : 0;
         const r = nodeRadius(viewA.P.topicNodeR) * (1 + (HOVER_MAX_SCALE - 1) * prox);
-        ctx.fillStyle = rgba(viewA.P.colorPerson, nodeAlpha(viewA, t.id) * 0.52 * introNodeAlpha(viewA, t.id));
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
-        ctx.fill();
+        drawNode(ctx, n, r, nodeFillColor(viewA, n), nodeAlpha(viewA, t.id) * 0.58 * introNodeAlpha(viewA, t.id));
       });
       ctx.restore();
     }
@@ -788,16 +960,21 @@ export function mount(root, options = {}) {
     function drawNodesB() {
       const ctx = viewB.ctx;
       ctx.save();
-      if (viewB.selectedId) viewB.activeNodeIds.forEach(id => drawGlow(ctx, viewB.nodes[id], viewB.P.glowRadius, viewB.P.colorEdge));
-      if (viewB.hoverId && !viewB.selectedId) drawGlow(ctx, viewB.nodes[viewB.hoverId], viewB.P.glowRadius * 0.5 * viewB.hoverProximity, viewB.P.colorEdge);
+      if (viewB.selectedId) {
+        viewB.activeNodeIds.forEach((id) => {
+          const node = viewB.nodes[id];
+          drawGlow(ctx, node, viewB.P.glowRadius, nodeFillColor(viewB, node));
+        });
+      }
+      if (viewB.hoverId && !viewB.selectedId) {
+        const node = viewB.nodes[viewB.hoverId];
+        drawGlow(ctx, node, viewB.P.glowRadius * 0.55 * viewB.hoverProximity, nodeFillColor(viewB, node));
+      }
       topics.forEach(t => {
         const n = viewB.nodes[t.id];
         const prox = viewB.hoverId === t.id ? viewB.hoverProximity : 0;
         const r = nodeRadius(viewB.P.topicNodeR) * (1 + (HOVER_MAX_SCALE - 1) * prox);
-        ctx.fillStyle = rgba(viewB.P.colorEdge, nodeAlpha(viewB, t.id) * 0.58 * introNodeAlpha(viewB, t.id));
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
-        ctx.fill();
+        drawNode(ctx, n, r, nodeFillColor(viewB, n), nodeAlpha(viewB, t.id) * 0.62 * introNodeAlpha(viewB, t.id));
       });
       ctx.restore();
     }
@@ -821,6 +998,27 @@ export function mount(root, options = {}) {
       return { x, y, rot, align, lines, lineHeight };
     }
 
+    function labelOverlaps(view, box) {
+      return view.labelBoxes.some((existing) => {
+        const pad = 9;
+        return Math.abs(existing.cx - box.cx) < (existing.w + box.w) / 2 + pad
+          && Math.abs(existing.cy - box.cy) < (existing.h + box.h) / 2 + pad;
+      });
+    }
+
+    function labelInsideSafeField(box) {
+      const inset = state.labelSafeInset;
+      if (!inset) return true;
+      const left = inset.left ?? 0;
+      const right = inset.right ?? 0;
+      const top = inset.top ?? 0;
+      const bottom = inset.bottom ?? 0;
+      return box.cx >= left
+        && box.cx <= state.W - right
+        && box.cy >= top
+        && box.cy <= state.H - bottom;
+    }
+
     function drawRotatedLabel(ctx, view, node, text, fontSize, color, alpha, offset, radius, options = {}) {
       if (alpha <= 0 || !node) return;
       const selected = options.selected || node.id === view.selectedId;
@@ -835,13 +1033,21 @@ export function mount(root, options = {}) {
       ctx.textAlign = geo.align;
       ctx.textBaseline = 'middle';
       ctx.font = `${fontWeight} ${size}px ${CANVAS_LABEL_FONT_STACK}`;
+      ctx.shadowColor = rgba('#000000', Math.min(0.85, alpha + 0.2));
+      ctx.shadowBlur = 7;
+      ctx.shadowOffsetY = 1;
+      const widths = geo.lines.map((line) => ctx.measureText(line).width);
+      const boxW = Math.max(...widths, 1);
+      const boxH = Math.max(geo.lineHeight, geo.lines.length * geo.lineHeight);
+      const box = { node, cx: geo.x, cy: geo.y, rot: geo.rot, w: boxW, h: boxH };
+      if (!options.force && (!labelInsideSafeField(box) || labelOverlaps(view, box))) {
+        ctx.restore();
+        return;
+      }
       ctx.fillStyle = rgba(color, alpha);
       const totalH = (geo.lines.length - 1) * geo.lineHeight;
       geo.lines.forEach((line, i) => ctx.fillText(line, 0, i * geo.lineHeight - totalH / 2));
-      const widths = geo.lines.map(line => ctx.measureText(line).width);
-      const boxW = Math.max(...widths, 1);
-      const boxH = Math.max(geo.lineHeight, geo.lines.length * geo.lineHeight);
-      view.labelBoxes.push({ node, cx: geo.x, cy: geo.y, rot: geo.rot, w: boxW, h: boxH });
+      view.labelBoxes.push(box);
       ctx.restore();
     }
 
@@ -860,26 +1066,39 @@ export function mount(root, options = {}) {
       const personLabelOffset = useMobilePersonLabels
         ? viewA.P.labelOffset + MOBILE_PERSON_LABEL_OFFSET_BOOST
         : viewA.P.labelOffset;
-      PEOPLE.forEach(p => {
+      PEOPLE.forEach((p) => {
         const n = viewA.nodes[p.id];
-        let alpha = viewA.selectedId ? (viewA.activeNodeIds.has(p.id) ? viewA.P.labelAlpha * 1.45 : viewA.P.labelAlpha * 0.18) : viewA.P.labelAlpha;
+        if (!n) return;
+        if (options.suppressLensLabel && n.kind === 'lens') return;
+        let alpha = viewA.selectedId
+          ? (viewA.activeNodeIds.has(p.id) ? viewA.P.labelAlpha * 1.45 : viewA.P.labelAlpha * 0.18)
+          : viewA.P.labelAlpha;
         if (viewA.hoverId === p.id) alpha = Math.max(alpha, viewA.P.labelAlpha * (1.35 + viewA.hoverProximity * 0.35));
-        drawRotatedLabel(ctx, viewA, n, p.name, viewA.P.fontPerson, viewA.P.colorLabelP, alpha * (1 - state.renderedIdleness) * introNodeAlpha(viewA, p.id), personLabelOffset, viewA.P.personNodeR, {
+        const nodeR = n.kind === 'lens' ? (viewA.P.lensNodeR ?? viewA.P.personNodeR) : viewA.P.personNodeR;
+        drawRotatedLabel(ctx, viewA, n, p.name, viewA.P.fontPerson, nodeLabelColor(viewA, n), alpha * (1 - state.renderedIdleness) * introNodeAlpha(viewA, p.id), personLabelOffset, nodeR, {
           centerAlign: useMobilePersonLabels,
+          force: n.kind === 'lens' || p.id === viewA.selectedId || p.id === viewA.hoverId,
           lineHeightRatio: 1.08,
           lines: useMobilePersonLabels ? p.name.split(/\s+/) : null,
           weight: p.id === viewA.selectedId ? PERSON_LABEL_WEIGHT + SELECTED_LABEL_WEIGHT_BOOST : PERSON_LABEL_WEIGHT,
         });
       });
-      topicOrder.forEach(t => {
+      topicOrder.forEach((t) => {
         const n = viewA.nodes[t.id];
-        let alpha = viewA.P.labelAlpha * 0.42;
-        if (viewA.selectedId) alpha = viewA.activeNodeIds.has(t.id) ? viewA.P.labelAlpha * 1.6 : (viewA.hoverId === t.id ? viewA.P.labelAlpha * 0.95 : 0);
+        if (!n) return;
+        let alpha = 0;
+        const selectedNode = viewA.selectedId ? viewA.nodes[viewA.selectedId] : null;
+        if (viewA.selectedId && selectedNode?.type === 'topic') {
+          alpha = viewA.activeNodeIds.has(t.id)
+            ? viewA.P.labelAlpha * 1.6
+            : (viewA.hoverId === t.id ? viewA.P.labelAlpha * 0.95 : 0);
+        }
         if (viewA.hoverId === t.id) alpha = Math.max(alpha, viewA.P.labelAlpha * (0.7 + viewA.hoverProximity * 0.7));
         const selected = t.id === viewA.selectedId;
         const color = selected ? SELECTED_TOPIC_LABEL_COLOR : viewA.P.colorLabelT;
         drawRotatedLabel(ctx, viewA, n, t.label, viewA.P.fontTopic, color, alpha * (1 - state.renderedIdleness) * introNodeAlpha(viewA, t.id), viewA.P.labelOffset, viewA.P.topicNodeR, {
           selected,
+          force: selected || t.id === viewA.hoverId,
           neighborShift: neighborLabelShift(viewA, n),
         });
       });
@@ -888,15 +1107,21 @@ export function mount(root, options = {}) {
     function drawLabelsB() {
       const ctx = viewB.ctx;
       viewB.labelBoxes = [];
-      topicOrder.forEach(t => {
+      topicOrder.forEach((t) => {
         const n = viewB.nodes[t.id];
+        if (!n) return;
         let alpha = viewB.P.labelAlpha * 0.42;
-        if (viewB.selectedId) alpha = viewB.activeNodeIds.has(t.id) ? viewB.P.labelAlpha * 1.6 : (viewB.hoverId === t.id ? viewB.P.labelAlpha * 0.95 : 0);
+        if (viewB.selectedId) {
+          alpha = viewB.activeNodeIds.has(t.id)
+            ? viewB.P.labelAlpha * 1.6
+            : (viewB.hoverId === t.id ? viewB.P.labelAlpha * 0.95 : 0);
+        }
         if (viewB.hoverId === t.id) alpha = Math.max(alpha, viewB.P.labelAlpha * (0.7 + viewB.hoverProximity * 0.7));
         const selected = t.id === viewB.selectedId;
         const color = selected ? SELECTED_TOPIC_LABEL_COLOR : viewB.P.colorLabelT;
         drawRotatedLabel(ctx, viewB, n, t.label, viewB.P.fontTopic, color, alpha * (1 - state.renderedIdleness) * introNodeAlpha(viewB, t.id), viewB.P.labelOffset, viewB.P.topicNodeR, {
           selected,
+          force: selected || t.id === viewB.hoverId,
           neighborShift: neighborLabelShift(viewB, n),
         });
       });
@@ -970,9 +1195,13 @@ export function mount(root, options = {}) {
 
     return {
       switchView,
+      selectNode: selectNodeById,
       resize,
       setScale(scale = 1) {
         state.viewScale = Math.max(0.75, Math.min(1.3, scale));
+      },
+      setLabelSafeInset(inset) {
+        state.labelSafeInset = inset;
       },
       destroy() {
         state.destroyed = true;

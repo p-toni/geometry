@@ -23,7 +23,8 @@
         "bounded-learner",
         "constraints",
         "future-compute"
-      ]
+      ],
+      "sectionSlug": "bounded-me"
     },
     {
       "id": "bounded-me-memory-geometry",
@@ -33,7 +34,8 @@
         "geometry-not-storage",
         "navigable",
         "flat-text"
-      ]
+      ],
+      "sectionSlug": "memory-as-geometry-not-storage"
     },
     {
       "id": "bounded-me-fractal-edge",
@@ -43,7 +45,8 @@
         "convergent-basin",
         "trainability",
         "hyperparameters"
-      ]
+      ],
+      "sectionSlug": "the-fractal-edge-in-my-own-training"
     },
     {
       "id": "bounded-me-flow",
@@ -53,7 +56,8 @@
         "low-leakage",
         "re-entry",
         "writing-as-stabilizer"
-      ]
+      ],
+      "sectionSlug": "information-as-flow-through-the-loop"
     },
     {
       "id": "bounded-me-private-metric",
@@ -63,7 +67,8 @@
         "extractable-structure",
         "ghostwriter",
         "coupling-problem"
-      ]
+      ],
+      "sectionSlug": "a-private-metric-did-the-piece-increase-extractable-structure"
     },
     {
       "id": "bounded-me-thesis",
@@ -73,7 +78,8 @@
         "structural-signal",
         "geometry",
         "premature-closure"
-      ]
+      ],
+      "sectionSlug": "memory-as-geometry-not-storage"
     },
     {
       "id": "bounded-me-me-plus-ai",
@@ -160,7 +166,7 @@
     "conceptCount": 21,
     "edgeCount": 23,
     "extraEdgeCount": 11,
-    "generatedAt": "2026-06-28T16:58:56.426Z",
+    "generatedAt": "2026-06-29T01:15:04.439Z",
     "poolId": "bounded-me",
     "sectionSlugs": [
       "bounded-me",
