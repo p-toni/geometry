@@ -16,6 +16,7 @@
   margin: 0 0 var(--prose-paragraph-gap);
   font: inherit;
   color: inherit;
+  text-wrap: pretty;
 }
 
 .field-prose p:last-child {
@@ -28,6 +29,7 @@
   letter-spacing: -0.015em;
   color: var(--prose-color);
   margin: 26px 0 12px;
+  text-wrap: balance;
 }
 
 .field-prose h3 {
@@ -36,6 +38,7 @@
   letter-spacing: -0.01em;
   color: var(--prose-h3-color);
   margin: 20px 0 10px;
+  text-wrap: balance;
 }
 
 .media-artifact {
@@ -53,6 +56,7 @@
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.55;
+  text-wrap: pretty;
 }
 
 .media-artifact--sea {
@@ -139,6 +143,7 @@
   font-size: var(--prose-lead-size);
   line-height: var(--prose-lead-leading);
   color: var(--prose-lead-color);
+  text-wrap: pretty;
 }
 
 .prose-inset {
@@ -146,6 +151,7 @@
   font-size: var(--prose-inset-size);
   line-height: var(--prose-inset-leading);
   color: var(--prose-inset-color);
+  text-wrap: pretty;
 }
 
 .prose-sm {
@@ -153,6 +159,7 @@
   font-size: var(--prose-sm-size);
   line-height: var(--prose-sm-leading);
   color: var(--prose-sm-color);
+  text-wrap: pretty;
 }
 
 .edge-emphasis {
