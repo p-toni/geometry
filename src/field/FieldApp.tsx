@@ -776,11 +776,10 @@ export function FieldApp() {
                     ) : (
                       <>
                         <span
+                          className="field-node-kicker"
                           style={{
                             fontFamily: 'var(--font-mono)',
                             fontSize: layout.kickerSize,
-                            letterSpacing: '0.1em',
-                            textTransform: 'uppercase',
                             color: vis.kickerColor,
                             display: 'block',
                           }}
@@ -788,6 +787,7 @@ export function FieldApp() {
                           {kindLabel(node.kind)}
                         </span>
                         <div
+                          className="field-node-title"
                           style={{
                             fontFamily: 'var(--font-body)',
                             fontWeight: 600,
@@ -795,7 +795,6 @@ export function FieldApp() {
                             color: vis.textColor,
                             marginTop: 4,
                             lineHeight: 1.15,
-                            letterSpacing: '-0.01em',
                           }}
                         >
                           {node.title}

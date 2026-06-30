@@ -4,15 +4,17 @@ kind: doc
 cluster: work
 title: spec v1
 date: 1 week
-rank: 4
+rank: 8
 excerpt:
-  - "The retired v1 Geometry spec: 100vh canvases of draggable, grid-aligned blocks."
-  - "Canvases lived as JSON, bundled at build time, editable locally."
+  - "The retired v1 Geometry spec."
+  - "A useful fossil: grid canvases, draggable blocks, JSON content, MDX-era widgets."
 links:
   - target: geometry
     rel: specs
 ---
 
-v1 Geometry was a warm grid: draggable blocks on 100vh canvases, JSON-authored at build time, MDX widgets in the read path.
+Spec v1 is the useful fossil.
 
-v2 replaces that stack with a single field route, markdown + YAML frontmatter, and typed Block[] figures. This doc remains as historical reference for the grid era.
+That version of Geometry was a warm grid: draggable blocks on 100vh canvases, JSON-authored at build time, with MDX widgets in the read path.
+
+v2 replaces that stack with one field route, markdown plus YAML frontmatter, and typed Block[] figures. The spec remains here to show what was retired, not what should come back.

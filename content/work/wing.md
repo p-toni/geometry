@@ -4,10 +4,10 @@ kind: project
 cluster: work
 title: Wing
 date: pilot
-rank: 2
+rank: 4
 excerpt:
-  - "An agentic coordination workbench for high-stakes writing."
-  - "Artifacts stay central; agents work around claims, frictions, next moves, patches, and activation packages."
+  - "A workbench for high-stakes writing where the artifact stays central."
+  - "It coordinates claims, sources, frictions, next moves, patches, and activation packages."
 links:
   - target: macroscopic
     rel: pairs
@@ -15,9 +15,9 @@ links:
     rel: theme
 ---
 
-Wing treats writing as coordination, not drafting.
+Wing treats writing as coordination, not text generation.
 
-The artifact remains the human surface. Around it, the system tracks purpose, readers, claims, sources, frictions, moves, patches, revisions, and activation packages.
+The artifact remains the main human surface. Around it, the product tracks what the piece is trying to make happen: readers, claims, sources, frictions, moves, patches, revisions, and activation packages.
 
 > [aside|shape]
-> It is the authorial slice of the larger bionic-work idea: agents become traceable collaborators without taking over the page.
+> It is the authorial slice of the larger bionic-work idea: agents can notice, propose, and package without taking over the page.

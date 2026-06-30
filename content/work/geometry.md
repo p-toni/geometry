@@ -6,8 +6,8 @@ title: geometry
 date: today
 rank: 0
 excerpt:
-  - "A single living field for loose thoughts — toni.ltd v2."
-  - "Hand-placed nodes, typed essay blocks, constellation descent."
+  - "This site: a hand-placed field for essays, projects, visual studies, and live reading paths."
+  - "It proves the core idea directly — knowledge as place, not feed."
 links:
   - target: the-loom
     rel: contains
@@ -17,9 +17,11 @@ links:
     rel: specced in
 ---
 
-This is the site you are on: a cooler, single-field geometry instead of the warm grid canvas.
+Geometry is the site you are on: a hand-placed field for essays, projects, visual studies, and live reading paths.
 
-Hand-placed nodes carry weight and freshness. Essays compile from markdown with typed blocks that map to twelve figures. Reading moves from excerpt to full essay to constellation descent.
+The old version was a warm grid of draggable blocks. This one is calmer and stricter: markdown files compile into typed nodes, coordinates are authored once, and reading can move from excerpt to full essay to constellation descent without leaving the field.
 
 > [thesis|the figure]
 > One route, one field, one spine — the map stays put while you move through it.
+
+Proof: the public repo is [p-toni/geometry](https://github.com/p-toni/geometry).

@@ -7,13 +7,14 @@ export const FIELD_HEIGHT = 800;
 export const positions: Record<string, readonly [number, number]> = {
   ilya: [130, 300],
   'allowed-ignorance': [322, 288],
-  'co-owning-the-loop': [512, 300],
+  'co-owning-the-loop': [546, 300],
   'increasing-returns': [218, 410],
   'geometry-retrieval': [420, 440],
   'me-plus-ai': [602, 430],
   'tools-need-edges': [188, 542],
   'weak-geometry': [390, 560],
   'bounded-me': [650, 560],
+  'codex-fieldwork': [850, 118],
   geometry: [952, 208],
   macroscopic: [1038, 112],
   wing: [1214, 178],
@@ -43,6 +44,7 @@ export const lenses: LensChip[] = [
     query: 'what are you building',
     nodeIds: [
       'geometry',
+      'codex-fieldwork',
       'macroscopic',
       'wing',
       'human-responsibility-mapping',

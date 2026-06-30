@@ -6,8 +6,8 @@ title: Responsibility Mapping
 date: public
 rank: 2
 excerpt:
-  - "A practical framework for AI-era work: boundaries, trust, evals, telemetry, and release gates."
-  - "It asks what AI should do, what humans should retain, and what evidence would make that safe."
+  - "A public framework for deciding what AI may do, what humans retain, and what proof is required."
+  - "The output is a responsibility map, not a vibes-based automation plan."
 links:
   - target: macroscopic
     rel: theme
@@ -17,9 +17,11 @@ links:
     rel: theme
 ---
 
-Human Responsibility Mapping is an integration framework for AI product teams.
+Human Responsibility Mapping is a public framework for AI product teams making delegation decisions.
 
-It turns fuzzy delegation questions into an operating artifact: current work architecture, responsibility boundaries, evidence ledger, stakeholder coverage, trust requirements, eval plan, telemetry plan, and release gate.
+It turns fuzzy questions — should the model do this, should the human approve it, what would make it safe — into one operating artifact: work architecture, responsibility boundaries, evidence ledger, stakeholder coverage, eval plan, telemetry plan, and release gate.
 
 > [thesis|boundary]
 > The question is not whether AI can do a task. The question is what responsibility moves, what evidence is required, and which boundary should remain reversible.
+
+Proof: the public repo is [p-toni/human-responsibility-mapping](https://github.com/p-toni/human-responsibility-mapping).

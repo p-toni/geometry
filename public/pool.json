@@ -103,6 +103,49 @@
       "href": "https://x.com/ape_toni",
       "sourcePath": "/content/play/xcom.md"
     },
+    "codex-fieldwork": {
+      "id": "codex-fieldwork",
+      "kind": "project",
+      "cluster": "work",
+      "title": "Codex Fieldwork",
+      "date": "live",
+      "rank": 1,
+      "weight": 0.95,
+      "links": [
+        [
+          "geometry",
+          "part of"
+        ],
+        [
+          "human-responsibility-mapping",
+          "theme"
+        ],
+        [
+          "wing",
+          "pairs"
+        ]
+      ],
+      "excerpt": [
+        "The working method behind Geometry: taste-led edits, local browser QA, recovery, commit, deploy.",
+        "Codex keeps the build moving; human judgment decides what deserves to stay."
+      ],
+      "body": [
+        {
+          "t": "p",
+          "x": "Codex Fieldwork is the working method behind this site."
+        },
+        {
+          "t": "p",
+          "x": "The artifact is not only the code. It is the practice: read the field, recover lost materials, decide what deserves a node, tune the visual language, test the browser, commit, push, and deploy."
+        },
+        {
+          "t": "thesis",
+          "k": "practice",
+          "x": "The useful agent is not a replacement author. It is an inspectable build loop for judgment that still belongs to the human."
+        }
+      ],
+      "sourcePath": "/content/work/codex-fieldwork.md"
+    },
     "geometry": {
       "id": "geometry",
       "kind": "project",
@@ -126,22 +169,26 @@
         ]
       ],
       "excerpt": [
-        "A single living field for loose thoughts — toni.ltd v2.",
-        "Hand-placed nodes, typed essay blocks, constellation descent."
+        "This site: a hand-placed field for essays, projects, visual studies, and live reading paths.",
+        "It proves the core idea directly — knowledge as place, not feed."
       ],
       "body": [
         {
           "t": "p",
-          "x": "This is the site you are on: a cooler, single-field geometry instead of the warm grid canvas."
+          "x": "Geometry is the site you are on: a hand-placed field for essays, projects, visual studies, and live reading paths."
         },
         {
           "t": "p",
-          "x": "Hand-placed nodes carry weight and freshness. Essays compile from markdown with typed blocks that map to twelve figures. Reading moves from excerpt to full essay to constellation descent."
+          "x": "The old version was a warm grid of draggable blocks. This one is calmer and stricter: markdown files compile into typed nodes, coordinates are authored once, and reading can move from excerpt to full essay to constellation descent without leaving the field."
         },
         {
           "t": "thesis",
           "k": "the figure",
           "x": "One route, one field, one spine — the map stays put while you move through it."
+        },
+        {
+          "t": "p",
+          "x": "Proof: the public repo is [p-toni/geometry](https://github.com/p-toni/geometry)."
         }
       ],
       "sourcePath": "/content/work/geometry.md"
@@ -169,22 +216,26 @@
         ]
       ],
       "excerpt": [
-        "A practical framework for AI-era work: boundaries, trust, evals, telemetry, and release gates.",
-        "It asks what AI should do, what humans should retain, and what evidence would make that safe."
+        "A public framework for deciding what AI may do, what humans retain, and what proof is required.",
+        "The output is a responsibility map, not a vibes-based automation plan."
       ],
       "body": [
         {
           "t": "p",
-          "x": "Human Responsibility Mapping is an integration framework for AI product teams."
+          "x": "Human Responsibility Mapping is a public framework for AI product teams making delegation decisions."
         },
         {
           "t": "p",
-          "x": "It turns fuzzy delegation questions into an operating artifact: current work architecture, responsibility boundaries, evidence ledger, stakeholder coverage, trust requirements, eval plan, telemetry plan, and release gate."
+          "x": "It turns fuzzy questions — should the model do this, should the human approve it, what would make it safe — into one operating artifact: work architecture, responsibility boundaries, evidence ledger, stakeholder coverage, eval plan, telemetry plan, and release gate."
         },
         {
           "t": "thesis",
           "k": "boundary",
           "x": "The question is not whether AI can do a task. The question is what responsibility moves, what evidence is required, and which boundary should remain reversible."
+        },
+        {
+          "t": "p",
+          "x": "Proof: the public repo is [p-toni/human-responsibility-mapping](https://github.com/p-toni/human-responsibility-mapping)."
         }
       ],
       "sourcePath": "/content/work/human-responsibility-mapping.md"
@@ -195,8 +246,8 @@
       "cluster": "work",
       "title": "Macroscopic",
       "date": "active",
-      "rank": 1,
-      "weight": 0.95,
+      "rank": 3,
+      "weight": 0.85,
       "links": [
         [
           "geometry",
@@ -208,22 +259,22 @@
         ]
       ],
       "excerpt": [
-        "A bionic mind for fragmented knowledge work: perceive, hold, connect, decide, act, adapt.",
-        "The interface stays quiet; the kernel carries memory, salience, missions, evidence, and approval boundaries."
+        "A product system for holding fragmented life and work context without turning it into a dashboard.",
+        "The wager: surface less, remember better, ask permission before action."
       ],
       "body": [
         {
           "t": "p",
-          "x": "Macroscopic is the largest version of the pattern: cognition as a living system, not a chat surface."
+          "x": "Macroscopic is the largest version of the pattern: a product system for holding fragmented life and work context."
         },
         {
           "t": "p",
-          "x": "Its center is a cognitive kernel that keeps events, context, durable memory, missions, artifacts, and approvals separate enough to be trusted."
+          "x": "Its center is a cognitive kernel: events, active context, durable memory, missions, artifacts, connected sources, proposals, and approvals stay separate enough that the product can remain quiet without becoming opaque."
         },
         {
           "t": "thesis",
           "k": "product bet",
-          "x": "The useful assistant is not louder. It is better at knowing what should surface, what should stay latent, and what needs permission before it acts."
+          "x": "The useful assistant is not louder. It remembers what matters, surfaces only what earns attention, and asks before crossing an agency boundary."
         }
       ],
       "sourcePath": "/content/work/macroscopic.md"
@@ -234,8 +285,8 @@
       "cluster": "work",
       "title": "Media Atlas",
       "date": "alpha",
-      "rank": 4,
-      "weight": 0.8,
+      "rank": 6,
+      "weight": 0.7,
       "links": [
         [
           "geometry",
@@ -247,17 +298,17 @@
         ]
       ],
       "excerpt": [
-        "An observation-first atlas for private mixed-media archives.",
-        "Ontology, geometry, overlays, provenance, and authored curation stay distinct."
+        "A visual atlas for private mixed-media archives.",
+        "Media stays primary; ontology, layout, overlays, provenance, and curation stay inspectable."
       ],
       "body": [
         {
           "t": "p",
-          "x": "Media Atlas is the visual sibling of Geometry: a way to navigate large private archives without flattening them into search results."
+          "x": "Media Atlas is the visual sibling of Geometry: a way to navigate large private archives without reducing them to search results."
         },
         {
           "t": "p",
-          "x": "It separates canonical objects from derived relations, overlays, view state, guide suggestions, and durable curation."
+          "x": "The core move is separation. Media objects, derived relations, layout geometry, overlays, guide suggestions, provenance, and durable curation each keep their own layer so the map can be inspected instead of merely trusted."
         },
         {
           "t": "callout",
@@ -274,8 +325,8 @@
       "cluster": "work",
       "title": "spec v1",
       "date": "1 week",
-      "rank": 4,
-      "weight": 0.8,
+      "rank": 8,
+      "weight": 0.6,
       "links": [
         [
           "geometry",
@@ -283,17 +334,21 @@
         ]
       ],
       "excerpt": [
-        "The retired v1 Geometry spec: 100vh canvases of draggable, grid-aligned blocks.",
-        "Canvases lived as JSON, bundled at build time, editable locally."
+        "The retired v1 Geometry spec.",
+        "A useful fossil: grid canvases, draggable blocks, JSON content, MDX-era widgets."
       ],
       "body": [
         {
           "t": "p",
-          "x": "v1 Geometry was a warm grid: draggable blocks on 100vh canvases, JSON-authored at build time, MDX widgets in the read path."
+          "x": "Spec v1 is the useful fossil."
         },
         {
           "t": "p",
-          "x": "v2 replaces that stack with a single field route, markdown + YAML frontmatter, and typed Block[] figures. This doc remains as historical reference for the grid era."
+          "x": "That version of Geometry was a warm grid: draggable blocks on 100vh canvases, JSON-authored at build time, with MDX widgets in the read path."
+        },
+        {
+          "t": "p",
+          "x": "v2 replaces that stack with one field route, markdown plus YAML frontmatter, and typed Block[] figures. The spec remains here to show what was retired, not what should come back."
         }
       ],
       "sourcePath": "/content/work/spec-v1.md"
@@ -304,8 +359,8 @@
       "cluster": "work",
       "title": "Synapse",
       "date": "rebuild",
-      "rank": 3,
-      "weight": 0.85,
+      "rank": 5,
+      "weight": 0.75,
       "links": [
         [
           "geometry-retrieval",
@@ -318,16 +373,16 @@
       ],
       "excerpt": [
         "A deterministic evidence layer for agent behavior.",
-        "Replayable runs, explicit execution contracts, and evidence separate from authority."
+        "It turns runs into replayable proof under explicit execution contracts."
       ],
       "body": [
         {
           "t": "p",
-          "x": "Synapse asks how agent systems earn trust when their behavior is otherwise too slippery to inspect."
+          "x": "Synapse asks how agent systems earn trust when behavior is too slippery to inspect from the outside."
         },
         {
           "t": "p",
-          "x": "The answer is determinism where possible, replay where necessary, and explicit evidence boundaries before any authority decision."
+          "x": "The answer is replayable evidence: deterministic runs where possible, explicit execution contracts, trace bundles, schema checks, and a hard separation between evidence and authority."
         },
         {
           "t": "thesis",
@@ -342,9 +397,9 @@
       "kind": "project",
       "cluster": "work",
       "title": "the loom",
-      "date": "5 days",
-      "rank": 2,
-      "weight": 0.9,
+      "date": "archive",
+      "rank": 7,
+      "weight": 0.6499999999999999,
       "links": [
         [
           "geometry",
@@ -360,23 +415,23 @@
         ]
       ],
       "excerpt": [
-        "A layout engine that tends itself. Blocks carry weight and freshness; the page re-weaves on every visit.",
-        "You stop placing things and start gardening them."
+        "The earlier layout-engine idea behind Geometry.",
+        "Blocks had weight, freshness, and neighborhood; the page could re-weave emphasis without erasing place."
       ],
       "body": [
         {
           "t": "p",
-          "x": "The loom is the self-tending layout idea behind this field: blocks with weight, freshness, and neighborhood instead of a fixed grid."
+          "x": "The Loom is the earlier layout-engine idea behind Geometry."
+        },
+        {
+          "t": "p",
+          "x": "It asked what would happen if blocks carried weight, freshness, and neighborhood instead of living in a fixed grid. The page could re-weave emphasis on each visit without pretending the underlying map had no authored shape."
         },
         {
           "t": "callout",
           "v": "aside",
-          "label": "idea",
-          "x": "Geometry v2 borrows the loom's gardening instinct — nodes stay placed, but lenses and reading modes re-weight what glows."
-        },
-        {
-          "t": "p",
-          "x": "Each visit can re-weave emphasis without erasing the underlying shape."
+          "label": "inheritance",
+          "x": "Geometry keeps the useful part: the field stays authored, while lenses and reading modes decide what glows."
         }
       ],
       "sourcePath": "/content/work/the-loom.md"
@@ -387,8 +442,8 @@
       "cluster": "work",
       "title": "Wing",
       "date": "pilot",
-      "rank": 2,
-      "weight": 0.9,
+      "rank": 4,
+      "weight": 0.8,
       "links": [
         [
           "macroscopic",
@@ -400,23 +455,23 @@
         ]
       ],
       "excerpt": [
-        "An agentic coordination workbench for high-stakes writing.",
-        "Artifacts stay central; agents work around claims, frictions, next moves, patches, and activation packages."
+        "A workbench for high-stakes writing where the artifact stays central.",
+        "It coordinates claims, sources, frictions, next moves, patches, and activation packages."
       ],
       "body": [
         {
           "t": "p",
-          "x": "Wing treats writing as coordination, not drafting."
+          "x": "Wing treats writing as coordination, not text generation."
         },
         {
           "t": "p",
-          "x": "The artifact remains the human surface. Around it, the system tracks purpose, readers, claims, sources, frictions, moves, patches, revisions, and activation packages."
+          "x": "The artifact remains the main human surface. Around it, the product tracks what the piece is trying to make happen: readers, claims, sources, frictions, moves, patches, revisions, and activation packages."
         },
         {
           "t": "callout",
           "v": "aside",
           "label": "shape",
-          "x": "It is the authorial slice of the larger bionic-work idea: agents become traceable collaborators without taking over the page."
+          "x": "It is the authorial slice of the larger bionic-work idea: agents can notice, propose, and package without taking over the page."
         }
       ],
       "sourcePath": "/content/work/wing.md"
@@ -3766,7 +3821,7 @@
         288
       ],
       "co-owning-the-loop": [
-        512,
+        546,
         300
       ],
       "increasing-returns": [
@@ -3792,6 +3847,10 @@
       "bounded-me": [
         650,
         560
+      ],
+      "codex-fieldwork": [
+        850,
+        118
       ],
       "geometry": [
         952,
@@ -3875,6 +3934,7 @@
         "query": "what are you building",
         "nodeIds": [
           "geometry",
+          "codex-fieldwork",
           "macroscopic",
           "wing",
           "human-responsibility-mapping",

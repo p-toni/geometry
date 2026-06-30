@@ -3,11 +3,11 @@ id: the-loom
 kind: project
 cluster: work
 title: the loom
-date: 5 days
-rank: 2
+date: archive
+rank: 7
 excerpt:
-  - "A layout engine that tends itself. Blocks carry weight and freshness; the page re-weaves on every visit."
-  - "You stop placing things and start gardening them."
+  - "The earlier layout-engine idea behind Geometry."
+  - "Blocks had weight, freshness, and neighborhood; the page could re-weave emphasis without erasing place."
 links:
   - target: geometry
     rel: part of
@@ -17,9 +17,9 @@ links:
     rel: shipped on
 ---
 
-The loom is the self-tending layout idea behind this field: blocks with weight, freshness, and neighborhood instead of a fixed grid.
+The Loom is the earlier layout-engine idea behind Geometry.
 
-> [aside|idea]
-> Geometry v2 borrows the loom's gardening instinct — nodes stay placed, but lenses and reading modes re-weight what glows.
+It asked what would happen if blocks carried weight, freshness, and neighborhood instead of living in a fixed grid. The page could re-weave emphasis on each visit without pretending the underlying map had no authored shape.
 
-Each visit can re-weave emphasis without erasing the underlying shape.
+> [aside|inheritance]
+> Geometry keeps the useful part: the field stays authored, while lenses and reading modes decide what glows.
