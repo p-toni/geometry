@@ -7,10 +7,10 @@ date: 2 weeks
 rank: 6
 media: true
 excerpt:
-  - "A sequin-wave shader study — motion without narrative."
+  - "Moonlit Ripple: dark water, a textured moon, and small disturbances that answer the pointer."
 links:
   - target: lock-in
     rel: sibling
 ---
 
-Shader sketch: slow horizontal interference, like light on water. Drop a WebGL capture into the media slot when ready.
+Recovered from the first Geometry canvas: a small WebGL sea study built from layered wave normals, moon reflection, and pointer-made ripples.

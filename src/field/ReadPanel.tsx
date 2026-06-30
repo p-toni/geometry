@@ -6,6 +6,8 @@ import { Masthead } from '../components/figures/Masthead';
 import { neighbors } from '../lib/graph';
 import { isWholePiece } from '../lib/readMode';
 import type { Pool, PoolNode } from '../pool';
+import { SeaShader } from './SeaShader';
+import { SharpPointCloud } from './SharpPointCloud';
 
 type ReadPanelProps = {
   node: PoolNode;
@@ -52,11 +54,13 @@ export function ReadPanel({
   onScrolledToSection,
 }: ReadPanelProps) {
   const next = neighbors(pool, node.id);
+  const isMediaNode = node.media === true;
   const wholePiece = isWholePiece(node);
-  const hasFull = node.body.length > 0;
+  const hasFull = !isMediaNode && node.body.length > 0;
   const showFullBody = wholePiece ? hasFull : full && hasFull;
   const dek = node.excerpt[0];
   const excerptTail = dek ? node.excerpt.slice(1) : node.excerpt;
+  const mediaSentence = node.body.find((block) => block.t === 'p')?.x ?? dek;
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -218,6 +222,29 @@ export function ReadPanel({
           </a>
         ) : null}
 
+        {isMediaNode ? (
+          <div className="media-readout">
+            {node.id === 'sea' ? (
+              <figure className="media-artifact media-artifact--sea" aria-label="sea shader">
+                <SeaShader />
+                <figcaption>Moonlit Ripple · WebGL study recovered from geometry v1</figcaption>
+              </figure>
+            ) : node.id === 'point-cloud' ? (
+              <figure className="media-artifact media-artifact--sharp" aria-label="point-cloud sharp">
+                <SharpPointCloud />
+                <figcaption>sharp · SPLT point-cloud study recovered from geometry v1</figcaption>
+              </figure>
+            ) : (
+              <figure className="media-artifact media-artifact--pending" aria-label={`${node.title} visual`}>
+                <div className="media-artifact__mark">{node.kind}</div>
+                <figcaption>{node.title} · visual study</figcaption>
+              </figure>
+            )}
+            {mediaSentence ? <p className="media-readout__sentence">{mediaSentence}</p> : null}
+          </div>
+        ) : null}
+
+        {!isMediaNode ? (
         <div className={showFullBody ? undefined : 'field-prose'} style={{ marginTop: 22 }}>
           {!showFullBody && excerptTail.length > 0
             ? excerptTail.map((p) => (
@@ -259,6 +286,7 @@ export function ReadPanel({
             </div>
           ) : null}
         </div>
+        ) : null}
 
         {canDescend ? (
           <button

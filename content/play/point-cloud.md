@@ -7,10 +7,10 @@ date: 1 month
 rank: 9
 media: true
 excerpt:
-  - "Three.js point set — depth without mesh."
+  - "SPLT point-cloud study — depth without mesh."
 links:
   - target: lock-in
     rel: sibling
 ---
 
-Point-cloud sharp preset: sparse depth, no surface. Media slot awaits the export.
+Recovered from the first Geometry canvas: a warm particle field that holds a scanned form as drift, glow, and depth.

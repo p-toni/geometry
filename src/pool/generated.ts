@@ -48,12 +48,12 @@ export const generatedPool: Pool = {
         ]
       ],
       "excerpt": [
-        "Three.js point set — depth without mesh."
+        "SPLT point-cloud study — depth without mesh."
       ],
       "body": [
         {
           "t": "p",
-          "x": "Point-cloud sharp preset: sparse depth, no surface. Media slot awaits the export."
+          "x": "Recovered from the first Geometry canvas: a warm particle field that holds a scanned form as drift, glow, and depth."
         }
       ],
       "media": true,
@@ -74,12 +74,12 @@ export const generatedPool: Pool = {
         ]
       ],
       "excerpt": [
-        "A sequin-wave shader study — motion without narrative."
+        "Moonlit Ripple: dark water, a textured moon, and small disturbances that answer the pointer."
       ],
       "body": [
         {
           "t": "p",
-          "x": "Shader sketch: slow horizontal interference, like light on water. Drop a WebGL capture into the media slot when ready."
+          "x": "Recovered from the first Geometry canvas: a small WebGL sea study built from layered wave normals, moon reflection, and pointer-made ripples."
         }
       ],
       "media": true,
@@ -149,6 +149,128 @@ export const generatedPool: Pool = {
       ],
       "sourcePath": "/content/work/geometry.md"
     },
+    "human-responsibility-mapping": {
+      "id": "human-responsibility-mapping",
+      "kind": "project",
+      "cluster": "work",
+      "title": "Responsibility Mapping",
+      "date": "public",
+      "rank": 2,
+      "weight": 0.9,
+      "links": [
+        [
+          "macroscopic",
+          "theme"
+        ],
+        [
+          "wing",
+          "pairs"
+        ],
+        [
+          "synapse",
+          "theme"
+        ]
+      ],
+      "excerpt": [
+        "A practical framework for AI-era work: boundaries, trust, evals, telemetry, and release gates.",
+        "It asks what AI should do, what humans should retain, and what evidence would make that safe."
+      ],
+      "body": [
+        {
+          "t": "p",
+          "x": "Human Responsibility Mapping is an integration framework for AI product teams."
+        },
+        {
+          "t": "p",
+          "x": "It turns fuzzy delegation questions into an operating artifact: current work architecture, responsibility boundaries, evidence ledger, stakeholder coverage, trust requirements, eval plan, telemetry plan, and release gate."
+        },
+        {
+          "t": "thesis",
+          "k": "boundary",
+          "x": "The question is not whether AI can do a task. The question is what responsibility moves, what evidence is required, and which boundary should remain reversible."
+        }
+      ],
+      "sourcePath": "/content/work/human-responsibility-mapping.md"
+    },
+    "macroscopic": {
+      "id": "macroscopic",
+      "kind": "project",
+      "cluster": "work",
+      "title": "Macroscopic",
+      "date": "active",
+      "rank": 1,
+      "weight": 0.95,
+      "links": [
+        [
+          "geometry",
+          "theme"
+        ],
+        [
+          "wing",
+          "pairs"
+        ]
+      ],
+      "excerpt": [
+        "A bionic mind for fragmented knowledge work: perceive, hold, connect, decide, act, adapt.",
+        "The interface stays quiet; the kernel carries memory, salience, missions, evidence, and approval boundaries."
+      ],
+      "body": [
+        {
+          "t": "p",
+          "x": "Macroscopic is the largest version of the pattern: cognition as a living system, not a chat surface."
+        },
+        {
+          "t": "p",
+          "x": "Its center is a cognitive kernel that keeps events, context, durable memory, missions, artifacts, and approvals separate enough to be trusted."
+        },
+        {
+          "t": "thesis",
+          "k": "product bet",
+          "x": "The useful assistant is not louder. It is better at knowing what should surface, what should stay latent, and what needs permission before it acts."
+        }
+      ],
+      "sourcePath": "/content/work/macroscopic.md"
+    },
+    "media-atlas": {
+      "id": "media-atlas",
+      "kind": "project",
+      "cluster": "work",
+      "title": "Media Atlas",
+      "date": "alpha",
+      "rank": 4,
+      "weight": 0.8,
+      "links": [
+        [
+          "geometry",
+          "theme"
+        ],
+        [
+          "synapse",
+          "pairs"
+        ]
+      ],
+      "excerpt": [
+        "An observation-first atlas for private mixed-media archives.",
+        "Ontology, geometry, overlays, provenance, and authored curation stay distinct."
+      ],
+      "body": [
+        {
+          "t": "p",
+          "x": "Media Atlas is the visual sibling of Geometry: a way to navigate large private archives without flattening them into search results."
+        },
+        {
+          "t": "p",
+          "x": "It separates canonical objects from derived relations, overlays, view state, guide suggestions, and durable curation."
+        },
+        {
+          "t": "callout",
+          "v": "aside",
+          "label": "design center",
+          "x": "The ambition is not a prettier file browser. It is an inspectable map where media remains the perceptual anchor."
+        }
+      ],
+      "sourcePath": "/content/work/media-atlas.md"
+    },
     "spec-v1": {
       "id": "spec-v1",
       "kind": "doc",
@@ -178,6 +300,45 @@ export const generatedPool: Pool = {
         }
       ],
       "sourcePath": "/content/work/spec-v1.md"
+    },
+    "synapse": {
+      "id": "synapse",
+      "kind": "project",
+      "cluster": "work",
+      "title": "Synapse",
+      "date": "rebuild",
+      "rank": 3,
+      "weight": 0.85,
+      "links": [
+        [
+          "geometry-retrieval",
+          "idea"
+        ],
+        [
+          "macroscopic",
+          "theme"
+        ]
+      ],
+      "excerpt": [
+        "A deterministic evidence layer for agent behavior.",
+        "Replayable runs, explicit execution contracts, and evidence separate from authority."
+      ],
+      "body": [
+        {
+          "t": "p",
+          "x": "Synapse asks how agent systems earn trust when their behavior is otherwise too slippery to inspect."
+        },
+        {
+          "t": "p",
+          "x": "The answer is determinism where possible, replay where necessary, and explicit evidence boundaries before any authority decision."
+        },
+        {
+          "t": "thesis",
+          "k": "standard",
+          "x": "If an agent changed something, the system should be able to show what happened, under which contract, and whether the evidence is proof or projection."
+        }
+      ],
+      "sourcePath": "/content/work/synapse.md"
     },
     "the-loom": {
       "id": "the-loom",
@@ -222,6 +383,46 @@ export const generatedPool: Pool = {
         }
       ],
       "sourcePath": "/content/work/the-loom.md"
+    },
+    "wing": {
+      "id": "wing",
+      "kind": "project",
+      "cluster": "work",
+      "title": "Wing",
+      "date": "pilot",
+      "rank": 2,
+      "weight": 0.9,
+      "links": [
+        [
+          "macroscopic",
+          "pairs"
+        ],
+        [
+          "synapse",
+          "theme"
+        ]
+      ],
+      "excerpt": [
+        "An agentic coordination workbench for high-stakes writing.",
+        "Artifacts stay central; agents work around claims, frictions, next moves, patches, and activation packages."
+      ],
+      "body": [
+        {
+          "t": "p",
+          "x": "Wing treats writing as coordination, not drafting."
+        },
+        {
+          "t": "p",
+          "x": "The artifact remains the human surface. Around it, the system tracks purpose, readers, claims, sources, frictions, moves, patches, revisions, and activation packages."
+        },
+        {
+          "t": "callout",
+          "v": "aside",
+          "label": "shape",
+          "x": "It is the authorial slice of the larger bionic-work idea: agents become traceable collaborators without taking over the page."
+        }
+      ],
+      "sourcePath": "/content/work/wing.md"
     },
     "allowed-ignorance": {
       "id": "allowed-ignorance",
@@ -3599,13 +3800,33 @@ export const generatedPool: Pool = {
         952,
         208
       ],
+      "macroscopic": [
+        1038,
+        112
+      ],
+      "wing": [
+        1214,
+        178
+      ],
       "the-loom": [
         1124,
+        292
+      ],
+      "human-responsibility-mapping": [
+        1296,
         292
       ],
       "spec-v1": [
         898,
         352
+      ],
+      "synapse": [
+        1044,
+        386
+      ],
+      "media-atlas": [
+        1212,
+        390
       ],
       "sea": [
         1030,
@@ -3657,6 +3878,11 @@ export const generatedPool: Pool = {
         "query": "what are you building",
         "nodeIds": [
           "geometry",
+          "macroscopic",
+          "wing",
+          "human-responsibility-mapping",
+          "synapse",
+          "media-atlas",
           "the-loom",
           "spec-v1",
           "geometry-retrieval"

@@ -38,6 +38,102 @@
   margin: 20px 0 10px;
 }
 
+.media-artifact {
+  margin: 24px 0 0;
+}
+
+.media-readout {
+  margin-top: 2px;
+}
+
+.media-readout__sentence {
+  margin: 14px 0 0;
+  max-width: 58ch;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.media-artifact--sea {
+  position: relative;
+  overflow: hidden;
+  height: clamp(360px, 58vh, 640px);
+  border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  border-radius: 6px;
+  background: #090604;
+  box-shadow: 0 22px 60px rgba(21, 18, 14, 0.22);
+}
+
+.media-artifact--sharp {
+  position: relative;
+  overflow: hidden;
+  height: clamp(390px, 62vh, 680px);
+  border: 1px solid color-mix(in srgb, var(--ink) 24%, transparent);
+  border-radius: 6px;
+  background: #030302;
+  box-shadow: 0 24px 64px rgba(10, 10, 8, 0.28);
+}
+
+.media-artifact--pending {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  height: 420px;
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  background:
+    radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--read-accent) 18%, transparent), transparent 24%),
+    linear-gradient(135deg, rgba(31, 77, 184, 0.06), transparent 36%),
+    repeating-linear-gradient(135deg, #dfe3df, #dfe3df 6px, #e9ece8 6px, #e9ece8 12px);
+}
+
+.media-artifact__mark {
+  color: color-mix(in srgb, var(--ink) 44%, transparent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.media-artifact--sea::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(255, 252, 244, 0.08), transparent 18%),
+    radial-gradient(circle at 58% 12%, rgba(255, 240, 204, 0.14), transparent 20%),
+    linear-gradient(to top, rgba(8, 5, 3, 0.34), transparent 36%);
+  mix-blend-mode: screen;
+}
+
+.sea-shader {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sharp-point-cloud {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.media-artifact figcaption {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  z-index: 1;
+  color: rgba(255, 247, 229, 0.58);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
 .prose-lead {
   font-family: var(--font-body);
   font-size: var(--prose-lead-size);
