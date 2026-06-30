@@ -36,7 +36,14 @@ export function Plate({ cap, src, inline = true }: PlateProps) {
           src={src}
           alt=""
           onError={() => setSrcFailed(true)}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
+            outline: '1px solid rgba(0, 0, 0, 0.1)',
+            outlineOffset: '-1px',
+          }}
         />
       ) : null}
       {showPlaceholder ? (
