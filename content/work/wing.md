@@ -2,7 +2,7 @@
 id: wing
 kind: project
 cluster: work
-title: Wing
+title: wing
 date: pilot
 rank: 4
 excerpt:

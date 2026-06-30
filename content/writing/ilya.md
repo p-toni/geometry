@@ -2,7 +2,7 @@
 id: ilya
 kind: note
 cluster: writing
-title: ilya
+title: Ilya
 date: 2025-10-18
 rank: 9
 excerpt:

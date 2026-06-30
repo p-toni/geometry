@@ -2,7 +2,7 @@
 id: macroscopic
 kind: project
 cluster: work
-title: Macroscopic
+title: macroscopic
 date: active
 rank: 3
 excerpt:

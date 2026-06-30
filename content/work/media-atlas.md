@@ -2,7 +2,7 @@
 id: media-atlas
 kind: project
 cluster: work
-title: Media Atlas
+title: media atlas
 date: alpha
 rank: 6
 excerpt:

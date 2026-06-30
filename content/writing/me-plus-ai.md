@@ -2,7 +2,7 @@
 id: me-plus-ai
 kind: essay
 cluster: writing
-title: me + ai
+title: me + AI
 date: 2026-01-24
 rank: 7
 excerpt:

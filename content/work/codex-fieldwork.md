@@ -2,7 +2,7 @@
 id: codex-fieldwork
 kind: project
 cluster: work
-title: Codex Fieldwork
+title: Codex fieldwork
 date: live
 rank: 1
 excerpt:

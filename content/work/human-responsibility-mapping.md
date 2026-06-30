@@ -2,7 +2,7 @@
 id: human-responsibility-mapping
 kind: project
 cluster: work
-title: Responsibility Mapping
+title: responsibility mapping
 date: public
 rank: 2
 excerpt:

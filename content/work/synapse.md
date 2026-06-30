@@ -2,7 +2,7 @@
 id: synapse
 kind: project
 cluster: work
-title: Synapse
+title: synapse
 date: rebuild
 rank: 5
 excerpt:

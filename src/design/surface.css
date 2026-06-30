@@ -376,9 +376,11 @@
 }
 
 .field-node-title {
-  text-transform: uppercase;
-  letter-spacing: 0.045em;
+  letter-spacing: 0;
   text-wrap: balance;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1;
 }
 
 .field-world--focus:not(.field-world--hop) .field-edge {
@@ -416,8 +418,7 @@
   font-weight: 600;
   font-size: 12px;
   color: #fff;
-  letter-spacing: 0.035em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   line-height: 1;
   overflow: hidden;
   text-overflow: ellipsis;
