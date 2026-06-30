@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { lazy, Suspense, useEffect, useRef } from 'react';
 
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { FigureReader } from '../components/figures';
@@ -6,8 +6,13 @@ import { Masthead } from '../components/figures/Masthead';
 import { neighbors } from '../lib/graph';
 import { isWholePiece } from '../lib/readMode';
 import type { Pool, PoolNode } from '../pool';
-import { SeaShader } from './SeaShader';
-import { SharpPointCloud } from './SharpPointCloud';
+
+const SeaShader = lazy(() =>
+  import('./SeaShader').then((module) => ({ default: module.SeaShader })),
+);
+const SharpPointCloud = lazy(() =>
+  import('./SharpPointCloud').then((module) => ({ default: module.SharpPointCloud })),
+);
 
 type ReadPanelProps = {
   node: PoolNode;
@@ -35,6 +40,10 @@ function neighborDot(kind: PoolNode['kind']) {
         ? '#5b6b73'
         : 'var(--ink)';
   return { width: 6, height: 6, borderRadius: '50%', background: color, flex: 'none' as const };
+}
+
+function MediaLoading({ label }: { label: string }) {
+  return <div className="media-artifact__mark">{label}</div>;
 }
 
 export function ReadPanel({
@@ -228,12 +237,16 @@ export function ReadPanel({
           <div className="media-readout">
             {node.id === 'sea' ? (
               <figure className="media-artifact media-artifact--sea" aria-label="sea shader">
-                <SeaShader />
+                <Suspense fallback={<MediaLoading label="loading sea" />}>
+                  <SeaShader />
+                </Suspense>
                 <figcaption>Moonlit Ripple · WebGL study recovered from geometry v1</figcaption>
               </figure>
             ) : node.id === 'point-cloud' ? (
               <figure className="media-artifact media-artifact--sharp" aria-label="point-cloud sharp">
-                <SharpPointCloud />
+                <Suspense fallback={<MediaLoading label="loading sharp" />}>
+                  <SharpPointCloud />
+                </Suspense>
                 <figcaption>sharp · SPLT point-cloud study recovered from geometry v1</figcaption>
               </figure>
             ) : (
