@@ -32,14 +32,14 @@ See [AGENTS.md](./AGENTS.md) for the content schema, block types, and figure reg
 
 ## Deploy
 
-Static Vite build. Any static host works:
+Static Vite build deployed through Cloudflare Pages:
 
 ```bash
 pnpm build
-# serve dist/
+pnpm deploy
 ```
 
-`vercel.json` is included for zero-config deploy.
+Cloudflare Pages serves `dist/`; project settings live in `wrangler.jsonc`.
 
 ## Architecture
 
