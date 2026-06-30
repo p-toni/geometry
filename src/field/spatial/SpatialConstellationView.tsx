@@ -1,9 +1,13 @@
 import { useMemo, useRef, useState } from 'react';
+import { Spin } from '../../components/Spin';
 import { useSpatialMount, type SpatialView } from './useSpatialMount';
 import type {
   ConstellationGraph,
   ConstellationSelection,
 } from '../../../constellation/src/mount.d.ts';
+import type { SpinVerb } from '../../lib/dotgrid';
+import { sectionSlug } from '../../lib/sectionSlug';
+import type { Block } from '../../pool/types';
 import './spatialShell.css';
 
 type Props = {
@@ -12,8 +16,25 @@ type Props = {
   variant?: 'embedded' | 'handoff' | 'panel';
   onBack?: () => void;
   backLabel?: string;
+  body?: Block[];
   className?: string;
   testId?: string;
+};
+
+type SectionFacetKey =
+  | 'thesis'
+  | 'contrast'
+  | 'ladder'
+  | 'diagram'
+  | 'citation'
+  | 'plate'
+  | 'marginalia'
+  | 'prose';
+
+type SectionFacet = {
+  key: SectionFacetKey;
+  label: string;
+  count: number;
 };
 
 function isStringArray(value: unknown): value is string[] {
@@ -76,12 +97,145 @@ function inquiryCount(graph: ConstellationGraph): number {
     : graph.people.length;
 }
 
+function statusVerb(ready: boolean, currentView: SpatialView, selectedNode: ConstellationSelection): SpinVerb {
+  if (!ready) return 'plot';
+  if (selectedNode) return 'bridge';
+  return currentView === 'A' ? 'settle' : 'index';
+}
+
+function statusCopy(
+  ready: boolean,
+  currentView: SpatialView,
+  selectedNode: ConstellationSelection,
+  graph: ConstellationGraph | null,
+): string {
+  if (!ready) return 'plotting descent';
+  if (selectedNode) return `bridge · ${selectionKind(selectedNode)}`;
+  if (currentView === 'A') {
+    const count = graph ? inquiryCount(graph) : 0;
+    return count ? `settle · ${count} inquiries` : 'settle · argument';
+  }
+  return 'index · concept mesh';
+}
+
+const FACET_LABELS: Record<SectionFacetKey, string> = {
+  thesis: 'thesis star',
+  contrast: 'contrast line',
+  ladder: 'ladder rail',
+  diagram: 'diagram field',
+  citation: 'citation edge',
+  plate: 'plate',
+  marginalia: 'margin note',
+  prose: 'prose',
+};
+
+const FACET_PRIORITY: SectionFacetKey[] = [
+  'thesis',
+  'contrast',
+  'ladder',
+  'diagram',
+  'citation',
+  'plate',
+  'marginalia',
+  'prose',
+];
+
+function facetForBlock(block: Block): SectionFacetKey | null {
+  switch (block.t) {
+    case 'thesis':
+      return 'thesis';
+    case 'contrast':
+    case 'edge-taxonomy':
+    case 'table':
+      return 'contrast';
+    case 'ladder':
+    case 'steps':
+      return 'ladder';
+    case 'diagram':
+    case 'curvature':
+    case 'motif':
+    case 'point-edge':
+      return 'diagram';
+    case 'citation':
+    case 'sources-ledger':
+    case 'backlink':
+      return 'citation';
+    case 'plate':
+      return 'plate';
+    case 'callout':
+    case 'pull':
+    case 'sidenote':
+      return 'marginalia';
+    case 'p':
+      return 'prose';
+    case 'h':
+      return null;
+    default:
+      return null;
+  }
+}
+
+function sectionFacetsFromBody(body?: Block[]): Map<string, SectionFacet> {
+  const bySlug = new Map<string, Map<SectionFacetKey, number>>();
+  let currentSlug: string | null = null;
+
+  for (const block of body ?? []) {
+    if (block.t === 'h') {
+      currentSlug = sectionSlug(block.x);
+      if (!bySlug.has(currentSlug)) bySlug.set(currentSlug, new Map());
+      continue;
+    }
+    if (!currentSlug) continue;
+    const key = facetForBlock(block);
+    if (!key) continue;
+    const counts = bySlug.get(currentSlug) ?? new Map<SectionFacetKey, number>();
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+    bySlug.set(currentSlug, counts);
+  }
+
+  const facets = new Map<string, SectionFacet>();
+  for (const [slug, counts] of bySlug) {
+    const explicitFacet = FACET_PRIORITY.find((key) => key !== 'prose' && counts.has(key));
+    const winner = explicitFacet ?? 'prose';
+    const winnerCount = counts.get(winner) ?? 0;
+    facets.set(slug, { key: winner, label: FACET_LABELS[winner], count: winnerCount });
+  }
+  return facets;
+}
+
+function semanticFacetForSection(slug?: string, name?: string): SectionFacetKey | null {
+  const text = `${slug ?? ''} ${name ?? ''}`.toLowerCase();
+  if (/\bthesis\b/.test(text)) return 'thesis';
+  if (/\b(test|tests|protocol|step|steps)\b/.test(text)) return 'ladder';
+  if (/\b(map|maps|diagram|rotation|geometry)\b/.test(text)) return 'diagram';
+  if (/\b(versus|contrast|tension|split|failure|void)\b/.test(text)) return 'contrast';
+  if (/\b(citation|source|borrowed|cites)\b/.test(text)) return 'citation';
+  return null;
+}
+
+function sectionFacet(
+  section: { sectionSlug?: string; name?: string },
+  facets: Map<string, SectionFacet>,
+): SectionFacet | null {
+  const base = section.sectionSlug ? facets.get(section.sectionSlug) : null;
+  const semantic = semanticFacetForSection(section.sectionSlug, section.name);
+  if (semantic && (!base || base.key === 'prose')) {
+    return {
+      key: semantic,
+      label: FACET_LABELS[semantic],
+      count: base?.count ?? 0,
+    };
+  }
+  return base ?? null;
+}
+
 export function SpatialConstellationView({
   graphPath,
   fallbackTitle,
   variant = 'embedded',
   onBack,
   backLabel = '← back',
+  body,
   className,
   testId = 'spatial-constellation-view',
 }: Props) {
@@ -106,10 +260,17 @@ export function SpatialConstellationView({
   const activeSelection = selectedNode ?? lensSelection(graph, currentView);
   const mainArgument = cleanArgumentCopy(lensPerson(graph)?.meta);
   const sections = sectionInquiries(graph);
+  const sectionFacets = useMemo(() => sectionFacetsFromBody(body), [body]);
   const activeTopicIds = activeSelection?.topicIds ?? [];
   const topicLabels = activeTopicIds
     .map((id) => graph?.topicLabels?.[id] ?? id)
     .slice(0, 8);
+  const motionVerb = statusVerb(ready, currentView, selectedNode);
+  const motionCopy = statusCopy(ready, currentView, selectedNode, graph);
+  const activeFacet =
+    activeSelection?.type === 'person' && activeSelection.sectionSlug
+      ? sectionFacet(activeSelection, sectionFacets)
+      : null;
 
   const rootClass = [
     'spatial-view-root',
@@ -183,6 +344,10 @@ export function SpatialConstellationView({
           <p>{mainArgument}</p>
         </div>
       ) : null}
+      <div className="spatial-depth-status" aria-label={`Constellation status: ${motionCopy}`}>
+        <Spin verb={motionVerb} className="spatial-depth-spin" />
+        <span>{motionCopy}</span>
+      </div>
       <div className="spatial-view-overlay-grid" aria-hidden={!ready || !contextVisible}>
         <aside className="spatial-side spatial-side--spine">
           <div className="spatial-side-kicker">Argument Spine</div>
@@ -197,27 +362,38 @@ export function SpatialConstellationView({
             </button>
           ) : null}
           <ol className="spatial-spine-list">
-            {sections.map((section, index) => (
-              <li key={section.id}>
-                <button
-                  type="button"
-                  className={`spatial-spine-item${activeSelection?.id === section.id ? ' is-active' : ''}`}
-                  onClick={() => selectNode(section.id)}
-                >
-                  <span className="spatial-spine-index">{String(index + 1).padStart(2, '0')}</span>
-                  <span className="spatial-spine-copy">
-                    <span className="spatial-spine-name">{section.name}</span>
-                    <span className="spatial-spine-note">{section.meta}</span>
-                  </span>
-                </button>
-              </li>
-            ))}
+            {sections.map((section, index) => {
+              const facet = sectionFacet(section, sectionFacets);
+              return (
+                <li key={section.id}>
+                  <button
+                    type="button"
+                    className={[
+                      'spatial-spine-item',
+                      activeSelection?.id === section.id ? 'is-active' : '',
+                      facet ? `spatial-spine-item--${facet.key}` : '',
+                    ]
+                      .filter(Boolean)
+                      .join(' ')}
+                    onClick={() => selectNode(section.id)}
+                  >
+                    <span className="spatial-spine-index">{String(index + 1).padStart(2, '0')}</span>
+                    <span className="spatial-spine-copy">
+                      <span className="spatial-spine-name">{section.name}</span>
+                      <span className="spatial-spine-note">{section.meta}</span>
+                      {facet ? <span className="spatial-spine-facet">{facet.label}</span> : null}
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
           </ol>
         </aside>
         <div className="spatial-view-relation-key" aria-hidden="true">
           <span><i className="spatial-key-line spatial-key-line--structural" /> structural</span>
           <span><i className="spatial-key-line spatial-key-line--tension" /> tension</span>
-          <span><i className="spatial-key-dot" /> concept</span>
+          <span><i className="spatial-key-line spatial-key-line--citation" /> citation</span>
+          <span><i className="spatial-key-dot" /> shared</span>
         </div>
         <aside className="spatial-side spatial-side--inspect">
           <div className="spatial-side-kicker">Selected</div>
@@ -226,6 +402,12 @@ export function SpatialConstellationView({
               <div className="spatial-inspect-kind">{selectionKind(activeSelection)}</div>
               <h2 className="spatial-inspect-title">{activeSelection.name}</h2>
               {activeSelection.meta ? <p className="spatial-inspect-meta">{activeSelection.meta}</p> : null}
+              {activeFacet ? (
+                <div className={`spatial-inspect-facet spatial-inspect-facet--${activeFacet.key}`}>
+                  <span>{activeFacet.label}</span>
+                  <span>{activeFacet.count} projected blocks</span>
+                </div>
+              ) : null}
               {topicLabels.length ? (
                 <div className="spatial-topic-cluster">
                   {topicLabels.map((label) => (

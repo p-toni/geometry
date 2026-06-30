@@ -5,7 +5,6 @@ const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
 export const NAV_OPEN_MS = 240;
 export const NAV_HOP_MS = 180;
 const FLY_MS = 220;
-const MINI_MS = 220;
 
 function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -170,7 +170,7 @@ function ladderEdges(mode: LadderMode, rungs: GraphRung[]): [string, string, Edg
 function layoutRungs(
   rungs: LadderRung[],
   star: { x: number; y: number },
-  mode: LadderMode,
+  _mode: LadderMode,
   sectionIndex: number,
 ): GraphRung[] {
   const baseX = sectionIndex === 0 ? 0.12 : -0.1;

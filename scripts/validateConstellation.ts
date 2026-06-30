@@ -7,6 +7,7 @@ import {
   type ValidationIssue,
 } from '../src/lib/validateConstellationGraph.ts';
 import { buildConstellationDigest } from '../src/lib/constellationDigest.ts';
+import { hydrateConstellationGraph } from '../src/lib/hydrateConstellationGraph.ts';
 import { generatedPool } from '../src/pool/generated.ts';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -32,7 +33,8 @@ const all: ValidationIssue[] = [];
 for (const { poolId, graph } of loadSources()) {
   const node = generatedPool.nodes[poolId];
   const digest = node ? buildConstellationDigest(node) : null;
-  all.push(...validateConstellationGraph(graph, digest, poolId));
+  const hydrated = digest ? hydrateConstellationGraph(graph, digest) : graph;
+  all.push(...validateConstellationGraph(hydrated, digest, poolId));
 }
 
 const { errors, warns } = summarize(all);

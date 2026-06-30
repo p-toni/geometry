@@ -1,9 +1,25 @@
 import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import manifest from '../constellation/generated/manifest.json';
+import { splitInlineBacklinks } from '../src/lib/inlineBacklink.ts';
 import { excerptFromBlocks, parseBlocks } from '../src/lib/parseBlocks.ts';
+import { sectionHeadingsFromBody } from '../src/lib/sectionHeadings.ts';
 import { layout, positions } from '../src/pool/field.ts';
-import type { Cluster, EssayStruct, Link, NodeKind, PoolNode, Rel } from '../src/pool/types.ts';
+import type { Block, Cluster, EssayStruct, Link, NodeKind, PoolNode, Rel } from '../src/pool/types.ts';
+
+const MANIFEST_POOL_ID_ALIASES: Record<string, string> = {
+  'geometry-over-retrieval': 'geometry-retrieval',
+};
+
+const CONSTELLATION_ESSAY_IDS = new Set(
+  manifest.graphs
+    .filter((g) => g.kind === 'essay')
+    .map((g) => {
+      const id = g.id.replace(/^\d+-/, '');
+      return MANIFEST_POOL_ID_ALIASES[id] ?? id;
+    }),
+);
 
 const VALID_RELS = new Set<string>([
   'cites', 'theme', 'leads to', 'pairs', 'part of', 'sibling', 'echoes', 'idea',
@@ -158,6 +174,66 @@ function walkMd(dir: string): string[] {
 
 const nodes: Record<string, PoolNode> = {};
 
+function textFields(block: Block): string[] {
+  switch (block.t) {
+    case 'p':
+    case 'thesis':
+    case 'pull':
+      return [block.x];
+    case 'callout':
+      return [block.x, block.label ?? ''];
+    case 'sidenote':
+      return [block.anchor, block.x, block.body ?? ''];
+    case 'plate':
+      return [block.cap];
+    case 'ladder':
+      return block.rungs.flatMap((rung) => [rung.term, rung.body, rung.tag ?? '']);
+    case 'contrast':
+      return [
+        ...block.poles,
+        block.axisLabel ?? '',
+        ...block.rows.flatMap((row) => [row.label ?? '', row.a, row.b]),
+      ];
+    case 'table':
+      return [...block.headers, ...block.rows.flat()];
+    case 'edge-taxonomy':
+      return block.rows.flatMap((row) => [row.type, row.force]);
+    case 'diagram':
+      return [
+        ...block.nodes,
+        block.expr ?? '',
+        block.lead ?? '',
+        block.follow ?? '',
+        ...Object.values(block.terms ?? {}),
+      ];
+    case 'citation':
+      return [
+        block.sourceId,
+        block.source.author,
+        block.source.title,
+        block.source.url ?? '',
+        block.anchor ?? '',
+      ];
+    case 'sources-ledger':
+      return block.items.flatMap((item) => [
+        item.sourceId,
+        item.source.author,
+        item.source.title,
+        item.source.url ?? '',
+        item.anchor ?? '',
+      ]);
+    case 'backlink':
+      return [block.targetId, block.rel, block.title];
+    case 'h':
+    case 'motif':
+    case 'point-edge':
+    case 'curvature':
+      return block.t === 'h' ? [block.x] : [];
+    case 'steps':
+      return block.items;
+  }
+}
+
 for (const file of walkMd(contentDir)) {
   const raw = readFileSync(file, 'utf8');
   const { meta, body } = parseFrontmatter(raw);
@@ -197,6 +273,61 @@ for (const file of walkMd(contentDir)) {
     media: meta.media,
     sourcePath: `/${relative(root, file).replace(/\\/g, '/')}`,
   };
+}
+
+const sectionSpineErrors: string[] = [];
+for (const node of Object.values(nodes)) {
+  if (node.cluster !== 'writing' || node.kind !== 'essay') continue;
+  if (!CONSTELLATION_ESSAY_IDS.has(node.id)) continue;
+  if (!sectionHeadingsFromBody(node.body).length) {
+    sectionSpineErrors.push(
+      `${node.id}: missing ## or ### section headings (required for constellation descent)`,
+    );
+  }
+}
+
+const inlineBacklinkErrors: string[] = [];
+for (const node of Object.values(nodes)) {
+  for (const block of node.body) {
+    if (block.t === 'backlink') {
+      if (!nodes[block.targetId]) {
+        inlineBacklinkErrors.push(
+          `${node.id}: unknown backlink target "${block.targetId}" in ${node.sourcePath}`,
+        );
+      }
+      if (!VALID_RELS.has(block.rel)) {
+        inlineBacklinkErrors.push(
+          `${node.id}: invalid backlink rel "${block.rel}" for "${block.targetId}" in ${node.sourcePath}`,
+        );
+      }
+    }
+    for (const text of textFields(block)) {
+      if (!text.includes('[[')) continue;
+      for (const part of splitInlineBacklinks(text)) {
+        if (part.kind !== 'backlink') continue;
+        if (!nodes[part.targetId]) {
+          inlineBacklinkErrors.push(
+            `${node.id}: unknown inline backlink target "${part.targetId}" in ${node.sourcePath}`,
+          );
+        }
+        if (!VALID_RELS.has(part.rel)) {
+          inlineBacklinkErrors.push(
+            `${node.id}: invalid inline backlink rel "${part.rel}" for "${part.targetId}" in ${node.sourcePath}`,
+          );
+        }
+      }
+    }
+  }
+}
+
+if (inlineBacklinkErrors.length) {
+  for (const msg of inlineBacklinkErrors) console.error(`error [inline-backlink] ${msg}`);
+  throw new Error(`pool:build: ${inlineBacklinkErrors.length} inline backlink error(s)`);
+}
+
+if (sectionSpineErrors.length) {
+  for (const msg of sectionSpineErrors) console.error(`error [section-spine] ${msg}`);
+  throw new Error(`pool:build: ${sectionSpineErrors.length} constellation essay(s) lack a section spine`);
 }
 
 const pool = { nodes, layout };

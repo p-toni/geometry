@@ -12,6 +12,21 @@ links:
     rel: cites
   - target: bounded-me
     rel: leads to
+struct:
+  lens: "feedback control inside human-AI coupling"
+  sections:
+    - label: "The coupling gradient"
+      concepts: ["L0-L3", "drift"]
+    - label: "The verification gate"
+      concepts: ["R3+2+1", "topology gate"]
+    - label: "The physics of drift"
+      concepts: ["latency", "closure pressure"]
+    - label: "Flow control"
+      concepts: ["provenance", "hard stops"]
+    - label: "Earned resonance"
+      concepts: ["bidirectional steering", "surprise"]
+    - label: "Workflow"
+      concepts: ["scout", "verify", "rewrite"]
 ---
 
 I am not "using AI."
@@ -27,6 +42,9 @@ The risk is a dysregulated integrated hybrid: the loop speeds up while my human 
 So this document is a control spec.
 
 Goal: **maximize information exchange without surrendering feedback control or hardening belief faster than I can verify it.**
+
+> [thesis|control spec]
+> AI is useful when exchange rises with feedback control. If exchange rises faster than control, the loop does not get smarter; it gets tighter and wrong.
 
 ---
 

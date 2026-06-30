@@ -17,7 +17,8 @@
     "test:browser": "node scripts/browserTest.mjs",
     "test:watch": "vitest",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "pnpm build && wrangler pages deploy dist --project-name toni-ltd"
   },
   "dependencies": {
     "react": "^19.2.7",
@@ -39,6 +40,7 @@
     "typescript": "~6.0.2",
     "vite": "^8.1.0",
     "vite-node": "^6.0.0",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.9",
+    "wrangler": "^4.49.0"
   }
 }

@@ -10,43 +10,57 @@
       "id": "tools-need-edges-possibility-debt",
       "name": "possibility debt",
       "meta": "inventing · frames hidden inside infinite choice",
-      "topicIds": ["possibility-space", "orientation", "infinite-choice", "hidden-cost"]
+      "topicIds": ["possibility-space", "orientation", "infinite-choice", "hidden-cost"],
+      "sectionSlug": "possibility-debt"
     },
     {
       "id": "tools-need-edges-less-is-incomplete",
       "name": "less is incomplete",
       "meta": "subtracting · minimalism without design",
-      "topicIds": ["digital-minimalism", "attention", "design-not-use"]
+      "topicIds": ["digital-minimalism", "attention", "design-not-use"],
+      "sectionSlug": "less-is-incomplete"
     },
     {
       "id": "tools-need-edges-good-constraint",
       "name": "good constraint",
       "meta": "gripping · a wall that is actually a handle",
-      "topicIds": ["grip", "feedback", "skill-accumulation", "playable-complexity"]
+      "topicIds": ["grip", "feedback", "skill-accumulation", "playable-complexity"],
+      "sectionSlug": "good-tools-have-edges"
+    },
+    {
+      "id": "tools-need-edges-constraint-as-grip",
+      "name": "constraint as grip",
+      "meta": "pressing · boundary that turns intention into feedback",
+      "topicIds": ["grip", "feedback", "skill-accumulation", "agency"],
+      "sectionSlug": "a-good-constraint-is-a-grip"
     },
     {
       "id": "tools-need-edges-instrument-theory",
       "name": "instrument theory",
       "meta": "playing · maximum function, minimum form",
-      "topicIds": ["haiku", "piano", "op-1", "command-line", "instrument"]
+      "topicIds": ["haiku", "piano", "op-1", "command-line", "instrument"],
+      "sectionSlug": "instrument-theory"
     },
     {
       "id": "tools-need-edges-deferred-design",
       "name": "deferred design",
       "meta": "dumping · possibility sold as power",
-      "topicIds": ["menus", "notifications", "deferred-work", "bad-software"]
+      "topicIds": ["menus", "notifications", "deferred-work", "bad-software"],
+      "sectionSlug": "deferred-design"
     },
     {
       "id": "tools-need-edges-generative-fog",
       "name": "generative fog",
       "meta": "framing · abundance without evals or memory",
-      "topicIds": ["ai-abundance", "frames", "evals", "steering-fog"]
+      "topicIds": ["ai-abundance", "frames", "evals", "steering-fog"],
+      "sectionSlug": "generative-fog"
     },
     {
       "id": "tools-need-edges-holdable",
       "name": "holdable",
       "meta": "closing · technology you can actually steer",
-      "topicIds": ["holdable", "agency", "abundance", "edges"]
+      "topicIds": ["holdable", "agency", "abundance", "edges"],
+      "sectionSlug": "holdable"
     },
     {
       "id": "tools-need-edges-increasing-returns",

@@ -14,17 +14,17 @@ struct:
   lens: "A private metric for extractable structure, geometry, and loop stability"
   sections:
     - label: "Bounded me"
-      concepts: []
+      concepts: ["extractable structure", "future compute"]
     - label: "“Memory” as geometry (not storage)"
-      concepts: []
+      concepts: ["geometry", "retrieval"]
     - label: "The fractal edge in my own training"
-      concepts: []
+      concepts: ["stability", "convergent basin"]
     - label: "Information as flow through the loop"
-      concepts: []
+      concepts: ["flow", "lower-leakage loops"]
     - label: "A private metric: did the piece increase extractable structure?"
-      concepts: []
+      concepts: ["metric", "re-entry"]
     - label: "The actual thesis (for me)"
-      concepts: []
+      concepts: ["bounded learner", "loop stability"]
 ---
 
 I keep getting tempted by clean definitions.
@@ -45,6 +45,9 @@ So the question isn’t “how much information is there?”
 It’s “what structure is extractable for *me*, right now, with my limits?”
 
 That’s the only definition that stays stable across days where I’m sharp, days where I’m foggy, and days where I’m pretending.
+
+> [thesis|private metric]
+> Information is not what exists. It is what a bounded learner can extract, stabilize, and reuse without making the next loop more fragile.
 
 ---
 
@@ -138,12 +141,7 @@ I like the idea that information isn’t only stored. It flows.
 
 In my life, “flow” is literal:
 
-* it flows into attention,
-* it flows into notes,
-* it flows into decisions,
-* it flows into habits,
-* it flows into products,
-* it flows back as feedback.
+attention → notes → decisions → habits → products → feedback
 
 Most of the time, I lose information not because it wasn’t there, but because it leaked at a transition:
 
@@ -170,12 +168,12 @@ I need a way to evaluate whether this piece is “good,” without referencing a
 
 So here’s the metric:
 
-After writing it, do I notice that:
+After writing it, do I notice this?
 
-* I make faster decisions in the same domain?
-* I can explain the core tension to myself in fewer steps?
-* I reuse the concept naturally without prompting?
-* I feel a drop in “mental compilation time”?
+1. **Decision speed:** I make faster decisions in the same domain.
+2. **Compression:** I can explain the core tension to myself in fewer steps.
+3. **Reuse:** I reach for the concept naturally without prompting.
+4. **Compilation time:** I feel less startup cost when I re-enter the problem.
 
 If yes, the piece increased extractable structure.
 If no, it’s just text.

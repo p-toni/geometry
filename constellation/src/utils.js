@@ -50,12 +50,23 @@ export function partialQuadratic(path, t) {
     };
   }
 
-export function splitLabel(text) {
+export function splitLabel(text, maxLen = 18) {
     if (text === 'embodied threshold') return ['embodied', 'threshold'];
-    if (text.length <= 18 || !text.includes(' ')) return [text];
+    if (text.length <= maxLen || !text.includes(' ')) return [text];
     const words = text.split(/\s+/);
-    const mid = Math.ceil(words.length / 2);
-    return [words.slice(0, mid).join(' '), words.slice(mid).join(' ')];
+    const lines = [];
+    let line = '';
+    for (const word of words) {
+      const next = line ? `${line} ${word}` : word;
+      if (next.length > maxLen && line) {
+        lines.push(line);
+        line = word;
+      } else {
+        line = next;
+      }
+    }
+    if (line) lines.push(line);
+    return lines.length ? lines : [text];
   }
 
 export function makeTransition() {

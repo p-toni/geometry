@@ -936,6 +936,7 @@ export function FieldApp() {
         <SpatialConstellationHandoff
           graphPath={spatialGraphPath}
           fallbackTitle={readNode.title}
+          body={readNode.body}
           origin={descentOrigin ?? undefined}
           exitRequested={pendingSpatialExit && !spatialOpen}
           onClose={onHandoffClose}

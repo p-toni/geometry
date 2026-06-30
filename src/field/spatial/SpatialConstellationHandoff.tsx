@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
 import { SpatialConstellationView } from './SpatialConstellationView';
+import type { Block } from '../../pool/types';
 
 export type DescentOrigin = { x: number; y: number };
 
@@ -9,6 +10,7 @@ const EXIT_MS = 260;
 type Props = {
   graphPath: string;
   fallbackTitle?: string;
+  body?: Block[];
   origin?: DescentOrigin;
   /** Browser back removed spatial=1 — play exit before unmounting. */
   exitRequested?: boolean;
@@ -18,6 +20,7 @@ type Props = {
 export function SpatialConstellationHandoff({
   graphPath,
   fallbackTitle,
+  body,
   origin,
   exitRequested = false,
   onClose,
@@ -76,9 +79,28 @@ export function SpatialConstellationHandoff({
   ]
     .filter(Boolean)
     .join(' ');
+  const shellClass = [
+    'spatial-handoff-shell',
+    entered && !exiting ? 'spatial-handoff-shell--entered' : '',
+    exiting ? 'spatial-handoff-shell--exit' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return createPortal(
-    <div data-testid="spatial-constellation-handoff" className="spatial-handoff-shell">
+    <div data-testid="spatial-constellation-handoff" className={shellClass}>
+      <div
+        className="spatial-paper-threshold"
+        aria-hidden="true"
+        style={
+          {
+            '--spatial-origin-x': origin ? `${origin.x}px` : '50%',
+            '--spatial-origin-y': origin ? `${origin.y}px` : '72%',
+          } as CSSProperties
+        }
+      >
+        <div className="spatial-paper-threshold__grain" />
+      </div>
       <div
         ref={motionRef}
         className={motionClass}
@@ -91,6 +113,7 @@ export function SpatialConstellationHandoff({
         <SpatialConstellationView
           graphPath={mountReady ? graphPath : null}
           fallbackTitle={fallbackTitle}
+          body={body}
           variant="handoff"
           onBack={requestClose}
           backLabel="← back to essay"

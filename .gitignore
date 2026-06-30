@@ -9,6 +9,8 @@ lerna-debug.log*
 
 node_modules
 .browser-test
+.claude/
+.screenshots/
 dist
 dist-ssr
 *.local

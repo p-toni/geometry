@@ -157,13 +157,13 @@ export function parseBlocks(markdown: string): Block[] {
         i++;
       }
       const rows = tableLines
-        .filter((l) => !/^\|[\s:-]+\|$/.test(l))
         .map((l) =>
           l
             .slice(1, -1)
             .split('|')
             .map((c) => c.trim()),
-        );
+        )
+        .filter((cells) => !cells.every((cell) => /^:?-+:?$/.test(cell)));
       if (rows.length) {
         const [headers, ...body] = rows;
         const isEdgeTaxonomy =

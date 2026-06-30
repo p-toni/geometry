@@ -197,9 +197,10 @@
 
 .field-read--descending {
   transform: scale(0.96) translateX(10px);
-  opacity: 0.5;
+  opacity: 0;
   filter: blur(2px);
   pointer-events: none;
+  visibility: hidden;
 }
 
 .field-read-scrim--descent {

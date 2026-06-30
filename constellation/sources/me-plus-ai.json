@@ -10,55 +10,64 @@
       "id": "me-plus-ai-coupling-gradient",
       "name": "coupling gradient",
       "meta": "locating · L0 through L3 as continuous drift",
-      "topicIds": ["l0-tool", "l1-scout", "l2-coauthor", "l3-integrated", "transition-signals"]
+      "topicIds": ["l0-tool", "l1-scout", "l2-coauthor", "l3-integrated", "transition-signals"],
+      "sectionSlug": "the-coupling-gradient-where-am-i-right-now"
     },
     {
       "id": "me-plus-ai-verification-gate",
       "name": "verification gate",
       "meta": "mandating · R3+2+1 from memory",
-      "topicIds": ["r3-plus-2-plus-1", "topology-gate", "inside-my-head"]
+      "topicIds": ["r3-plus-2-plus-1", "topology-gate", "inside-my-head"],
+      "sectionSlug": "the-verification-gate-r321-mandatory"
     },
     {
       "id": "me-plus-ai-drift-physics",
       "name": "drift physics",
       "meta": "measuring · exchange, latency, closure pressure",
-      "topicIds": ["tightly-wrong", "closure-pressure", "humanbot", "bennett-razor"]
+      "topicIds": ["tightly-wrong", "closure-pressure", "humanbot", "bennett-razor"],
+      "sectionSlug": "the-physics-of-drift-what-it-looks-like"
     },
     {
       "id": "me-plus-ai-flow-control",
       "name": "flow control",
       "meta": "routing · drafts until verified",
-      "topicIds": ["unverified-drafts", "identity-outsourcing", "provenance"]
+      "topicIds": ["unverified-drafts", "identity-outsourcing", "provenance"],
+      "sectionSlug": "flow-control-what-the-model-may-and-may-not-do"
     },
     {
       "id": "me-plus-ai-earned-resonance",
       "name": "earned resonance",
       "meta": "entering · regulated L3 on purpose",
-      "topicIds": ["earned-l3", "bidirectional-feedback", "over-damping"]
+      "topicIds": ["earned-l3", "bidirectional-feedback", "over-damping"],
+      "sectionSlug": "earned-resonance-when-l3-is-the-goal"
     },
     {
       "id": "me-plus-ai-geometry-thread",
       "name": "geometry thread",
       "meta": "crystallizing · structure that survives re-entry",
-      "topicIds": ["structural-signal", "navigable-map", "retrieval-failure"]
+      "topicIds": ["structural-signal", "navigable-map", "retrieval-failure"],
+      "sectionSlug": "geometry-over-retrieval"
     },
     {
       "id": "me-plus-ai-workflow",
       "name": "safe co-authoring",
       "meta": "staging · map first, verify, rewrite, polish",
-      "topicIds": ["map-not-prose", "verification-pass", "rewrite-from-memory"]
+      "topicIds": ["map-not-prose", "verification-pass", "rewrite-from-memory"],
+      "sectionSlug": "workflow-the-only-safe-way-i-co-author"
     },
     {
       "id": "me-plus-ai-recovery",
       "name": "recovery protocol",
       "meta": "decoupling · rewrite out of confusion",
-      "topicIds": ["close-model", "drop-to-l0", "counterexamples"]
+      "topicIds": ["close-model", "drop-to-l0", "counterexamples"],
+      "sectionSlug": "recovery-protocol-when-i-detect-drift"
     },
     {
       "id": "me-plus-ai-stabilizer",
       "name": "stabilizer",
       "meta": "installing · rules future-me can re-enter",
-      "topicIds": ["stabilizer", "re-entry", "less-compute"]
+      "topicIds": ["stabilizer", "re-entry", "less-compute"],
+      "sectionSlug": "a-final-constraint-this-is-for-me"
     },
     {
       "id": "me-plus-ai-bounded-me",

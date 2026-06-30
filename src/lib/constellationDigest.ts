@@ -1,4 +1,5 @@
 import { sectionRailMeta } from './argumentGrammar';
+import { sectionHeadingsFromBody, isSectionHeading } from './sectionHeadings';
 import { sectionSlug } from './sectionSlug';
 import type { Block, PoolNode } from '../pool/types';
 
@@ -43,7 +44,7 @@ function beatFromBlock(block: Block): string | null {
     case 'contrast':
       return `${block.poles[0]} | ${block.poles[1]}`;
     case 'ladder':
-      return block.rungs.map((r) => r.label).join(' → ');
+      return block.rungs.map((r) => r.term).join(' → ');
     default:
       return null;
   }
@@ -51,9 +52,7 @@ function beatFromBlock(block: Block): string | null {
 
 /** Compact essay summary for LLM constellation generation. */
 export function buildConstellationDigest(node: PoolNode): ConstellationDigest | null {
-  const headings = node.body.filter(
-    (b): b is Extract<Block, { t: 'h' }> => b.t === 'h' && (b.level ?? 2) === 2,
-  );
+  const headings = sectionHeadingsFromBody(node.body);
   if (!headings.length) return null;
 
   const sections: DigestSection[] = [];
@@ -74,7 +73,7 @@ export function buildConstellationDigest(node: PoolNode): ConstellationDigest | 
   };
 
   for (const block of node.body) {
-    if (block.t === 'h' && (block.level ?? 2) === 2) {
+    if (isSectionHeading(block)) {
       openSection(block.x);
       continue;
     }

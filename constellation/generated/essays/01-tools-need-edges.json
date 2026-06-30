@@ -49,6 +49,18 @@
         "skill-accumulation",
         "playable-complexity"
       ],
+      "sectionSlug": "good-tools-have-edges"
+    },
+    {
+      "id": "tools-need-edges-constraint-as-grip",
+      "name": "constraint as grip",
+      "meta": "pressing · boundary that turns intention into feedback",
+      "topicIds": [
+        "grip",
+        "feedback",
+        "skill-accumulation",
+        "agency"
+      ],
       "sectionSlug": "a-good-constraint-is-a-grip"
     },
     {
@@ -213,11 +225,11 @@
   ],
   "meta": {
     "scope": "intra",
-    "inquiryCount": 10,
+    "inquiryCount": 11,
     "conceptCount": 32,
-    "edgeCount": 36,
+    "edgeCount": 40,
     "extraEdgeCount": 14,
-    "generatedAt": "2026-06-29T01:15:04.442Z",
+    "generatedAt": "2026-06-30T00:47:32.107Z",
     "poolId": "tools-need-edges",
     "sectionSlugs": [
       "possibility-debt",

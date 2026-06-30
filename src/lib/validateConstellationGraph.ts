@@ -1,4 +1,5 @@
 import { buildConstellationDigest } from './constellationDigest';
+import { authoredLayoutReady, isLinkInquiry } from './hydrateConstellationGraph';
 import type { PoolNode } from '../pool/types';
 
 export type ConstellationSourceGraph = {
@@ -115,6 +116,36 @@ export function validateConstellationGraph(
       code: 'orphan-concepts',
       message: `${poolId}: ${orphans.length} orphan concepts: ${orphans.join(', ')}`,
     });
+  }
+
+  if (digest?.sections.length) {
+    const slugsFromDigest = digest.sections.map((s) => s.slug);
+    if (!authoredLayoutReady(graph, slugsFromDigest)) {
+      issues.push({
+        level: 'warn',
+        code: 'authored-layout',
+        message: `${poolId}: missing lens or section-anchored inquiries for argument descent`,
+      });
+    }
+    const sectionPeople = graph.people.filter((p) => p.sectionSlug && !p.id.endsWith('-lens'));
+    const anchored = new Set(sectionPeople.map((p) => p.sectionSlug));
+    const missing = slugsFromDigest.filter((s) => !anchored.has(s));
+    if (missing.length > 2) {
+      issues.push({
+        level: 'warn',
+        code: 'uncovered-sections',
+        message: `${poolId}: ${missing.length} essay sections have no inquiry (${missing.slice(0, 3).join(', ')}…)`,
+      });
+    }
+    for (const person of graph.people) {
+      if (!person.sectionSlug && !person.id.endsWith('-lens') && !isLinkInquiry(person)) {
+        issues.push({
+          level: 'warn',
+          code: 'unanchored-inquiry',
+          message: `${poolId}: inquiry ${person.id} has no sectionSlug (exterior link?)`,
+        });
+      }
+    }
   }
 
   return issues;

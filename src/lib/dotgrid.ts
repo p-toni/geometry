@@ -94,6 +94,49 @@ function cascade(w: number, h: number): string[] {
   return frames;
 }
 
+function pulse(w: number, h: number): string[] {
+  const cx = (w - 1) / 2;
+  const cy = (h - 1) / 2;
+  const frames: string[] = [];
+  for (const radius of [0.3, 1.0, 1.8, 2.6, 3.4]) {
+    const g = mk(h, w);
+    for (let r = 0; r < h; r++) {
+      for (let c = 0; c < w; c++) {
+        if (Math.abs(Math.hypot(c - cx, r - cy) - radius) < 0.85) g[r][c] = true;
+      }
+    }
+    frames.push(gridToBraille(g));
+  }
+  frames.push(gridToBraille(mk(h, w)));
+  return frames;
+}
+
+function converge(w: number, h: number): string[] {
+  const frames = pulse(w, h).slice(0, -1).reverse();
+  const cx = Math.floor((w - 1) / 2);
+  const cy = Math.floor((h - 1) / 2);
+  const center = mk(h, w);
+  center[cy][cx] = true;
+  if (cx + 1 < w) center[cy][cx + 1] = true;
+  return [...frames, gridToBraille(center), gridToBraille(center)];
+}
+
+function bridge(w: number, h: number): string[] {
+  const frames: string[] = [];
+  const row = Math.floor(h / 2);
+  for (let c = 0; c < w; c++) {
+    const g = mk(h, w);
+    g[0][0] = true;
+    g[h - 1][w - 1] = true;
+    for (let t = 0; t < 2; t++) {
+      const cc = c - t;
+      if (cc >= 0 && cc < w) g[row][cc] = true;
+    }
+    frames.push(gridToBraille(g));
+  }
+  return frames;
+}
+
 function scatter(w: number, h: number): string[] {
   const cells: [number, number][] = [];
   for (let r = 0; r < h; r++) {
@@ -122,7 +165,17 @@ function scatter(w: number, h: number): string[] {
   return frames;
 }
 
-export type SpinVerb = 'orbit' | 'survey' | 'index' | 'plot' | 'cascade' | 'scatter' | 'stack';
+export type SpinVerb =
+  | 'orbit'
+  | 'survey'
+  | 'index'
+  | 'plot'
+  | 'cascade'
+  | 'scatter'
+  | 'stack'
+  | 'settle'
+  | 'ripple'
+  | 'bridge';
 
 export const SPIN: Record<SpinVerb, { frames: string[]; intervalMs: number }> = {
   orbit: { frames: radar(2, 4, 1), intervalMs: 140 },
@@ -132,4 +185,7 @@ export const SPIN: Record<SpinVerb, { frames: string[]; intervalMs: number }> = 
   cascade: { frames: cascade(6, 4), intervalMs: 60 },
   scatter: { frames: scatter(6, 4), intervalMs: 85 },
   stack: { frames: cascade(6, 4), intervalMs: 80 },
+  settle: { frames: converge(6, 4), intervalMs: 75 },
+  ripple: { frames: pulse(6, 4), intervalMs: 150 },
+  bridge: { frames: bridge(6, 4), intervalMs: 110 },
 };

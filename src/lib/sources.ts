@@ -15,8 +15,9 @@ export type SourceRecord = {
 let cache: Record<string, SourceRecord> | undefined;
 
 export function loadSources(): Record<string, SourceRecord> {
-  if (!cache) cache = { ...SOURCES_DATA };
-  return cache;
+  const loaded: Record<string, SourceRecord> = cache ?? { ...SOURCES_DATA };
+  cache = loaded;
+  return loaded;
 }
 
 /** Match `[Author 1998]` token to a sources.yml id. */

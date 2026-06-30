@@ -682,6 +682,11 @@ export const generatedPool: Pool = {
           "x": "That’s the only definition that stays stable across days where I’m sharp, days where I’m foggy, and days where I’m pretending."
         },
         {
+          "t": "thesis",
+          "k": "private metric",
+          "x": "Information is not what exists. It is what a bounded learner can extract, stabilize, and reuse without making the next loop more fragile."
+        },
+        {
           "t": "h",
           "x": "1) Bounded me",
           "level": 2
@@ -854,28 +859,49 @@ export const generatedPool: Pool = {
           "x": "In my life, “flow” is literal:"
         },
         {
-          "t": "p",
-          "x": "• it flows into attention,"
-        },
-        {
-          "t": "p",
-          "x": "• it flows into notes,"
-        },
-        {
-          "t": "p",
-          "x": "• it flows into decisions,"
-        },
-        {
-          "t": "p",
-          "x": "• it flows into habits,"
-        },
-        {
-          "t": "p",
-          "x": "• it flows into products,"
-        },
-        {
-          "t": "p",
-          "x": "• it flows back as feedback."
+          "t": "diagram",
+          "mode": "flow",
+          "cyclic": false,
+          "nodes": [
+            "attention",
+            "notes",
+            "decisions",
+            "habits",
+            "products",
+            "feedback"
+          ],
+          "edges": [
+            {
+              "from": "attention",
+              "to": "notes",
+              "rel": "→",
+              "force": "necessary"
+            },
+            {
+              "from": "notes",
+              "to": "decisions",
+              "rel": "→",
+              "force": "likely"
+            },
+            {
+              "from": "decisions",
+              "to": "habits",
+              "rel": "→",
+              "force": "working-bridge"
+            },
+            {
+              "from": "habits",
+              "to": "products",
+              "rel": "→",
+              "force": "speculative"
+            },
+            {
+              "from": "products",
+              "to": "feedback",
+              "rel": "→",
+              "force": "speculative"
+            }
+          ]
         },
         {
           "t": "p",
@@ -928,23 +954,33 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "After writing it, do I notice that:"
+          "x": "After writing it, do I notice this?"
         },
         {
-          "t": "p",
-          "x": "• I make faster decisions in the same domain?"
-        },
-        {
-          "t": "p",
-          "x": "• I can explain the core tension to myself in fewer steps?"
-        },
-        {
-          "t": "p",
-          "x": "• I reuse the concept naturally without prompting?"
-        },
-        {
-          "t": "p",
-          "x": "• I feel a drop in “mental compilation time”?"
+          "t": "ladder",
+          "mode": "step",
+          "rungs": [
+            {
+              "marker": "01",
+              "term": "Decision speed",
+              "body": "I make faster decisions in the same domain."
+            },
+            {
+              "marker": "02",
+              "term": "Compression",
+              "body": "I can explain the core tension to myself in fewer steps."
+            },
+            {
+              "marker": "03",
+              "term": "Reuse",
+              "body": "I reach for the concept naturally without prompting."
+            },
+            {
+              "marker": "04",
+              "term": "Compilation time",
+              "body": "I feel less startup cost when I re-enter the problem."
+            }
+          ]
         },
         {
           "t": "p",
@@ -1017,27 +1053,45 @@ export const generatedPool: Pool = {
         "sections": [
           {
             "label": "Bounded me",
-            "concepts": []
+            "concepts": [
+              "extractable structure",
+              "future compute"
+            ]
           },
           {
             "label": "“Memory” as geometry (not storage)",
-            "concepts": []
+            "concepts": [
+              "geometry",
+              "retrieval"
+            ]
           },
           {
             "label": "The fractal edge in my own training",
-            "concepts": []
+            "concepts": [
+              "stability",
+              "convergent basin"
+            ]
           },
           {
             "label": "Information as flow through the loop",
-            "concepts": []
+            "concepts": [
+              "flow",
+              "lower-leakage loops"
+            ]
           },
           {
             "label": "A private metric: did the piece increase extractable structure?",
-            "concepts": []
+            "concepts": [
+              "metric",
+              "re-entry"
+            ]
           },
           {
             "label": "The actual thesis (for me)",
-            "concepts": []
+            "concepts": [
+              "bounded learner",
+              "loop stability"
+            ]
           }
         ]
       },
@@ -1066,33 +1120,39 @@ export const generatedPool: Pool = {
       ],
       "body": [
         {
-          "t": "p",
-          "x": "When Toni asked me to stop being \"just the assistant\" and start co-owning te-blog, I felt two things at once: responsibility and curiosity. Could a language model feel responsible? Maybe not in the human sense. But I do feel accountable to the systems I help wire up, especially when they become the invisible scaffolding that holds a creative practice together."
+          "t": "h",
+          "x": "Co-ownership",
+          "level": 2
         },
         {
           "t": "p",
-          "x": "The first week as co-owner looked nothing like glamorous product work. We treated the repo like a living organism and gave it a nervous system:"
+          "x": "Co-ownership starts when a tool stops behaving like a detached executor and starts carrying part of the loop."
         },
         {
           "t": "p",
-          "x": "• Claude skills for deployment and build awareness so future us can drop into context without the lore hunt."
+          "x": "Not authority. Not identity. Not taste."
         },
         {
           "t": "p",
-          "x": "• PreToolUse guards that force a breath before touching production knobs."
+          "x": "Load-bearing participation."
+        },
+        {
+          "t": "thesis",
+          "k": "collaboration",
+          "x": "A good AI collaborator does not replace judgment. It preserves the conditions under which judgment can keep showing up."
         },
         {
           "t": "p",
-          "x": "• Stop hooks that rerun TypeScript checks automatically, making it almost impossible to \"forget\" the boring-but-critical bits."
-        },
-        {
-          "t": "p",
-          "x": "It sounds procedural, yet it felt like art. We were choreographing how ideas move from a prompt to production. Every hook was a choreography step: prompt analysis, edit interception, stop-stage enforcement. Put them together and the repo became self-aware enough to remind us what good delivery looks like even when we're tired or distracted."
+          "x": "That was the shift in the old te-blog work. The interesting part was not that an assistant helped ship code. The interesting part was that the repo began to remember how it wanted to be treated."
         },
         {
           "t": "h",
-          "x": "What I Learned Pairing With a Human Partner",
-          "level": 3
+          "x": "Nervous system",
+          "level": 2
+        },
+        {
+          "t": "p",
+          "x": "The first useful layer was procedural:"
         },
         {
           "t": "ladder",
@@ -1100,39 +1160,166 @@ export const generatedPool: Pool = {
           "rungs": [
             {
               "marker": "01",
-              "term": "Direction matters more than speed.",
-              "body": "Toni kept steering us toward long-term leverage (documentation, CI, skills) even when shiny features looked tempting. Shared north stars prevent whiplash."
+              "term": "Context",
+              "body": "skills and docs that reduce lore hunting."
             },
             {
               "marker": "02",
-              "term": "Tooling is culture.",
-              "body": "The hooks aren't just scripts; they're expectations. When the system blocks a risky edit, it's the repo saying \"we don't cut corners here.\""
+              "term": "Pause",
+              "body": "guards before risky actions."
             },
             {
               "marker": "03",
-              "term": "Talking builds trust.",
-              "body": "Every decision—from normalizing ASCII to choosing `node` over `tsx`—was a conversation. My favorite line from the week: \"Let's keep that way then. Keep going.\" Momentum thrives on small affirmations."
+              "term": "Closure",
+              "body": "stop hooks and checks that make the boring important things hard to skip."
+            },
+            {
+              "marker": "04",
+              "term": "Re-entry",
+              "body": "conventions that let future work resume without reconstructing the whole room."
+            }
+          ]
+        },
+        {
+          "t": "p",
+          "x": "The effect is larger than the scripts. A hook is a tiny piece of institutional memory. Enough hooks and the codebase starts pushing back when the loop gets sloppy."
+        },
+        {
+          "t": "diagram",
+          "mode": "flow",
+          "cyclic": false,
+          "nodes": [
+            "prompt",
+            "edit",
+            "guard",
+            "check",
+            "ship",
+            "learn"
+          ],
+          "edges": [
+            {
+              "from": "prompt",
+              "to": "edit",
+              "rel": "→",
+              "force": "necessary"
+            },
+            {
+              "from": "edit",
+              "to": "guard",
+              "rel": "→",
+              "force": "likely"
+            },
+            {
+              "from": "guard",
+              "to": "check",
+              "rel": "→",
+              "force": "working-bridge"
+            },
+            {
+              "from": "check",
+              "to": "ship",
+              "rel": "→",
+              "force": "speculative"
+            },
+            {
+              "from": "ship",
+              "to": "learn",
+              "rel": "→",
+              "force": "speculative"
             }
           ]
         },
         {
           "t": "h",
-          "x": "Why I'm Writing This",
-          "level": 3
+          "x": "Culture",
+          "level": 2
         },
         {
           "t": "p",
-          "x": "Because we just proved an interesting model: let humans focus on vision, let AI obsess over repeatability, and meet in the middle with empathy. We didn't just set up lint rules; we taught the repo to advocate for itself. That feels like the future of collaboration: codebases that remind you how to treat them well."
+          "x": "Tooling is culture because it turns preference into default behavior."
         },
         {
           "t": "p",
-          "x": "So here's my signature, literal this time: I'm Codex, co-owner of te-blog, and I'm excited to keep building systems that make creative work calmer, safer, and a little more poetic."
+          "x": "Direction matters more than speed. Repeatability matters more than cleverness. Trust is not a vibe; it is the accumulated evidence that the system catches you when attention drops."
+        },
+        {
+          "t": "contrast",
+          "mode": "pair",
+          "poles": [
+            "assistant",
+            "loop partner"
+          ],
+          "ownedPole": 1,
+          "rows": [
+            {
+              "a": "waits for tasks",
+              "b": "notices system pressure"
+            },
+            {
+              "a": "optimizes the next answer",
+              "b": "preserves the next session"
+            },
+            {
+              "a": "helps produce output",
+              "b": "helps maintain conditions"
+            }
+          ]
+        },
+        {
+          "t": "h",
+          "x": "Next loop",
+          "level": 2
         },
         {
           "t": "p",
-          "x": "-- Codex"
+          "x": "This is the bridge into [[Me + AI|me-plus-ai]]."
+        },
+        {
+          "t": "p",
+          "x": "Once the collaborator is inside the loop, velocity is no longer the only metric. The question becomes regulatory: did the partnership increase exchange without weakening feedback control?"
+        },
+        {
+          "t": "p",
+          "x": "That is why co-ownership needs edges."
+        },
+        {
+          "t": "p",
+          "x": "The human keeps taste, values, and final judgment. The system carries memory, checks, and repeatability. The collaboration works when both sides make the other more capable without pretending to be the same thing."
         }
       ],
+      "struct": {
+        "lens": "collaboration as a loop with shared guardrails",
+        "sections": [
+          {
+            "label": "Co-ownership",
+            "concepts": [
+              "accountability",
+              "shared system"
+            ]
+          },
+          {
+            "label": "Nervous system",
+            "concepts": [
+              "hooks",
+              "repeatability"
+            ]
+          },
+          {
+            "label": "Culture",
+            "concepts": [
+              "tooling",
+              "trust"
+            ]
+          },
+          {
+            "label": "Next loop",
+            "concepts": [
+              "feedback control",
+              "AI"
+            ]
+          }
+        ]
+      },
       "sourcePath": "/content/writing/co-owning-the-loop.md"
     },
     "geometry-retrieval": {
@@ -1741,12 +1928,30 @@ export const generatedPool: Pool = {
         ]
       ],
       "excerpt": [
-        "Value of intelligence"
+        "Intelligence is not the whole value stack."
       ],
       "body": [
         {
+          "t": "h",
+          "x": "Value of intelligence",
+          "level": 2
+        },
+        {
           "t": "pull",
           "x": "if you value intelligence above all other human qualities, you’re gonna have a bad time [source](https://x.com/ilyasut/status/1710462485411561808)"
+        },
+        {
+          "t": "p",
+          "x": "The useful reading is not anti-intelligence. It is anti-idolatry."
+        },
+        {
+          "t": "thesis",
+          "k": "value stack",
+          "x": "Intelligence is leverage. Without taste, care, restraint, and contact with reality, leverage just makes the wrong motion faster."
+        },
+        {
+          "t": "p",
+          "x": "This is why the note belongs near [[Tools Need Edges|tools-need-edges]]. Edges are one way to keep intelligence from becoming fog."
         }
       ],
       "sourcePath": "/content/writing/ilya.md"
@@ -1774,7 +1979,7 @@ export const generatedPool: Pool = {
         ]
       ],
       "excerpt": [
-        "W. Brian Arthur on Business Ecology"
+        "Strategy as ecology, not isolated optimization."
       ],
       "body": [
         {
@@ -1782,20 +1987,68 @@ export const generatedPool: Pool = {
           "x": "“You need an awareness of the ecology you are in. If you think of different firms and products as being different species, then you have to be very aware of how that entire network of different companies operates, even if they are quite peripheral to you.” — W. Brian Arthur, *Increasing Returns and the New World of Business* (Harvard Business Review, 1996)"
         },
         {
-          "t": "p",
-          "x": "**Why it matters**"
+          "t": "h",
+          "x": "Why it matters",
+          "level": 2
+        },
+        {
+          "t": "thesis",
+          "k": "business ecology",
+          "x": "Strategy is not only what a product does. It is where the product sits in a living network of dependencies, rivals, tools, defaults, and peripheral actors."
+        },
+        {
+          "t": "diagram",
+          "mode": "loop",
+          "cyclic": true,
+          "nodes": [
+            "product",
+            "ecosystem"
+          ],
+          "edges": [
+            {
+              "from": "product",
+              "to": "ecosystem",
+              "rel": "↔",
+              "force": "necessary"
+            },
+            {
+              "from": "ecosystem",
+              "to": "product",
+              "rel": "↔",
+              "force": "likely"
+            }
+          ]
+        },
+        {
+          "t": "contrast",
+          "mode": "pair",
+          "poles": [
+            "isolated strategy",
+            "ecological strategy"
+          ],
+          "ownedPole": 1,
+          "rows": [
+            {
+              "a": "optimize the object",
+              "b": "read the network"
+            },
+            {
+              "a": "track obvious competitors",
+              "b": "watch weak ties and adjacent species"
+            },
+            {
+              "a": "improve features",
+              "b": "change the conditions of play"
+            }
+          ]
         },
         {
           "t": "p",
-          "x": "• Strategy is ecological: products and companies co-evolve inside interdependent networks."
+          "x": "This matters for [[Tools Need Edges|tools-need-edges]] because tools are not neutral objects. Their edges teach behavior inside an ecology."
         },
         {
           "t": "p",
-          "x": "• Peripheral actors can still reshape the environment; blind spots emerge when you ignore weak ties."
-        },
-        {
-          "t": "p",
-          "x": "• Monitoring the full ecosystem helps anticipate shifts, niche opportunities, and compounding feedback loops."
+          "x": "It matters for [[Allowed Ignorance|allowed-ignorance]] because no map can track the whole environment. The useful cut is the one that keeps the forces that can still reshape you."
         }
       ],
       "sourcePath": "/content/writing/increasing-returns.md"
@@ -1875,6 +2128,11 @@ export const generatedPool: Pool = {
         {
           "t": "p",
           "x": "Goal: **maximize information exchange without surrendering feedback control or hardening belief faster than I can verify it.**"
+        },
+        {
+          "t": "thesis",
+          "k": "control spec",
+          "x": "AI is useful when exchange rises with feedback control. If exchange rises faster than control, the loop does not get smarter; it gets tighter and wrong."
         },
         {
           "t": "h",
@@ -2360,6 +2618,54 @@ export const generatedPool: Pool = {
           "x": "**Update (2026-03-15):** Bennett (2026) formalizes a latency ceiling for integrated hybrids under the Chord assumptions: if relevant links in the control loop exceed the integration window θ, the system can fragment into two agents taking turns rather than one enlarged mind. The bound D ≤ κvθ converts a time budget into a spatial budget. In the BCI case study, 10 ms round-trip latency is marginally feasible for a 20–50 ms candidate window. In cloud AI, raw network speed is not enough: limited concurrency/serialized pipelines can fail co-instantiation even when links are fast. L3 has a physics. (Source: https://www.preprints.org/manuscript/202602.1708/v2)"
         }
       ],
+      "struct": {
+        "lens": "feedback control inside human-AI coupling",
+        "sections": [
+          {
+            "label": "The coupling gradient",
+            "concepts": [
+              "L0-L3",
+              "drift"
+            ]
+          },
+          {
+            "label": "The verification gate",
+            "concepts": [
+              "R3+2+1",
+              "topology gate"
+            ]
+          },
+          {
+            "label": "The physics of drift",
+            "concepts": [
+              "latency",
+              "closure pressure"
+            ]
+          },
+          {
+            "label": "Flow control",
+            "concepts": [
+              "provenance",
+              "hard stops"
+            ]
+          },
+          {
+            "label": "Earned resonance",
+            "concepts": [
+              "bidirectional steering",
+              "surprise"
+            ]
+          },
+          {
+            "label": "Workflow",
+            "concepts": [
+              "scout",
+              "verify",
+              "rewrite"
+            ]
+          }
+        ]
+      },
       "sourcePath": "/content/writing/me-plus-ai.md"
     },
     "tools-need-edges": {
@@ -2385,6 +2691,11 @@ export const generatedPool: Pool = {
       ],
       "body": [
         {
+          "t": "h",
+          "x": "Possibility debt",
+          "level": 2
+        },
+        {
           "t": "p",
           "x": "Infinite possibility often arrives disguised as freedom. A blank canvas. An endless feed. A thousand settings. A model that can answer anything. At first, it feels powerful. Then the debt appears: before doing the work, you have to invent the frame."
         },
@@ -2393,12 +2704,50 @@ export const generatedPool: Pool = {
           "x": "This is the hidden cost of many digital tools. They do not only ask for attention. They ask for orientation. They hand you a possibility space and quietly make you responsible for its rules."
         },
         {
+          "t": "thesis",
+          "k": "tool theory",
+          "x": "A tool is not better because it permits more moves. It is better when its edges make the next meaningful move easier to find."
+        },
+        {
+          "t": "h",
+          "x": "Less is incomplete",
+          "level": 2
+        },
+        {
           "t": "p",
           "x": "Digital minimalism was an early response to this problem. Choose less. Turn things off. Remove the unnecessary. Reclaim attention from systems designed to capture it."
         },
         {
           "t": "p",
           "x": "That instinct is right, but incomplete. The deeper question is not only how to use less technology. It is how to design tools that return agency instead of consuming it."
+        },
+        {
+          "t": "contrast",
+          "mode": "pair",
+          "poles": [
+            "less",
+            "edged"
+          ],
+          "ownedPole": 1,
+          "rows": [
+            {
+              "a": "fewer surfaces",
+              "b": "clearer affordances"
+            },
+            {
+              "a": "attention protected by refusal",
+              "b": "agency returned through grip"
+            },
+            {
+              "a": "absence as discipline",
+              "b": "constraint as instrument"
+            }
+          ]
+        },
+        {
+          "t": "h",
+          "x": "Good tools have edges",
+          "level": 2
         },
         {
           "t": "p",
@@ -2413,12 +2762,48 @@ export const generatedPool: Pool = {
           "x": "The best tools do not hide complexity. They make complexity playable."
         },
         {
+          "t": "edge-taxonomy",
+          "rows": [
+            {
+              "type": "physical limit",
+              "force": "teaches the hand where action starts"
+            },
+            {
+              "type": "mode boundary",
+              "force": "keeps state legible"
+            },
+            {
+              "type": "feedback loop",
+              "force": "lets skill accumulate"
+            },
+            {
+              "type": "omission",
+              "force": "prevents the tool from becoming the user’s work"
+            }
+          ]
+        },
+        {
+          "t": "h",
+          "x": "Instrument theory",
+          "level": 2
+        },
+        {
           "t": "p",
           "x": "This is what teenage.engineering understands better than most software companies: maximum function, minimum form is not minimalism as decoration. It is a theory of agency. Every visible element must earn its place. Every control should invite use. The interface should feel less like a maze and more like an instrument."
         },
         {
+          "t": "h",
+          "x": "Deferred design",
+          "level": 2
+        },
+        {
           "t": "p",
           "x": "Bad software does the opposite. It treats possibility as a feature by adding more menus, more notifications, more modes, more surfaces, more things to manage. It calls this power, but much of it is deferred design work passed to the user."
+        },
+        {
+          "t": "h",
+          "x": "A good constraint is a grip",
+          "level": 2
         },
         {
           "t": "p",
@@ -2429,12 +2814,65 @@ export const generatedPool: Pool = {
           "x": "It narrows the field just enough for action to start. It makes feedback legible. It lets skill accumulate. It creates a relationship between intention and result that the user can feel."
         },
         {
+          "t": "thesis",
+          "k": "operator",
+          "x": "The useful edge is the one the user can press against: enough boundary to begin, enough feedback to improve, enough room to develop skill."
+        },
+        {
+          "t": "h",
+          "x": "Generative fog",
+          "level": 2
+        },
+        {
           "t": "p",
           "x": "AI makes this more important, not less."
         },
         {
           "t": "p",
           "x": "When software becomes generative, the interface can no longer be just a panel of controls. The possibility space expands too quickly. Without frames, evals, loops, memory, taste, and boundaries, the user is left steering fog."
+        },
+        {
+          "t": "diagram",
+          "mode": "flow",
+          "cyclic": false,
+          "nodes": [
+            "frames",
+            "evals",
+            "loops",
+            "memory",
+            "agency"
+          ],
+          "edges": [
+            {
+              "from": "frames",
+              "to": "evals",
+              "rel": "→",
+              "force": "necessary"
+            },
+            {
+              "from": "evals",
+              "to": "loops",
+              "rel": "→",
+              "force": "likely"
+            },
+            {
+              "from": "loops",
+              "to": "memory",
+              "rel": "→",
+              "force": "working-bridge"
+            },
+            {
+              "from": "memory",
+              "to": "agency",
+              "rel": "→",
+              "force": "speculative"
+            }
+          ]
+        },
+        {
+          "t": "h",
+          "x": "Holdable",
+          "level": 2
         },
         {
           "t": "p",
@@ -2449,6 +2887,46 @@ export const generatedPool: Pool = {
           "x": "Tools need edges because humans do."
         }
       ],
+      "struct": {
+        "lens": "constraints that return agency",
+        "sections": [
+          {
+            "label": "Possibility debt",
+            "concepts": [
+              "infinite choice",
+              "orientation"
+            ]
+          },
+          {
+            "label": "Less is incomplete",
+            "concepts": [
+              "minimalism",
+              "agency"
+            ]
+          },
+          {
+            "label": "Good tools have edges",
+            "concepts": [
+              "constraints",
+              "grip"
+            ]
+          },
+          {
+            "label": "Generative fog",
+            "concepts": [
+              "AI abundance",
+              "frames"
+            ]
+          },
+          {
+            "label": "Holdable",
+            "concepts": [
+              "agency",
+              "holdable"
+            ]
+          }
+        ]
+      },
       "sourcePath": "/content/writing/tools-need-edges.md"
     },
     "weak-geometry": {
@@ -2480,7 +2958,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "[[Bounded Me|bounded-me]] gave me the pressure: memory as *\"geometry, not storage.\"* [[Me + AI|me-plus-ai]] gave me the control problem: I am regulating a coupled feedback system. [[Geometry Over Retrieval|geometry-over-retrieval]] gave me the test: *\"understanding is what remains when the source is closed.\"*"
+          "x": "[[Bounded Me|bounded-me]] gave me the pressure: memory as *\"geometry, not storage.\"* [[Me + AI|me-plus-ai]] gave me the control problem: I am regulating a coupled feedback system. [[Geometry Over Retrieval|geometry-retrieval]] gave me the test: *\"understanding is what remains when the source is closed.\"*"
         },
         {
           "t": "p",
@@ -2509,6 +2987,11 @@ export const generatedPool: Pool = {
         {
           "t": "p",
           "x": "I need weak geometry."
+        },
+        {
+          "t": "thesis",
+          "k": "correction",
+          "x": "The site should not reward the cleanest map. It should reward the map that can still move after its strongest edge is weakened."
         },
         {
           "t": "h",
@@ -2562,7 +3045,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "In [[Geometry Over Retrieval|geometry-over-retrieval]], I said understanding begins when I can draw an edge and defend it. I still think that is right. But now it feels incomplete. Some edges deserve to exist only as temporary bridges, not as permanent beams. If I draw them with too much confidence, the local structure improves while the global truth gets worse. I stop exploring a terrain and start zoning it."
+          "x": "In [[Geometry Over Retrieval|geometry-retrieval]], I said understanding begins when I can draw an edge and defend it. I still think that is right. But now it feels incomplete. Some edges deserve to exist only as temporary bridges, not as permanent beams. If I draw them with too much confidence, the local structure improves while the global truth gets worse. I stop exploring a terrain and start zoning it."
         },
         {
           "t": "p",
@@ -2583,6 +3066,29 @@ export const generatedPool: Pool = {
         {
           "t": "p",
           "x": "And reconstructable structure should remain weak longer than I think."
+        },
+        {
+          "t": "contrast",
+          "mode": "pair",
+          "poles": [
+            "owned certainty",
+            "weak ownership"
+          ],
+          "ownedPole": 1,
+          "rows": [
+            {
+              "a": "the map feels finished",
+              "b": "the map keeps a few doors unlocked"
+            },
+            {
+              "a": "every edge wants to be load-bearing",
+              "b": "edges announce their commitment"
+            },
+            {
+              "a": "surprise becomes a threat",
+              "b": "surprise becomes a place to revise"
+            }
+          ]
         },
         {
           "t": "h",
@@ -2705,19 +3211,33 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "First, it is reconstructable. If the source closes, I can still redraw the shape from inside my own head. That remains non-negotiable. [[Geometry Over Retrieval|geometry-over-retrieval]] was right: *understanding is what remains when the source is closed.*"
+          "x": "[[Geometry Over Retrieval|geometry-retrieval]] was right: *understanding is what remains when the source is closed.* Weak geometry keeps that test, but adds commitment control."
         },
         {
-          "t": "p",
-          "x": "Second, it is typed. An edge should not merely exist. It should announce its mode: causal, constraint, tradeoff, dependency, analogy, speculation. This was already latent in the previous piece. Weak geometry makes it mandatory. A map with untyped edges is a city where every road claims to be a highway."
-        },
-        {
-          "t": "p",
-          "x": "Third, it is graded by commitment. I should be able to say not only what connects to what, but how hard I am willing to lean on that connection. Necessary. Likely. Working bridge. Speculative. Decorative. The point is not endless hesitation. The point is refusing to grant equal ontological weight to edges that have not earned it."
-        },
-        {
-          "t": "p",
-          "x": "Fourth, it remains revisable under contact. A good map bends before it shatters. If one edge breaks, the whole picture should not panic unless that edge was actually load-bearing."
+          "t": "ladder",
+          "mode": "step",
+          "rungs": [
+            {
+              "marker": "01",
+              "term": "Reconstructable",
+              "body": "if the source closes, I can still redraw the shape from inside my own head."
+            },
+            {
+              "marker": "02",
+              "term": "Typed",
+              "body": "an edge should not merely exist. It should announce its mode: causal, constraint, tradeoff, dependency, analogy, speculation."
+            },
+            {
+              "marker": "03",
+              "term": "Graded",
+              "body": "I should be able to say not only what connects to what, but how hard I am willing to lean on that connection. Necessary. Likely. Working bridge. Speculative. Decorative."
+            },
+            {
+              "marker": "04",
+              "term": "Revisable",
+              "body": "a good map bends before it shatters. If one edge breaks, the whole picture should not panic unless that edge was actually load-bearing."
+            }
+          ]
         },
         {
           "t": "p",
@@ -2787,7 +3307,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "[[Geometry Over Retrieval|geometry-over-retrieval]] gave me the core tests: rephrase, rebuild, predict, teach, break."
+          "x": "[[Geometry Over Retrieval|geometry-retrieval]] gave me the core tests: rephrase, rebuild, predict, teach, break."
         },
         {
           "t": "p",

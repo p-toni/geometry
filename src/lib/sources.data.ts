@@ -32,4 +32,4 @@ export const SOURCES_DATA = {
     href: 'https://www.preprints.org/manuscript/202602.1708/v2',
     external: true,
   },
-};
+} as const;

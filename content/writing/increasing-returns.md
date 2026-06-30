@@ -6,7 +6,7 @@ title: increasing returns
 date: 2025-10-17
 rank: 1
 excerpt:
-  - "W. Brian Arthur on Business Ecology"
+  - "Strategy as ecology, not isolated optimization."
 links:
   - target: allowed-ignorance
     rel: cites
@@ -20,7 +20,19 @@ links:
 >
 > — W. Brian Arthur, *Increasing Returns and the New World of Business* (Harvard Business Review, 1996)
 
-**Why it matters**
-- Strategy is ecological: products and companies co-evolve inside interdependent networks.
-- Peripheral actors can still reshape the environment; blind spots emerge when you ignore weak ties.
-- Monitoring the full ecosystem helps anticipate shifts, niche opportunities, and compounding feedback loops.
+## Why it matters
+
+> [thesis|business ecology]
+> Strategy is not only what a product does. It is where the product sits in a living network of dependencies, rivals, tools, defaults, and peripheral actors.
+
+product ↔ ecosystem ↔ product
+
+:::contrast isolated strategy | ecological strategy
+- optimize the object | read the network
+- track obvious competitors | watch weak ties and adjacent species
+- improve features | change the conditions of play
+:::
+
+This matters for [[Tools Need Edges|tools-need-edges]] because tools are not neutral objects. Their edges teach behavior inside an ecology.
+
+It matters for [[Allowed Ignorance|allowed-ignorance]] because no map can track the whole environment. The useful cut is the one that keeps the forces that can still reshape you.

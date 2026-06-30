@@ -16,7 +16,6 @@ import {
   MOBILE_NODE_RADIUS_SCALE,
   MOBILE_GRAPH_RADIUS_SCALE,
   MOBILE_PERSON_LABEL_OFFSET_BOOST,
-  INTRO_TEMPLATE,
   P_A,
   P_B,
 } from './constants.js';
@@ -36,7 +35,6 @@ import {
   pointOnPath,
   partialQuadratic,
   splitLabel,
-  makeTransition,
   makeView,
 } from './utils.js';
 
@@ -233,11 +231,12 @@ export function mount(root, options = {}) {
           const pn = viewA.nodes[p.id];
           const tn = viewA.nodes[tid];
           if (!pn || !tn) return;
+          const isCitation = !p.sectionSlug && p.id !== lens?.id;
           out.push({
             from: p.id,
             to: tid,
             shared: tn.personIds.length,
-            edgeKind: 'structural',
+            edgeKind: isCitation ? 'citation' : 'structural',
             path: makeBundledPath(pn.x, pn.y, tn.x, tn.y, viewA.P, state.cx, state.cy),
           });
         });
@@ -753,8 +752,36 @@ export function mount(root, options = {}) {
 
     function edgeBaseColor(view, edge) {
       if (edge.edgeKind === 'tension') return view.P.colorTension ?? view.P.colorEdge;
+      if (edge.edgeKind === 'citation') return view.P.colorCitation ?? view.P.colorLink ?? view.P.colorEdge;
+      if (edge.edgeKind === 'shared-topic') return view.P.colorShared ?? view.P.colorTopic ?? view.P.colorEdge;
       if (edge.edgeKind === 'structural') return view.P.colorStructural ?? view.P.colorEdge;
       return view.P.colorEdge;
+    }
+
+    function edgeDash(edge) {
+      if (edge.edgeKind === 'tension') return [3, 5];
+      if (edge.edgeKind === 'citation') return [1, 6];
+      if (edge.edgeKind === 'shared-topic') return [2, 7];
+      return [];
+    }
+
+    function edgeAlphaMultiplier(edge) {
+      if (edge.edgeKind === 'tension') return 0.82;
+      if (edge.edgeKind === 'citation') return 0.68;
+      if (edge.edgeKind === 'shared-topic') return 0.78;
+      return 1;
+    }
+
+    function edgeWidthMultiplier(edge) {
+      if (edge.edgeKind === 'tension') return 0.85;
+      if (edge.edgeKind === 'citation') return 0.72;
+      if (edge.edgeKind === 'shared-topic') return 0.92;
+      return 1;
+    }
+
+    function particleColor(view, edge, isBurst) {
+      if (isBurst || edge.edgeKind !== 'structural') return edgeBaseColor(view, edge);
+      return view.P.colorParticle ?? edgeBaseColor(view, edge);
     }
 
     function nodeFillColor(view, node) {
@@ -798,8 +825,8 @@ export function mount(root, options = {}) {
       viewA.edges.forEach((edge, idx) => {
         const pulse = (viewA.P.edgePulse ?? 0) * Math.sin(viewA.frame * 0.008 + idx * 0.3);
         let alpha = (viewA.P.edgeAlpha + viewA.P.edgeAlpha * pulse) * idleEdgeFactor;
-        let width = edge.edgeKind === 'tension' ? viewA.P.edgeWidth * 0.85 : viewA.P.edgeWidth;
-        if (edge.edgeKind === 'tension') alpha *= 0.82;
+        let width = viewA.P.edgeWidth * edgeWidthMultiplier(edge);
+        alpha *= edgeAlphaMultiplier(edge);
         const hasSelection = viewA.selectedId || (viewA.selectionTransition.active && viewA.selectionTransition.phase === 'out');
         if (hasSelection) {
           const ripple = getRippleProgress(viewA, edge, idx);
@@ -832,8 +859,7 @@ export function mount(root, options = {}) {
         if (progress <= 0) return;
         ctx.strokeStyle = rgba(edgeBaseColor(viewA, edge), alpha);
         ctx.lineWidth = width;
-        if (edge.edgeKind === 'tension') ctx.setLineDash([3, 5]);
-        else ctx.setLineDash([]);
+        ctx.setLineDash(edgeDash(edge));
         drawPath(ctx, edge.path, progress);
       });
       ctx.restore();
@@ -847,7 +873,8 @@ export function mount(root, options = {}) {
       viewB.edges.forEach((edge, idx) => {
         const pulse = (viewB.P.edgePulse ?? 0) * Math.sin(viewB.frame * 0.008 + idx * 0.3);
         let alpha = (viewB.P.edgeAlpha + viewB.P.edgeAlpha * pulse) * idleEdgeFactor;
-        let width = viewB.P.edgeWidth * edge.shared * viewB.P.sharedWeightScale;
+        alpha *= edgeAlphaMultiplier(edge);
+        let width = viewB.P.edgeWidth * edge.shared * viewB.P.sharedWeightScale * edgeWidthMultiplier(edge);
         const hasSelection = viewB.selectedId || (viewB.selectionTransition.active && viewB.selectionTransition.phase === 'out');
         if (hasSelection) {
           const ripple = getRippleProgress(viewB, edge, idx);
@@ -877,8 +904,7 @@ export function mount(root, options = {}) {
         if (progress <= 0) return;
         ctx.strokeStyle = rgba(edgeBaseColor(viewB, edge), alpha);
         ctx.lineWidth = width;
-        if (edge.edgeKind === 'tension') ctx.setLineDash([3, 5]);
-        else ctx.setLineDash([]);
+        ctx.setLineDash(edgeDash(edge));
         drawPath(ctx, edge.path, progress);
       });
       ctx.restore();
@@ -901,7 +927,7 @@ export function mount(root, options = {}) {
         const active = view.selectedId && view.activeEdgeSet.has(p.edgeIndex);
         const alpha = isBurst ? p.life : (view.selectedId ? (active ? p.life * 0.9 : 0.04) : p.life * 0.48);
         const [x, y] = pointOnPath(p.edge.path, p.t);
-        const color = isBurst ? edgeBaseColor(view, p.edge) : (view.P.colorParticle ?? edgeBaseColor(view, p.edge));
+        const color = particleColor(view, p.edge, isBurst);
         ctx.fillStyle = rgba(color, alpha);
         ctx.beginPath();
         ctx.arc(x, y, p.size, 0, Math.PI * 2);
@@ -910,15 +936,56 @@ export function mount(root, options = {}) {
       ctx.restore();
     }
 
-    function drawGlow(ctx, n, radius, color) {
-      if (!n || radius <= 0) return;
+    function drawGlow(ctx, n, radius, color, alpha = 0.14) {
+      if (!n || radius <= 0 || alpha <= 0) return;
       const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, radius);
-      g.addColorStop(0, rgba(color, 0.14));
+      g.addColorStop(0, rgba(color, alpha));
       g.addColorStop(1, rgba(color, 0));
       ctx.fillStyle = g;
       ctx.beginPath();
       ctx.arc(n.x, n.y, radius, 0, Math.PI * 2);
       ctx.fill();
+    }
+
+    function lensNodeOf(view) {
+      return Object.values(view.nodes).find((n) => n.kind === 'lens') ?? null;
+    }
+
+    /** The argument core as a luminous beacon — layered warm bloom, a gentle
+     *  resting pulse, and a one-shot ripple as the constellation opens (Dotgrid
+     *  `ripple` = entering the argument). */
+    function drawBeacon(view) {
+      const n = lensNodeOf(view);
+      const P = view.P;
+      if (!n || !P.beaconHaloFrac) return;
+      const fade = introNodeAlpha(view, n.id);
+      const focus = view.selectedId ? (view.activeNodeIds.has(n.id) ? 1 : 0.32) : 1;
+      const pulse = 1 + Math.sin(view.frame * 0.018) * (P.beaconPulse ?? 0.05);
+      const a = (P.beaconAlpha ?? 0.5) * fade * focus * (1 - state.renderedIdleness * 0.45);
+      if (a <= 0) return;
+      const ctx = view.ctx;
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      drawGlow(ctx, n, graphRadius(P.beaconHaloFrac) * pulse, P.colorBeacon, a * 0.4);
+      drawGlow(ctx, n, graphRadius(P.beaconGlowFrac) * pulse, P.colorBeacon, a * 0.7);
+      drawGlow(ctx, n, nodeRadius(P.lensNodeR ?? P.personNodeR) * 2.1, P.colorBeaconHot, a);
+      drawBeaconRipple(view, n, fade * focus);
+      ctx.restore();
+    }
+
+    function drawBeaconRipple(view, n, fade) {
+      const intro = view.intro;
+      if (!intro.active || fade <= 0) return;
+      const t = (performance.now() - intro.startTime) / 1500;
+      if (t <= 0 || t >= 1) return;
+      const ease = 1 - Math.pow(1 - t, 2);
+      const r = nodeRadius(view.P.lensNodeR ?? view.P.personNodeR) + ease * graphRadius(0.22);
+      const ctx = view.ctx;
+      ctx.strokeStyle = rgba(view.P.colorBeacon, 0.45 * (1 - t) * fade);
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+      ctx.stroke();
     }
 
     function nodeAlpha(view, id) {
@@ -1110,7 +1177,7 @@ export function mount(root, options = {}) {
       topicOrder.forEach((t) => {
         const n = viewB.nodes[t.id];
         if (!n) return;
-        let alpha = viewB.P.labelAlpha * 0.42;
+        let alpha = viewB.P.labelAlpha * 0.6;
         if (viewB.selectedId) {
           alpha = viewB.activeNodeIds.has(t.id)
             ? viewB.P.labelAlpha * 1.6
@@ -1140,6 +1207,7 @@ export function mount(root, options = {}) {
       ctx.translate(-state.cx, -state.cy);
       if (view.key === 'A') {
         drawRingsA();
+        drawBeacon(viewA);
         drawEdgesA();
         drawParticles(viewA);
         drawNodesA();

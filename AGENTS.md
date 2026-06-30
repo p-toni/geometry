@@ -7,9 +7,10 @@ This site is a single hand-placed field. Content lives as markdown files with YA
 ```bash
 pnpm pool:seed    # optional: re-seed from geometry v1 prose
 pnpm pool:build   # required after any content edit
+pnpm constellation:build   # required after writing-essay edits (spatial graphs)
 pnpm dev          # local preview
 pnpm test         # vitest
-pnpm build        # pool:build + typecheck + static export
+pnpm build        # pool:build + constellation:build + typecheck + static export
 ```
 
 ## File layout
@@ -74,16 +75,45 @@ Full essay chrome (title, date, cluster) is rendered by **Masthead** in `ReadPan
 
 1. **Excerpt** — `excerpt` frontmatter or first two `p` blocks
 2. **Full** — entire `body` via `FigureReader` (URL `?full=1`)
-3. **Constellation** — `struct` frontmatter sections; fallback to curated map in `essayStructure.ts`
+3. **Constellation** — spatial argument descent from essay `##` / `###` sections (see below)
+
+## Constellation (argument descent)
+
+Every **writing** essay that supports descent must have a **section spine** in the body:
+
+- Prefer `## Section` headings; `### Section` is accepted when no `##` exist (e.g. me-plus-ai).
+- Section order in the markdown is essay order in the spatial layout.
+- Optional `struct` frontmatter still powers the field-graph spine; spatial layout reads the body digest.
+
+Build pipeline (`pnpm constellation:build`):
+
+1. `buildConstellationDigest()` — sections from body headings
+2. Graph from agent source (`constellation/sources/{id}.json`), LLM, or `localGenerate`
+3. `hydrateConstellationGraph()` — **always** adds `sectionSlug` + `meta.sectionSlugs` from digest
+4. Renderer uses **authored layout** when graph has `*-lens` + section-anchored inquiries
+
+Agent-authored graphs should include:
+
+```yaml
+people:
+  - id: {id}-lens          # required — center node
+  - id: …                  # section inquiries with sectionSlug matching digest slugs
+  - id: …                  # optional link inquiries (meta: "cites · …" — no sectionSlug)
+meta.sectionSlugs:         # filled automatically on build from digest
+```
+
+After editing `content/writing/*.md` or `constellation/sources/*.json`, run `pnpm pool:build && pnpm constellation:build`.
+
+**Build gates:** `pool:build` fails if a constellation essay lacks `##`/`###` sections. `constellation:build` fails if hydration cannot produce an authored-layout-ready graph (lens + section-anchored inquiries).
 
 ## Rules for agents
 
 - Edit atoms, not JSX. Never add MDX or React in content files.
 - After editing any `content/**/*.md` or `src/pool/field.ts`, run `pnpm pool:build`.
+- After editing any writing essay, run `pnpm constellation:build` (or full `pnpm build`).
 - New nodes require both a content file **and** a hand-placed `positions[id]` entry.
 - Use `[[backlink:…]]` for in-essay navigation to other pool nodes.
 - Keep links directed and use only relations from `Rel` in `src/pool/types.ts`.
-- `struct` is the source of truth for constellation descent until embeddings land.
 
 ## Retired (v1)
 

@@ -96,4 +96,21 @@ describe('parseBlocks', () => {
       },
     ]);
   });
+
+  it('drops GFM separator rows before edge taxonomy conversion', () => {
+    const blocks = parseBlocks(`| type | force |
+|------|-------|
+| physical limit | teaches the hand |
+| mode boundary | keeps state legible |`);
+
+    expect(blocks).toEqual([
+      {
+        t: 'edge-taxonomy',
+        rows: [
+          { type: 'physical limit', force: 'teaches the hand' },
+          { type: 'mode boundary', force: 'keeps state legible' },
+        ],
+      },
+    ]);
+  });
 });

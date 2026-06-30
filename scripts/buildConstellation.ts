@@ -3,6 +3,11 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { localGenerate } from './constellation/localGenerate.ts';
 import { buildConstellationDigest } from '../src/lib/constellationDigest.ts';
+import {
+  authoredLayoutReady,
+  hydrateConstellationGraph,
+} from '../src/lib/hydrateConstellationGraph.ts';
+import { sectionHeadingsFromBody } from '../src/lib/sectionHeadings.ts';
 import { generatedPool } from '../src/pool/generated.ts';
 import type { PoolNode } from '../src/pool/types.ts';
 
@@ -227,6 +232,10 @@ async function buildOne(node: PoolNode, opts: { dryRun: boolean; local: boolean 
     }
   }
 
+  if (digest) {
+    llm = hydrateConstellationGraph(llm, digest);
+  }
+
   validateGraph(
     {
       id: entry.id,
@@ -238,6 +247,20 @@ async function buildOne(node: PoolNode, opts: { dryRun: boolean; local: boolean 
     },
     digest,
   );
+
+  const sectionSlugs = digest?.sections.map((s) => s.slug) ?? [];
+  if (node.cluster === 'writing' && (node.kind === 'essay' || node.kind === 'note')) {
+    if (!digest) {
+      throw new Error(
+        `${node.id}: constellation requires ## or ### section headings in the essay body`,
+      );
+    }
+    if (!authoredLayoutReady(llm, sectionSlugs)) {
+      throw new Error(
+        `${node.id}: graph not authored-layout-ready after hydration (need *-lens + sectionSlug inquiries)`,
+      );
+    }
+  }
 
   const graph: ConstellationGraph = {
     id: entry.id,
@@ -256,7 +279,7 @@ async function buildOne(node: PoolNode, opts: { dryRun: boolean; local: boolean 
       extraEdgeCount: llm.extraEdges?.length ?? 0,
       generatedAt: new Date().toISOString(),
       poolId: node.id,
-      sectionSlugs: digest?.sections.map((s) => s.slug) ?? [],
+      sectionSlugs,
     },
   };
 
@@ -285,7 +308,7 @@ async function main() {
 }
 
 function hasSections(node: PoolNode) {
-  return node.body.some((b) => b.t === 'h' && (b.level ?? 2) === 2);
+  return sectionHeadingsFromBody(node.body).length > 0;
 }
 
 main().catch((e) => {

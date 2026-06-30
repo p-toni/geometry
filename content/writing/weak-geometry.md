@@ -27,7 +27,7 @@ struct:
 
 ## Preamble
 
-[[Bounded Me|bounded-me]] gave me the pressure: memory as *"geometry, not storage."* [[Me + AI|me-plus-ai]] gave me the control problem: I am regulating a coupled feedback system. [[Geometry Over Retrieval|geometry-over-retrieval]] gave me the test: *"understanding is what remains when the source is closed."*
+[[Bounded Me|bounded-me]] gave me the pressure: memory as *"geometry, not storage."* [[Me + AI|me-plus-ai]] gave me the control problem: I am regulating a coupled feedback system. [[Geometry Over Retrieval|geometry-retrieval]] gave me the test: *"understanding is what remains when the source is closed."*
 
 This piece is not a sequel. It is a correction.
 
@@ -42,6 +42,9 @@ So the next revision is this:
 Geometry is not enough.
 
 I need weak geometry.
+
+> [thesis|correction]
+> The site should not reward the cleanest map. It should reward the map that can still move after its strongest edge is weakened.
 
 ---
 
@@ -71,7 +74,7 @@ But the map should commit less.
 
 In [[Bounded Me|bounded-me]], I was already suspicious of definitions that arrive too cleanly. "Information as entropy." "Intelligence as compression." They had the scent of completion before they had earned the weight of reality. What I did not yet have was the right knife for that suspicion. Weakness gives me one. The problem is not only that these definitions fail to cash out in lived cognition. The deeper problem is that they smuggle in a preference for tightness itself, as if better understanding were always the one that closes fastest.
 
-In [[Geometry Over Retrieval|geometry-over-retrieval]], I said understanding begins when I can draw an edge and defend it. I still think that is right. But now it feels incomplete. Some edges deserve to exist only as temporary bridges, not as permanent beams. If I draw them with too much confidence, the local structure improves while the global truth gets worse. I stop exploring a terrain and start zoning it.
+In [[Geometry Over Retrieval|geometry-retrieval]], I said understanding begins when I can draw an edge and defend it. I still think that is right. But now it feels incomplete. Some edges deserve to exist only as temporary bridges, not as permanent beams. If I draw them with too much confidence, the local structure improves while the global truth gets worse. I stop exploring a terrain and start zoning it.
 
 In [[Me + AI|me-plus-ai]], I framed the central risk as a dysregulated integrated hybrid: exchange rises, my feedback control weakens, and the loop starts moving faster than I can author it. Weak geometry adds a subtler danger. I can preserve authorship and still close too early. The failure is not that the map came from somewhere else. The failure is that I built it myself, then mistook ownership for maturity.
 
@@ -82,6 +85,12 @@ The opposite of retrieval is not certainty.
 The opposite of retrieval is reconstructable structure.
 
 And reconstructable structure should remain weak longer than I think.
+
+:::contrast owned certainty | weak ownership
+- the map feels finished | the map keeps a few doors unlocked
+- every edge wants to be load-bearing | edges announce their commitment
+- surprise becomes a threat | surprise becomes a place to revise
+:::
 
 ---
 
@@ -147,13 +156,12 @@ I want a geometry that is owned, navigable, and explicitly undercommitted.
 
 Weak geometry has four properties.
 
-First, it is reconstructable. If the source closes, I can still redraw the shape from inside my own head. That remains non-negotiable. [[Geometry Over Retrieval|geometry-over-retrieval]] was right: *understanding is what remains when the source is closed.*
+[[Geometry Over Retrieval|geometry-retrieval]] was right: *understanding is what remains when the source is closed.* Weak geometry keeps that test, but adds commitment control.
 
-Second, it is typed. An edge should not merely exist. It should announce its mode: causal, constraint, tradeoff, dependency, analogy, speculation. This was already latent in the previous piece. Weak geometry makes it mandatory. A map with untyped edges is a city where every road claims to be a highway.
-
-Third, it is graded by commitment. I should be able to say not only what connects to what, but how hard I am willing to lean on that connection. Necessary. Likely. Working bridge. Speculative. Decorative. The point is not endless hesitation. The point is refusing to grant equal ontological weight to edges that have not earned it.
-
-Fourth, it remains revisable under contact. A good map bends before it shatters. If one edge breaks, the whole picture should not panic unless that edge was actually load-bearing.
+1. **Reconstructable:** if the source closes, I can still redraw the shape from inside my own head.
+2. **Typed:** an edge should not merely exist. It should announce its mode: causal, constraint, tradeoff, dependency, analogy, speculation.
+3. **Graded:** I should be able to say not only what connects to what, but how hard I am willing to lean on that connection. Necessary. Likely. Working bridge. Speculative. Decorative.
+4. **Revisable:** a good map bends before it shatters. If one edge breaks, the whole picture should not panic unless that edge was actually load-bearing.
 
 A good map commits late and moves early.
 
@@ -191,7 +199,7 @@ The goal is delayed hardening.
 
 ## VI. A new diagnostic
 
-[[Geometry Over Retrieval|geometry-over-retrieval]] gave me the core tests: rephrase, rebuild, predict, teach, break.
+[[Geometry Over Retrieval|geometry-retrieval]] gave me the core tests: rephrase, rebuild, predict, teach, break.
 
 Weak geometry adds a sixth:
 
