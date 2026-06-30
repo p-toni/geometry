@@ -422,6 +422,7 @@ export function FieldApp() {
       }}
     >
       <header
+        className="field-topbar"
         style={{
           flex: 'none',
           display: 'flex',
@@ -434,7 +435,7 @@ export function FieldApp() {
       >
         <button
           type="button"
-          className="pressable pressable--ghost"
+          className="pressable pressable--ghost field-logo-button"
           aria-label="toni.ltd"
           onClick={home}
           style={{
@@ -543,7 +544,7 @@ export function FieldApp() {
           </button>
         </form>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+        <div className="field-lens-chips" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           {pool.layout.lenses.map((chip) => {
             const on = activeChip === chip.label;
             return (
@@ -570,11 +571,11 @@ export function FieldApp() {
           })}
         </div>
 
-        <div style={{ flex: 1 }} />
+        <div className="field-topbar-spacer" style={{ flex: 1 }} />
 
         <button
           type="button"
-          className="pressable"
+          className="pressable field-now-button"
           onClick={toggleNow}
           style={{
             display: 'flex',
@@ -868,6 +869,7 @@ export function FieldApp() {
           <Minimap field={field} terrainCtx={terrainCtx} />
 
           <p
+            className="field-status-hint"
             style={{
               position: 'absolute',
               left: '50%',
@@ -943,6 +945,7 @@ export function FieldApp() {
       ) : null}
 
       <footer
+        className="field-footer"
         style={{
           height: 'var(--status-h)',
           flex: 'none',

@@ -41,7 +41,7 @@ input {
   font: inherit;
 }
 
-@media (max-width: 900px) {
+@media (min-width: 701px) and (max-width: 900px) {
   .field-read {
     position: absolute !important;
     inset: 0 !important;
@@ -51,4 +51,15 @@ input {
     transform: translateX(0);
   }
 
+}
+
+@media (max-width: 700px) {
+  .field-read {
+    position: absolute !important;
+    inset: auto 10px calc(var(--status-h) + 10px) 10px !important;
+    width: auto !important;
+    flex: none !important;
+    z-index: 20;
+    transform: translateX(0);
+  }
 }

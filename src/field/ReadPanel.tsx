@@ -100,6 +100,7 @@ export function ReadPanel({
       }}
     >
       <header
+        className="field-read-header"
         style={{
           flex: 'none',
           display: 'flex',
@@ -183,6 +184,7 @@ export function ReadPanel({
       <div
         ref={scrollRef}
         data-testid="read-panel-scroll"
+        className="field-read-scroll"
         style={{
           flex: 1,
           overflow: 'auto',
