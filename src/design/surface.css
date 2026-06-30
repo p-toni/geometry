@@ -735,7 +735,7 @@
 
   .field-read {
     width: auto !important;
-    max-height: min(70dvh, 620px);
+    max-height: min(70dvh, calc(100% - var(--status-h) - 24px), 620px);
     border-radius: 8px 8px 4px 4px;
     border-top: 1px solid var(--line);
     box-shadow: 0 -16px 46px rgba(28, 31, 36, 0.18) !important;
@@ -743,7 +743,7 @@
 
   .field-read--full {
     width: auto !important;
-    max-height: min(70dvh, 620px);
+    max-height: min(70dvh, calc(100% - var(--status-h) - 24px), 620px);
   }
 
   .field-read-header {
