@@ -629,6 +629,7 @@ export function FieldApp() {
             terrainCtx={terrainCtx}
             dimmed={Boolean(readId)}
             transform={field.transform}
+            transformRef={field.transformRef}
           />
           <div className="field-grain" aria-hidden />
           <div className="field-grid" aria-hidden />

@@ -9,6 +9,7 @@ type FieldTerrainCanvasProps = {
   terrainCtx: TerrainCtx;
   dimmed: boolean;
   transform: Transform;
+  transformRef?: RefObject<Transform>;
 };
 
 const WEIGHT_LERP = 0.26;
@@ -48,6 +49,7 @@ export function FieldTerrainCanvas({
   terrainCtx,
   dimmed,
   transform,
+  transformRef,
 }: FieldTerrainCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rendererRef = useRef<WebglTerrainRenderer | null>(null);
@@ -69,9 +71,6 @@ export function FieldTerrainCanvas({
   const dimShownRef = useRef(dimmed ? 1 : 0);
   dimTargetRef.current = dimmed ? 1 : 0;
 
-  const transformRef = useRef(transform);
-  transformRef.current = transform;
-
   const draw = (now: number) => {
     const renderer = rendererRef.current;
     const vp = vpRef.current;
@@ -86,7 +85,7 @@ export function FieldTerrainCanvas({
 
     const reduce = prefersReducedMotion();
     const t = reduce ? 0 : (now - startRef.current) * 0.001;
-    const tr = transformRef.current;
+    const tr = transformRef?.current ?? transform;
     const target = dimTargetRef.current;
     if (reduce) {
       dimShownRef.current = target;

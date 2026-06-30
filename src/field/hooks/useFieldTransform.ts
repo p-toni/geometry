@@ -64,8 +64,8 @@ export function useFieldTransform(initial?: Partial<Transform>) {
   }, []);
 
   const setT = useCallback(
-    (next: Transform, animate = false, ms?: number) => {
-      setTransform(next);
+    (next: Transform, animate = false, ms?: number, commit = true) => {
+      if (commit) setTransform(next);
       applyDom(next, animate, ms ?? FLY_MS);
     },
     [applyDom],
@@ -164,13 +164,14 @@ export function useFieldTransform(initial?: Partial<Transform>) {
       if (Math.abs(dx) + Math.abs(dy) > 4) movedRef.current = true;
       dragRef.current = { x: e.clientX, y: e.clientY };
       const prev = transformRef.current;
-      setT({ x: prev.x + dx, y: prev.y + dy, z: prev.z }, false);
+      setT({ x: prev.x + dx, y: prev.y + dy, z: prev.z }, false, undefined, false);
     },
     [setT],
   );
 
   const onPointerUp = useCallback(() => {
     dragRef.current = null;
+    setTransform(transformRef.current);
     if (vpRef.current) vpRef.current.style.cursor = 'grab';
   }, []);
 
@@ -226,6 +227,7 @@ export function useFieldTransform(initial?: Partial<Transform>) {
       worldRef,
       miniVpRef,
       readoutRef,
+      transformRef,
       transform,
       ready,
       initField,
