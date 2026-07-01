@@ -59,6 +59,15 @@ export function nodeVisual(
   let textColor = 'var(--ink)';
   let kickerColor = 'var(--kicker)';
   let border = `1px solid ${tone.border}`;
+  const featured = ctx.mode === 'field' && !isLink && node.rank <= 1;
+  const primary = ctx.mode === 'field' && !isLink && node.rank === 0;
+
+  if (primary) {
+    shadow = '0 14px 32px rgba(28,31,36,.16), 0 0 0 1px rgba(212,165,58,.18)';
+    lift = -1;
+  } else if (featured) {
+    shadow = '0 8px 22px rgba(28,31,36,.11)';
+  }
 
   if (isActive || isLink) {
     bg = 'var(--ink)';
@@ -70,7 +79,6 @@ export function nodeVisual(
       'repeating-linear-gradient(135deg,#e5dfd6,#e5dfd6 6px,#f0ebe3 6px,#f0ebe3 12px)';
   }
 
-  const featured = node.rank === 0 && fs >= 2;
   const isNowLit = ctx.mode === 'now' && fs >= 1;
   const leftAccent = isLink
     ? false
@@ -79,10 +87,10 @@ export function nodeVisual(
       isMatch ||
       isHot ||
       isNowLit ||
-      (featured && ctx.mode === 'field');
+      featured;
   const rightAccent = false;
   const accentEdge: 'signal' | 'fresh' =
-    isHot || isNowLit ? 'fresh' : 'signal';
+    isHot || isNowLit || primary ? 'fresh' : 'signal';
 
   return {
     dim,

@@ -253,7 +253,9 @@
 }
 
 .lens-form {
-  transition: border-color 160ms ease-out;
+  transition:
+    border-color 160ms ease-out,
+    box-shadow 160ms ease-out;
 }
 
 .field-zoom-readout {
@@ -374,6 +376,24 @@
 .field-node {
   position: relative;
   transition: transform 140ms var(--ease-out-strong);
+}
+
+.field-node--featured .field-node-kicker {
+  opacity: 0.88;
+}
+
+.field-node--primary .field-node-title {
+  font-weight: 700 !important;
+}
+
+.field-node--primary::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border: 1px solid color-mix(in srgb, var(--fresh) 36%, transparent);
+  border-radius: 6px;
+  pointer-events: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--fresh) 10%, transparent);
 }
 
 .field-node-kicker {
@@ -662,6 +682,7 @@
     grid-column: 1 / -1;
     grid-row: 2;
     width: 100%;
+    min-width: 0 !important;
     max-width: none !important;
     box-sizing: border-box;
     gap: 8px !important;

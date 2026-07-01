@@ -325,7 +325,7 @@ export function ReadPanel({
               fontSize: 11,
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
-              color: 'var(--signal)',
+              color: 'var(--read-accent-deep)',
               cursor: 'pointer',
             }}
           >

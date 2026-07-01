@@ -99,8 +99,8 @@ export function nodeLayout(node: PoolNode): NodeLayout {
   const base = KIND_BASE[node.kind];
   const prominence =
     node.kind === 'note' || node.kind === 'link'
-      ? Math.max(0, (4 - node.rank) / 4) * 0.06
-      : Math.max(0, (10 - node.rank) / 10) * 0.14;
+      ? Math.max(0, (4 - node.rank) / 4) * 0.08
+      : Math.max(0, (10 - node.rank) / 10) * 0.22;
   const scale = 1 + prominence;
 
   return {
@@ -109,7 +109,7 @@ export function nodeLayout(node: PoolNode): NodeLayout {
       base.variant === 'pill' ? 0 : Math.round(base.minWidth * scale),
     maxWidth: Math.round(base.maxWidth * scale),
     padding: base.padding,
-    titleSize: base.titleSize + (prominence > 0.08 ? 0.5 : 0),
+    titleSize: base.titleSize + (prominence > 0.08 ? 1 : 0),
     kickerSize: base.kickerSize,
     borderRadius: base.borderRadius,
   };

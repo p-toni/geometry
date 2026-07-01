@@ -464,7 +464,8 @@ export function FieldApp() {
           }}
           style={{
             flex: 1,
-            maxWidth: 560,
+            maxWidth: 660,
+            minWidth: 280,
             display: 'flex',
             alignItems: 'center',
             gap: 11,
@@ -481,9 +482,10 @@ export function FieldApp() {
           <input
             value={lensInput}
             onChange={(e) => setLensInput(e.target.value)}
-            placeholder="ask the field — it lights up, it doesn't leave…"
+            placeholder="ask the field"
             style={{
               flex: 1,
+              minWidth: 0,
               border: 'none',
               outline: 'none',
               background: 'transparent',
@@ -694,12 +696,13 @@ export function FieldApp() {
                     top: r.y,
                     transform: 'translate(-50%,-50%)',
                     fontFamily: 'var(--font-mono)',
-                    fontSize: 13,
+                    fontSize: 14,
                     letterSpacing: '0.3em',
                     textTransform: 'uppercase',
                     color: tone.label,
-                    opacity: readId || lensActive || nowOn ? 0.32 : 0.62,
+                    opacity: readId || lensActive || nowOn ? 0.4 : 0.82,
                     fontWeight: 700,
+                    textShadow: '0 1px 0 rgba(250,248,244,.72)',
                     pointerEvents: 'none',
                   }}
                 >
@@ -721,7 +724,9 @@ export function FieldApp() {
               const isPill = layout.variant === 'pill';
               const isLinkLit = isPill && lensActive && matchedSet.has(id);
               const fieldMode = !readId && !lensActive && !nowOn;
-              const rankLift = fieldMode && node.rank <= 1 ? 1 : 0;
+              const rankLift = fieldMode ? Math.max(0, 3 - Math.min(node.rank, 3)) : 0;
+              const isFeatured = fieldMode && !isPill && node.rank <= 1;
+              const isPrimary = fieldMode && !isPill && node.rank === 0;
               const z =
                 readId === id
                   ? 5
@@ -744,7 +749,16 @@ export function FieldApp() {
                     data-testid={`field-node-${id}`}
                     onPointerDown={(e) => e.stopPropagation()}
                     onClick={() => onNodeClick(id)}
-                    className={`pressable field-node${vis.hot ? ' field-node--hot' : ''}${isPill ? ' field-node--link' : ''}${isLinkLit ? ' field-node--link-lit' : ''}`}
+                    className={[
+                      'pressable field-node',
+                      vis.hot ? 'field-node--hot' : '',
+                      isPill ? 'field-node--link' : '',
+                      isLinkLit ? 'field-node--link-lit' : '',
+                      isFeatured ? 'field-node--featured' : '',
+                      isPrimary ? 'field-node--primary' : '',
+                    ]
+                      .filter(Boolean)
+                      .join(' ')}
                     style={{
                       position: 'relative',
                       minWidth: isPill ? undefined : layout.minWidth,
