@@ -21,3 +21,73 @@ bennett-2026:
   title: Compression and the geometry of memory (preprint)
   kind: preprint
   href: https://www.preprints.org/manuscript/202602.1708/v2
+
+peirce-1878:
+  author: Peirce
+  year: 1878
+  title: How to Make Our Ideas Clear
+  kind: paper
+  href: https://plato.stanford.edu/entries/pragmatism/
+
+wiener-1948:
+  author: Wiener
+  year: 1948
+  title: Cybernetics - Or Control and Communication in the Animal and the Machine
+  kind: paper
+  href: https://mitpress.mit.edu/9780262730099/cybernetics/
+
+ashby-1956:
+  author: Ashby
+  year: 1956
+  title: An Introduction to Cybernetics
+  kind: paper
+  href: https://ashby.info/Ashby-Introduction-to-Cybernetics.pdf
+
+conant-ashby-1970:
+  author: Conant & Ashby
+  year: 1970
+  title: Every Good Regulator of a System Must Be a Model of That System
+  kind: paper
+  href: https://pespmc1.vub.ac.be/books/Conant_Ashby.pdf
+
+friston-2010:
+  author: Friston
+  year: 2010
+  title: The free-energy principle - a rough guide to the brain?
+  kind: paper
+  href: https://www.fil.ion.ucl.ac.uk/~karl/The%20free-energy%20principle%20-%20a%20rough%20guide%20to%20the%20brain.pdf
+
+noe-2004:
+  author: Noe
+  year: 2004
+  title: Action in Perception
+  kind: paper
+  href: https://mitpress.mit.edu/9780262140881/action-in-perception/
+
+alexander-1964:
+  author: Alexander
+  year: 1964
+  title: Notes on the Synthesis of Form
+  kind: paper
+  href: https://books.google.com/books/about/Notes_on_the_Synthesis_of_Form.html?id=Kh3T3XFUfPQC
+
+schon-1983:
+  author: Schon
+  year: 1983
+  title: The Reflective Practitioner - How Professionals Think in Action
+  kind: paper
+  href: https://raggeduniversity.co.uk/wp-content/uploads/2025/03/1_x_Donald-A.-Schon-The-Reflective-Practitioner_-How-Professionals-Think-In-Action-Basic-Books-1984_redactedaa_compressed3.pdf
+
+levin-2019:
+  author: Levin
+  year: 2019
+  title: The Computational Boundary of a Self
+  kind: paper
+  href: https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2019.02688/full
+
+deming-1986:
+  author: Deming
+  year: 1986
+  title: PDSA Cycle and theory-guided learning
+  kind: paper
+  href: https://deming.org/explore/pdsa/

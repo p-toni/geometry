@@ -6,6 +6,7 @@ export const FIELD_HEIGHT = 800;
 /** Hand-placed coordinates — synced to v2 single-spine prototype `this.POS`. */
 export const positions: Record<string, readonly [number, number]> = {
   ilya: [130, 300],
+  'the-world-answers': [488, 206],
   'allowed-ignorance': [322, 288],
   'co-owning-the-loop': [546, 300],
   'increasing-returns': [218, 410],
@@ -58,7 +59,14 @@ export const lenses: LensChip[] = [
   {
     label: 'thinking on AI',
     query: 'your thinking on AI',
-    nodeIds: ['allowed-ignorance', 'me-plus-ai', 'bounded-me', 'ilya', 'co-owning-the-loop'],
+    nodeIds: [
+      'the-world-answers',
+      'allowed-ignorance',
+      'me-plus-ai',
+      'bounded-me',
+      'ilya',
+      'co-owning-the-loop',
+    ],
   },
   {
     label: 'who are you',

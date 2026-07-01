@@ -1,0 +1,322 @@
+{
+  "id": "10-the-world-answers",
+  "title": "The World Answers",
+  "method": "agent",
+  "embeddingModel": null,
+  "scope": "intra",
+  "people": [
+    {
+      "id": "the-world-answers-lens",
+      "name": "the world answers",
+      "meta": "answering · thought made answerable to consequence",
+      "topicIds": [
+        "answerability",
+        "contact",
+        "world-answers",
+        "map-risk"
+      ]
+    },
+    {
+      "id": "the-world-answers-missing-contact",
+      "name": "missing contact",
+      "meta": "turning · beyond another geometry",
+      "topicIds": [
+        "source-closed",
+        "contact",
+        "allowed-cuts",
+        "weak-geometry"
+      ],
+      "sectionSlug": "preamble"
+    },
+    {
+      "id": "the-world-answers-pay-rent",
+      "name": "pay rent",
+      "meta": "testing · representation exposed to consequence",
+      "topicIds": [
+        "answerability",
+        "pragmatic-test",
+        "consequence",
+        "map-risk"
+      ],
+      "sectionSlug": "thesis"
+    },
+    {
+      "id": "the-world-answers-returning-error",
+      "name": "returning error",
+      "meta": "regulating · feedback as honest contact",
+      "topicIds": [
+        "feedback-loop",
+        "useful-error",
+        "requisite-variety",
+        "good-regulator",
+        "sensitive-map"
+      ],
+      "sectionSlug": "feedback"
+    },
+    {
+      "id": "the-world-answers-prediction-debt",
+      "name": "prediction debt",
+      "meta": "risking · compression against the future",
+      "topicIds": [
+        "prediction-debt",
+        "invariants",
+        "symmetry-bet",
+        "future-error",
+        "active-inference"
+      ],
+      "sectionSlug": "prediction"
+    },
+    {
+      "id": "the-world-answers-smallest-probe",
+      "name": "smallest probe",
+      "meta": "asking · action as a question to the world",
+      "topicIds": [
+        "action-as-probe",
+        "sensorimotor-skill",
+        "smallest-probe",
+        "humble-control"
+      ],
+      "sectionSlug": "action"
+    },
+    {
+      "id": "the-world-answers-back-talk",
+      "name": "back-talk",
+      "meta": "roughening · misfit as taste meeting consequence",
+      "topicIds": [
+        "misfit",
+        "back-talk",
+        "legitimate-hardening",
+        "self-sealed-map"
+      ],
+      "sectionSlug": "misfit"
+    },
+    {
+      "id": "the-world-answers-error-integrated",
+      "name": "error integrated",
+      "meta": "locating · where the loop actually learns",
+      "topicIds": [
+        "boundary",
+        "error-integration",
+        "tool-contact",
+        "coauthorship-answerability"
+      ],
+      "sectionSlug": "boundary"
+    },
+    {
+      "id": "the-world-answers-feedback-named",
+      "name": "feedback named",
+      "meta": "disciplining · invariants made practical",
+      "topicIds": [
+        "practice-discipline",
+        "feedback-named",
+        "pdsa-cycle",
+        "compression-chain"
+      ],
+      "sectionSlug": "practice"
+    },
+    {
+      "id": "the-world-answers-final-line",
+      "name": "final line",
+      "meta": "closing · prediction and control only matter with answer",
+      "topicIds": [
+        "world-answers",
+        "consequence-push",
+        "compression-chain",
+        "answerability"
+      ],
+      "sectionSlug": "closing"
+    },
+    {
+      "id": "the-world-answers-allowed-ignorance",
+      "name": "allowed cuts",
+      "meta": "leads to · what returns after omission",
+      "topicIds": [
+        "allowed-cuts",
+        "future-error",
+        "contact"
+      ]
+    },
+    {
+      "id": "the-world-answers-weak-geometry",
+      "name": "legitimate edge",
+      "meta": "theme · weak until feedback licenses strength",
+      "topicIds": [
+        "weak-geometry",
+        "legitimate-hardening",
+        "useful-error"
+      ]
+    }
+  ],
+  "topicLabels": {
+    "answerability": "answerability",
+    "contact": "contact",
+    "consequence": "consequence",
+    "source-closed": "source closed",
+    "map-risk": "map at risk",
+    "pragmatic-test": "pragmatic test",
+    "feedback-loop": "feedback loop",
+    "useful-error": "useful error",
+    "requisite-variety": "requisite variety",
+    "good-regulator": "good regulator",
+    "sensitive-map": "sensitive map",
+    "prediction-debt": "prediction debt",
+    "invariants": "invariants",
+    "symmetry-bet": "symmetry bet",
+    "future-error": "future error",
+    "active-inference": "active inference",
+    "action-as-probe": "action as probe",
+    "sensorimotor-skill": "sensorimotor skill",
+    "smallest-probe": "smallest probe",
+    "humble-control": "humble control",
+    "misfit": "misfit",
+    "back-talk": "back-talk",
+    "legitimate-hardening": "legitimate hardening",
+    "self-sealed-map": "self-sealed map",
+    "boundary": "boundary",
+    "error-integration": "error integration",
+    "tool-contact": "tool contact",
+    "coauthorship-answerability": "coauthorship as answerability",
+    "practice-discipline": "practice discipline",
+    "feedback-named": "feedback named",
+    "pdsa-cycle": "PDSA cycle",
+    "world-answers": "world answers",
+    "consequence-push": "consequence push",
+    "compression-chain": "compression chain",
+    "allowed-cuts": "allowed cuts",
+    "weak-geometry": "weak geometry"
+  },
+  "extraEdges": [
+    [
+      "source-closed",
+      "contact"
+    ],
+    [
+      "allowed-cuts",
+      "future-error"
+    ],
+    [
+      "weak-geometry",
+      "legitimate-hardening"
+    ],
+    [
+      "answerability",
+      "map-risk"
+    ],
+    [
+      "pragmatic-test",
+      "consequence"
+    ],
+    [
+      "feedback-loop",
+      "useful-error"
+    ],
+    [
+      "requisite-variety",
+      "sensitive-map"
+    ],
+    [
+      "good-regulator",
+      "feedback-loop"
+    ],
+    [
+      "prediction-debt",
+      "future-error"
+    ],
+    [
+      "invariants",
+      "symmetry-bet"
+    ],
+    [
+      "symmetry-bet",
+      "compression-chain"
+    ],
+    [
+      "active-inference",
+      "prediction-debt"
+    ],
+    [
+      "action-as-probe",
+      "smallest-probe"
+    ],
+    [
+      "sensorimotor-skill",
+      "action-as-probe"
+    ],
+    [
+      "humble-control",
+      "requisite-variety"
+    ],
+    [
+      "misfit",
+      "back-talk"
+    ],
+    [
+      "back-talk",
+      "legitimate-hardening"
+    ],
+    [
+      "self-sealed-map",
+      "useful-error"
+    ],
+    [
+      "boundary",
+      "error-integration"
+    ],
+    [
+      "tool-contact",
+      "coauthorship-answerability"
+    ],
+    [
+      "coauthorship-answerability",
+      "feedback-loop"
+    ],
+    [
+      "practice-discipline",
+      "feedback-named"
+    ],
+    [
+      "pdsa-cycle",
+      "practice-discipline"
+    ],
+    [
+      "feedback-named",
+      "world-answers"
+    ],
+    [
+      "consequence-push",
+      "map-risk"
+    ],
+    [
+      "compression-chain",
+      "answerability"
+    ],
+    [
+      "world-answers",
+      "contact"
+    ],
+    [
+      "future-error",
+      "useful-error"
+    ]
+  ],
+  "meta": {
+    "scope": "intra",
+    "inquiryCount": 12,
+    "conceptCount": 36,
+    "edgeCount": 48,
+    "extraEdgeCount": 28,
+    "generatedAt": "2026-07-01T23:00:45.850Z",
+    "poolId": "the-world-answers",
+    "sectionSlugs": [
+      "preamble",
+      "thesis",
+      "feedback",
+      "prediction",
+      "action",
+      "misfit",
+      "boundary",
+      "practice",
+      "closing"
+    ]
+  }
+}

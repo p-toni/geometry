@@ -109,6 +109,16 @@
       "conceptCount": 16
     },
     {
+      "id": "10-the-world-answers",
+      "title": "The World Answers",
+      "path": "essays/10-the-world-answers",
+      "kind": "essay",
+      "scope": "intra",
+      "method": "heuristic",
+      "inquiryCount": 6,
+      "conceptCount": 18
+    },
+    {
       "id": "spatial-reading",
       "title": "Spatial Reading",
       "path": "essays/spatial-reading",
