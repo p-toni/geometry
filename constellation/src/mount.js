@@ -1048,11 +1048,10 @@ export function mount(root, options = {}) {
 
     function labelGeometry(node, text, fontSize, offset, radius, selected, neighborShift, options = {}) {
       let angle = node.angle;
-      let rot = angle;
+      let rot = 0;
       let align = 'left';
       const rightSide = Math.cos(angle) >= 0;
       if (!rightSide) {
-        rot = angle + Math.PI;
         align = 'right';
       }
       if (options.centerAlign) align = 'center';
@@ -1177,7 +1176,7 @@ export function mount(root, options = {}) {
       topicOrder.forEach((t) => {
         const n = viewB.nodes[t.id];
         if (!n) return;
-        let alpha = viewB.P.labelAlpha * 0.6;
+        let alpha = viewB.P.labelAlpha * 0.82;
         if (viewB.selectedId) {
           alpha = viewB.activeNodeIds.has(t.id)
             ? viewB.P.labelAlpha * 1.6
