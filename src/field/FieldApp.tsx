@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { Spin } from '../components/Spin';
 import { uniqueEdges } from '../lib/graph';
 import { activeChipForQuery, resolveLens } from '../lib/search';
@@ -32,6 +32,8 @@ import toniLtdLogo from '../assets/toni-ltd.svg';
 
 export function FieldApp() {
   const [params, setParams] = useSearchParams();
+  const location = useLocation();
+  const navigate = useNavigate();
   const urlState = parseFieldState(params);
   const [lensInput, setLensInput] = useState(urlState.query);
   const [matched, setMatched] = useState<string[] | null>(
@@ -408,6 +410,44 @@ export function FieldApp() {
     : 'survey';
   const footerVerb =
     composing && !readId ? composeVerb : status.verb;
+
+  useEffect(() => {
+    const match = location.pathname.match(/^\/read\/([^/]+)(?:\/(full|spatial))?\/?$/);
+    if (!match) return;
+    const id = decodeURIComponent(match[1] ?? '');
+    if (!pool.nodes[id]) return;
+    const next = writeFieldState(parseFieldState(params), {
+      read: id,
+      full: match[2] === 'full',
+      spatial: match[2] === 'spatial',
+      query: '',
+      now: false,
+    });
+    navigate({ pathname: '/', search: `?${next.toString()}` }, { replace: true });
+  }, [location.pathname, navigate, params]);
+
+  useEffect(() => {
+    const title = readNode ? `${readNode.title} · toni.ltd` : 'toni.ltd';
+    const description =
+      readNode?.excerpt[0] ?? 'toni.ltd — one living field for writing, work, and play.';
+    const canonical = readNode
+      ? `https://toni.ltd/read/${readNode.id}/${readFull ? 'full/' : ''}`
+      : 'https://toni.ltd/';
+
+    document.title = title;
+    const setMeta = (selector: string, attr: 'content' | 'href', value: string) => {
+      const el = document.head.querySelector(selector);
+      if (el) el.setAttribute(attr, value);
+    };
+    setMeta('meta[name="description"]', 'content', description);
+    setMeta('link[rel="canonical"]', 'href', canonical);
+    setMeta('meta[property="og:title"]', 'content', title);
+    setMeta('meta[property="og:description"]', 'content', description);
+    setMeta('meta[property="og:url"]', 'content', canonical);
+    setMeta('meta[name="twitter:title"]', 'content', title);
+    setMeta('meta[name="twitter:description"]', 'content', description);
+  }, [readNode, readFull]);
+
   return (
     <div
       className="field-app"
@@ -837,46 +877,26 @@ export function FieldApp() {
             })}
           </div>
 
-          <div
-            style={{
-              position: 'absolute',
-              top: 14,
-              right: 14,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 1,
-              border: '1px solid var(--line)',
-              borderRadius: 4,
-              overflow: 'hidden',
-            background: 'var(--card)',
-            boxShadow: 'var(--shadow-raised)',
-          }}
-        >
+          <div className="field-tool-stack" aria-label="Field view controls">
           {(
               [
-                { label: '+', onClick: field.zoomIn, size: 16 },
-                { label: '−', onClick: field.zoomOut, size: 16 },
-                { label: '⤢', onClick: field.fitView, size: 12 },
+                { label: '+', name: 'Zoom in', onClick: field.zoomIn },
+                { label: '−', name: 'Zoom out', onClick: field.zoomOut },
+                { label: '⌖', name: 'Fit field', onClick: field.fitView },
               ] as const
             ).map((btn, i) => (
               <button
                 key={btn.label}
                 type="button"
-                className="pressable"
+                className="pressable field-icon-button"
+                aria-label={btn.name}
+                title={btn.name}
                 onPointerDown={(e) => e.stopPropagation()}
                 onClick={btn.onClick}
-                style={{
-                  width: 32,
-                  height: 32,
-                  border: 'none',
-                  borderTop: i ? '1px solid var(--line-soft)' : undefined,
-                  background: 'var(--card)',
-                  color: i === 2 ? 'var(--muted)' : 'var(--ink)',
-                  fontSize: btn.size,
-                  cursor: 'pointer',
-                }}
               >
-                {btn.label}
+                <span className="field-icon-button__glyph" style={{ color: i === 2 ? 'var(--muted)' : undefined }}>
+                  {btn.label}
+                </span>
               </button>
             ))}
           </div>

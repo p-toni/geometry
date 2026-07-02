@@ -15,15 +15,16 @@ export function MarkdownTable({ headers, rows }: Props) {
     <div
       data-figure="table"
       data-testid="markdown-table"
-      style={{
-        display: 'grid',
-        gridTemplateColumns: gridCols,
-        border: `1px solid ${registry.lineSoft}`,
-        borderRadius: 4,
-        overflow: 'hidden',
-        margin: '8px 0 20px',
-      }}
+      className="figure-registry markdown-table-wrap"
     >
+      <div className="figure-registry__kicker">Table · diagnostic grid</div>
+      <div
+        className="markdown-table-grid"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: gridCols,
+        }}
+      >
       {headers.map((h, i) => (
         <div
           key={`h-${i}`}
@@ -60,6 +61,7 @@ export function MarkdownTable({ headers, rows }: Props) {
           </div>
         )),
       )}
+      </div>
     </div>
   );
 }

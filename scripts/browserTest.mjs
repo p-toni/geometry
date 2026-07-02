@@ -89,7 +89,7 @@ const nodeButtons = Object.values(data.refs).filter(
 assert('field nodes visible', nodeButtons.length >= 15, `${nodeButtons.length} nodes`);
 assert('lens chips present', refByName(data, 'thinking on AI') != null);
 assert('now toggle present', refByName(data, /now/i) != null);
-assert('zoom controls present', refByName(data, /^\+$/) != null);
+assert('zoom controls present', refByName(data, /^zoom in$/i) != null);
 shot('01-field-home.png');
 
 // 2. Read panel excerpt
@@ -203,7 +203,7 @@ ab('wait 1000');
 clickNamed(/project geometry/i);
 ab('wait 900');
 assert('project read panel', ab('get url').includes('read=geometry'));
-assert('project body', pageText().includes('single-field') || pageText().includes('living field'));
+assert('project body', pageText().includes('hand-placed field') || pageText().includes('knowledge as place'));
 shot('12-project.png');
 
 // 13. Link node
@@ -222,17 +222,17 @@ const readoutBefore = ab(
   'eval "Array.from(document.querySelectorAll(\'div\')).map(d=>d.textContent).find(t=>/^z \\\\d+%$/.test(t?.trim()||\'\'))"',
 );
 data = snap();
-ab(`click ${refByName(data, /^\+$/)}`);
+ab(`click ${refByName(data, /^zoom in$/i)}`);
 ab('wait 600');
 const readoutAfter = ab(
   'eval "Array.from(document.querySelectorAll(\'div\')).map(d=>d.textContent).find(t=>/^z \\\\d+%$/.test(t?.trim()||\'\'))"',
 );
 assert('zoom in changes readout', readoutAfter !== readoutBefore, `${readoutBefore} -> ${readoutAfter}`);
 data = snap();
-ab(`click ${refByName(data, /^−$/)}`);
+ab(`click ${refByName(data, /^zoom out$/i)}`);
 ab('wait 400');
 data = snap();
-ab(`click ${refByName(data, /^⤢$/)}`);
+ab(`click ${refByName(data, /^fit field$/i)}`);
 ab('wait 400');
 pass('zoom out/fit');
 shot('14-zoom.png');
@@ -240,7 +240,7 @@ shot('14-zoom.png');
 // 15. Media node
 goto('http://localhost:5173/?read=sea');
 ab('wait 1000');
-assert('media node excerpt', pageText().includes('motion without narrative') || pageText().includes('sequin'));
+assert('media node excerpt', pageText().includes('moonlit ripple') || pageText().includes('pointer'));
 shot('15-media.png');
 
 // 16. Browser history back + forward with trail
@@ -304,7 +304,7 @@ assert('inline backlink visible', hasBacklink);
 ab('eval "document.querySelector(\'[data-testid=essay-backlink]\').click()"');
 ab('wait 900');
 const blUrl = ab('get url');
-assert('backlink opens target', blUrl.includes('read=allowed-ignorance'), blUrl);
+assert('backlink opens target', blUrl.includes('read=me-plus-ai'), blUrl);
 assert('backlink pushes trail', blUrl.includes('trail=bounded-me'), blUrl);
 shot('19-inline-backlink.png');
 

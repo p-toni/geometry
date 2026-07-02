@@ -210,6 +210,7 @@ export function SharpPointCloud({ url = DEFAULT_URL }: { url?: string }) {
     let pointerX = 0;
     let pointerY = 0;
     const start = performance.now();
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -238,6 +239,31 @@ export function SharpPointCloud({ url = DEFAULT_URL }: { url?: string }) {
     canvas.addEventListener('pointerleave', onPointerLeave);
     resize();
 
+    const renderFrame = (time: number) => {
+      resize();
+      gl.useProgram(program);
+      gl.clearColor(0.01, 0.009, 0.007, 1);
+      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+      gl.disable(gl.DEPTH_TEST);
+
+      gl.uniform2f(uResolution, canvas.width, canvas.height);
+      gl.uniform1f(uTime, prefersReduced ? 0 : time);
+      gl.uniform2f(uPointer, pointerX, pointerY);
+      gl.uniform1f(uPointSize, 0.023);
+
+      if (pointCount > 0) {
+        gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
+        gl.enableVertexAttribArray(aPosition);
+        gl.vertexAttribPointer(aPosition, 3, gl.FLOAT, false, 0, 0);
+        gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+        gl.enableVertexAttribArray(aColor);
+        gl.vertexAttribPointer(aColor, 3, gl.FLOAT, false, 0, 0);
+        gl.drawArrays(gl.POINTS, 0, pointCount);
+      }
+    };
+
     fetch(url)
       .then((response) => {
         if (!response.ok) throw new Error(`sharp fetch failed: ${response.status}`);
@@ -251,6 +277,7 @@ export function SharpPointCloud({ url = DEFAULT_URL }: { url?: string }) {
         gl.bufferData(gl.ARRAY_BUFFER, cloud.positions, gl.STATIC_DRAW);
         gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, cloud.colors, gl.STATIC_DRAW);
+        if (prefersReduced) renderFrame(0);
       })
       .catch(() => {
         pointCount = 0;
@@ -258,29 +285,8 @@ export function SharpPointCloud({ url = DEFAULT_URL }: { url?: string }) {
 
     const tick = () => {
       if (cancelled) return;
-      resize();
-      gl.useProgram(program);
-      gl.clearColor(0.01, 0.009, 0.007, 1);
-      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-      gl.enable(gl.BLEND);
-      gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
-      gl.disable(gl.DEPTH_TEST);
-
-      gl.uniform2f(uResolution, canvas.width, canvas.height);
-      gl.uniform1f(uTime, (performance.now() - start) / 1000);
-      gl.uniform2f(uPointer, pointerX, pointerY);
-      gl.uniform1f(uPointSize, 0.023);
-
-      if (pointCount > 0) {
-        gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
-        gl.enableVertexAttribArray(aPosition);
-        gl.vertexAttribPointer(aPosition, 3, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
-        gl.enableVertexAttribArray(aColor);
-        gl.vertexAttribPointer(aColor, 3, gl.FLOAT, false, 0, 0);
-        gl.drawArrays(gl.POINTS, 0, pointCount);
-      }
-      raf = requestAnimationFrame(tick);
+      renderFrame((performance.now() - start) / 1000);
+      if (!prefersReduced) raf = requestAnimationFrame(tick);
     };
     tick();
 

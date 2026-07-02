@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { mono } from './styles';
 
 const LINES = 3;
@@ -35,6 +35,18 @@ export function LateFailure({ inline = true }: LateFailureProps) {
       raf.current = null;
     }
     setStress((s) => Math.max(0, s - 0.08));
+  };
+
+  const onHoldKeyDown = (e: KeyboardEvent) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    startHold();
+  };
+
+  const onHoldKeyUp = (e: KeyboardEvent) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    endHold();
   };
 
   useEffect(() => {
@@ -88,6 +100,8 @@ export function LateFailure({ inline = true }: LateFailureProps) {
           onPointerUp={endHold}
           onPointerLeave={endHold}
           onPointerCancel={endHold}
+          onKeyDown={onHoldKeyDown}
+          onKeyUp={onHoldKeyUp}
         >
           <div
             style={{
@@ -182,7 +196,8 @@ export function LateFailure({ inline = true }: LateFailureProps) {
       <div style={{ padding: 14 }}>
         <svg
           viewBox="0 0 320 140"
-          role="img"
+          role="button"
+          tabIndex={0}
           aria-label="Parallel lines under stress — hold to crack"
           style={{
             width: '100%',
@@ -199,6 +214,8 @@ export function LateFailure({ inline = true }: LateFailureProps) {
           onPointerUp={endHold}
           onPointerLeave={endHold}
           onPointerCancel={endHold}
+          onKeyDown={onHoldKeyDown}
+          onKeyUp={onHoldKeyUp}
         >
           <rect width="320" height="140" fill="var(--card)" />
           {Array.from({ length: 9 }, (_, i) => {

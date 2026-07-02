@@ -12,13 +12,7 @@ export function Sidenote({ anchor, x, body }: SidenoteProps) {
   return (
     <aside
       data-figure="FIG.03"
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 210px',
-        gap: 24,
-        margin: '18px 0',
-        alignItems: 'start',
-      }}
+      className="sidenote-figure"
     >
       {body ? (
         <p style={{ ...proseBody, margin: 0 }}>
@@ -38,6 +32,7 @@ export function Sidenote({ anchor, x, body }: SidenoteProps) {
         <div aria-hidden style={{ minHeight: 1 }} />
       )}
       <div
+        className="sidenote-figure__note"
         style={{
           borderLeft: '2px solid #D5CEC3',
           padding: '2px 0 2px 13px',

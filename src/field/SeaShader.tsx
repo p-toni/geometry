@@ -243,7 +243,7 @@ export function SeaShader() {
       gl.uniform1f(uWaves, 1.0);
       gl.uniform2f(uMouse, mouseX, mouseY);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
-      raf = requestAnimationFrame(tick);
+      if (!prefersReduced) raf = requestAnimationFrame(tick);
     };
     tick();
 

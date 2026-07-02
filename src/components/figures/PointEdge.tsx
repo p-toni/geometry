@@ -1,4 +1,4 @@
-import { useRef, useState, type PointerEvent } from 'react';
+import { useRef, useState, type KeyboardEvent, type PointerEvent } from 'react';
 import { body, figureKicker, figureShell, mono } from './styles';
 
 type Pt = { x: number; y: number };
@@ -12,6 +12,40 @@ export function PointEdge({ inline = true }: PointEdgeProps) {
   const [edge, setEdge] = useState<{ from: Pt; to: Pt } | null>(null);
   const [drag, setDrag] = useState<Pt | null>(null);
   const origin: Pt = { x: 72, y: 90 };
+  const restingTarget = edge?.to ?? { x: 236, y: 66 };
+
+  const nudgeTarget = (dx: number, dy: number) => {
+    const target = edge?.to ?? restingTarget;
+    setEdge({
+      from: origin,
+      to: {
+        x: Math.max(16, Math.min(304, target.x + dx)),
+        y: Math.max(16, Math.min(144, target.y + dy)),
+      },
+    });
+  };
+
+  const onKeyDown = (e: KeyboardEvent<SVGSVGElement>) => {
+    const step = e.shiftKey ? 18 : 8;
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setEdge(edge ? null : { from: origin, to: restingTarget });
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      nudgeTarget(-step, 0);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      nudgeTarget(step, 0);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      nudgeTarget(0, -step);
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      nudgeTarget(0, step);
+    } else if (e.key === 'Escape') {
+      setEdge(null);
+    }
+  };
 
   const toLocal = (e: PointerEvent<SVGSVGElement>): Pt => {
     const box = svgRef.current!.getBoundingClientRect();
@@ -24,8 +58,9 @@ export function PointEdge({ inline = true }: PointEdgeProps) {
     <svg
       ref={svgRef}
       viewBox="0 0 320 160"
-      role="img"
-      aria-label="Drag from the point to extend an edge"
+      role="button"
+      tabIndex={0}
+      aria-label="Drag from the point, or press Enter and use arrow keys to extend an edge"
       style={{
         width: '100%',
         height: 160,
@@ -53,6 +88,7 @@ export function PointEdge({ inline = true }: PointEdgeProps) {
         setDrag(null);
       }}
       onPointerCancel={() => setDrag(null)}
+      onKeyDown={onKeyDown}
     >
       {Array.from({ length: 8 }, (_, i) => (
         <line
@@ -93,7 +129,7 @@ export function PointEdge({ inline = true }: PointEdgeProps) {
     <p style={{ ...body, fontSize: 13, margin: '10px 0 0', color: 'var(--muted)' }}>
       {edge
         ? 'Edge extended — a relation now has direction and length.'
-        : 'Drag from the filled point. A point alone is inert; an edge carries force.'}
+        : 'Drag from the filled point, or press Enter and use arrows. A point alone is inert; an edge carries force.'}
     </p>
   );
 

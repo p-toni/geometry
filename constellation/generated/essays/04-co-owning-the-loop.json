@@ -69,7 +69,7 @@
         "conversation",
         "momentum"
       ],
-      "sectionSlug": "next-loop"
+      "sectionSlug": "culture"
     },
     {
       "id": "co-owning-the-loop-future-model",
@@ -166,7 +166,7 @@
     "conceptCount": 24,
     "edgeCount": 24,
     "extraEdgeCount": 10,
-    "generatedAt": "2026-06-30T00:47:32.104Z",
+    "generatedAt": "2026-07-02T18:58:32.886Z",
     "poolId": "co-owning-the-loop",
     "sectionSlugs": [
       "co-ownership",

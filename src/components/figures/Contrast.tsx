@@ -199,13 +199,7 @@ function TableSkin({
 
   return (
     <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '0.85fr 1.1fr 1.1fr',
-        border: '1px solid #E7E2D8',
-        borderRadius: 4,
-        overflow: 'hidden',
-      }}
+      className="contrast-table"
     >
       <div style={tableHead('axis', aOwned, bOwned)}>{axisLabel ?? 'axis'}</div>
       <div style={tableHead('a', aOwned, bOwned)}>{poles[0]}</div>
@@ -239,14 +233,20 @@ export function Contrast({ mode, poles, ownedPole, axisLabel, rows }: Props) {
       data-node="contrast"
       data-contrast-mode={mode}
       data-testid={mode === 'table' ? 'diagnostic-table' : undefined}
-      style={{ margin: '8px 0 20px' }}
+      className={mode === 'table' ? 'figure-registry markdown-table-wrap' : undefined}
+      style={mode === 'table' ? undefined : { margin: '8px 0 20px' }}
     >
       {mode === 'line' ? (
         <LineSkin poles={poles} ownedPole={ownedPole} rows={rows} />
       ) : mode === 'pair' ? (
         <PairSkin poles={poles} ownedPole={ownedPole} rows={rows} />
       ) : (
-        <TableSkin poles={poles} ownedPole={ownedPole} axisLabel={axisLabel} rows={rows} />
+        <>
+          <div className="figure-registry__kicker">Contrast · {axisLabel ?? 'axis'}</div>
+          <div className="figure-registry__body" style={{ padding: 0 }}>
+            <TableSkin poles={poles} ownedPole={ownedPole} axisLabel={axisLabel} rows={rows} />
+          </div>
+        </>
       )}
     </div>
   );

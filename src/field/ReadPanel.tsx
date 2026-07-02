@@ -121,22 +121,12 @@ export function ReadPanel({
       >
         <button
           type="button"
-          className="pressable"
+          className="pressable field-panel-action"
+          aria-label="← back"
           onClick={onBack}
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 10,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            color: 'var(--muted)',
-            background: 'var(--card)',
-            border: '1px solid var(--line)',
-            borderRadius: 3,
-            padding: '6px 10px',
-            cursor: 'pointer',
-          }}
         >
-          ← back
+          <span className="field-panel-action__icon" aria-hidden>←</span>
+          back
         </button>
         <span
           style={{
@@ -154,39 +144,21 @@ export function ReadPanel({
         {full && !wholePiece ? (
           <button
             type="button"
-            className="pressable"
+            className="pressable field-panel-action"
             onClick={() => onToggleFull(false)}
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 10,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              color: 'var(--muted)',
-              background: 'var(--card)',
-              border: '1px solid var(--line)',
-              borderRadius: 3,
-              padding: '6px 10px',
-              cursor: 'pointer',
-            }}
           >
-            ⤡ collapse
+            <span className="field-panel-action__icon" aria-hidden>⤡</span>
+            collapse
           </button>
         ) : null}
         <button
           type="button"
-          className="pressable pressable--ghost"
+          className="pressable pressable--ghost field-icon-button field-close-button"
           onClick={onClose}
           aria-label="Close"
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 14,
-            color: 'var(--kicker)',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-          }}
+          title="Close"
         >
-          ✕
+          <span className="field-icon-button__glyph" aria-hidden>×</span>
         </button>
       </header>
 

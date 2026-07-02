@@ -14,24 +14,14 @@ export function ProtocolStepper() {
   return (
     <div
       data-figure="FIG.09"
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-        gap: 12,
-        margin: '8px 0 20px',
-      }}
+      className="figure-registry"
     >
+      <div className="figure-registry__kicker">FIG.09 · source-closed protocol</div>
+      <div className="figure-registry__body protocol-stepper">
       {STEPS.map((s) => (
         <div
           key={s.n}
-          style={{
-            background: 'var(--card)',
-            border: '1px solid #E8E2D8',
-            borderTop: '3px solid var(--read-accent)',
-            borderRadius: 3,
-            padding: '15px 14px',
-            boxShadow: '0 2px 8px rgba(28,31,36,.06)',
-          }}
+          className="protocol-stepper__card"
         >
           <div
             style={{
@@ -66,6 +56,7 @@ export function ProtocolStepper() {
           </p>
         </div>
       ))}
+      </div>
     </div>
   );
 }
