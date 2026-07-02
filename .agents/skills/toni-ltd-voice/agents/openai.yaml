@@ -1,0 +1,4 @@
+interface:
+  display_name: "toni.ltd Voice"
+  short_description: "Write and edit geometry essays in the site voice."
+  default_prompt: "Use the toni.ltd voice skill to polish this draft while preserving its structure and claims."

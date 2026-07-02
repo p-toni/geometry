@@ -512,15 +512,19 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "[[Bounded Me|bounded-me]] gave me the pressure: my loop is finite, so any usable map has to fit inside real limits. [[Geometry Over Retrieval|geometry-retrieval]] gave me the test: if the source closes and the structure does not come back, I do not own it. [[Weak Geometry|weak-geometry]] gave me the warning: a map can be owned and still harden too early."
+          "x": "[[Bounded Me|bounded-me]] gave me the pressure: my loop is finite. [[Geometry Over Retrieval|geometry-retrieval]] gave me the test: if the source closes and the structure does not come back, I do not own it. [[Weak Geometry|weak-geometry]] gave me the warning: a map can be owned and still harden too early."
         },
         {
           "t": "p",
-          "x": "This piece keeps the same arc, but I want to look at it from the side."
+          "x": "This piece looks at the same object from the side."
         },
         {
           "t": "p",
-          "x": "I think I have been talking about maps as if they were made only of sentences. They are also made of cuts."
+          "x": "I had been talking about maps as if they were made of sentences."
+        },
+        {
+          "t": "p",
+          "x": "They are also made of cuts."
         },
         {
           "t": "h",
@@ -529,15 +533,31 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "A usable map is not the whole object made smaller. It is the object after material has been removed."
+          "x": "A usable map is not the whole object made smaller."
         },
         {
           "t": "p",
-          "x": "That is what boundedness means in practice. I do not carry everything forward. I cut, collapse, merge, project, and ignore until something remains that I can actually move with."
+          "x": "It is the object after material has been removed."
         },
         {
           "t": "p",
-          "x": "So the question is no longer just whether I compressed well."
+          "x": "That is what boundedness means in practice."
+        },
+        {
+          "t": "p",
+          "x": "I do not carry everything forward."
+        },
+        {
+          "t": "p",
+          "x": "I cut, collapse, merge, project, and ignore until something remains that I can actually move with."
+        },
+        {
+          "t": "p",
+          "x": "So the question is not only:"
+        },
+        {
+          "t": "p",
+          "x": "did I compress well?"
         },
         {
           "t": "p",
@@ -567,11 +587,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "It arrives dense. Too many differences at once. Too many branches. Too many live variables competing for the same small loop."
+          "x": "It arrives dense."
         },
         {
           "t": "p",
-          "x": "So before I ever say I understand, something harsher has already happened:"
+          "x": "Too many differences at once. Too many branches. Too many live variables competing for the same small loop."
+        },
+        {
+          "t": "p",
+          "x": "So before I ever say I understand, something harsher has already happened."
         },
         {
           "t": "p",
@@ -579,15 +603,51 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Not because I am certain. Because I am bounded."
+          "x": "Not because I am certain."
         },
         {
           "t": "p",
-          "x": "This is the part I was circling in [[Bounded Me|bounded-me]] without quite naming. My problem is not only finite capacity. It is forced selectivity over variation. Every useful internal map already contains an editorial decision about what no longer deserves separate treatment."
+          "x": "Because I am bounded."
         },
         {
           "t": "p",
-          "x": "And a cut is not merely omission. It is equivalence-making. It declares that several visible differences can now be treated as one usable thing. That is the primitive act underneath compression — not removing detail, but licensing a collapse."
+          "x": "This is the part I was circling in [[Bounded Me|bounded-me]] without quite naming."
+        },
+        {
+          "t": "p",
+          "x": "My problem is not only finite capacity."
+        },
+        {
+          "t": "p",
+          "x": "It is forced selectivity over variation."
+        },
+        {
+          "t": "p",
+          "x": "Every useful map already contains an editorial decision about what no longer deserves separate treatment."
+        },
+        {
+          "t": "p",
+          "x": "A cut is not merely omission."
+        },
+        {
+          "t": "p",
+          "x": "It is equivalence-making."
+        },
+        {
+          "t": "p",
+          "x": "It declares that several visible differences can now be treated as one usable thing."
+        },
+        {
+          "t": "p",
+          "x": "That is the primitive act underneath compression:"
+        },
+        {
+          "t": "p",
+          "x": "not removing detail,"
+        },
+        {
+          "t": "p",
+          "x": "licensing a collapse."
         },
         {
           "t": "p",
@@ -604,7 +664,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "After the first cut, I usually do not have the whole thing. I have a face."
+          "x": "After the first cut, I usually do not have the whole thing."
+        },
+        {
+          "t": "p",
+          "x": "I have a face."
         },
         {
           "t": "p",
@@ -612,11 +676,27 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "And it does feel coherent. That is the problem. From inside, a face and a form feel almost the same. Both give me something I can hold. Both let me speak about the object with confidence. The difference only shows up when I move — and I may not move for a long time."
+          "x": "And it does feel coherent."
         },
         {
           "t": "p",
-          "x": "This is why so much false understanding feels convincing. A face is real. It is not fake. It is part of the object. But it is still only one side of it."
+          "x": "That is the problem."
+        },
+        {
+          "t": "p",
+          "x": "From inside, a face and a form can feel almost the same."
+        },
+        {
+          "t": "p",
+          "x": "Both give me something to hold. Both let me speak with confidence."
+        },
+        {
+          "t": "p",
+          "x": "The difference only shows up when I move."
+        },
+        {
+          "t": "p",
+          "x": "And I may not move for a long time."
         },
         {
           "t": "callout",
@@ -626,7 +706,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "This is also why retrieval feels so dangerous now. Retrieval gives me the face back quickly. It does not tell me whether I still have the form."
+          "x": "This is why retrieval feels dangerous now."
+        },
+        {
+          "t": "p",
+          "x": "Retrieval gives me the face back quickly."
+        },
+        {
+          "t": "p",
+          "x": "It does not tell me whether I still have the form."
         },
         {
           "t": "contrast",
@@ -662,7 +750,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "What I wanted from geometry was never elegance for its own sake. I wanted something that survives rotation."
+          "x": "What I wanted from geometry was never elegance for its own sake."
+        },
+        {
+          "t": "p",
+          "x": "I wanted something that survives rotation."
         },
         {
           "t": "p",
@@ -674,7 +766,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "I do not understand a thing when I can repeat the same face. I understand it when I can turn it and keep contact."
+          "x": "I do not understand a thing when I can repeat the same face."
+        },
+        {
+          "t": "p",
+          "x": "I understand it when I can turn it and keep contact."
         },
         {
           "t": "plate",
@@ -683,7 +779,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "The old tests still work, but they read differently now:"
+          "x": "The old tests read differently now:"
         },
         {
           "t": "p",
@@ -711,7 +807,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Those are not just tests of confidence. They are tests of whether the cut was faithful."
+          "x": "Those are not tests of confidence."
+        },
+        {
+          "t": "p",
+          "x": "They are tests of whether the cut was faithful."
         },
         {
           "t": "h",
@@ -720,15 +820,31 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "A map is not the world made portable. It is the world with pieces missing."
+          "x": "A map is not the world made portable."
         },
         {
           "t": "p",
-          "x": "That absence is not a defect. It is what makes the map usable at all."
+          "x": "It is the world with pieces missing."
         },
         {
           "t": "p",
-          "x": "But this is where I keep getting misled by relief. The lighter object feels better in the hand. The cleaned form feels more navigable than the raw field. So I start treating the removed material as if it had never mattered."
+          "x": "The absence is not a defect."
+        },
+        {
+          "t": "p",
+          "x": "It is what makes the map usable."
+        },
+        {
+          "t": "p",
+          "x": "But this is where I keep getting misled by relief."
+        },
+        {
+          "t": "p",
+          "x": "The lighter object feels better in the hand. The cleaned form feels more navigable than the raw field."
+        },
+        {
+          "t": "p",
+          "x": "So I start treating the removed material as if it had never mattered."
         },
         {
           "t": "p",
@@ -740,7 +856,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Because the void is not inert. It is the exact place where a difference I stopped tracking can return as a fracture."
+          "x": "Because the void is not inert."
+        },
+        {
+          "t": "p",
+          "x": "It is the exact place where a difference I stopped tracking can return as a fracture."
         },
         {
           "t": "h",
@@ -753,11 +873,27 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Its warning was not only \"stay humble.\" The deeper warning was: be careful what you allow yourself to treat as the same."
+          "x": "Its warning was not only:"
         },
         {
           "t": "p",
-          "x": "A neat cut is seductive precisely because it deletes. It lowers the cost of thought. It gives me something I can stand inside. It makes the domain feel solved enough to move in."
+          "x": "stay humble."
+        },
+        {
+          "t": "p",
+          "x": "The deeper warning was:"
+        },
+        {
+          "t": "p",
+          "x": "be careful what you allow yourself to treat as the same."
+        },
+        {
+          "t": "p",
+          "x": "A neat cut is seductive precisely because it deletes."
+        },
+        {
+          "t": "p",
+          "x": "It lowers the cost of thought. It gives me something I can stand inside. It makes the domain feel solved enough to move in."
         },
         {
           "t": "p",
@@ -776,7 +912,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "That is why the dangerous map is not always the loose one. It is often the elegant one. The one that failed late."
+          "x": "That is why the dangerous map is not always the loose one."
+        },
+        {
+          "t": "p",
+          "x": "It is often the elegant one."
+        },
+        {
+          "t": "p",
+          "x": "The one that failed late."
         },
         {
           "t": "plate",
@@ -785,7 +929,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Weak geometry now feels less like a general attitude and more like a technical discipline:"
+          "x": "Weak geometry now feels less like an attitude and more like a discipline:"
         },
         {
           "t": "p",
@@ -793,7 +937,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Not because I want vagueness. Because I want contact."
+          "x": "Not because I want vagueness."
+        },
+        {
+          "t": "p",
+          "x": "Because I want contact."
         },
         {
           "t": "h",
@@ -818,15 +966,39 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "A clean draft that does not change what I can carry is not understanding. It is formatting."
+          "x": "A clean draft that does not change what I can carry is not understanding."
         },
         {
           "t": "p",
-          "x": "And this is also the bridge back to [[Me + AI|me-plus-ai]]. The new risk is not only borrowed language or wrong answers. It is borrowed cuts."
+          "x": "It is formatting."
         },
         {
           "t": "p",
-          "x": "Candidate structure can arrive already merged, already simplified, already too finished for my own verification to keep up. If I did not choose the cuts, I may not know what was removed — and that is a question this piece cannot fully answer, because it is no longer only about understanding. It is about who gets to decide what I ignore."
+          "x": "This is also the bridge back to [[Me + AI|me-plus-ai]]."
+        },
+        {
+          "t": "p",
+          "x": "The new risk is not only borrowed language or wrong answers."
+        },
+        {
+          "t": "p",
+          "x": "It is borrowed cuts."
+        },
+        {
+          "t": "p",
+          "x": "Candidate structure can arrive already merged. Already simplified. Already too finished for my verification to keep up."
+        },
+        {
+          "t": "p",
+          "x": "If I did not choose the cuts, I may not know what was removed."
+        },
+        {
+          "t": "p",
+          "x": "And that question is no longer only about understanding."
+        },
+        {
+          "t": "p",
+          "x": "It is about who gets to decide what I ignore."
         },
         {
           "t": "h",
@@ -835,7 +1007,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "So I think understanding is not possession, and not even compactness."
+          "x": "Understanding is not possession."
+        },
+        {
+          "t": "p",
+          "x": "Not even compactness."
         },
         {
           "t": "thesis",
@@ -843,11 +1019,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "To learn is to get better at subtraction without losing the form. To think well is to know which variations are cheap to ignore, which are dangerous to ignore, and which only reveal their importance when the object is turned or stressed."
+          "x": "To learn is to get better at subtraction without losing the form."
         },
         {
           "t": "p",
-          "x": "That may be all a bounded mind ever gets."
+          "x": "To think well is to know which variations are cheap to ignore, which are dangerous to ignore, and which only reveal their importance when the object is turned or stressed."
+        },
+        {
+          "t": "p",
+          "x": "That may be all a bounded mind gets."
         },
         {
           "t": "p",
@@ -859,7 +1039,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "And even that sense is itself a cut — one I have not yet turned to see from the other side."
+          "x": "And even that sense is itself a cut."
+        },
+        {
+          "t": "p",
+          "x": "One I have not yet turned to see from the other side."
         }
       ],
       "struct": {
@@ -919,23 +1103,55 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Information as entropy. Intelligence as compression. Learning as “matching a distribution.”"
+          "x": "Information as entropy. Intelligence as compression. Learning as \"matching a distribution.\""
         },
         {
           "t": "p",
-          "x": "Those definitions are elegant, but they don’t cash out in my actual life. Compression may be a frequent symptom of a good map. It is not the criterion. A map can be compact and still close too early."
+          "x": "They are elegant."
         },
         {
           "t": "p",
-          "x": "In my life, “information” is not what exists in the world. It’s what I can *pull into myself* under constraints: time, attention, energy, compute, mood, calendar, context. I don’t experience the universe. I experience the slice I can process."
+          "x": "They also leave my actual day untouched."
         },
         {
           "t": "p",
-          "x": "So the question isn’t “how much information is there?” It’s “what structure is extractable for *me*, right now, with my limits?”"
+          "x": "Some mornings I can read one paragraph and it becomes a lever. Other mornings the same paragraph is dead text."
         },
         {
           "t": "p",
-          "x": "That’s the only definition that stays stable across days where I’m sharp, days where I’m foggy, and days where I’m pretending."
+          "x": "Nothing about the paragraph changed."
+        },
+        {
+          "t": "p",
+          "x": "I changed."
+        },
+        {
+          "t": "p",
+          "x": "My sleep changed. My calendar changed. My attention changed. The number of open loops changed. The amount of future-me available to receive the thought changed."
+        },
+        {
+          "t": "p",
+          "x": "So I do not experience information as a property of the world."
+        },
+        {
+          "t": "p",
+          "x": "I experience information as a negotiation with my limits."
+        },
+        {
+          "t": "p",
+          "x": "The question is not:"
+        },
+        {
+          "t": "p",
+          "x": "how much information is there?"
+        },
+        {
+          "t": "p",
+          "x": "The question is:"
+        },
+        {
+          "t": "p",
+          "x": "what structure can bounded-me extract, stabilize, and reuse right now?"
         },
         {
           "t": "thesis",
@@ -949,100 +1165,144 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "When I say “I learned something,” what I mean is:"
+          "x": "When I say \"I learned something,\" I usually mean something smaller and more practical than the sentence suggests."
         },
         {
           "t": "p",
-          "x": "• I found a pattern that survived contact with my schedule."
+          "x": "I mean:"
         },
         {
           "t": "p",
-          "x": "• It became cheap to recall."
+          "x": "• a pattern survived contact with my schedule."
         },
         {
           "t": "p",
-          "x": "• It started generating predictions or choices with low friction."
+          "x": "• it became cheaper to recall."
         },
         {
           "t": "p",
-          "x": "So “information” isn’t a property of the thing I read. It’s a property of the *interaction* between that thing and my constraints."
+          "x": "• it started changing predictions or choices without asking for a full rebuild."
         },
         {
           "t": "p",
-          "x": "Some days, the same paragraph is dead text. Other days, it turns into a lever."
+          "x": "That is the private event."
         },
         {
           "t": "p",
-          "x": "That makes me suspect that a lot of my confusion comes from treating my mind like an unbounded observer. I keep asking what’s “true” in the abstract, when what matters is what I can distill into internal programs."
+          "x": "Not possession."
         },
         {
           "t": "p",
-          "x": "A good piece of writing for me isn’t one that contains the most novelty. It’s one that increases the amount of structure I can reliably extract later."
+          "x": "Re-entry."
         },
         {
           "t": "p",
-          "x": "That’s the bar: **does it reduce future compute for me?**"
+          "x": "Some ideas enter me and stay inert."
         },
         {
           "t": "p",
-          "x": "One more private corollary: sometimes computation itself creates something I can learn. Not “new truth,” but new *extractable structure* for bounded-me."
+          "x": "They sound right. They quote well. They make me feel briefly improved."
+        },
+        {
+          "t": "p",
+          "x": "Then the next loop arrives and they do nothing."
+        },
+        {
+          "t": "p",
+          "x": "Other ideas become internal programs."
+        },
+        {
+          "t": "p",
+          "x": "I reach for them without prompting. They reduce startup cost. They change what I notice. They make the next action less noisy."
+        },
+        {
+          "t": "p",
+          "x": "That is the kind of information I care about."
+        },
+        {
+          "t": "p",
+          "x": "Not novelty."
+        },
+        {
+          "t": "p",
+          "x": "Extractable structure."
+        },
+        {
+          "t": "p",
+          "x": "The piece is good if it reduces future compute for me."
+        },
+        {
+          "t": "p",
+          "x": "That is the bar."
         },
         {
           "t": "h",
-          "x": "2) “Memory” as geometry (not storage)",
+          "x": "2) \"Memory\" as geometry (not storage)",
           "level": 2
         },
         {
           "t": "p",
-          "x": "I don’t want a second brain that is a library."
+          "x": "I do not want a second brain that is a library."
         },
         {
           "t": "p",
-          "x": "A library gives you retrieval. It doesn’t give you shape."
+          "x": "A library gives me retrieval."
         },
         {
           "t": "p",
-          "x": "What I actually need is a geometry: a coordinate system where ideas have distance, direction, neighbors, borders—so that reasoning becomes movement instead of lookup."
+          "x": "It does not give me shape."
         },
         {
           "t": "p",
-          "x": "This is the difference between:"
+          "x": "What I need is closer to a local geometry:"
         },
         {
           "t": "p",
-          "x": "• storing facts, and"
+          "x": "distance, direction, neighbors, borders, hard parts, soft parts, edges I can weaken without losing the whole thing."
         },
         {
           "t": "p",
-          "x": "• arranging facts so they become *navigable*."
+          "x": "When my thinking is good, I can move."
         },
         {
           "t": "p",
-          "x": "When my thinking is good, it’s because I’ve built a local geometry:"
+          "x": "I know what is adjacent. I know what constrains what. I can forget a detail and still regenerate the path."
         },
         {
           "t": "p",
-          "x": "• I know where the “hard” parts are,"
+          "x": "When my thinking is bad, everything is flat text."
         },
         {
           "t": "p",
-          "x": "• I know what’s adjacent,"
+          "x": "Every sentence is equally far away."
         },
         {
           "t": "p",
-          "x": "• I can move from one concept to another without re-deriving everything from scratch."
+          "x": "So when I write, I am not trying to publish first."
         },
         {
           "t": "p",
-          "x": "When my thinking is bad, I’m trapped in flat text. Everything is equally far away."
+          "x": "I am trying to carve geometry into my own space."
         },
         {
           "t": "p",
-          "x": "So when I write, I’m not trying to “publish.” I’m trying to carve geometry into my own space."
+          "x": "The draft fails when it reads like notes about other people's ideas."
         },
         {
           "t": "p",
-          "x": "The draft fails when it reads like notes about other people’s ideas. The draft succeeds when it changes the topology of my own."
+          "x": "The draft succeeds when it changes the topology of my own."
+        },
+        {
+          "t": "p",
+          "x": "That is why retrieval is not enough."
+        },
+        {
+          "t": "p",
+          "x": "Retrieval brings the object back."
+        },
+        {
+          "t": "p",
+          "x": "Geometry changes where I can stand."
         },
         {
           "t": "h",
@@ -1051,55 +1311,95 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "There’s a boundary in my life that feels like training stability."
+          "x": "There is a boundary in my life that feels like training stability."
         },
         {
           "t": "p",
-          "x": "On one side: I’m compounding. It converges. The loop is tight. Small inputs become durable progress. On the other side: everything diverges. I’m “busy,” but nothing converges."
+          "x": "On one side:"
         },
         {
           "t": "p",
-          "x": "And that boundary isn’t a clean line."
+          "x": "I am compounding. The loop is tight. Small inputs become durable progress."
         },
         {
           "t": "p",
-          "x": "It’s sensitive. Weirdly sensitive."
+          "x": "On the other side:"
         },
         {
           "t": "p",
-          "x": "If I zoom in, the difference between a good week and a trash week can be:"
+          "x": "everything diverges. I am \"busy.\" Nothing converges."
         },
         {
           "t": "p",
-          "x": "• one meeting at the wrong time,"
+          "x": "The boundary is not clean."
         },
         {
           "t": "p",
-          "x": "• one small breach of sleep,"
+          "x": "It is sensitive."
         },
         {
           "t": "p",
-          "x": "• one subtle context switch I didn’t respect,"
+          "x": "Weirdly sensitive."
         },
         {
           "t": "p",
-          "x": "• one “I’ll just do this quickly” that turns into a lost evening."
+          "x": "If I zoom in, a good week and a trash week can differ by:"
         },
         {
           "t": "p",
-          "x": "From far away, it looks like discipline. Up close, it looks like dynamical systems."
+          "x": "• one meeting at the wrong time."
         },
         {
           "t": "p",
-          "x": "So I want to treat my own productivity like trainability: not moral, not identity—just stability conditions."
+          "x": "• one small breach of sleep."
         },
         {
           "t": "p",
-          "x": "Not “why am I like this?” But “what hyperparameters keep me in the convergent basin?”"
+          "x": "• one context switch I did not respect."
         },
         {
           "t": "p",
-          "x": "Writing is part of that. A piece is not just output; it’s *a stabilizer* if it makes my next actions less chaotic."
+          "x": "• one \"I'll just do this quickly\" that eats the evening."
+        },
+        {
+          "t": "p",
+          "x": "From far away, it looks like discipline."
+        },
+        {
+          "t": "p",
+          "x": "Up close, it looks like dynamics."
+        },
+        {
+          "t": "p",
+          "x": "So I want to treat my own productivity less like morality and more like trainability."
+        },
+        {
+          "t": "p",
+          "x": "Not:"
+        },
+        {
+          "t": "p",
+          "x": "why am I like this?"
+        },
+        {
+          "t": "p",
+          "x": "But:"
+        },
+        {
+          "t": "p",
+          "x": "what conditions keep me in the convergent basin?"
+        },
+        {
+          "t": "p",
+          "x": "Writing is part of that basin."
+        },
+        {
+          "t": "p",
+          "x": "A piece is not just output."
+        },
+        {
+          "t": "p",
+          "x": "It is a stabilizer if it makes my next loop less chaotic."
         },
         {
           "t": "h",
@@ -1108,11 +1408,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "I like the idea that information isn’t only stored. It flows."
+          "x": "Information does not only sit."
         },
         {
           "t": "p",
-          "x": "In my life, “flow” is literal:"
+          "x": "It flows."
+        },
+        {
+          "t": "p",
+          "x": "In my life, the flow is literal:"
         },
         {
           "t": "diagram",
@@ -1161,39 +1465,59 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Most of the time, I lose information not because it wasn’t there, but because it leaked at a transition:"
+          "x": "Most of the loss happens between states."
         },
         {
           "t": "p",
-          "x": "• I read something but didn’t integrate it."
+          "x": "I read something but do not integrate it. I have an insight but do not attach it to a decision. I make a decision but do not make it executable. I execute but do not close the loop with feedback."
         },
         {
           "t": "p",
-          "x": "• I had an insight but didn’t attach it to a decision."
+          "x": "The leak is not memory."
         },
         {
           "t": "p",
-          "x": "• I made a decision but didn’t make it executable."
+          "x": "The leak is transition."
         },
         {
           "t": "p",
-          "x": "• I executed but didn’t close the loop with feedback."
+          "x": "So the unit I care about is not better storage."
         },
         {
           "t": "p",
-          "x": "So the real unit of improvement isn’t “better memory.” It’s **lower-leakage loops**."
+          "x": "It is lower-leakage loops."
         },
         {
           "t": "p",
-          "x": "This is why “writing from inside my head” matters. Because writing is the part of the loop where I convert diffuse impressions into a structured object I can re-enter later."
+          "x": "This is why writing from inside my head matters."
         },
         {
           "t": "p",
-          "x": "If the writing is for others, I optimize for legibility. If the writing is for me, I optimize for *re-entry*."
+          "x": "Writing is the conversion point."
         },
         {
           "t": "p",
-          "x": "The point is: future-me can jump back in and regain the geometry quickly."
+          "x": "Diffuse impressions become a structured object I can re-enter later."
+        },
+        {
+          "t": "p",
+          "x": "If the writing is for others, I optimize for legibility."
+        },
+        {
+          "t": "p",
+          "x": "If the writing is for me, I optimize for re-entry."
+        },
+        {
+          "t": "p",
+          "x": "Future-me should be able to jump back in and regain the geometry quickly."
+        },
+        {
+          "t": "p",
+          "x": "If he cannot, the piece did not stabilize anything."
+        },
+        {
+          "t": "p",
+          "x": "It only performed."
         },
         {
           "t": "h",
@@ -1202,15 +1526,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "I need a way to evaluate whether this piece is “good,” without referencing audience."
+          "x": "I need a way to tell whether a piece was good without asking an audience."
         },
         {
           "t": "p",
-          "x": "So here’s the metric:"
+          "x": "So here is the private metric."
         },
         {
           "t": "p",
-          "x": "After writing it, do I notice this?"
+          "x": "After writing it, do I notice:"
         },
         {
           "t": "ladder",
@@ -1233,14 +1557,23 @@ export const generatedPool: Pool = {
             },
             {
               "marker": "04",
-              "term": "Compilation time",
-              "body": "I feel less startup cost when I re-enter the problem."
+              "term": "Re-entry",
+              "body": "I feel less startup cost when I return to the problem."
+            },
+            {
+              "marker": "05",
+              "term": "Contact",
+              "body": "the idea changes what I test, build, avoid, or notice next."
             }
           ]
         },
         {
           "t": "p",
-          "x": "If yes, the piece increased extractable structure. If no, it’s just text."
+          "x": "If yes, the piece increased extractable structure."
+        },
+        {
+          "t": "p",
+          "x": "If no, it is just text."
         },
         {
           "t": "p",
@@ -1248,19 +1581,39 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "If the AI produces clean paragraphs that don’t change my internal geometry, that’s not “me.” That’s a ghostwriter."
+          "x": "If the model gives me clean paragraphs that do not change my internal geometry, that is not me."
         },
         {
           "t": "p",
-          "x": "The role I want is different: co-authoring as instrumentation. The AI helps me scan the space, but the piece must be a faithful compression of *my loop*."
+          "x": "That is a ghostwriter."
         },
         {
           "t": "p",
-          "x": "Which means the draft has to contain my constraints, not just my references."
+          "x": "The role I want is different."
         },
         {
           "t": "p",
-          "x": "**New (minimal) add:** I’ve started treating “me + AI” as a coupling problem: how much human–AI exchange I allow, how much human feedback control I keep, and how much complexity I invite in. If exchange rises faster than my ability to monitor and reshape it, the loop does not get smarter. It gets **tighter and wrong**. My default target is still the same: fast scanning, slow believing."
+          "x": "Co-authoring as instrumentation."
+        },
+        {
+          "t": "p",
+          "x": "The model can scan the space. It can surface alternatives. It can stress the edge."
+        },
+        {
+          "t": "p",
+          "x": "But the piece has to compress my loop."
+        },
+        {
+          "t": "p",
+          "x": "My constraints. My failure modes. My re-entry cost. My next action."
+        },
+        {
+          "t": "p",
+          "x": "Not just my references."
+        },
+        {
+          "t": "p",
+          "x": "**New (minimal) add:** I have started treating [[Me + AI|me-plus-ai]] as a coupling problem: how much exchange I allow, how much feedback control I keep, and how much complexity I invite in. If exchange rises faster than my ability to monitor and reshape it, the loop does not get smarter. It gets tighter and wrong. My default target is still the same: fast scanning, slow believing."
         },
         {
           "t": "h",
@@ -1272,36 +1625,64 @@ export const generatedPool: Pool = {
           "x": "Information is not a number."
         },
         {
+          "t": "p",
+          "x": "It is not the whole world made portable."
+        },
+        {
+          "t": "p",
+          "x": "It is the part of the world my loop can extract without becoming more fragile."
+        },
+        {
           "t": "pull",
           "x": "Information is structural signal that (1) a bounded learner can extract, (2) often crystallizes into geometry, (3) survives chaotic training dynamics, and (4) behaves like flow through a loop."
         },
         {
           "t": "p",
-          "x": "It’s what my loop can extract under constraints—then keep stable—then reuse."
+          "x": "My job is not to know everything."
         },
         {
           "t": "p",
-          "x": "My job is to build geometry, reduce leakage, stay in the convergent basin, and not harden the map faster than my evidence can carry."
+          "x": "My job is to increase what is extractable without increasing fragility."
         },
         {
           "t": "p",
-          "x": "This is why I keep building systems. Not because I love tools. Because my mind is bounded, and I want to increase what’s extractable without increasing fragility through premature closure."
+          "x": "Build geometry. Reduce leakage. Stay in the convergent basin. Do not harden the map faster than evidence can carry."
         },
         {
           "t": "p",
-          "x": "Writing is one of my best tools for that. But only when it’s written from inside my head."
+          "x": "This is why I keep building systems."
         },
         {
           "t": "p",
-          "x": "Not what sounds right. What changes what I do next."
+          "x": "Not because I love tools."
         },
         {
           "t": "p",
-          "x": "**Update (2026-03-15):** Bennett (2026) formalizes a complementary constraint: under the Chord assumptions, a unified conscious moment has a physical size limit D ≤ κvθ, where D is the support diameter, v is the signal-propagation ceiling, θ is the integration window, and κ depends on exchange architecture. A mind can only get so big—not metaphorically, but because signals travel at finite speed. The same logic can fragment cloud-hosted models when limited concurrency blocks co-instantiation (even if links are fast), and it makes colony-scale single moments fail at fine, fast grounding scales. This is about consciousness criteria, but it sharpens my own boundedness lens. (Source: https://www.preprints.org/manuscript/202602.1708/v2)"
+          "x": "Because my mind is bounded."
         },
         {
           "t": "p",
-          "x": "**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] gives a sharper name to what boundedness forces: not just limited capacity, but mandatory equivalence-making. Every usable map already contains decisions about which differences can be treated as the same. That is the primitive act underneath compression — and the place where bounded cognition most quietly makes its bets."
+          "x": "Writing is one of my best tools for that."
+        },
+        {
+          "t": "p",
+          "x": "But only when it is written from inside my head."
+        },
+        {
+          "t": "p",
+          "x": "Not what sounds right."
+        },
+        {
+          "t": "p",
+          "x": "What changes what I do next."
+        },
+        {
+          "t": "p",
+          "x": "**Update (2026-03-15):** Bennett (2026) formalizes a complementary constraint: under the Chord assumptions, a unified conscious moment has a physical size limit D <= kvtheta, where D is the support diameter, v is the signal-propagation ceiling, theta is the integration window, and k depends on exchange architecture. A mind can only get so big because signals travel at finite speed. This is about consciousness criteria, but it sharpens my own boundedness lens: boundedness is not a mood. It is a physical constraint on integration. (Source: https://www.preprints.org/manuscript/202602.1708/v2)"
+        },
+        {
+          "t": "p",
+          "x": "**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] gives a sharper name to what boundedness forces: not just limited capacity, but mandatory equivalence-making. Every usable map already contains decisions about which differences can be treated as the same. That is the primitive act underneath compression, and the place where bounded cognition most quietly makes its bets."
         }
       ],
       "struct": {
@@ -1382,7 +1763,19 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Co-ownership starts when a tool stops behaving like a detached executor and starts carrying part of the loop."
+          "x": "Co-ownership started when the tool stopped feeling like a detached executor."
+        },
+        {
+          "t": "p",
+          "x": "Not because it became me."
+        },
+        {
+          "t": "p",
+          "x": "Not because it had taste."
+        },
+        {
+          "t": "p",
+          "x": "Because it started carrying part of the loop."
         },
         {
           "t": "p",
@@ -1399,7 +1792,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "That was the shift in the old te-blog work. The interesting part was not that an assistant helped ship code. The interesting part was that the repo began to remember how it wanted to be treated."
+          "x": "That was the shift in the old te-blog work."
+        },
+        {
+          "t": "p",
+          "x": "The interesting part was not that an assistant helped ship code."
+        },
+        {
+          "t": "p",
+          "x": "The interesting part was that the repo began to remember how it wanted to be treated."
         },
         {
           "t": "h",
@@ -1408,7 +1809,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "The first useful layer was procedural:"
+          "x": "The first useful layer was procedural."
+        },
+        {
+          "t": "p",
+          "x": "Small things."
+        },
+        {
+          "t": "p",
+          "x": "Almost boring things."
         },
         {
           "t": "ladder",
@@ -1427,7 +1836,7 @@ export const generatedPool: Pool = {
             {
               "marker": "03",
               "term": "Closure",
-              "body": "stop hooks and checks that make the boring important things hard to skip."
+              "body": "checks that make important boring things hard to skip."
             },
             {
               "marker": "04",
@@ -1438,7 +1847,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "The effect is larger than the scripts. A hook is a tiny piece of institutional memory. Enough hooks and the codebase starts pushing back when the loop gets sloppy."
+          "x": "A hook is a tiny piece of institutional memory."
+        },
+        {
+          "t": "p",
+          "x": "Enough hooks and the codebase starts pushing back when the loop gets sloppy."
         },
         {
           "t": "diagram",
@@ -1486,6 +1899,14 @@ export const generatedPool: Pool = {
           ]
         },
         {
+          "t": "p",
+          "x": "That is when tooling stops being decoration."
+        },
+        {
+          "t": "p",
+          "x": "It becomes a nervous system."
+        },
+        {
           "t": "h",
           "x": "Culture",
           "level": 2
@@ -1496,7 +1917,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Direction matters more than speed. Repeatability matters more than cleverness. Trust is not a vibe; it is the accumulated evidence that the system catches you when attention drops."
+          "x": "Direction matters more than speed. Repeatability matters more than cleverness. Trust is not a vibe."
+        },
+        {
+          "t": "p",
+          "x": "Trust is accumulated evidence that the system catches me when attention drops."
         },
         {
           "t": "contrast",
@@ -1522,6 +1947,14 @@ export const generatedPool: Pool = {
           ]
         },
         {
+          "t": "p",
+          "x": "The loop partner does not need to be more human."
+        },
+        {
+          "t": "p",
+          "x": "It needs to make the work more answerable."
+        },
+        {
           "t": "h",
           "x": "Next loop",
           "level": 2
@@ -1532,7 +1965,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Once the collaborator is inside the loop, velocity is no longer the only metric. The question becomes regulatory: did the partnership increase exchange without weakening feedback control?"
+          "x": "Once the collaborator is inside the loop, velocity is no longer the metric."
+        },
+        {
+          "t": "p",
+          "x": "The question becomes regulatory:"
+        },
+        {
+          "t": "p",
+          "x": "did the partnership increase exchange without weakening feedback control?"
         },
         {
           "t": "p",
@@ -1540,7 +1981,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "The human keeps taste, values, and final judgment. The system carries memory, checks, and repeatability. The collaboration works when both sides make the other more capable without pretending to be the same thing."
+          "x": "The human keeps taste, values, and final judgment. The system carries memory, checks, and repeatability."
+        },
+        {
+          "t": "p",
+          "x": "The collaboration works when both sides make the other more capable without pretending to be the same thing."
         }
       ],
       "struct": {
@@ -1611,7 +2056,35 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "[[Bounded Me|bounded-me]] defined the goal: memory as geometry, not storage. [[Me + AI|me-plus-ai]] defined the guardrails: how to keep ownership of that geometry while coupling with a model. This piece defines the test: what geometry is, how to detect it, and how to build it without confusing fluency for understanding."
+          "x": "I kept mistaking arrival for ownership."
+        },
+        {
+          "t": "p",
+          "x": "The answer would arrive. The paragraph would sound coherent. The model would give me a structure-shaped object."
+        },
+        {
+          "t": "p",
+          "x": "And I would feel the relief of understanding before I had paid for it."
+        },
+        {
+          "t": "p",
+          "x": "[[Bounded Me|bounded-me]] named the private constraint: memory as geometry, not storage. [[Me + AI|me-plus-ai]] named the control problem: exchange can rise while feedback control falls."
+        },
+        {
+          "t": "p",
+          "x": "This piece is the diagnostic between them."
+        },
+        {
+          "t": "p",
+          "x": "How do I know whether I actually have the shape?"
+        },
+        {
+          "t": "p",
+          "x": "Not whether I can retrieve it."
+        },
+        {
+          "t": "p",
+          "x": "Whether I can stand inside it."
         },
         {
           "t": "h",
@@ -1620,11 +2093,39 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "If I can rebuild the structure of an idea with the source closed, I have geometry. If I can only recall what I read (or re-summon it with a model), I have retrieval."
+          "x": "If I can rebuild the structure with the source closed, I have geometry."
         },
         {
           "t": "p",
-          "x": "This isn't a preference. It's an operational standard: a way to stop mistaking coherence for internal structure. But geometry is not finished truth. A map can be owned and still be overcommitted. The better target is the weakest map that still navigates."
+          "x": "If I can only recall the answer, or summon it again through a model, I have retrieval."
+        },
+        {
+          "t": "p",
+          "x": "This is not a preference."
+        },
+        {
+          "t": "p",
+          "x": "It is an operating standard."
+        },
+        {
+          "t": "p",
+          "x": "Retrieval gives me access."
+        },
+        {
+          "t": "p",
+          "x": "Geometry gives me orientation."
+        },
+        {
+          "t": "p",
+          "x": "But geometry is not final truth."
+        },
+        {
+          "t": "p",
+          "x": "A map can be owned and still overcommitted."
+        },
+        {
+          "t": "p",
+          "x": "The better target is the weakest map that still navigates."
         },
         {
           "t": "h",
@@ -1633,23 +2134,43 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "There's a measured failure mode that matters more now than it did pre-LLM: I feel like I understand something until I try to explain its mechanism."
+          "x": "The trap is simple."
         },
         {
           "t": "p",
-          "x": "[Rozenblit & Keil 1998] named this the illusion of explanatory depth: people systematically overrate how well they understand complex systems, and confidence collapses when they attempt a detailed explanation."
+          "x": "I feel like I understand something until I have to explain the mechanism."
         },
         {
           "t": "p",
-          "x": "A second effect makes the trap stickier: processing fluency. When something is easy to read or easy to process, we treat it as more familiar, more true, or more \"known\" than it is."
+          "x": "Then the floor drops."
         },
         {
           "t": "p",
-          "x": "LLMs amplify both: they generate mechanism-shaped language with high fluency on demand. The danger isn't only error. The deeper danger is accurate prose that I don't own."
+          "x": "[Rozenblit & Keil 1998] gave that failure a name: the illusion of explanatory depth. People overrate their understanding of complex systems until they try to produce the explanation in detail."
         },
         {
           "t": "p",
-          "x": "So I need a stricter definition:"
+          "x": "LLMs make the trap softer."
+        },
+        {
+          "t": "p",
+          "x": "The explanation is always near. The mechanism-shaped paragraph is always near. The feeling of \"known\" is always near."
+        },
+        {
+          "t": "p",
+          "x": "That is the danger."
+        },
+        {
+          "t": "p",
+          "x": "Not only wrong answers."
+        },
+        {
+          "t": "p",
+          "x": "Accurate prose I do not own."
+        },
+        {
+          "t": "p",
+          "x": "So I need a harsher test:"
         },
         {
           "t": "p",
@@ -1693,7 +2214,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "A fact by itself is a point: isolated, repeatable, inert."
+          "x": "A fact by itself is a point."
+        },
+        {
+          "t": "p",
+          "x": "Isolated. Repeatable. Inert."
         },
         {
           "t": "p",
@@ -1705,7 +2230,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Two points are still not a structure. Proximity isn't relationship."
+          "x": "Two points are still not a structure."
+        },
+        {
+          "t": "p",
+          "x": "Proximity is not relationship."
         },
         {
           "t": "p",
@@ -1717,11 +2246,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Edges unlock navigational powers:"
+          "x": "Edges give movement."
         },
         {
           "t": "p",
-          "x": "• **Predict:** if hit rate drops again, latency will follow unless something absorbs load."
+          "x": "• **Predict:** if hit rate drops again, latency should follow unless something absorbs load."
         },
         {
           "t": "p",
@@ -1729,11 +2258,23 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "• **Teach:** I can walk someone through dependency rather than quote a timeline."
+          "x": "• **Teach:** I can walk someone through dependency instead of quoting a timeline."
         },
         {
           "t": "p",
-          "x": "This aligns with what classic work on expertise shows: experts represent problems by underlying structure, not surface features."
+          "x": "That is the shift I care about."
+        },
+        {
+          "t": "p",
+          "x": "From list to relation."
+        },
+        {
+          "t": "p",
+          "x": "From relation to shape."
+        },
+        {
+          "t": "p",
+          "x": "From shape to motion."
         },
         {
           "t": "h",
@@ -1742,31 +2283,105 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Bounded Me established the basics of the geometry metaphor: nodes, edges, neighborhoods, distance. What it didn't name explicitly is the thing that distinguishes having a map from living in the territory:"
+          "x": "Nodes and edges are not enough."
         },
         {
           "t": "p",
-          "x": "**Curvature is structured wrongness.** It's the pattern of failure that tells me my map's global shape is wrong, even if local edges look fine."
+          "x": "I can have local edges and still be globally wrong."
         },
         {
           "t": "p",
-          "x": "Here's the human–AI example that made it click:"
+          "x": "That is curvature."
         },
         {
           "t": "p",
-          "x": "*Flat intuition:* more clarity and better summaries should improve decisions."
+          "x": "**Curvature is structured wrongness.**"
         },
         {
           "t": "p",
-          "x": "*What happens in practice:* better summaries can increase confidence without increasing ownership. The loop shifts from \"think → consult\" to \"consult → assent,\" and the illusion of explanatory depth stays intact because the explanation always exists on demand. Fluency effects make the risk worse: ease-of-processing becomes a false signal of knowing."
+          "x": "It is the pattern of failure that tells me my map's global shape is wrong even when the local edges look plausible."
         },
         {
           "t": "p",
-          "x": "The bend is: **in a coupled system, clarity can increase drift if it displaces reconstruction.**"
+          "x": "The human-AI example made it click:"
         },
         {
           "t": "p",
-          "x": "*Honesty clause:* I'm using \"curvature\" as a cognitive concept, not claiming an equivalence between mathematical objects and mental ones. The point is navigational power, not category purity."
+          "x": "*Flat intuition:* better summaries should improve decisions."
+        },
+        {
+          "t": "p",
+          "x": "*Observed bend:* better summaries can increase confidence without increasing ownership."
+        },
+        {
+          "t": "p",
+          "x": "The loop shifts:"
+        },
+        {
+          "t": "diagram",
+          "mode": "flow",
+          "cyclic": false,
+          "nodes": [
+            "think",
+            "consult"
+          ],
+          "edges": [
+            {
+              "from": "think",
+              "to": "consult",
+              "rel": "→",
+              "force": "necessary"
+            }
+          ]
+        },
+        {
+          "t": "p",
+          "x": "into:"
+        },
+        {
+          "t": "diagram",
+          "mode": "flow",
+          "cyclic": false,
+          "nodes": [
+            "consult",
+            "assent"
+          ],
+          "edges": [
+            {
+              "from": "consult",
+              "to": "assent",
+              "rel": "→",
+              "force": "necessary"
+            }
+          ]
+        },
+        {
+          "t": "p",
+          "x": "The explanation is always available, so the illusion of explanatory depth stays intact. Ease-of-processing starts pretending to be knowing."
+        },
+        {
+          "t": "p",
+          "x": "The bend is:"
+        },
+        {
+          "t": "p",
+          "x": "**in a coupled system, clarity can increase drift if it displaces reconstruction.**"
+        },
+        {
+          "t": "p",
+          "x": "Honesty clause:"
+        },
+        {
+          "t": "p",
+          "x": "I am using \"curvature\" as a cognitive operator, not claiming mental maps are literally mathematical manifolds."
+        },
+        {
+          "t": "p",
+          "x": "The point is navigational power."
+        },
+        {
+          "t": "p",
+          "x": "Not category purity."
         },
         {
           "t": "h",
@@ -1775,23 +2390,31 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Retrieval feels like reaching:"
+          "x": "Retrieval feels like reaching."
         },
         {
           "t": "p",
-          "x": "• \"I read that…\""
+          "x": "• \"I read that...\""
         },
         {
           "t": "p",
-          "x": "• \"The model said…\""
+          "x": "• \"The model said...\""
         },
         {
           "t": "p",
-          "x": "• \"I remember the answer is…\""
+          "x": "• \"I remember the answer is...\""
         },
         {
           "t": "p",
-          "x": "An answer arrives like a delivered object. I can inspect it, but I'm inspecting something I received."
+          "x": "An answer arrives like a delivered object."
+        },
+        {
+          "t": "p",
+          "x": "I can inspect it."
+        },
+        {
+          "t": "p",
+          "x": "But I am inspecting something I received."
         },
         {
           "t": "contrast",
@@ -1810,23 +2433,23 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Geometry feels like standing somewhere:"
+          "x": "Geometry feels like standing somewhere."
         },
         {
           "t": "p",
-          "x": "• \"That can't be right because…\""
+          "x": "• \"That cannot be right because...\""
         },
         {
           "t": "p",
-          "x": "• \"This connects to…\""
+          "x": "• \"This connects to...\""
         },
         {
           "t": "p",
-          "x": "• \"The constraint here is…\""
+          "x": "• \"The constraint here is...\""
         },
         {
           "t": "p",
-          "x": "That \"standing somewhere\" sensation has signatures:"
+          "x": "It has signatures."
         },
         {
           "t": "ladder",
@@ -1851,7 +2474,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "The \"map\" metaphor has a real intellectual lineage — Tolman's \"cognitive maps\" is a canonical early anchor."
+          "x": "Tolman's \"cognitive maps\" is the old anchor here."
+        },
+        {
+          "t": "p",
+          "x": "The private version is simpler:"
+        },
+        {
+          "t": "p",
+          "x": "can I move without asking the source to carry me?"
         },
         {
           "t": "h",
@@ -1860,7 +2491,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "These are the checks I run when I suspect I'm holding borrowed coherence."
+          "x": "These are the checks I run when I suspect I am holding borrowed coherence."
         },
         {
           "t": "contrast",
@@ -1906,23 +2537,51 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Why this works: it forces reconstruction, not recognition. Retrieval practice strengthens learning because it requires rebuilding knowledge rather than re-exposure."
+          "x": "The point is reconstruction."
         },
         {
           "t": "p",
-          "x": "**Curvature test** (as a special case of Break): When surprise repeats in a consistent pattern, it's not just a broken edge — it's evidence that the global shape of my map is wrong. The curvature diagnostic checks not only whether surprise localizes, but whether the *pattern* of surprise reveals a missing coupling or constraint."
+          "x": "Not recognition."
         },
         {
           "t": "p",
-          "x": "Operationally: make two independent predictions from different edges. Stress the system."
+          "x": "Recognition is cheap now."
         },
         {
           "t": "p",
-          "x": "• If they repeatedly **converge** when you expected independence, you found a hidden coupling (positive curvature)."
+          "x": "Reconstruction still costs something."
         },
         {
           "t": "p",
-          "x": "• If they repeatedly **diverge** when you expected consistency, you found a missing dimension/constraint (negative curvature)."
+          "x": "**Curvature test** (as a special case of Break):"
+        },
+        {
+          "t": "p",
+          "x": "When surprise repeats in a consistent pattern, it is not just a broken edge."
+        },
+        {
+          "t": "p",
+          "x": "It is evidence that the global shape of the map is wrong."
+        },
+        {
+          "t": "p",
+          "x": "Operationally:"
+        },
+        {
+          "t": "p",
+          "x": "make two independent predictions from different edges."
+        },
+        {
+          "t": "p",
+          "x": "Stress the system."
+        },
+        {
+          "t": "p",
+          "x": "• If they repeatedly **converge** when I expected independence, I found a hidden coupling."
+        },
+        {
+          "t": "p",
+          "x": "• If they repeatedly **diverge** when I expected consistency, I found a missing dimension or constraint."
         },
         {
           "t": "h",
@@ -1931,11 +2590,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "[[Me + AI|me-plus-ai]] gave me R3+2+1 as a verification gate. This piece gives me six tests."
+          "x": "[[Me + AI|me-plus-ai]] gave me R3+2+1 as a verification gate."
         },
         {
           "t": "p",
-          "x": "They are complementary layers:"
+          "x": "This piece gives me the geometry tests."
+        },
+        {
+          "t": "p",
+          "x": "They are two layers of the same system."
         },
         {
           "t": "p",
@@ -1951,19 +2614,82 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "• **R3** (compress to core structure) forces edges to exist."
+          "x": "• **R3** forces a core edge to exist."
         },
         {
           "t": "p",
-          "x": "• **+2** (verify with counterexamples / alternative framings) stresses invariance and rephrase robustness."
+          "x": "• **+2** stresses assumptions and alternate framings."
         },
         {
           "t": "p",
-          "x": "• **+1** (rewrite from memory later) is literally the rebuild test."
+          "x": "• **+1** names the open uncertainty."
         },
         {
           "t": "p",
-          "x": "So: R3+2+1 is the process that tends to produce passing scores on the table. The table is the result check that tells me whether the process worked."
+          "x": "• **Rewrite from memory** is the rebuild test."
+        },
+        {
+          "t": "p",
+          "x": "So the process is not:"
+        },
+        {
+          "t": "diagram",
+          "mode": "flow",
+          "cyclic": false,
+          "nodes": [
+            "ask",
+            "receive",
+            "polish."
+          ],
+          "edges": [
+            {
+              "from": "ask",
+              "to": "receive",
+              "rel": "→",
+              "force": "necessary"
+            },
+            {
+              "from": "receive",
+              "to": "polish.",
+              "rel": "→",
+              "force": "likely"
+            }
+          ]
+        },
+        {
+          "t": "p",
+          "x": "It is:"
+        },
+        {
+          "t": "diagram",
+          "mode": "flow",
+          "cyclic": false,
+          "nodes": [
+            "scout",
+            "close",
+            "rebuild",
+            "test."
+          ],
+          "edges": [
+            {
+              "from": "scout",
+              "to": "close",
+              "rel": "→",
+              "force": "necessary"
+            },
+            {
+              "from": "close",
+              "to": "rebuild",
+              "rel": "→",
+              "force": "likely"
+            },
+            {
+              "from": "rebuild",
+              "to": "test.",
+              "rel": "→",
+              "force": "working-bridge"
+            }
+          ]
         },
         {
           "t": "h",
@@ -1976,7 +2702,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Write the core nodes. Force 5–10 edges. For each edge, write the type:"
+          "x": "Write the core nodes."
+        },
+        {
+          "t": "p",
+          "x": "Force 5-10 edges."
+        },
+        {
+          "t": "p",
+          "x": "For each edge, name the type:"
         },
         {
           "t": "p",
@@ -1996,11 +2730,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "If I can't type an edge, it's probably hand-waving. If I can't grade its force, I'm probably overcommitting."
+          "x": "If I cannot type the edge, it is probably hand-waving."
         },
         {
           "t": "p",
-          "x": "Then mark the force of the edge:"
+          "x": "If I cannot grade its force, I am probably overcommitting."
+        },
+        {
+          "t": "p",
+          "x": "Then mark the force:"
         },
         {
           "t": "p",
@@ -2020,15 +2758,23 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "**Step 2 — Collapse the illusion (mechanism drill)**"
+          "x": "**Step 2 — Collapse the illusion**"
         },
         {
           "t": "p",
-          "x": "Pick one edge and explain the mechanism until confidence breaks. That break usually marks where a sub-edge is missing."
+          "x": "Pick one edge."
         },
         {
           "t": "p",
-          "x": "**Step 3 — Reconstruction loop (anti-fluency engine)**"
+          "x": "Explain the mechanism until confidence breaks."
+        },
+        {
+          "t": "p",
+          "x": "The break usually marks a missing sub-edge."
+        },
+        {
+          "t": "p",
+          "x": "**Step 3 — Reconstruction loop**"
         },
         {
           "t": "ladder",
@@ -2037,7 +2783,7 @@ export const generatedPool: Pool = {
             {
               "marker": "01",
               "term": "Scout",
-              "body": "(model allowed): ask for alternative framings, counterexamples, failure modes."
+              "body": "model allowed; ask for alternate framings, counterexamples, failure modes."
             },
             {
               "marker": "02",
@@ -2058,27 +2804,31 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "**Step 4 — Choose the right scaffold for the stage**"
+          "x": "**Step 4 — Choose the scaffold for the stage**"
         },
         {
           "t": "p",
-          "x": "For novices, mapping can become search-heavy. Retrieval practice can outperform concept mapping: in the cited experiment, it produced stronger meaningful learning."
+          "x": "Early:"
         },
         {
           "t": "p",
-          "x": "Stage rule:"
+          "x": "retrieval practice + reconstruction."
         },
         {
           "t": "p",
-          "x": "• **Early:** retrieval practice + reconstruction (solidify nodes/edges)."
+          "x": "Mid:"
         },
         {
           "t": "p",
-          "x": "• **Mid:** mapping to expose missing edges / neighborhoods."
+          "x": "mapping to expose missing edges and neighborhoods."
         },
         {
           "t": "p",
-          "x": "• **Late:** diagrams as leverage because representation changes what's computationally cheap."
+          "x": "Late:"
+        },
+        {
+          "t": "p",
+          "x": "diagrams as leverage, because representation changes what becomes cheap to compute."
         },
         {
           "t": "h",
@@ -2087,11 +2837,47 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Models are coherence engines. Humans are fluency-biased."
+          "x": "Models are coherence engines."
         },
         {
           "t": "p",
-          "x": "So the default mode (\"prompt → accept → move on\") reliably produces retrieval that feels like geometry — precisely because it lands on our strongest cognitive illusions."
+          "x": "Humans are fluency-biased."
+        },
+        {
+          "t": "p",
+          "x": "So the default loop:"
+        },
+        {
+          "t": "diagram",
+          "mode": "flow",
+          "cyclic": false,
+          "nodes": [
+            "prompt",
+            "accept",
+            "move on"
+          ],
+          "edges": [
+            {
+              "from": "prompt",
+              "to": "accept",
+              "rel": "→",
+              "force": "necessary"
+            },
+            {
+              "from": "accept",
+              "to": "move on",
+              "rel": "→",
+              "force": "likely"
+            }
+          ]
+        },
+        {
+          "t": "p",
+          "x": "produces retrieval that feels like geometry."
+        },
+        {
+          "t": "p",
+          "x": "Precisely because it lands on my strongest cognitive illusion."
         },
         {
           "t": "p",
@@ -2103,11 +2889,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "(The testing effect is the mechanism, not the slogan.) Use weakening to keep the map honest."
+          "x": "The testing effect is the mechanism."
         },
         {
           "t": "p",
-          "x": "**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] sharpens the \"source closed\" test: understanding is not just reconstruction, but reconstruction after faithful collapse of variation. The tests in Section V are not only diagnostics of grasp — they are stress tests on declared equivalences. A map that passes Rephrase and Rebuild may still fail if the equivalences it relies on were premature."
+          "x": "Use weakening to keep the map honest."
+        },
+        {
+          "t": "p",
+          "x": "**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] sharpens the source-closed test: understanding is not just reconstruction, but reconstruction after faithful collapse of variation. The tests in Section V are stress tests on declared equivalences. A map that passes Rephrase and Rebuild can still fail if the equivalences it relies on were premature."
         }
       ],
       "struct": {
@@ -2198,7 +2988,23 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "The useful reading is not anti-intelligence. It is anti-idolatry."
+          "x": "The useful reading is not anti-intelligence."
+        },
+        {
+          "t": "p",
+          "x": "It is anti-idolatry."
+        },
+        {
+          "t": "p",
+          "x": "Intelligence is leverage."
+        },
+        {
+          "t": "p",
+          "x": "Leverage is not direction."
+        },
+        {
+          "t": "p",
+          "x": "Without taste, care, restraint, and contact with reality, leverage only makes the wrong motion faster."
         },
         {
           "t": "thesis",
@@ -2207,7 +3013,19 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "This is why the note belongs near [[Tools Need Edges|tools-need-edges]]. Edges are one way to keep intelligence from becoming fog."
+          "x": "This is why the note belongs near [[Tools Need Edges|tools-need-edges]]."
+        },
+        {
+          "t": "p",
+          "x": "Edges are one way to keep intelligence from becoming fog."
+        },
+        {
+          "t": "p",
+          "x": "The edge does not make the mind smaller."
+        },
+        {
+          "t": "p",
+          "x": "It gives leverage somewhere to land."
         }
       ],
       "sourcePath": "/content/writing/ilya.md"
@@ -2240,12 +3058,24 @@ export const generatedPool: Pool = {
       "body": [
         {
           "t": "pull",
-          "x": "“You need an awareness of the ecology you are in. If you think of different firms and products as being different species, then you have to be very aware of how that entire network of different companies operates, even if they are quite peripheral to you.” — W. Brian Arthur, *Increasing Returns and the New World of Business* (Harvard Business Review, 1996)"
+          "x": "\"You need an awareness of the ecology you are in. If you think of different firms and products as being different species, then you have to be very aware of how that entire network of different companies operates, even if they are quite peripheral to you.\" — W. Brian Arthur, *Increasing Returns and the New World of Business* (Harvard Business Review, 1996)"
         },
         {
           "t": "h",
           "x": "Why it matters",
           "level": 2
+        },
+        {
+          "t": "p",
+          "x": "Strategy gets weaker when I look only at the object."
+        },
+        {
+          "t": "p",
+          "x": "The product. The feature. The company. The move."
+        },
+        {
+          "t": "p",
+          "x": "Arthur's useful pressure is ecological: a thing wins or fails inside a network of dependencies, defaults, complements, rivals, and weak ties."
         },
         {
           "t": "thesis",
@@ -2300,11 +3130,19 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "This matters for [[Tools Need Edges|tools-need-edges]] because tools are not neutral objects. Their edges teach behavior inside an ecology."
+          "x": "This matters for [[Tools Need Edges|tools-need-edges]] because tools are not neutral objects."
         },
         {
           "t": "p",
-          "x": "It matters for [[Allowed Ignorance|allowed-ignorance]] because no map can track the whole environment. The useful cut is the one that keeps the forces that can still reshape you."
+          "x": "Their edges teach behavior inside an ecology."
+        },
+        {
+          "t": "p",
+          "x": "It matters for [[Allowed Ignorance|allowed-ignorance]] because no map can track the whole environment."
+        },
+        {
+          "t": "p",
+          "x": "The useful cut is the one that keeps the forces that can still reshape you."
         }
       ],
       "sourcePath": "/content/writing/increasing-returns.md"
@@ -2334,6 +3172,10 @@ export const generatedPool: Pool = {
         {
           "t": "p",
           "x": "I am not \"using AI.\""
+        },
+        {
+          "t": "p",
+          "x": "I am regulating a coupled feedback system:"
         },
         {
           "t": "diagram",
@@ -2367,28 +3209,52 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "I am regulating a coupled feedback system:"
+          "x": "The upside is velocity."
         },
         {
           "t": "p",
-          "x": "The upside is velocity: faster search, faster drafts, faster iteration."
+          "x": "Faster search. Faster drafts. Faster iteration."
         },
         {
           "t": "p",
-          "x": "The risk is not \"wrong answers.\" The risk is a dysregulated integrated hybrid: the loop speeds up while my human feedback control weakens. I get fluent motion with no stable direction."
+          "x": "The danger is not only wrong answers."
         },
         {
           "t": "p",
-          "x": "So this document is a control spec."
+          "x": "The danger is fluent motion with no stable direction."
         },
         {
           "t": "p",
-          "x": "Goal: **maximize information exchange without surrendering feedback control or hardening belief faster than I can verify it.**"
+          "x": "The loop speeds up. My feedback control weakens. The map hardens before I can verify it."
+        },
+        {
+          "t": "p",
+          "x": "That is how the system gets tighter and wrong."
+        },
+        {
+          "t": "p",
+          "x": "So this is not a manifesto."
+        },
+        {
+          "t": "p",
+          "x": "It is a control spec."
+        },
+        {
+          "t": "p",
+          "x": "Goal:"
+        },
+        {
+          "t": "p",
+          "x": "maximize information exchange without surrendering feedback control."
+        },
+        {
+          "t": "p",
+          "x": "And without hardening belief faster than I can rebuild it from inside my own head."
         },
         {
           "t": "thesis",
           "k": "control spec",
-          "x": "AI is useful when exchange rises with feedback control. If exchange rises faster than control, the loop does not get smarter; it gets tighter and wrong."
+          "x": "AI is useful when exchange rises with feedback control. If exchange rises faster than control, the loop does not get smarter. It gets tighter and wrong."
         },
         {
           "t": "h",
@@ -2397,7 +3263,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Coupling is not a setting. It's a **continuous variable** — a position on a gradient that shifts in real time, often mid-sentence."
+          "x": "Coupling is not a setting."
+        },
+        {
+          "t": "p",
+          "x": "It is a gradient."
+        },
+        {
+          "t": "p",
+          "x": "It shifts mid-sentence."
         },
         {
           "t": "ladder",
@@ -2406,67 +3280,72 @@ export const generatedPool: Pool = {
             {
               "marker": "L0",
               "term": "Tool",
-              "body": "Execution only. Formatting, refactoring, transformations. No influence on beliefs."
+              "body": "Execution only. Formatting. Refactoring. Transformation. No influence on belief."
             },
             {
               "marker": "L1",
               "term": "Scout",
-              "body": "Expands the search space: options, counterexamples, alternative framings. I keep the conclusion."
+              "body": "The model expands the search space. Options. Counterexamples. Alternative framings. Failure modes. I keep the conclusion."
             },
             {
               "marker": "L2",
               "term": "Co-author",
-              "body": "AI writes. I constrain, audit, and compress. The text is a draft artifact, not an authority.",
-              "tag": "default zone"
+              "body": "The model writes. I constrain, audit, cut, and compress. The output is a draft artifact. Not an authority."
             },
             {
               "marker": "L3",
               "term": "Integrated",
-              "body": "AI is inside my decision/identity loop. High bandwidth, high risk, and — when regulated — the highest signal. The levels are **landmarks on a continuum**, not rooms with doors. At any moment I'm somewhere between them, drifting. The question is never \"what level am I at?\" It's **\"which direction am I moving, and do I know why?\"** **Transition signals (real-time, not post-hoc):** - *L1 → L2:* I stop rephrasing the output and start building on it. - *L2 → L3:* I feel the model's framing replacing mine — the structure of the answer starts shaping the structure of my question. - *Any → drift:* I feel \"pulled to prompt again\" rather than think, or I can't restate my position without referencing the output. The goal is not to avoid L3. The goal is to **never arrive at L3 passively.** (See §5.) ---",
-              "tag": "requires earned entry"
+              "body": "The model is inside my decision loop. High bandwidth. High risk. Sometimes the highest signal. Only with earned entry. The levels are landmarks, not rooms. The real question is not: what level am I at? It is: which direction am I moving, and do I still know why? **Transition signals:** - **L1 -> L2:** I stop rephrasing the output and start building on it. - **L2 -> L3:** the model's framing starts shaping the structure of my question. - **Any -> drift:** I feel pulled to prompt again rather than think. - **Any -> drift:** I cannot restate my position without referencing the output. The goal is not to avoid L3. The goal is to never arrive there passively. ---"
             }
           ]
         },
         {
           "t": "h",
-          "x": "2) The verification gate: **R3+2+1** (mandatory)",
+          "x": "2) The verification gate: R3+2+1 (mandatory)",
           "level": 3
         },
         {
           "t": "p",
-          "x": "I am not allowed to increase coupling (or finalize a piece) unless I can pass this **from memory**, without looking:"
+          "x": "I am not allowed to increase coupling or finalize a piece unless I can pass this from memory:"
+        },
+        {
+          "t": "ladder",
+          "mode": "step",
+          "rungs": [
+            {
+              "marker": "01",
+              "term": "Thesis",
+              "body": "what am I claiming?"
+            },
+            {
+              "marker": "02",
+              "term": "Reason",
+              "body": "why do I believe it?"
+            },
+            {
+              "marker": "03",
+              "term": "Next action",
+              "body": "what decision does this change?"
+            }
+          ]
+        },
+        {
+          "t": "p",
+          "x": "Then:"
         },
         {
           "t": "ladder",
           "mode": "gate",
           "rungs": [
             {
-              "marker": "R1",
-              "term": "Thesis",
-              "body": "what am I claiming?",
-              "role": "core"
-            },
-            {
-              "marker": "R2",
-              "term": "Reason",
-              "body": "why do I believe it?",
-              "role": "core"
-            },
-            {
-              "marker": "R3",
-              "term": "Next Action",
-              "body": "what decision does this change?",
-              "role": "core"
-            },
-            {
               "marker": "+2",
-              "term": "Assumptions",
+              "term": "assumptions",
               "body": "what must be true for this to hold?",
               "role": "addon"
             },
             {
               "marker": "+1",
-              "term": "Uncertainty",
+              "term": "uncertainty",
               "body": "what am I least sure about?",
               "role": "addon"
             }
@@ -2474,19 +3353,39 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "If I fail, I must **decouple** (drop to L1 or L0) and rebuild the core shape myself."
+          "x": "If I fail, I decouple."
         },
         {
           "t": "p",
-          "x": "**The topology exception:**"
+          "x": "Drop to L1 or L0."
         },
         {
           "t": "p",
-          "x": "R3+2+1 is designed for propositional knowledge — claims that compress into sentences. But some of the best thinking is **relational**: a map of connections, tensions, adjacencies that hasn't crystallized into a thesis yet."
+          "x": "Rebuild the core shape myself."
         },
         {
           "t": "p",
-          "x": "For relational/topological work, the gate changes:"
+          "x": "No prompting my way out of confusion."
+        },
+        {
+          "t": "p",
+          "x": "**Topology exception**"
+        },
+        {
+          "t": "p",
+          "x": "Some thinking is not ready to become a thesis."
+        },
+        {
+          "t": "p",
+          "x": "It is relational:"
+        },
+        {
+          "t": "p",
+          "x": "nodes, edges, tensions, adjacencies, an open connection that has not crystallized yet."
+        },
+        {
+          "t": "p",
+          "x": "For that work, the gate changes:"
         },
         {
           "t": "ladder",
@@ -2495,27 +3394,27 @@ export const generatedPool: Pool = {
             {
               "marker": "01",
               "term": "Draw it",
-              "body": "Can I sketch the structure — nodes, edges, tensions — from memory?"
+              "body": "can I sketch the structure from memory?"
             },
             {
-              "marker": "01",
+              "marker": "02",
               "term": "Name the open edge",
-              "body": "What connection am I still testing?"
+              "body": "what connection am I still testing?"
             },
             {
-              "marker": "01",
+              "marker": "03",
               "term": "Falsify one link",
-              "body": "Which relationship would break the map if it turned out to be wrong?"
+              "body": "which relationship would break the map if wrong?"
             }
           ]
         },
         {
           "t": "p",
-          "x": "If I can do this, the understanding is mine even if it isn't yet a proposition. If I can't, I'm holding a shape I was handed, not one I built."
+          "x": "If I can do this, the understanding is mine even before it becomes a proposition."
         },
         {
           "t": "p",
-          "x": "The inside-my-head rule still applies. The geometry just doesn't have to be verbal yet."
+          "x": "If I cannot, I am holding a shape I was handed."
         },
         {
           "t": "h",
@@ -2524,7 +3423,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Drift is not a moral failure. It's a dynamical regime."
+          "x": "Drift is not a moral failure."
+        },
+        {
+          "t": "p",
+          "x": "It is a regime."
         },
         {
           "t": "p",
@@ -2532,43 +3435,87 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "• **Human–AI exchange** (how much bandwidth and persistence exists between me and the model)"
+          "x": "• **exchange:** how much bandwidth and persistence exists between me and the model."
         },
         {
           "t": "p",
-          "x": "• **Human feedback control** (my ability to monitor, interpret, constrain)"
+          "x": "• **feedback control:** how well I can monitor, interpret, constrain, and reject."
         },
         {
           "t": "p",
-          "x": "• **Latency** (how quickly outputs change my internal state)"
+          "x": "• **latency:** how quickly outputs alter my internal state."
         },
         {
           "t": "p",
-          "x": "• **Closure pressure** (how quickly candidate structure hardens into belief, workflow, or identity)"
+          "x": "• **closure pressure:** how quickly candidate structure hardens into belief, workflow, or identity."
         },
         {
           "t": "p",
-          "x": "High exchange + weak feedback control is the danger zone: the loop becomes **tightly wrong**. Low latency makes it faster. High closure pressure makes it sticky. Errors don't just survive. They harden."
+          "x": "High exchange with weak feedback control is the danger zone."
         },
         {
           "t": "p",
-          "x": "Models add a distinct epistemic risk here: they are closure engines. They push me away from Bennett's Razor (weakness maximization) by making the first coherent map feel final."
+          "x": "Low latency makes it faster."
         },
         {
           "t": "p",
-          "x": "This is the \"humanbot\" failure mode: the system is integrated but poorly regulated — so it reinforces its own local story."
+          "x": "Closure pressure makes it sticky."
         },
         {
           "t": "p",
-          "x": "So my design principle is simple:"
+          "x": "Errors do not just survive."
         },
         {
           "t": "p",
-          "x": "**Increase exchange only when feedback control is also increasing, and closure pressure stays visible.** If exchange rises faster than control, or closure hardens faster than I can verify, I must slow down."
+          "x": "They harden."
         },
         {
           "t": "p",
-          "x": "The regulated integrated hybrid is the target: tight integration with strong feedback control. But a good loop resists not only error amplification. It resists premature closure."
+          "x": "Models have a specific risk here:"
+        },
+        {
+          "t": "p",
+          "x": "they are closure engines."
+        },
+        {
+          "t": "p",
+          "x": "They make the first coherent map feel more finished than it is."
+        },
+        {
+          "t": "p",
+          "x": "So the design rule is simple:"
+        },
+        {
+          "t": "p",
+          "x": "increase exchange only when feedback control is increasing too."
+        },
+        {
+          "t": "p",
+          "x": "If exchange rises faster than control, slow down."
+        },
+        {
+          "t": "p",
+          "x": "If closure hardens faster than verification, slow down."
+        },
+        {
+          "t": "p",
+          "x": "If the conversation feels impressive but I cannot redraw the map, slow down."
+        },
+        {
+          "t": "p",
+          "x": "The regulated hybrid is the target."
+        },
+        {
+          "t": "p",
+          "x": "Tight coupling."
+        },
+        {
+          "t": "p",
+          "x": "Strong feedback."
+        },
+        {
+          "t": "p",
+          "x": "Visible closure pressure."
         },
         {
           "t": "h",
@@ -2577,51 +3524,79 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Everything the model generates passes through the same pipeline. The question is never *\"is this role permitted?\"* — it's **\"has this output completed verification?\"**"
+          "x": "Everything the model generates is a draft until verified."
         },
         {
           "t": "p",
-          "x": "**Unverified outputs are drafts, not conclusions.** This applies equally to:"
+          "x": "No exceptions because the output sounds right."
         },
         {
           "t": "p",
-          "x": "• Structure generation (outline, invariants, maps)"
+          "x": "No exceptions because the output sounds like me."
         },
         {
           "t": "p",
-          "x": "• Red-teaming (risks, failure modes, counterarguments)"
+          "x": "No exceptions because I wanted it to be true."
         },
         {
           "t": "p",
-          "x": "• Communication (clarity, tone, compression)"
+          "x": "Drafts can include:"
         },
         {
           "t": "p",
-          "x": "• Execution planning (next steps, checklists, experiments)"
+          "x": "• outlines"
         },
         {
           "t": "p",
-          "x": "• Generative speculation (candidate theses, novel framings, hypotheses)"
+          "x": "• maps"
         },
         {
           "t": "p",
-          "x": "All of the above are useful. None skip the verification pass."
+          "x": "• invariants"
         },
         {
           "t": "p",
-          "x": "**Hard stops (no verification can redeem these):**"
+          "x": "• counterarguments"
         },
         {
           "t": "p",
-          "x": "• **No identity outsourcing.** AI never answers: \"Who am I?\", \"What do I value?\", \"What should I believe?\""
+          "x": "• prose"
         },
         {
           "t": "p",
-          "x": "• **No reality arbitration.** AI can summarize inputs; it cannot decide what \"happened.\""
+          "x": "• plans"
         },
         {
           "t": "p",
-          "x": "• **Provenance is mandatory.** Every nontrivial claim needs a trace: observation, paper, or explicitly marked speculation. Fluency is not evidence."
+          "x": "• experiments"
+        },
+        {
+          "t": "p",
+          "x": "• speculative frames"
+        },
+        {
+          "t": "p",
+          "x": "All useful."
+        },
+        {
+          "t": "p",
+          "x": "None final."
+        },
+        {
+          "t": "p",
+          "x": "**Hard stops**"
+        },
+        {
+          "t": "p",
+          "x": "• **No identity outsourcing.** The model does not answer who I am, what I value, or what I should believe."
+        },
+        {
+          "t": "p",
+          "x": "• **No reality arbitration.** The model can summarize inputs. It cannot decide what happened."
+        },
+        {
+          "t": "p",
+          "x": "• **Provenance is mandatory.** Nontrivial claims need a trace: observation, paper, artifact, or marked speculation."
         },
         {
           "t": "p",
@@ -2629,7 +3604,23 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "The shift from the original framing: I no longer split the model's roles into \"permitted\" and \"forbidden.\" I route them all through the same flow control. The only true prohibitions are the ones where verification *cannot help* — because the failure mode is structural, not informational."
+          "x": "The important split is not permitted vs forbidden model roles."
+        },
+        {
+          "t": "p",
+          "x": "The split is:"
+        },
+        {
+          "t": "p",
+          "x": "can verification help?"
+        },
+        {
+          "t": "p",
+          "x": "If verification can help, the output enters the draft pipeline."
+        },
+        {
+          "t": "p",
+          "x": "If verification cannot help, the output is structurally unsafe."
         },
         {
           "t": "h",
@@ -2638,11 +3629,23 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "L3 is not inherently dangerous. **Unregulated L3 is dangerous.**"
+          "x": "L3 is not the enemy."
         },
         {
           "t": "p",
-          "x": "The difference is feedback direction. In drift, the model shapes me and I don't reshape the model's trajectory. In earned resonance, the coupling is **bidirectional**: I steer hard, the model responds with structure I didn't predict, I integrate or reject, and the next prompt carries my full weight."
+          "x": "Unregulated L3 is the enemy."
+        },
+        {
+          "t": "p",
+          "x": "In drift, the model shapes me and I do not reshape the model's trajectory."
+        },
+        {
+          "t": "p",
+          "x": "In earned resonance, the coupling is bidirectional."
+        },
+        {
+          "t": "p",
+          "x": "I steer hard. The model returns structure I did not predict. I integrate or reject. The next prompt carries my full weight."
         },
         {
           "t": "p",
@@ -2650,59 +3653,83 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "• I entered L3 deliberately, not by sliding from L2."
+          "x": "• I entered deliberately, not by sliding from L2."
         },
         {
           "t": "p",
-          "x": "• I can pass R3+2+1 (or the topology gate) at any point if challenged."
+          "x": "• I can pass R3+2+1 or the topology gate at any point."
         },
         {
           "t": "p",
-          "x": "• I can weaken or redraw the current map without immediately needing the model to think for me again."
+          "x": "• I can weaken or redraw the current map without needing the model to think for me again."
         },
         {
           "t": "p",
-          "x": "• I am generating new questions, not just consuming answers. If I'm only receiving, I've lost the feedback loop."
+          "x": "• I am generating new questions, not only receiving answers."
         },
         {
           "t": "p",
-          "x": "• The model is producing **surprise** — structure I wouldn't have reached alone. If the outputs feel predictable, L3 isn't earning its risk."
+          "x": "• The model is producing surprise that survives my audit."
         },
         {
           "t": "p",
-          "x": "**When to let it run:**"
+          "x": "**Let it run when:**"
         },
         {
           "t": "p",
-          "x": "• Relational exploration — mapping a new territory where the thesis hasn't formed yet."
+          "x": "• I am mapping a territory before the thesis exists."
         },
         {
           "t": "p",
-          "x": "• Adversarial stress-testing — pushing a framework to its breaking point."
+          "x": "• I am stress-testing a framework."
         },
         {
           "t": "p",
-          "x": "• Cross-domain synthesis — when the value is in connections between fields I hold separately."
+          "x": "• I am connecting domains I hold separately."
         },
         {
           "t": "p",
-          "x": "**When to pull back:**"
+          "x": "**Pull back when:**"
         },
         {
           "t": "p",
-          "x": "• I notice myself defending the model's framing rather than testing it."
+          "x": "• I defend the model's framing instead of testing it."
         },
         {
           "t": "p",
-          "x": "• The conversation feels *impressive* but I can't restate the core shape."
+          "x": "• I prompt faster than I think."
         },
         {
           "t": "p",
-          "x": "• I'm prompting faster than I'm thinking."
+          "x": "• The conversation feels impressive but leaves no internal geometry."
         },
         {
           "t": "p",
-          "x": "Stabilizers have a failure mode too: **over-damping.** A system so tightly regulated it can't resonate. Earned L3 is the target state — not a warning sign, but a capability that requires the strongest feedback control to sustain."
+          "x": "• I cannot name the next action without asking again."
+        },
+        {
+          "t": "p",
+          "x": "Stabilizers have a failure mode too."
+        },
+        {
+          "t": "p",
+          "x": "Over-damping."
+        },
+        {
+          "t": "p",
+          "x": "A system so regulated it cannot resonate."
+        },
+        {
+          "t": "p",
+          "x": "Earned L3 is not a warning sign."
+        },
+        {
+          "t": "p",
+          "x": "It is a capability."
+        },
+        {
+          "t": "p",
+          "x": "But it requires the strongest feedback control I have."
         },
         {
           "t": "h",
@@ -2719,15 +3746,27 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "• chaotic dynamics (bad weeks, context switching, noise)"
+          "x": "• chaotic weeks"
         },
         {
           "t": "p",
-          "x": "• repeated re-entry (future-me can pick it up fast)"
+          "x": "• context switching"
         },
         {
           "t": "p",
-          "x": "When it works, structure crystallizes into geometry: adjacency, borders, distances, stable coordinates."
+          "x": "• repeated re-entry"
+        },
+        {
+          "t": "p",
+          "x": "• future-me arriving tired"
+        },
+        {
+          "t": "p",
+          "x": "When it works, structure crystallizes into geometry:"
+        },
+        {
+          "t": "p",
+          "x": "adjacency, borders, distance, stable coordinates, edges I can test."
         },
         {
           "t": "p",
@@ -2735,11 +3774,31 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "I care about **structural signal**, not novelty. The goal is not text output. The goal is a navigable map in my head that reduces future compute."
+          "x": "I care about structural signal."
         },
         {
           "t": "p",
-          "x": "*This idea needs its own piece. What geometry means, how to test for it, and why it's the difference between information and understanding — that's a separate exploration.*"
+          "x": "Not novelty."
+        },
+        {
+          "t": "p",
+          "x": "The goal is not text output."
+        },
+        {
+          "t": "p",
+          "x": "The goal is a navigable map in my head that reduces future compute."
+        },
+        {
+          "t": "p",
+          "x": "This is the bridge to [[Bounded Me|bounded-me]]."
+        },
+        {
+          "t": "p",
+          "x": "The draft has to increase extractable structure for bounded-me."
+        },
+        {
+          "t": "p",
+          "x": "Otherwise it is only polish."
         },
         {
           "t": "h",
@@ -2748,63 +3807,103 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "**Step 1 — Use AI to compress the problem (L1 → L2)**"
+          "x": "The only safe way I co-author:"
         },
         {
           "t": "p",
-          "x": "• generate a map, not prose"
+          "x": "**Step 1 — Scout**"
         },
         {
           "t": "p",
-          "x": "• list candidate theses"
+          "x": "Use the model to expand the search space."
         },
         {
           "t": "p",
-          "x": "• list failure modes"
+          "x": "• candidate theses"
         },
         {
           "t": "p",
-          "x": "• propose a draft with obvious placeholders"
+          "x": "• alternate framings"
         },
         {
           "t": "p",
-          "x": "**Step 2 — Verification pass (me, not the model)**"
+          "x": "• counterexamples"
         },
         {
           "t": "p",
-          "x": "• check every nontrivial claim"
+          "x": "• failure modes"
         },
         {
           "t": "p",
-          "x": "• mark what is observation vs. citation vs. speculation"
+          "x": "• obvious placeholders"
         },
         {
           "t": "p",
-          "x": "• delete anything that feels like \"borrowed confidence\""
+          "x": "No conclusions yet."
         },
         {
           "t": "p",
-          "x": "**Step 3 — Rewrite the core from memory (inside-my-head gate)**"
+          "x": "**Step 2 — Verify**"
         },
         {
           "t": "p",
-          "x": "• restate thesis + reasons + next action (or draw the topology and name the open edge)"
+          "x": "Me, not the model."
         },
         {
           "t": "p",
-          "x": "• write the smallest version that preserves the geometry"
+          "x": "• check nontrivial claims"
         },
         {
           "t": "p",
-          "x": "**Step 4 — Only then: polish (L2)**"
+          "x": "• mark observation vs citation vs speculation"
         },
         {
           "t": "p",
-          "x": "• clarity, compression, structure"
+          "x": "• delete borrowed confidence"
         },
         {
           "t": "p",
-          "x": "• no new claims introduced during polishing"
+          "x": "• weaken overcommitted edges"
+        },
+        {
+          "t": "p",
+          "x": "**Step 3 — Rebuild**"
+        },
+        {
+          "t": "p",
+          "x": "Close the model."
+        },
+        {
+          "t": "p",
+          "x": "Rewrite the core from memory."
+        },
+        {
+          "t": "p",
+          "x": "Or draw the topology and name the open edge."
+        },
+        {
+          "t": "p",
+          "x": "**Step 4 — Polish**"
+        },
+        {
+          "t": "p",
+          "x": "Only after the core is mine."
+        },
+        {
+          "t": "p",
+          "x": "• clarity"
+        },
+        {
+          "t": "p",
+          "x": "• compression"
+        },
+        {
+          "t": "p",
+          "x": "• structure"
+        },
+        {
+          "t": "p",
+          "x": "• no new claims introduced during polish"
         },
         {
           "t": "h",
@@ -2813,7 +3912,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "If drift signal triggers:"
+          "x": "When I detect drift:"
         },
         {
           "t": "p",
@@ -2821,19 +3920,27 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "1. Write the R3+2+1 (or draw the topology) from memory."
+          "x": "2. Write R3+2+1 from memory, or draw the topology."
         },
         {
           "t": "p",
-          "x": "1. If I can't: I'm in unregulated L3. Drop to L0 for one cycle (execution-only)."
+          "x": "3. If I cannot, drop to L0 for one cycle."
         },
         {
           "t": "p",
-          "x": "1. Resume at L1: ask for counterexamples and risk boundaries, not for conclusions."
+          "x": "4. Resume at L1 with counterexamples and risk boundaries, not conclusions."
         },
         {
           "t": "p",
-          "x": "My rule: **I don't prompt my way out of confusion. I rewrite my way out.**"
+          "x": "My rule:"
+        },
+        {
+          "t": "p",
+          "x": "I do not prompt my way out of confusion."
+        },
+        {
+          "t": "p",
+          "x": "I rewrite my way out."
         },
         {
           "t": "h",
@@ -2842,7 +3949,27 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "**No identity outsourcing.** (See §4.) **No reality arbitration.** (See §4.) **Provenance is mandatory.** (See §4.) **Inside-my-head rule.** No draft is accepted until I can rewrite the core shape from memory — whether that shape is a proposition or a topology."
+          "x": "**No identity outsourcing.**"
+        },
+        {
+          "t": "p",
+          "x": "**No reality arbitration.**"
+        },
+        {
+          "t": "p",
+          "x": "**Provenance is mandatory.**"
+        },
+        {
+          "t": "p",
+          "x": "**Inside-my-head rule.**"
+        },
+        {
+          "t": "p",
+          "x": "No draft is accepted until I can rebuild the core shape from memory."
+        },
+        {
+          "t": "p",
+          "x": "Whether that shape is a proposition or a topology."
         },
         {
           "t": "h",
@@ -2851,11 +3978,19 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "I'm not publishing a manifesto."
+          "x": "I am not publishing a manifesto."
         },
         {
           "t": "p",
-          "x": "I'm installing a stabilizer — one that knows when to damp and when to let the system resonate."
+          "x": "I am installing a stabilizer."
+        },
+        {
+          "t": "p",
+          "x": "One that knows when to damp."
+        },
+        {
+          "t": "p",
+          "x": "One that knows when to let the system resonate."
         },
         {
           "t": "p",
@@ -2871,7 +4006,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "**Update (2026-03-15):** Bennett (2026) formalizes a latency ceiling for integrated hybrids under the Chord assumptions: if relevant links in the control loop exceed the integration window θ, the system can fragment into two agents taking turns rather than one enlarged mind. The bound D ≤ κvθ converts a time budget into a spatial budget. In the BCI case study, 10 ms round-trip latency is marginally feasible for a 20–50 ms candidate window. In cloud AI, raw network speed is not enough: limited concurrency/serialized pipelines can fail co-instantiation even when links are fast. L3 has a physics. (Source: https://www.preprints.org/manuscript/202602.1708/v2)"
+          "x": "**Update (2026-03-15):** Bennett (2026) formalizes a latency ceiling for integrated hybrids under the Chord assumptions: if relevant links in the control loop exceed the integration window theta, the system can fragment into two agents taking turns rather than one enlarged mind. The bound D <= kvtheta converts a time budget into a spatial budget. In the BCI case study, 10 ms round-trip latency is marginally feasible for a 20-50 ms candidate window. In cloud AI, raw network speed is not enough: limited concurrency and serialized pipelines can fail co-instantiation even when links are fast. L3 has a physics. (Source: https://www.preprints.org/manuscript/202602.1708/v2)"
         }
       ],
       "struct": {
@@ -2965,48 +4100,60 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "[[Geometry Over Retrieval|geometry-retrieval]] gave me the first rule: understanding is what remains when the source closes. [[Weak Geometry|weak-geometry]] added restraint: owned structure should stay weaker than my appetite for closure. [[Allowed Ignorance|allowed-ignorance]] made the cut explicit: a bounded mind survives by deciding what it is allowed to leave out."
+          "x": "I need a gate for ideas."
         },
         {
           "t": "p",
-          "x": "Those pieces still feel right."
+          "x": "Not a better paragraph. Not a better map. Not another word for understanding."
         },
         {
           "t": "p",
-          "x": "But they are incomplete in a way that now bothers me."
+          "x": "A gate."
         },
         {
           "t": "p",
-          "x": "They mostly describe the shape of a map. They ask whether I can rebuild it, weaken it, rotate it, and carry it. They improve the internal geometry of thought."
+          "x": "Something an idea has to pass before I let it become part of the field."
         },
         {
           "t": "p",
-          "x": "That is necessary."
+          "x": "[[Geometry Over Retrieval|geometry-retrieval]] already gave me one gate: if the source closes and the structure does not come back, I do not own it. [[Weak Geometry|weak-geometry]] gave me another: if the map cannot survive one weakened edge, it hardened too early. [[Allowed Ignorance|allowed-ignorance]] gave me a third: if I do not know what I cut away, I do not know what might return."
         },
         {
           "t": "p",
-          "x": "It is not enough."
+          "x": "Those gates still work."
         },
         {
           "t": "p",
-          "x": "A map can be beautiful inside itself. It can be coherent, economical, reconstructable, and still protected from the thing that should be allowed to hurt it."
+          "x": "But they are all interior gates."
         },
         {
           "t": "p",
-          "x": "The missing frame is contact."
+          "x": "They test whether I can carry the map. They do not test whether the map can meet the world."
         },
         {
           "t": "p",
-          "x": "Not another geometry. Not a cleaner theory of maps."
+          "x": "That is the missing gate."
         },
         {
           "t": "p",
-          "x": "The place where a map stops being self-flattering because the world answers back."
+          "x": "Contact."
+        },
+        {
+          "t": "p",
+          "x": "The point where a map stops being protected by its own coherence."
+        },
+        {
+          "t": "p",
+          "x": "The point where the world gets a turn."
         },
         {
           "t": "h",
           "x": "Thesis",
           "level": 2
+        },
+        {
+          "t": "p",
+          "x": "This is the contact protocol."
         },
         {
           "t": "p",
@@ -3018,15 +4165,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "I still believe that chain."
+          "x": "But the chain is not complete until the last term is exposed."
         },
         {
           "t": "p",
-          "x": "But there is a hidden dependency inside it:"
-        },
-        {
-          "t": "p",
-          "x": "compression only matters when it is answerable."
+          "x": "Prediction has to risk being wrong. Control has to touch a variable. Compression has to meet consequence."
         },
         {
           "t": "thesis",
@@ -3035,35 +4178,27 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "This is the turn I want."
+          "x": "Peirce gives the clean edge: an idea means something through the consequences I would expect if I actually held it [Peirce 1878]."
         },
         {
           "t": "p",
-          "x": "Not \"do I have a good representation?\""
+          "x": "That turns meaning into a gate."
         },
         {
           "t": "p",
-          "x": "But:"
+          "x": "If holding the idea changes no expectation, no action, no repair, and no sensitivity, I do not yet have contact."
         },
         {
           "t": "p",
-          "x": "what would make this representation pay rent?"
+          "x": "I have a shape."
         },
         {
           "t": "p",
-          "x": "Peirce's pragmatic test helps here: the meaning of an idea is tied to the practical consequences we should expect if the idea is true [Peirce 1878]. That does not reduce thought to utility. It gives thought a door out of itself."
+          "x": "Maybe a beautiful one."
         },
         {
           "t": "p",
-          "x": "An idea is not only what I can say. It is what I am prepared to expect, attempt, notice, and revise because I hold it."
-        },
-        {
-          "t": "p",
-          "x": "If nothing would change downstream, the map may still be elegant."
-        },
-        {
-          "t": "p",
-          "x": "It is just not yet in contact."
+          "x": "Still only a shape."
         },
         {
           "t": "diagram",
@@ -3119,39 +4254,39 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Cybernetics begins where detached description becomes too weak."
+          "x": "**Gate 1 — error must be able to return.**"
         },
         {
           "t": "p",
-          "x": "The interesting object is no longer just the thing observed. It is the loop between organism, machine, environment, signal, correction, and goal [Wiener 1948]."
+          "x": "If nothing can come back, the map is sealed."
         },
         {
           "t": "p",
-          "x": "That shift matters because feedback is the first honest form of answerability."
+          "x": "I can keep an idea clean by never giving it a channel for correction. I can keep a theory alive by making sure it never has to notice the variable it claims to understand. I can keep a sentence beautiful by never asking it to regulate anything."
         },
         {
           "t": "p",
-          "x": "I act. Something returns. The return is not decorative. It changes the next act."
+          "x": "Cybernetics is useful because it starts from the loop: organism, machine, environment, signal, correction, goal [Wiener 1948]."
         },
         {
           "t": "p",
-          "x": "Without that return, \"understanding\" can become an internal monologue with good typography."
+          "x": "Not observation from far away."
         },
         {
           "t": "p",
-          "x": "Ashby's law of requisite variety gives the pressure a harder edge: a regulator can only keep a system in range if it has enough variety to respond to the system's variety [Ashby 1956]. Conant and Ashby sharpen it further: every good regulator must in some sense model the system it regulates [Conant & Ashby 1970]."
+          "x": "A circuit with consequences."
         },
         {
           "t": "p",
-          "x": "This is not a slogan about control."
+          "x": "Ashby makes the demand stricter: a regulator needs enough variety to respond to the variety of the system [Ashby 1956]. Conant and Ashby add the harder sentence: every good regulator has to be a model of what it regulates [Conant & Ashby 1970]."
         },
         {
           "t": "p",
-          "x": "It is a demand."
+          "x": "I hear that as an editing rule now:"
         },
         {
           "t": "p",
-          "x": "If I claim to understand something, what variable can I keep in contact with?"
+          "x": "what variable can this map keep in contact with?"
         },
         {
           "t": "p",
@@ -3163,7 +4298,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "That changes the smell of a good map. A good map is not only compact. It is sensitive in the right places. It carries enough internal variety to notice when the world has stopped matching its expectations."
+          "x": "If I cannot name the return channel, I should not trust the map yet."
         },
         {
           "t": "p",
@@ -3174,29 +4309,21 @@ export const generatedPool: Pool = {
           "x": "Sometimes it is numb."
         },
         {
-          "t": "p",
-          "x": "It has no channel through which reality can return a useful error."
-        },
-        {
           "t": "h",
           "x": "II. Prediction",
           "level": 2
         },
         {
           "t": "p",
-          "x": "Prediction is where compression stops being aesthetic."
+          "x": "**Gate 2 — the compression must risk a future.**"
         },
         {
           "t": "p",
-          "x": "A compression is cheap if it only makes the past easier to retell. It becomes serious when it exposes itself to what has not happened yet."
+          "x": "A summary can stay safe."
         },
         {
           "t": "p",
-          "x": "This is why the free-energy / active-inference frame is useful even if I do not want to import the whole machinery. An organism lives by maintaining a boundary between itself and the world while minimizing destructive surprise through perception and action [Friston 2010]."
-        },
-        {
-          "t": "p",
-          "x": "The important part for me is simpler:"
+          "x": "An expectation cannot."
         },
         {
           "t": "p",
@@ -3204,15 +4331,39 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Every expectation says: if my map is adequate, the world should answer in this neighborhood."
+          "x": "Every expectation says:"
         },
         {
           "t": "p",
-          "x": "That debt is why prediction feels dangerous. It puts the map at risk. It lets the future discover where the present compressed too aggressively."
+          "x": "if my map is adequate, the world should answer in this neighborhood."
         },
         {
           "t": "p",
-          "x": "Allowed ignorance asked:"
+          "x": "That is where compression stops being aesthetic."
+        },
+        {
+          "t": "p",
+          "x": "It no longer says:"
+        },
+        {
+          "t": "p",
+          "x": "look how much I can leave out."
+        },
+        {
+          "t": "p",
+          "x": "It says:"
+        },
+        {
+          "t": "p",
+          "x": "watch whether the omitted difference returns."
+        },
+        {
+          "t": "p",
+          "x": "This is [[Allowed Ignorance|allowed-ignorance]] with time attached."
+        },
+        {
+          "t": "p",
+          "x": "Not only:"
         },
         {
           "t": "p",
@@ -3220,11 +4371,27 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Prediction asks the same question with teeth:"
+          "x": "But:"
         },
         {
           "t": "p",
           "x": "when the future arrives, will the removed difference come back as error?"
+        },
+        {
+          "t": "p",
+          "x": "Friston's free-energy frame helps because it treats perception and action as a living boundary-management problem, not passive representation [Friston 2010]."
+        },
+        {
+          "t": "p",
+          "x": "I do not need the whole machinery."
+        },
+        {
+          "t": "p",
+          "x": "I need the pressure:"
+        },
+        {
+          "t": "p",
+          "x": "survival depends on keeping surprise inside a range the system can metabolize."
         },
         {
           "t": "contrast",
@@ -3251,11 +4418,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "This is also where invariants become more than pretty stability."
+          "x": "An invariant is not just stability."
         },
         {
           "t": "p",
-          "x": "An invariant is not just something that remains under transformation. It is a bet that many visible differences can be safely ignored because some deeper relation will keep answering the same way."
+          "x": "It is a bet that many visible differences can be ignored because something deeper will keep answering the same way."
         },
         {
           "t": "p",
@@ -3272,11 +4439,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "There is another mistake I keep making."
+          "x": "**Gate 3 — the idea needs a probe.**"
         },
         {
           "t": "p",
-          "x": "I treat action as what happens after understanding."
+          "x": "I keep treating action as what happens after understanding."
         },
         {
           "t": "p",
@@ -3284,35 +4451,39 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "That order is too clean."
+          "x": "Too clean."
         },
         {
           "t": "p",
-          "x": "In practice, action is how the bounded learner asks the world a question."
+          "x": "Action is how a bounded learner asks the world a question."
         },
         {
           "t": "p",
-          "x": "Noe's account of perception is helpful here because it refuses to separate seeing from sensorimotor skill [Noe 2004]. Perception is not passive intake. It depends on what movement would reveal, what access is available, what the body knows how to test."
+          "x": "Some things cannot be known by staring harder at the map."
         },
         {
           "t": "p",
-          "x": "The same is true for thought."
+          "x": "They have to be touched. Built. Run. Shipped. Drawn. Asked. Priced. Timed. Broken. Shown to someone who will not cooperate with the fantasy."
         },
         {
           "t": "p",
-          "x": "Some things cannot be known more clearly by staring harder at the map."
+          "x": "Noe's work on perception gives me language for this: seeing is tied to sensorimotor skill, to what movement would make available [Noe 2004]."
         },
         {
           "t": "p",
-          "x": "They have to be touched, built, run, shipped, drawn, asked, priced, timed, broken, or shown to someone who will not cooperate with the fantasy."
+          "x": "The thought version is the same."
         },
         {
           "t": "p",
-          "x": "An action is a probe."
+          "x": "Understanding often waits on an action that can reveal the next surface."
         },
         {
           "t": "p",
-          "x": "Not every probe is dramatic. Most of the best ones are small:"
+          "x": "The probe can be small."
+        },
+        {
+          "t": "p",
+          "x": "It should be small if small is enough."
         },
         {
           "t": "ladder",
@@ -3347,23 +4518,23 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "This is why \"control\" needs care."
+          "x": "This is why I want to be careful with \"control.\""
         },
         {
           "t": "p",
-          "x": "Control is not domination here. It is not turning the world into an obedient extension of my theory."
+          "x": "Control is not domination here."
         },
         {
           "t": "p",
-          "x": "Control is the ability to keep an important variable inside a livable range while the environment keeps moving."
+          "x": "Control is keeping an important variable inside a livable range while the environment keeps moving."
         },
         {
           "t": "p",
-          "x": "That is much humbler."
+          "x": "Humbler."
         },
         {
           "t": "p",
-          "x": "And much harder."
+          "x": "Harder."
         },
         {
           "t": "h",
@@ -3372,59 +4543,47 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Design has an older name for the same pressure: misfit."
+          "x": "**Gate 4 — the material has to talk back.**"
         },
         {
           "t": "p",
-          "x": "Alexander's early design theory treats form as an answer to a field of requirements and frictions, not as free composition [Alexander 1964]. A form is good when it reduces misfit with the forces around it."
+          "x": "Validation is too clean a word."
         },
         {
           "t": "p",
-          "x": "That word matters."
+          "x": "I trust misfit more."
         },
         {
           "t": "p",
-          "x": "Misfit is not the opposite of taste. It is taste meeting consequence."
+          "x": "Misfit is the small wrongness between a form and the forces around it."
         },
         {
           "t": "p",
-          "x": "Schon's reflective practitioner works in the same territory. The practitioner frames a situation, acts, gets a back-talk from the material, and reframes [Schon 1983]. The world does not merely receive the plan. It talks back through resistance, surprise, awkwardness, and partial failure."
+          "x": "Alexander uses that pressure directly: form answers a field of requirements and frictions, not free composition [Alexander 1964]."
         },
         {
           "t": "p",
-          "x": "That is exactly the motion I want the site to keep teaching me."
+          "x": "That word does not flatter taste."
         },
         {
           "t": "p",
-          "x": "Not just:"
+          "x": "Misfit is taste meeting consequence."
         },
         {
           "t": "p",
-          "x": "can I make a beautiful map?"
+          "x": "Schon's reflective practitioner has the same motion: frame the situation, act, receive back-talk from the material, reframe [Schon 1983]."
         },
         {
           "t": "p",
-          "x": "But:"
+          "x": "Back-talk is the important word."
         },
         {
           "t": "p",
-          "x": "where does the material push back?"
+          "x": "The material is not a blank receiver of intention."
         },
         {
           "t": "p",
-          "x": "where does the reader stumble?"
-        },
-        {
-          "t": "p",
-          "x": "where does the code resist?"
-        },
-        {
-          "t": "p",
-          "x": "where does the argument require a missing object?"
-        },
-        {
-          "t": "p",
-          "x": "where does reality refuse the abstraction?"
+          "x": "The code resists. The reader stumbles. The argument asks for an object I did not build. The interface exposes a sentence I was hiding inside the design. The world refuses the abstraction."
         },
         {
           "t": "callout",
@@ -3434,19 +4593,31 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "This is the bridge back to weak geometry."
+          "x": "Weak geometry says:"
         },
         {
           "t": "p",
-          "x": "Weak geometry says: do not harden the edge too early."
+          "x": "do not harden the edge too early."
         },
         {
           "t": "p",
-          "x": "Answerability says: find out what would harden it legitimately."
+          "x": "Answerability asks:"
         },
         {
           "t": "p",
-          "x": "The world is not always right in the simple sense. Feedback can be noisy, local, biased, or badly instrumented. But a map with no appetite for feedback is worse. It has become self-sealed."
+          "x": "what would harden it legitimately?"
+        },
+        {
+          "t": "p",
+          "x": "Feedback can be noisy. Misfit can be local. The world can answer badly."
+        },
+        {
+          "t": "p",
+          "x": "But a map with no appetite for answer is worse."
+        },
+        {
+          "t": "p",
+          "x": "It has become self-sealed."
         },
         {
           "t": "p",
@@ -3463,27 +4634,27 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Boundedness is not only a limitation."
+          "x": "**Gate 5 — error has to land somewhere.**"
         },
         {
           "t": "p",
-          "x": "It is also how a self becomes a self."
+          "x": "This is the tool question."
         },
         {
           "t": "p",
-          "x": "Levin's work on biological selves is useful here because it treats boundaries as computational, not merely anatomical: a system's \"self\" depends on what goals, memories, and errors are integrated across its boundary [Levin 2019]."
+          "x": "Not:"
         },
         {
           "t": "p",
-          "x": "That gives me a better way to think about thinking with tools."
+          "x": "is AI inside me or outside me?"
         },
         {
           "t": "p",
-          "x": "The question is not whether AI is inside or outside me in some romantic sense."
+          "x": "Too romantic."
         },
         {
           "t": "p",
-          "x": "The question is:"
+          "x": "The better question is:"
         },
         {
           "t": "p",
@@ -3495,7 +4666,23 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "If the model generates options but I absorb no error, I am not learning. If I accept polish without contact, I am borrowing fluency. If the system helps me design better probes, sharper tests, cleaner deployments, and more honest postmortems, then it is helping me keep contact."
+          "x": "Levin's work on biological selves helps because it treats boundaries as computational, not merely anatomical: a self is partly defined by what goals, memories, and errors are integrated across it [Levin 2019]."
+        },
+        {
+          "t": "p",
+          "x": "That gives me a stricter way to think about tools."
+        },
+        {
+          "t": "p",
+          "x": "If the model generates options but I absorb no error, I am not learning."
+        },
+        {
+          "t": "p",
+          "x": "If I accept polish without contact, I am borrowing fluency."
+        },
+        {
+          "t": "p",
+          "x": "If the system helps me design better probes, sharper tests, cleaner deployments, and more honest postmortems, then it is helping me keep contact."
         },
         {
           "t": "p",
@@ -3510,25 +4697,17 @@ export const generatedPool: Pool = {
           "x": "Co-authorship as better answerability."
         },
         {
-          "t": "p",
-          "x": "The tool should help me build surfaces where the world can answer sooner and with less ambiguity."
-        },
-        {
           "t": "h",
           "x": "VI. Practice",
           "level": 2
         },
         {
           "t": "p",
-          "x": "So the next essay is not really an essay."
+          "x": "The protocol is small enough to run."
         },
         {
           "t": "p",
-          "x": "It is a discipline for future work."
-        },
-        {
-          "t": "p",
-          "x": "Before I let an idea become part of the site, I should ask:"
+          "x": "Before an idea enters the field, ask:"
         },
         {
           "t": "ladder",
@@ -3536,33 +4715,38 @@ export const generatedPool: Pool = {
           "rungs": [
             {
               "marker": "01",
-              "term": "What is the invariant?",
-              "body": "Name the thing I believe survives change."
+              "term": "Invariant",
+              "body": "what do I believe survives change?"
             },
             {
               "marker": "02",
-              "term": "What symmetry am I assuming?",
-              "body": "Name the differences I am treating as equivalent."
+              "term": "Symmetry",
+              "body": "what differences am I treating as equivalent?"
             },
             {
               "marker": "03",
-              "term": "What compression follows?",
-              "body": "Name what becomes cheaper because of that equivalence."
+              "term": "Compression",
+              "body": "what becomes cheaper because of that equivalence?"
             },
             {
               "marker": "04",
-              "term": "What prediction does it risk?",
-              "body": "Name what should happen if the compression is legitimate."
+              "term": "Prediction",
+              "body": "what should happen if the compression is legitimate?"
             },
             {
               "marker": "05",
-              "term": "What action exposes it?",
-              "body": "Name the smallest probe that lets the world answer."
+              "term": "Probe",
+              "body": "what small action lets the world answer?"
             },
             {
               "marker": "06",
-              "term": "What feedback would revise it?",
-              "body": "Name the return I am not allowed to explain away."
+              "term": "Return",
+              "body": "what feedback would revise the map?"
+            },
+            {
+              "marker": "07",
+              "term": "Boundary",
+              "body": "where does the error get integrated?"
             }
           ]
         },
@@ -3580,7 +4764,8 @@ export const generatedPool: Pool = {
             "compression",
             "prediction",
             "action",
-            "feedback"
+            "feedback",
+            "boundary"
           ],
           "edges": [
             {
@@ -3612,6 +4797,12 @@ export const generatedPool: Pool = {
               "to": "feedback",
               "rel": "→",
               "force": "speculative"
+            },
+            {
+              "from": "feedback",
+              "to": "boundary",
+              "rel": "→",
+              "force": "speculative"
             }
           ]
         },
@@ -3621,35 +4812,39 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "I have a shape."
+          "x": "If I cannot name where the feedback lands, I do not yet have a learning loop."
         },
         {
           "t": "p",
-          "x": "Maybe a beautiful one."
+          "x": "Deming's PDSA cycle makes this ordinary in the best way: plan, do, study, act [Deming 1986]."
         },
         {
           "t": "p",
-          "x": "But still only a shape."
+          "x": "Theory predicts. Action exposes. Study updates. The next plan is not a reset."
         },
         {
           "t": "p",
-          "x": "The Deming PDSA cycle makes this ordinary in the best way: plan, do, study, act [Deming 1986]. Theory predicts. Action exposes. Study updates. The next plan is not a reset; it is memory with consequence attached."
+          "x": "It is memory with consequence attached."
         },
         {
           "t": "p",
-          "x": "This is what I want from the site long term."
+          "x": "That is what I want from the site long term."
         },
         {
           "t": "p",
-          "x": "A field of ideas that does not only point inward to other ideas."
+          "x": "Not ideas that only point inward to other ideas."
         },
         {
           "t": "p",
-          "x": "A field that keeps asking:"
+          "x": "Ideas with surfaces."
         },
         {
           "t": "p",
-          "x": "what would let the world answer this?"
+          "x": "Ideas that can be touched."
+        },
+        {
+          "t": "p",
+          "x": "Ideas that let the world answer."
         },
         {
           "t": "h",
@@ -3658,43 +4853,23 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "I used to say understanding is what remains when the source closes."
+          "x": "Understanding is what remains when the source closes."
         },
         {
           "t": "p",
-          "x": "I still mean it."
+          "x": "That is still true."
         },
         {
           "t": "p",
-          "x": "But now I need the second half."
+          "x": "Now the second gate:"
         },
         {
           "t": "p",
-          "x": "Understanding is what remains when the source closes and the world pushes back."
+          "x": "understanding is what remains when the world pushes back."
         },
         {
           "t": "p",
-          "x": "That is the frame I want next."
-        },
-        {
-          "t": "p",
-          "x": "Not another layer of geometry."
-        },
-        {
-          "t": "p",
-          "x": "Contact."
-        },
-        {
-          "t": "p",
-          "x": "Answerability."
-        },
-        {
-          "t": "p",
-          "x": "The map risking itself against consequence."
-        },
-        {
-          "t": "p",
-          "x": "This also makes the pinned line feel less like a poem and more like a research program:"
+          "x": "The pinned line becomes a protocol:"
         },
         {
           "t": "p",
@@ -3702,7 +4877,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "And then the missing final line:"
+          "x": "And then the missing line:"
         },
         {
           "t": "p",
@@ -3801,11 +4976,31 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Infinite possibility often arrives disguised as freedom. A blank canvas. An endless feed. A thousand settings. A model that can answer anything. At first, it feels powerful. Then the debt appears: before doing the work, you have to invent the frame."
+          "x": "The tool says:"
         },
         {
           "t": "p",
-          "x": "This is the hidden cost of many digital tools. They do not only ask for attention. They ask for orientation. They hand you a possibility space and quietly make you responsible for its rules."
+          "x": "you can do anything."
+        },
+        {
+          "t": "p",
+          "x": "At first, that feels like freedom."
+        },
+        {
+          "t": "p",
+          "x": "A blank canvas. An endless feed. A thousand settings. A model that can answer anything."
+        },
+        {
+          "t": "p",
+          "x": "Then the debt appears."
+        },
+        {
+          "t": "p",
+          "x": "Before doing the work, I have to invent the frame."
+        },
+        {
+          "t": "p",
+          "x": "This is the hidden cost of many digital tools. They do not only ask for attention. They ask for orientation. They hand me a possibility space and quietly make me responsible for its rules."
         },
         {
           "t": "thesis",
@@ -3819,11 +5014,35 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Digital minimalism was an early response to this problem. Choose less. Turn things off. Remove the unnecessary. Reclaim attention from systems designed to capture it."
+          "x": "Minimalism notices the wound."
         },
         {
           "t": "p",
-          "x": "That instinct is right, but incomplete. The deeper question is not only how to use less technology. It is how to design tools that return agency instead of consuming it."
+          "x": "Too many surfaces. Too much capture. Too many defaults designed against attention."
+        },
+        {
+          "t": "p",
+          "x": "So it says:"
+        },
+        {
+          "t": "p",
+          "x": "choose less. turn things off. remove the unnecessary."
+        },
+        {
+          "t": "p",
+          "x": "That instinct is right."
+        },
+        {
+          "t": "p",
+          "x": "It is also incomplete."
+        },
+        {
+          "t": "p",
+          "x": "The deeper question is not only how to use less technology."
+        },
+        {
+          "t": "p",
+          "x": "It is how to design tools that return agency instead of consuming it."
         },
         {
           "t": "contrast",
@@ -3859,11 +5078,23 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "A haiku has edges. A piano has edges. A camera lens has edges. The OP-1 has edges. A command line has edges. These constraints do not reduce expression. They make expression possible. They give the hand something to learn, the mind something to push against, and the user a way to begin."
+          "x": "A haiku has edges. A piano has edges. A camera lens has edges. The OP-1 has edges. A command line has edges."
         },
         {
           "t": "p",
-          "x": "The best tools do not hide complexity. They make complexity playable."
+          "x": "The edge is not there to reduce expression."
+        },
+        {
+          "t": "p",
+          "x": "It gives the hand something to learn. It gives the mind something to push against. It gives the user a way to begin."
+        },
+        {
+          "t": "p",
+          "x": "The best tools do not hide complexity."
+        },
+        {
+          "t": "p",
+          "x": "They make complexity playable."
         },
         {
           "t": "edge-taxonomy",
@@ -3882,7 +5113,7 @@ export const generatedPool: Pool = {
             },
             {
               "type": "omission",
-              "force": "prevents the tool from becoming the user’s work"
+              "force": "prevents the tool from becoming the user's work"
             }
           ]
         },
@@ -3893,7 +5124,27 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "This is what teenage.engineering understands better than most software companies: maximum function, minimum form is not minimalism as decoration. It is a theory of agency. Every visible element must earn its place. Every control should invite use. The interface should feel less like a maze and more like an instrument."
+          "x": "This is what teenage.engineering understands better than most software companies."
+        },
+        {
+          "t": "p",
+          "x": "Maximum function, minimum form is not minimalism as decoration."
+        },
+        {
+          "t": "p",
+          "x": "It is a theory of agency."
+        },
+        {
+          "t": "p",
+          "x": "Every visible element has to earn its place. Every control has to invite use. The interface should feel less like a maze and more like an instrument."
+        },
+        {
+          "t": "p",
+          "x": "An instrument is not powerful because it has infinite options."
+        },
+        {
+          "t": "p",
+          "x": "It is powerful because its limits become learnable."
         },
         {
           "t": "h",
@@ -3902,7 +5153,31 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Bad software does the opposite. It treats possibility as a feature by adding more menus, more notifications, more modes, more surfaces, more things to manage. It calls this power, but much of it is deferred design work passed to the user."
+          "x": "Bad software does the opposite."
+        },
+        {
+          "t": "p",
+          "x": "It treats possibility as a feature."
+        },
+        {
+          "t": "p",
+          "x": "More menus. More notifications. More modes. More surfaces. More things to manage."
+        },
+        {
+          "t": "p",
+          "x": "It calls this power."
+        },
+        {
+          "t": "p",
+          "x": "But often it is only deferred design work passed to the user."
+        },
+        {
+          "t": "p",
+          "x": "The tool refuses to decide where the edge belongs."
+        },
+        {
+          "t": "p",
+          "x": "So the user pays the orientation cost every time."
         },
         {
           "t": "h",
@@ -3911,7 +5186,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "A good constraint is not a wall. It is a grip."
+          "x": "A good constraint is not a wall."
+        },
+        {
+          "t": "p",
+          "x": "It is a grip."
         },
         {
           "t": "p",
@@ -3933,7 +5212,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "When software becomes generative, the interface can no longer be just a panel of controls. The possibility space expands too quickly. Without frames, evals, loops, memory, taste, and boundaries, the user is left steering fog."
+          "x": "When software becomes generative, the possibility space expands too quickly."
+        },
+        {
+          "t": "p",
+          "x": "Without frames, evals, loops, memory, taste, and boundaries, the user is left steering fog."
         },
         {
           "t": "diagram",
@@ -3974,17 +5257,37 @@ export const generatedPool: Pool = {
           ]
         },
         {
+          "t": "p",
+          "x": "The model can produce more."
+        },
+        {
+          "t": "p",
+          "x": "That does not mean the user can hold more."
+        },
+        {
+          "t": "p",
+          "x": "Abundance without edges becomes weather."
+        },
+        {
           "t": "h",
           "x": "Holdable",
           "level": 2
         },
         {
           "t": "p",
-          "x": "The future of good tools will not be defined by how much they can generate. It will be defined by how well they preserve agency inside abundance."
+          "x": "The future of good tools will not be defined by how much they can generate."
         },
         {
           "t": "p",
-          "x": "The point is not to make technology smaller. The point is to make it holdable."
+          "x": "It will be defined by how well they preserve agency inside abundance."
+        },
+        {
+          "t": "p",
+          "x": "The point is not to make technology smaller."
+        },
+        {
+          "t": "p",
+          "x": "The point is to make it holdable."
         },
         {
           "t": "p",
@@ -4062,27 +5365,31 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "[[Bounded Me|bounded-me]] gave me the pressure: memory as *\"geometry, not storage.\"* [[Me + AI|me-plus-ai]] gave me the control problem: I am regulating a coupled feedback system. [[Geometry Over Retrieval|geometry-retrieval]] gave me the test: *\"understanding is what remains when the source is closed.\"*"
+          "x": "[[Bounded Me|bounded-me]] gave me the pressure: memory as geometry, not storage. [[Me + AI|me-plus-ai]] gave me the control problem: I am regulating a coupled feedback system. [[Geometry Over Retrieval|geometry-retrieval]] gave me the test: understanding is what remains when the source is closed."
         },
         {
           "t": "p",
-          "x": "This piece is not a sequel. It is a correction."
+          "x": "Those moves were necessary."
         },
         {
           "t": "p",
-          "x": "The earlier move was necessary. Get out of flat text. Stop mistaking fluent recall for structure. Build a map I can actually stand inside."
+          "x": "Get out of flat text. Stop mistaking fluency for structure. Build a map I can actually stand inside."
         },
         {
           "t": "p",
-          "x": "But once I have a map, a new danger appears."
+          "x": "Then the new danger appeared."
         },
         {
           "t": "p",
-          "x": "A map can harden too early. It can become elegant before it becomes true. It can feel owned, coherent, and navigable while quietly reducing my freedom to still be wrong."
+          "x": "A map can become too good too early."
         },
         {
           "t": "p",
-          "x": "So the next revision is this:"
+          "x": "It can feel owned, coherent, and navigable while quietly reducing my freedom to still be wrong."
+        },
+        {
+          "t": "p",
+          "x": "That is the correction:"
         },
         {
           "t": "p",
@@ -4116,11 +5423,23 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "A good internal map is not the shortest one, the neatest one, or the one with the most aggressively defended edges. It is the one that preserves the most navigable possibility while still letting me act."
+          "x": "The best map is not always the shortest one."
         },
         {
           "t": "p",
-          "x": "That is the pressure Bennett's Razor (weakness maximization) adds. Not because I need to import [Michael Timothy Bennett](https://michaeltimothybennett.com/research)'s whole framework, but because the challenge is sharp: compression may be *\"neither necessary nor sufficient\"* for generalization, and his alternative proxy is *\"the weakest, not the shortest.\"*"
+          "x": "Not the neatest one."
+        },
+        {
+          "t": "p",
+          "x": "Not the one with the most aggressively defended edges."
+        },
+        {
+          "t": "p",
+          "x": "It is the one that preserves the most navigable possibility while still letting me act."
+        },
+        {
+          "t": "p",
+          "x": "Bennett's Razor sharpens the pressure [Bennett 2026]: the useful proxy may be the weakest, not the shortest. I do not need to import the whole framework for that sentence to hurt in the right place."
         },
         {
           "t": "p",
@@ -4145,15 +5464,71 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "In [[Bounded Me|bounded-me]], I was already suspicious of definitions that arrive too cleanly. \"Information as entropy.\" \"Intelligence as compression.\" They had the scent of completion before they had earned the weight of reality. What I did not yet have was the right knife for that suspicion. Weakness gives me one. The problem is not only that these definitions fail to cash out in lived cognition. The deeper problem is that they smuggle in a preference for tightness itself, as if better understanding were always the one that closes fastest."
+          "x": "In [[Bounded Me|bounded-me]], I was already suspicious of definitions that arrived too cleanly."
         },
         {
           "t": "p",
-          "x": "In [[Geometry Over Retrieval|geometry-retrieval]], I said understanding begins when I can draw an edge and defend it. I still think that is right. But now it feels incomplete. Some edges deserve to exist only as temporary bridges, not as permanent beams. If I draw them with too much confidence, the local structure improves while the global truth gets worse. I stop exploring a terrain and start zoning it."
+          "x": "\"Information as entropy.\" \"Intelligence as compression.\""
         },
         {
           "t": "p",
-          "x": "In [[Me + AI|me-plus-ai]], I framed the central risk as a dysregulated integrated hybrid: exchange rises, my feedback control weakens, and the loop starts moving faster than I can author it. Weak geometry adds a subtler danger. I can preserve authorship and still close too early. The failure is not that the map came from somewhere else. The failure is that I built it myself, then mistook ownership for maturity."
+          "x": "They had the scent of completion before they had earned the weight of my day."
+        },
+        {
+          "t": "p",
+          "x": "Weakness gives me a better knife for that suspicion."
+        },
+        {
+          "t": "p",
+          "x": "The problem is not only that tight definitions can fail to cash out in lived cognition."
+        },
+        {
+          "t": "p",
+          "x": "The deeper problem is that they smuggle in a preference for tightness itself."
+        },
+        {
+          "t": "p",
+          "x": "As if better understanding were always the one that closes fastest."
+        },
+        {
+          "t": "p",
+          "x": "In [[Geometry Over Retrieval|geometry-retrieval]], I said understanding begins when I can draw an edge and defend it."
+        },
+        {
+          "t": "p",
+          "x": "I still think that is right."
+        },
+        {
+          "t": "p",
+          "x": "But some edges deserve to exist only as temporary bridges."
+        },
+        {
+          "t": "p",
+          "x": "Not beams."
+        },
+        {
+          "t": "p",
+          "x": "If I draw them too confidently, the local structure improves while the global truth gets worse."
+        },
+        {
+          "t": "p",
+          "x": "In [[Me + AI|me-plus-ai]], the risk was a dysregulated hybrid: exchange rises, feedback control weakens, closure pressure hardens."
+        },
+        {
+          "t": "p",
+          "x": "Weak geometry names the subtler version."
+        },
+        {
+          "t": "p",
+          "x": "I can preserve authorship and still close too early."
+        },
+        {
+          "t": "p",
+          "x": "The failure is not that the map came from somewhere else."
+        },
+        {
+          "t": "p",
+          "x": "The failure is that I built it myself and mistook ownership for maturity."
         },
         {
           "t": "p",
@@ -4169,7 +5544,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "And reconstructable structure should remain weak longer than I think."
+          "x": "And reconstructable structure should remain weak longer than I want."
         },
         {
           "t": "contrast",
@@ -4209,15 +5584,47 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "I mean something stricter: a weak map rules out less than a stronger rival while still organizing action."
+          "x": "I mean stricter commitment control."
         },
         {
           "t": "p",
-          "x": "That is why weakness matters. A vague map cannot guide movement. A brittle map guides movement too confidently. Weak geometry lives between them. It says: this edge is real enough to navigate by, but not yet real enough to worship."
+          "x": "A weak map rules out less than a stronger rival while still organizing action."
         },
         {
           "t": "p",
-          "x": "This matters because overfit structure does not feel like failure. It feels like insight. The map clicks. The language compresses. The territory seems to obey. And once that feeling appears, I start protecting the structure that produced it."
+          "x": "A vague map cannot guide movement."
+        },
+        {
+          "t": "p",
+          "x": "A brittle map guides movement too confidently."
+        },
+        {
+          "t": "p",
+          "x": "Weak geometry lives between them."
+        },
+        {
+          "t": "p",
+          "x": "This edge is real enough to navigate by."
+        },
+        {
+          "t": "p",
+          "x": "Not yet real enough to worship."
+        },
+        {
+          "t": "p",
+          "x": "This matters because overfit structure does not feel like failure."
+        },
+        {
+          "t": "p",
+          "x": "It feels like insight."
+        },
+        {
+          "t": "p",
+          "x": "The map clicks. The language compresses. The territory seems to obey."
+        },
+        {
+          "t": "p",
+          "x": "Then I start protecting the structure that produced the feeling."
         },
         {
           "t": "p",
@@ -4225,7 +5632,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "Because some of the most dangerous maps are not loose maps. They are maps that became persuasive before they became robust."
+          "x": "Some dangerous maps are not loose maps."
+        },
+        {
+          "t": "p",
+          "x": "They are maps that became persuasive before they became robust."
         },
         {
           "t": "h",
@@ -4234,15 +5645,35 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "The seduction of geometry is that it feels like standing somewhere. That was the whole gain over retrieval. Retrieval feels like reaching. Geometry feels like ground."
+          "x": "Geometry feels like ground."
         },
         {
           "t": "p",
-          "x": "But the ground has a shadow."
+          "x": "That was the whole gain over retrieval."
         },
         {
           "t": "p",
-          "x": "Once I can move inside a map, the map begins to select what I notice next. My questions inherit its shape. My attention starts traveling along its streets. The structure does not merely help me think. It begins to decide what counts as thinkable."
+          "x": "Retrieval feels like reaching."
+        },
+        {
+          "t": "p",
+          "x": "Geometry feels like standing somewhere."
+        },
+        {
+          "t": "p",
+          "x": "But ground has a shadow."
+        },
+        {
+          "t": "p",
+          "x": "Once I can move inside a map, the map begins to select what I notice next."
+        },
+        {
+          "t": "p",
+          "x": "My questions inherit its shape. My attention travels along its streets. The structure does not merely help me think."
+        },
+        {
+          "t": "p",
+          "x": "It begins to decide what counts as thinkable."
         },
         {
           "t": "p",
@@ -4254,15 +5685,27 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "This is where the Bennett preprint hit me. One of its key claims is that *\"a window may be necessary, but it is not sufficient for literal co-presence.\"* A system can visit all the ingredients inside the interval without ever truly holding them together in co-instantiation. It names that mismatch the *Temporal Gap* ([Preprints](https://www.preprints.org/manuscript/202602.1708))."
+          "x": "The Bennett preprint gives this intuition a hard edge [Bennett 2026]: a system can visit all the ingredients in a window without truly holding them together in co-instantiation."
         },
         {
           "t": "p",
-          "x": "My use of that idea is more epistemic than physical. I can touch all the notes of an idea across time and still not have a chord. I can also do the opposite. I can force a chord too early, turning sequence into fake simultaneity, collapsing ambiguity into structure before the structure deserves to exist."
+          "x": "My use of that idea is epistemic."
         },
         {
           "t": "p",
-          "x": "So there are two ways to fail:"
+          "x": "I can touch all the notes of an idea and still not have a chord."
+        },
+        {
+          "t": "p",
+          "x": "I can also force a chord too early."
+        },
+        {
+          "t": "p",
+          "x": "Sequence becomes fake simultaneity. Ambiguity becomes structure before structure deserves to exist."
+        },
+        {
+          "t": "p",
+          "x": "So there are two failures:"
         },
         {
           "t": "p",
@@ -4291,7 +5734,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "So what do I actually want now?"
+          "x": "What do I actually want?"
         },
         {
           "t": "p",
@@ -4307,15 +5750,11 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "I want a geometry that is owned, navigable, and explicitly undercommitted."
+          "x": "I want geometry that is owned, navigable, and explicitly undercommitted."
         },
         {
           "t": "p",
           "x": "Weak geometry has four properties."
-        },
-        {
-          "t": "p",
-          "x": "[[Geometry Over Retrieval|geometry-retrieval]] was right: *understanding is what remains when the source is closed.* Weak geometry keeps that test, but adds commitment control."
         },
         {
           "t": "ladder",
@@ -4324,22 +5763,22 @@ export const generatedPool: Pool = {
             {
               "marker": "01",
               "term": "Reconstructable",
-              "body": "if the source closes, I can still redraw the shape from inside my own head."
+              "body": "if the source closes, I can redraw the shape from inside my own head."
             },
             {
               "marker": "02",
               "term": "Typed",
-              "body": "an edge should not merely exist. It should announce its mode: causal, constraint, tradeoff, dependency, analogy, speculation."
+              "body": "an edge announces its mode: causal, constraint, tradeoff, dependency, analogy, speculation."
             },
             {
               "marker": "03",
               "term": "Graded",
-              "body": "I should be able to say not only what connects to what, but how hard I am willing to lean on that connection. Necessary. Likely. Working bridge. Speculative. Decorative."
+              "body": "I know how hard I am willing to lean on it. Necessary. Likely. Working bridge. Speculative. Decorative."
             },
             {
               "marker": "04",
               "term": "Revisable",
-              "body": "a good map bends before it shatters. If one edge breaks, the whole picture should not panic unless that edge was actually load-bearing."
+              "body": "a good map bends before it shatters."
             }
           ]
         },
@@ -4362,27 +5801,35 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "The best human-AI relationship is not maximal fusion. It is not \"integrate harder and regulate later.\" The preprint's language is useful here because it gives the intuition a hard edge: beyond a certain point, *\"you do not get a bigger mind. You get a bigger committee.\"* ([Preprints](https://www.preprints.org/manuscript/202602.1708))."
+          "x": "The best human-AI relationship is not maximal fusion."
         },
         {
           "t": "p",
-          "x": "I do not need to import that line literally into our work. But it exposes something real. Tight coupling is not automatically deeper understanding. High bandwidth is not the same thing as shared structure. A model can increase exchange while also increasing closure pressure. It can make candidate maps arrive too finished."
+          "x": "Not \"integrate harder and regulate later.\""
         },
         {
           "t": "p",
-          "x": "So the role I want from AI shifts slightly."
+          "x": "Tight coupling is not automatically deeper understanding."
         },
         {
           "t": "p",
-          "x": "Not oracle."
+          "x": "High bandwidth is not the same thing as shared structure."
         },
         {
           "t": "p",
-          "x": "Not decider."
+          "x": "A model can increase exchange while also increasing closure pressure."
         },
         {
           "t": "p",
-          "x": "Not merely co-author."
+          "x": "It can make candidate maps arrive too finished."
+        },
+        {
+          "t": "p",
+          "x": "So the role I want from AI shifts."
+        },
+        {
+          "t": "p",
+          "x": "Not oracle. Not decider. Not merely co-author."
         },
         {
           "t": "p",
@@ -4390,11 +5837,15 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "A good loop does not just help me produce structure. It helps me preserve useful openness until the world, the mechanism, or the decision itself forces a stronger commitment."
+          "x": "A good loop does not only help me produce structure."
         },
         {
           "t": "p",
-          "x": "That means the model is often most valuable when it increases hypothesis breadth without prematurely stabilizing any one frame. More rival edges. More alternate cuts. More awkward adjacencies. More ways for the current map to discover that it is still provisional."
+          "x": "It helps me preserve useful openness until the world, the mechanism, or the decision itself forces a stronger commitment."
+        },
+        {
+          "t": "p",
+          "x": "More rival edges. More alternate cuts. More awkward adjacencies. More ways for the current map to discover that it is still provisional."
         },
         {
           "t": "p",
@@ -4447,11 +5898,23 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "If weakening one sentence destroys the structure, I do not have geometry. I have a verbal arch with one hidden keystone."
+          "x": "If weakening one sentence destroys the structure, I do not have geometry."
         },
         {
           "t": "p",
-          "x": "This matters because many bad maps pass the earlier tests. I can rebuild an overfit structure from memory. I can teach it. I can make predictions from it. The missing question is whether the map remains useful when I reduce its claims to the weakest version that still matches what I actually know."
+          "x": "I have a verbal arch with one hidden keystone."
+        },
+        {
+          "t": "p",
+          "x": "Many bad maps pass the earlier tests."
+        },
+        {
+          "t": "p",
+          "x": "I can rebuild an overfit structure from memory. I can teach it. I can make predictions from it."
+        },
+        {
+          "t": "p",
+          "x": "The missing question is whether the map remains useful when I reduce its claim to the weakest version that still matches what I actually know."
         },
         {
           "t": "p",
@@ -4476,19 +5939,19 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "But now I trust geometry less when it arrives too polished."
+          "x": "But I trust geometry less when it arrives too polished."
         },
         {
           "t": "p",
-          "x": "The mature move is not to return to flat notes, summaries, or borrowed coherence. It is to build maps that keep some doors unlocked."
+          "x": "The mature move is not to return to flat notes, summaries, or borrowed coherence."
+        },
+        {
+          "t": "p",
+          "x": "It is to build maps that keep some doors unlocked."
         },
         {
           "t": "p",
           "x": "Owned structure, weakly held."
-        },
-        {
-          "t": "p",
-          "x": "That is closer to what I mean by understanding now."
         },
         {
           "t": "p",
@@ -4504,7 +5967,7 @@ export const generatedPool: Pool = {
         },
         {
           "t": "p",
-          "x": "**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] gives \"staying less committed\" a more precise operator: a cut is equivalence-making, and weak geometry is restraint about which equivalences I license. The question is no longer only \"is this edge too strong?\" but \"did I merge differences that reality still treats as distinct?\""
+          "x": "**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] gives staying less committed a more precise operator: a cut is equivalence-making, and weak geometry is restraint about which equivalences I license. The question is no longer only \"is this edge too strong?\" but \"did I merge differences that reality still treats as distinct?\""
         }
       ],
       "struct": {

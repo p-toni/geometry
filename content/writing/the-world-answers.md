@@ -41,33 +41,38 @@ struct:
 
 ## Preamble
 
-[[Geometry Over Retrieval|geometry-retrieval]] gave me the first rule: understanding is what remains when the source closes.
-[[Weak Geometry|weak-geometry]] added restraint: owned structure should stay weaker than my appetite for closure.
-[[Allowed Ignorance|allowed-ignorance]] made the cut explicit: a bounded mind survives by deciding what it is allowed to leave out.
+I need a gate for ideas.
 
-Those pieces still feel right.
+Not a better paragraph.
+Not a better map.
+Not another word for understanding.
 
-But they are incomplete in a way that now bothers me.
+A gate.
 
-They mostly describe the shape of a map.
-They ask whether I can rebuild it, weaken it, rotate it, and carry it.
-They improve the internal geometry of thought.
+Something an idea has to pass before I let it become part of the field.
 
-That is necessary.
+[[Geometry Over Retrieval|geometry-retrieval]] already gave me one gate: if the source closes and the structure does not come back, I do not own it.
+[[Weak Geometry|weak-geometry]] gave me another: if the map cannot survive one weakened edge, it hardened too early.
+[[Allowed Ignorance|allowed-ignorance]] gave me a third: if I do not know what I cut away, I do not know what might return.
 
-It is not enough.
+Those gates still work.
 
-A map can be beautiful inside itself.
-It can be coherent, economical, reconstructable, and still protected from the thing that should be allowed to hurt it.
+But they are all interior gates.
 
-The missing frame is contact.
+They test whether I can carry the map.
+They do not test whether the map can meet the world.
 
-Not another geometry.
-Not a cleaner theory of maps.
+That is the missing gate.
 
-The place where a map stops being self-flattering because the world answers back.
+Contact.
+
+The point where a map stops being protected by its own coherence.
+
+The point where the world gets a turn.
 
 ## Thesis
+
+This is the contact protocol.
 
 A bounded learner cannot carry the whole world.
 
@@ -76,31 +81,26 @@ Invariants induce symmetries.
 Symmetries make compression possible.
 Compression makes prediction and control possible.
 
-I still believe that chain.
+But the chain is not complete until the last term is exposed.
 
-But there is a hidden dependency inside it:
-
-compression only matters when it is answerable.
+Prediction has to risk being wrong.
+Control has to touch a variable.
+Compression has to meet consequence.
 
 > [thesis|contact]
 > A map cannot certify itself from the inside. It has to risk a prediction, an action, a repair, or a refusal from the world.
 
-This is the turn I want.
+Peirce gives the clean edge: an idea means something through the consequences I would expect if I actually held it [Peirce 1878].
 
-Not "do I have a good representation?"
+That turns meaning into a gate.
 
-But:
+If holding the idea changes no expectation, no action, no repair, and no sensitivity, I do not yet have contact.
 
-what would make this representation pay rent?
+I have a shape.
 
-Peirce's pragmatic test helps here: the meaning of an idea is tied to the practical consequences we should expect if the idea is true [Peirce 1878]. That does not reduce thought to utility. It gives thought a door out of itself.
+Maybe a beautiful one.
 
-An idea is not only what I can say.
-It is what I am prepared to expect, attempt, notice, and revise because I hold it.
-
-If nothing would change downstream, the map may still be elegant.
-
-It is just not yet in contact.
+Still only a shape.
 
 :::diagram loop
 map → expectation → action → feedback → revision → map
@@ -110,27 +110,25 @@ follow: The map earns itself only when consequence returns.
 
 ## I. Feedback
 
-Cybernetics begins where detached description becomes too weak.
+**Gate 1 — error must be able to return.**
 
-The interesting object is no longer just the thing observed.
-It is the loop between organism, machine, environment, signal, correction, and goal [Wiener 1948].
+If nothing can come back, the map is sealed.
 
-That shift matters because feedback is the first honest form of answerability.
+I can keep an idea clean by never giving it a channel for correction.
+I can keep a theory alive by making sure it never has to notice the variable it claims to understand.
+I can keep a sentence beautiful by never asking it to regulate anything.
 
-I act.
-Something returns.
-The return is not decorative.
-It changes the next act.
+Cybernetics is useful because it starts from the loop: organism, machine, environment, signal, correction, goal [Wiener 1948].
 
-Without that return, "understanding" can become an internal monologue with good typography.
+Not observation from far away.
 
-Ashby's law of requisite variety gives the pressure a harder edge: a regulator can only keep a system in range if it has enough variety to respond to the system's variety [Ashby 1956]. Conant and Ashby sharpen it further: every good regulator must in some sense model the system it regulates [Conant & Ashby 1970].
+A circuit with consequences.
 
-This is not a slogan about control.
+Ashby makes the demand stricter: a regulator needs enough variety to respond to the variety of the system [Ashby 1956]. Conant and Ashby add the harder sentence: every good regulator has to be a model of what it regulates [Conant & Ashby 1970].
 
-It is a demand.
+I hear that as an editing rule now:
 
-If I claim to understand something, what variable can I keep in contact with?
+what variable can this map keep in contact with?
 
 Not dominate.
 Not simplify away.
@@ -138,38 +136,53 @@ Not merely name.
 
 Keep in contact with.
 
-That changes the smell of a good map. A good map is not only compact. It is sensitive in the right places. It carries enough internal variety to notice when the world has stopped matching its expectations.
+If I cannot name the return channel, I should not trust the map yet.
 
 The bad map is not always wrong.
 
 Sometimes it is numb.
 
-It has no channel through which reality can return a useful error.
-
 ## II. Prediction
 
-Prediction is where compression stops being aesthetic.
+**Gate 2 — the compression must risk a future.**
 
-A compression is cheap if it only makes the past easier to retell.
-It becomes serious when it exposes itself to what has not happened yet.
+A summary can stay safe.
 
-This is why the free-energy / active-inference frame is useful even if I do not want to import the whole machinery. An organism lives by maintaining a boundary between itself and the world while minimizing destructive surprise through perception and action [Friston 2010].
-
-The important part for me is simpler:
+An expectation cannot.
 
 prediction is debt.
 
-Every expectation says: if my map is adequate, the world should answer in this neighborhood.
+Every expectation says:
 
-That debt is why prediction feels dangerous. It puts the map at risk. It lets the future discover where the present compressed too aggressively.
+if my map is adequate, the world should answer in this neighborhood.
 
-Allowed ignorance asked:
+That is where compression stops being aesthetic.
+
+It no longer says:
+
+look how much I can leave out.
+
+It says:
+
+watch whether the omitted difference returns.
+
+This is [[Allowed Ignorance|allowed-ignorance]] with time attached.
+
+Not only:
 
 what did I remove, and did the object survive the cut?
 
-Prediction asks the same question with teeth:
+But:
 
 when the future arrives, will the removed difference come back as error?
+
+Friston's free-energy frame helps because it treats perception and action as a living boundary-management problem, not passive representation [Friston 2010].
+
+I do not need the whole machinery.
+
+I need the pressure:
+
+survival depends on keeping surprise inside a range the system can metabolize.
 
 :::contrast summary | expectation
 - explains what happened | risks what should happen
@@ -177,10 +190,9 @@ when the future arrives, will the removed difference come back as error?
 - rewards coherence | rewards contact
 :::
 
-This is also where invariants become more than pretty stability.
+An invariant is not just stability.
 
-An invariant is not just something that remains under transformation.
-It is a bet that many visible differences can be safely ignored because some deeper relation will keep answering the same way.
+It is a bet that many visible differences can be ignored because something deeper will keep answering the same way.
 
 If the bet works, compression becomes power.
 
@@ -188,29 +200,40 @@ If the bet fails, symmetry was costume.
 
 ## III. Action
 
-There is another mistake I keep making.
+**Gate 3 — the idea needs a probe.**
 
-I treat action as what happens after understanding.
+I keep treating action as what happens after understanding.
 
 First I model.
 Then I decide.
 Then I move.
 
-That order is too clean.
+Too clean.
 
-In practice, action is how the bounded learner asks the world a question.
+Action is how a bounded learner asks the world a question.
 
-Noe's account of perception is helpful here because it refuses to separate seeing from sensorimotor skill [Noe 2004]. Perception is not passive intake. It depends on what movement would reveal, what access is available, what the body knows how to test.
+Some things cannot be known by staring harder at the map.
 
-The same is true for thought.
+They have to be touched.
+Built.
+Run.
+Shipped.
+Drawn.
+Asked.
+Priced.
+Timed.
+Broken.
+Shown to someone who will not cooperate with the fantasy.
 
-Some things cannot be known more clearly by staring harder at the map.
+Noe's work on perception gives me language for this: seeing is tied to sensorimotor skill, to what movement would make available [Noe 2004].
 
-They have to be touched, built, run, shipped, drawn, asked, priced, timed, broken, or shown to someone who will not cooperate with the fantasy.
+The thought version is the same.
 
-An action is a probe.
+Understanding often waits on an action that can reveal the next surface.
 
-Not every probe is dramatic. Most of the best ones are small:
+The probe can be small.
+
+It should be small if small is enough.
 
 1. **claim:** what I think is true.
 2. **expectation:** what should change if it is true.
@@ -218,58 +241,62 @@ Not every probe is dramatic. Most of the best ones are small:
 4. **return:** what came back without my permission.
 5. **revision:** what the map must now stop pretending.
 
-This is why "control" needs care.
+This is why I want to be careful with "control."
 
 Control is not domination here.
-It is not turning the world into an obedient extension of my theory.
 
-Control is the ability to keep an important variable inside a livable range while the environment keeps moving.
+Control is keeping an important variable inside a livable range while the environment keeps moving.
 
-That is much humbler.
+Humbler.
 
-And much harder.
+Harder.
 
 ## IV. Misfit
 
-Design has an older name for the same pressure: misfit.
+**Gate 4 — the material has to talk back.**
 
-Alexander's early design theory treats form as an answer to a field of requirements and frictions, not as free composition [Alexander 1964]. A form is good when it reduces misfit with the forces around it.
+Validation is too clean a word.
 
-That word matters.
+I trust misfit more.
 
-Misfit is not the opposite of taste.
-It is taste meeting consequence.
+Misfit is the small wrongness between a form and the forces around it.
 
-Schon's reflective practitioner works in the same territory. The practitioner frames a situation, acts, gets a back-talk from the material, and reframes [Schon 1983]. The world does not merely receive the plan. It talks back through resistance, surprise, awkwardness, and partial failure.
+Alexander uses that pressure directly: form answers a field of requirements and frictions, not free composition [Alexander 1964].
 
-That is exactly the motion I want the site to keep teaching me.
+That word does not flatter taste.
 
-Not just:
+Misfit is taste meeting consequence.
 
-can I make a beautiful map?
+Schon's reflective practitioner has the same motion: frame the situation, act, receive back-talk from the material, reframe [Schon 1983].
 
-But:
+Back-talk is the important word.
 
-where does the material push back?
+The material is not a blank receiver of intention.
 
-where does the reader stumble?
-
-where does the code resist?
-
-where does the argument require a missing object?
-
-where does reality refuse the abstraction?
+The code resists.
+The reader stumbles.
+The argument asks for an object I did not build.
+The interface exposes a sentence I was hiding inside the design.
+The world refuses the abstraction.
 
 > [aside|back-talk]
 > A clean idea often becomes more truthful when it gets worse-looking for a while. Misfit roughens the surface so the next revision has something real to grip.
 
-This is the bridge back to weak geometry.
+Weak geometry says:
 
-Weak geometry says: do not harden the edge too early.
+do not harden the edge too early.
 
-Answerability says: find out what would harden it legitimately.
+Answerability asks:
 
-The world is not always right in the simple sense. Feedback can be noisy, local, biased, or badly instrumented. But a map with no appetite for feedback is worse. It has become self-sealed.
+what would harden it legitimately?
+
+Feedback can be noisy.
+Misfit can be local.
+The world can answer badly.
+
+But a map with no appetite for answer is worse.
+
+It has become self-sealed.
 
 Self-sealed maps age into personality.
 
@@ -277,17 +304,17 @@ Answerable maps age into practice.
 
 ## V. Boundary
 
-Boundedness is not only a limitation.
+**Gate 5 — error has to land somewhere.**
 
-It is also how a self becomes a self.
+This is the tool question.
 
-Levin's work on biological selves is useful here because it treats boundaries as computational, not merely anatomical: a system's "self" depends on what goals, memories, and errors are integrated across its boundary [Levin 2019].
+Not:
 
-That gives me a better way to think about thinking with tools.
+is AI inside me or outside me?
 
-The question is not whether AI is inside or outside me in some romantic sense.
+Too romantic.
 
-The question is:
+The better question is:
 
 where does error get integrated?
 
@@ -296,8 +323,14 @@ Where does memory update?
 Where does taste push back?
 Where does the loop learn?
 
+Levin's work on biological selves helps because it treats boundaries as computational, not merely anatomical: a self is partly defined by what goals, memories, and errors are integrated across it [Levin 2019].
+
+That gives me a stricter way to think about tools.
+
 If the model generates options but I absorb no error, I am not learning.
+
 If I accept polish without contact, I am borrowing fluency.
+
 If the system helps me design better probes, sharper tests, cleaner deployments, and more honest postmortems, then it is helping me keep contact.
 
 That is the version of [[Co-owning the Loop|co-owning-the-loop]] I trust now.
@@ -306,66 +339,58 @@ Not co-authorship as speed.
 
 Co-authorship as better answerability.
 
-The tool should help me build surfaces where the world can answer sooner and with less ambiguity.
-
 ## VI. Practice
 
-So the next essay is not really an essay.
+The protocol is small enough to run.
 
-It is a discipline for future work.
+Before an idea enters the field, ask:
 
-Before I let an idea become part of the site, I should ask:
-
-1. **What is the invariant?** Name the thing I believe survives change.
-2. **What symmetry am I assuming?** Name the differences I am treating as equivalent.
-3. **What compression follows?** Name what becomes cheaper because of that equivalence.
-4. **What prediction does it risk?** Name what should happen if the compression is legitimate.
-5. **What action exposes it?** Name the smallest probe that lets the world answer.
-6. **What feedback would revise it?** Name the return I am not allowed to explain away.
+1. **Invariant:** what do I believe survives change?
+2. **Symmetry:** what differences am I treating as equivalent?
+3. **Compression:** what becomes cheaper because of that equivalence?
+4. **Prediction:** what should happen if the compression is legitimate?
+5. **Probe:** what small action lets the world answer?
+6. **Return:** what feedback would revise the map?
+7. **Boundary:** where does the error get integrated?
 
 That is the chain made practical.
 
-invariant → symmetry → compression → prediction → action → feedback
+invariant → symmetry → compression → prediction → action → feedback → boundary
 
 If I cannot name the feedback, I do not yet have a living idea.
 
-I have a shape.
+If I cannot name where the feedback lands, I do not yet have a learning loop.
 
-Maybe a beautiful one.
+Deming's PDSA cycle makes this ordinary in the best way: plan, do, study, act [Deming 1986].
 
-But still only a shape.
+Theory predicts.
+Action exposes.
+Study updates.
+The next plan is not a reset.
 
-The Deming PDSA cycle makes this ordinary in the best way: plan, do, study, act [Deming 1986]. Theory predicts. Action exposes. Study updates. The next plan is not a reset; it is memory with consequence attached.
+It is memory with consequence attached.
 
-This is what I want from the site long term.
+That is what I want from the site long term.
 
-A field of ideas that does not only point inward to other ideas.
+Not ideas that only point inward to other ideas.
 
-A field that keeps asking:
+Ideas with surfaces.
 
-what would let the world answer this?
+Ideas that can be touched.
+
+Ideas that let the world answer.
 
 ## Closing
 
-I used to say understanding is what remains when the source closes.
+Understanding is what remains when the source closes.
 
-I still mean it.
+That is still true.
 
-But now I need the second half.
+Now the second gate:
 
-Understanding is what remains when the source closes and the world pushes back.
+understanding is what remains when the world pushes back.
 
-That is the frame I want next.
-
-Not another layer of geometry.
-
-Contact.
-
-Answerability.
-
-The map risking itself against consequence.
-
-This also makes the pinned line feel less like a poem and more like a research program:
+The pinned line becomes a protocol:
 
 A bounded learner cannot carry the whole world.
 So it searches for invariants.
@@ -373,6 +398,6 @@ Invariants induce symmetries.
 Symmetries make compression possible.
 Compression makes prediction and control possible.
 
-And then the missing final line:
+And then the missing line:
 
 prediction and control only matter if the world is allowed to answer.

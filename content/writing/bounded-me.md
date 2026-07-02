@@ -31,20 +31,36 @@ I keep getting tempted by clean definitions.
 
 Information as entropy.
 Intelligence as compression.
-Learning as “matching a distribution.”
+Learning as "matching a distribution."
 
-Those definitions are elegant, but they don’t cash out in my actual life.
-Compression may be a frequent symptom of a good map.
-It is not the criterion.
-A map can be compact and still close too early.
+They are elegant.
 
-In my life, “information” is not what exists in the world. It’s what I can *pull into myself* under constraints: time, attention, energy, compute, mood, calendar, context.
-I don’t experience the universe. I experience the slice I can process.
+They also leave my actual day untouched.
 
-So the question isn’t “how much information is there?”
-It’s “what structure is extractable for *me*, right now, with my limits?”
+Some mornings I can read one paragraph and it becomes a lever.
+Other mornings the same paragraph is dead text.
 
-That’s the only definition that stays stable across days where I’m sharp, days where I’m foggy, and days where I’m pretending.
+Nothing about the paragraph changed.
+
+I changed.
+
+My sleep changed.
+My calendar changed.
+My attention changed.
+The number of open loops changed.
+The amount of future-me available to receive the thought changed.
+
+So I do not experience information as a property of the world.
+
+I experience information as a negotiation with my limits.
+
+The question is not:
+
+how much information is there?
+
+The question is:
+
+what structure can bounded-me extract, stabilize, and reuse right now?
 
 > [thesis|private metric]
 > Information is not what exists. It is what a bounded learner can extract, stabilize, and reuse without making the next loop more fragile.
@@ -53,141 +69,227 @@ That’s the only definition that stays stable across days where I’m sharp, da
 
 ## 1) Bounded me
 
-When I say “I learned something,” what I mean is:
+When I say "I learned something," I usually mean something smaller and more practical than the sentence suggests.
 
-* I found a pattern that survived contact with my schedule.
-* It became cheap to recall.
-* It started generating predictions or choices with low friction.
+I mean:
 
-So “information” isn’t a property of the thing I read. It’s a property of the *interaction* between that thing and my constraints.
+* a pattern survived contact with my schedule.
+* it became cheaper to recall.
+* it started changing predictions or choices without asking for a full rebuild.
 
-Some days, the same paragraph is dead text.
-Other days, it turns into a lever.
+That is the private event.
 
-That makes me suspect that a lot of my confusion comes from treating my mind like an unbounded observer. I keep asking what’s “true” in the abstract, when what matters is what I can distill into internal programs.
+Not possession.
 
-A good piece of writing for me isn’t one that contains the most novelty.
-It’s one that increases the amount of structure I can reliably extract later.
+Re-entry.
 
-That’s the bar: **does it reduce future compute for me?**
+Some ideas enter me and stay inert.
 
-One more private corollary: sometimes computation itself creates something I can learn. Not “new truth,” but new *extractable structure* for bounded-me.
+They sound right.
+They quote well.
+They make me feel briefly improved.
+
+Then the next loop arrives and they do nothing.
+
+Other ideas become internal programs.
+
+I reach for them without prompting.
+They reduce startup cost.
+They change what I notice.
+They make the next action less noisy.
+
+That is the kind of information I care about.
+
+Not novelty.
+
+Extractable structure.
+
+The piece is good if it reduces future compute for me.
+
+That is the bar.
 
 ---
 
-## 2) “Memory” as geometry (not storage)
+## 2) "Memory" as geometry (not storage)
 
-I don’t want a second brain that is a library.
+I do not want a second brain that is a library.
 
-A library gives you retrieval.
-It doesn’t give you shape.
+A library gives me retrieval.
 
-What I actually need is a geometry: a coordinate system where ideas have distance, direction, neighbors, borders—so that reasoning becomes movement instead of lookup.
+It does not give me shape.
 
-This is the difference between:
+What I need is closer to a local geometry:
 
-* storing facts, and
-* arranging facts so they become *navigable*.
+distance,
+direction,
+neighbors,
+borders,
+hard parts,
+soft parts,
+edges I can weaken without losing the whole thing.
 
-When my thinking is good, it’s because I’ve built a local geometry:
+When my thinking is good, I can move.
 
-* I know where the “hard” parts are,
-* I know what’s adjacent,
-* I can move from one concept to another without re-deriving everything from scratch.
+I know what is adjacent.
+I know what constrains what.
+I can forget a detail and still regenerate the path.
 
-When my thinking is bad, I’m trapped in flat text. Everything is equally far away.
+When my thinking is bad, everything is flat text.
 
-So when I write, I’m not trying to “publish.”
-I’m trying to carve geometry into my own space.
+Every sentence is equally far away.
 
-The draft fails when it reads like notes about other people’s ideas.
+So when I write, I am not trying to publish first.
+
+I am trying to carve geometry into my own space.
+
+The draft fails when it reads like notes about other people's ideas.
+
 The draft succeeds when it changes the topology of my own.
+
+That is why retrieval is not enough.
+
+Retrieval brings the object back.
+
+Geometry changes where I can stand.
 
 ---
 
 ## 3) The fractal edge in my own training
 
-There’s a boundary in my life that feels like training stability.
+There is a boundary in my life that feels like training stability.
 
-On one side: I’m compounding. It converges. The loop is tight. Small inputs become durable progress.
-On the other side: everything diverges. I’m “busy,” but nothing converges.
+On one side:
 
-And that boundary isn’t a clean line.
+I am compounding.
+The loop is tight.
+Small inputs become durable progress.
 
-It’s sensitive. Weirdly sensitive.
+On the other side:
 
-If I zoom in, the difference between a good week and a trash week can be:
+everything diverges.
+I am "busy."
+Nothing converges.
 
-* one meeting at the wrong time,
-* one small breach of sleep,
-* one subtle context switch I didn’t respect,
-* one “I’ll just do this quickly” that turns into a lost evening.
+The boundary is not clean.
+
+It is sensitive.
+
+Weirdly sensitive.
+
+If I zoom in, a good week and a trash week can differ by:
+
+* one meeting at the wrong time.
+* one small breach of sleep.
+* one context switch I did not respect.
+* one "I'll just do this quickly" that eats the evening.
 
 From far away, it looks like discipline.
-Up close, it looks like dynamical systems.
 
-So I want to treat my own productivity like trainability: not moral, not identity—just stability conditions.
+Up close, it looks like dynamics.
 
-Not “why am I like this?”
-But “what hyperparameters keep me in the convergent basin?”
+So I want to treat my own productivity less like morality and more like trainability.
 
-Writing is part of that. A piece is not just output; it’s *a stabilizer* if it makes my next actions less chaotic.
+Not:
+
+why am I like this?
+
+But:
+
+what conditions keep me in the convergent basin?
+
+Writing is part of that basin.
+
+A piece is not just output.
+
+It is a stabilizer if it makes my next loop less chaotic.
 
 ---
 
 ## 4) Information as flow through the loop
 
-I like the idea that information isn’t only stored. It flows.
+Information does not only sit.
 
-In my life, “flow” is literal:
+It flows.
+
+In my life, the flow is literal:
 
 attention → notes → decisions → habits → products → feedback
 
-Most of the time, I lose information not because it wasn’t there, but because it leaked at a transition:
+Most of the loss happens between states.
 
-* I read something but didn’t integrate it.
-* I had an insight but didn’t attach it to a decision.
-* I made a decision but didn’t make it executable.
-* I executed but didn’t close the loop with feedback.
+I read something but do not integrate it.
+I have an insight but do not attach it to a decision.
+I make a decision but do not make it executable.
+I execute but do not close the loop with feedback.
 
-So the real unit of improvement isn’t “better memory.”
-It’s **lower-leakage loops**.
+The leak is not memory.
 
-This is why “writing from inside my head” matters. Because writing is the part of the loop where I convert diffuse impressions into a structured object I can re-enter later.
+The leak is transition.
+
+So the unit I care about is not better storage.
+
+It is lower-leakage loops.
+
+This is why writing from inside my head matters.
+
+Writing is the conversion point.
+
+Diffuse impressions become a structured object I can re-enter later.
 
 If the writing is for others, I optimize for legibility.
-If the writing is for me, I optimize for *re-entry*.
 
-The point is: future-me can jump back in and regain the geometry quickly.
+If the writing is for me, I optimize for re-entry.
+
+Future-me should be able to jump back in and regain the geometry quickly.
+
+If he cannot, the piece did not stabilize anything.
+
+It only performed.
 
 ---
 
 ## 5) A private metric: did the piece increase extractable structure?
 
-I need a way to evaluate whether this piece is “good,” without referencing audience.
+I need a way to tell whether a piece was good without asking an audience.
 
-So here’s the metric:
+So here is the private metric.
 
-After writing it, do I notice this?
+After writing it, do I notice:
 
 1. **Decision speed:** I make faster decisions in the same domain.
 2. **Compression:** I can explain the core tension to myself in fewer steps.
 3. **Reuse:** I reach for the concept naturally without prompting.
-4. **Compilation time:** I feel less startup cost when I re-enter the problem.
+4. **Re-entry:** I feel less startup cost when I return to the problem.
+5. **Contact:** the idea changes what I test, build, avoid, or notice next.
 
 If yes, the piece increased extractable structure.
-If no, it’s just text.
+
+If no, it is just text.
 
 This is also a test for working with AI.
 
-If the AI produces clean paragraphs that don’t change my internal geometry, that’s not “me.”
-That’s a ghostwriter.
+If the model gives me clean paragraphs that do not change my internal geometry, that is not me.
 
-The role I want is different: co-authoring as instrumentation. The AI helps me scan the space, but the piece must be a faithful compression of *my loop*.
+That is a ghostwriter.
 
-Which means the draft has to contain my constraints, not just my references.
+The role I want is different.
 
-**New (minimal) add:** I’ve started treating “me + AI” as a coupling problem: how much human–AI exchange I allow, how much human feedback control I keep, and how much complexity I invite in. If exchange rises faster than my ability to monitor and reshape it, the loop does not get smarter. It gets **tighter and wrong**. My default target is still the same: fast scanning, slow believing.
+Co-authoring as instrumentation.
+
+The model can scan the space.
+It can surface alternatives.
+It can stress the edge.
+
+But the piece has to compress my loop.
+
+My constraints.
+My failure modes.
+My re-entry cost.
+My next action.
+
+Not just my references.
+
+**New (minimal) add:** I have started treating [[Me + AI|me-plus-ai]] as a coupling problem: how much exchange I allow, how much feedback control I keep, and how much complexity I invite in. If exchange rises faster than my ability to monitor and reshape it, the loop does not get smarter. It gets tighter and wrong. My default target is still the same: fast scanning, slow believing.
 
 ---
 
@@ -195,21 +297,35 @@ Which means the draft has to contain my constraints, not just my references.
 
 Information is not a number.
 
+It is not the whole world made portable.
+
+It is the part of the world my loop can extract without becoming more fragile.
+
 > Information is structural signal that (1) a bounded learner can extract, (2) often crystallizes into geometry, (3) survives chaotic training dynamics, and (4) behaves like flow through a loop.
 
-It’s what my loop can extract under constraints—then keep stable—then reuse.
+My job is not to know everything.
 
-My job is to build geometry, reduce leakage, stay in the convergent basin, and not harden the map faster than my evidence can carry.
+My job is to increase what is extractable without increasing fragility.
 
-This is why I keep building systems. Not because I love tools.
-Because my mind is bounded, and I want to increase what’s extractable without increasing fragility through premature closure.
+Build geometry.
+Reduce leakage.
+Stay in the convergent basin.
+Do not harden the map faster than evidence can carry.
+
+This is why I keep building systems.
+
+Not because I love tools.
+
+Because my mind is bounded.
 
 Writing is one of my best tools for that.
-But only when it’s written from inside my head.
+
+But only when it is written from inside my head.
 
 Not what sounds right.
+
 What changes what I do next.
 
-**Update (2026-03-15):** Bennett (2026) formalizes a complementary constraint: under the Chord assumptions, a unified conscious moment has a physical size limit D ≤ κvθ, where D is the support diameter, v is the signal-propagation ceiling, θ is the integration window, and κ depends on exchange architecture. A mind can only get so big—not metaphorically, but because signals travel at finite speed. The same logic can fragment cloud-hosted models when limited concurrency blocks co-instantiation (even if links are fast), and it makes colony-scale single moments fail at fine, fast grounding scales. This is about consciousness criteria, but it sharpens my own boundedness lens. (Source: https://www.preprints.org/manuscript/202602.1708/v2)
+**Update (2026-03-15):** Bennett (2026) formalizes a complementary constraint: under the Chord assumptions, a unified conscious moment has a physical size limit D <= kvtheta, where D is the support diameter, v is the signal-propagation ceiling, theta is the integration window, and k depends on exchange architecture. A mind can only get so big because signals travel at finite speed. This is about consciousness criteria, but it sharpens my own boundedness lens: boundedness is not a mood. It is a physical constraint on integration. (Source: https://www.preprints.org/manuscript/202602.1708/v2)
 
-**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] gives a sharper name to what boundedness forces: not just limited capacity, but mandatory equivalence-making. Every usable map already contains decisions about which differences can be treated as the same. That is the primitive act underneath compression — and the place where bounded cognition most quietly makes its bets.
+**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] gives a sharper name to what boundedness forces: not just limited capacity, but mandatory equivalence-making. Every usable map already contains decisions about which differences can be treated as the same. That is the primitive act underneath compression, and the place where bounded cognition most quietly makes its bets.
