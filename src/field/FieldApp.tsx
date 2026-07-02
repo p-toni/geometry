@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { Spin } from '../components/Spin';
-import { uniqueEdges } from '../lib/graph';
+import { linkedNeighborRels, uniqueEdges } from '../lib/graph';
 import { activeChipForQuery, resolveLens } from '../lib/search';
 import {
   parseFieldState,
@@ -374,12 +374,9 @@ export function FieldApp() {
     }
   }, [pushUrl]);
   const neighborRels = useMemo(() => {
-    const m: Record<string, Rel> = {};
-    if (readNode) {
-      for (const [id, rel] of readNode.links) m[id] = rel;
-    }
-    return m;
-  }, [readNode]);
+    if (!readId) return {};
+    return linkedNeighborRels(pool, readId);
+  }, [readId]);
 
   const matchedSet = useMemo(() => new Set(matched ?? []), [matched]);
   const terrainCtx = useMemo<TerrainCtx>(

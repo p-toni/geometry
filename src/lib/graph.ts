@@ -32,3 +32,17 @@ export function inboundLinks(pool: Pool, id: string): { fromId: string; rel: Rel
   }
   return out;
 }
+
+/** All nodes sharing an edge with `id` — outbound links win on rel when both exist. */
+export function linkedNeighborRels(pool: Pool, id: string): Record<string, Rel> {
+  const node = pool.nodes[id];
+  if (!node) return {};
+  const m: Record<string, Rel> = {};
+  for (const [target, rel] of node.links) {
+    if (pool.nodes[target]) m[target] = rel;
+  }
+  for (const { fromId, rel } of inboundLinks(pool, id)) {
+    if (!m[fromId]) m[fromId] = rel;
+  }
+  return m;
+}
