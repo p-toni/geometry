@@ -3,17 +3,15 @@ import { uniqueEdges } from '../lib/graph';
 import { isWholePiece } from '../lib/readMode';
 import type { Pool } from '../pool';
 
-export type FieldMode = 'field' | 'lens' | 'now' | 'read';
+export type FieldMode = 'field' | 'lens' | 'read';
 
 export function getFieldMode(args: {
   read: string | null;
   query: string;
   matched: string[] | null;
-  now: boolean;
 }): FieldMode {
   if (args.read && args.read.length > 0) return 'read';
   if (args.query && args.matched && args.matched.length > 0) return 'lens';
-  if (args.now) return 'now';
   return 'field';
 }
 
@@ -56,15 +54,6 @@ export function statusForMode(
       hint: n
         ? 'the field re-weighted around your question · clear to see it whole'
         : 'nothing matched — the field is unchanged',
-    };
-  }
-
-  if (mode === 'now') {
-    return {
-      left: 'now · freshest lit',
-      right: 'by recency',
-      verb: args.cascading ? 'cascade' : 'orbit',
-      hint: 'recent work glows · the rest recedes — same field, time as a lens',
     };
   }
 

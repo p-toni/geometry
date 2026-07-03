@@ -3,7 +3,6 @@ import { FIELD_HEIGHT, FIELD_WIDTH, pool } from '../pool';
 import { terrainHeight, type TerrainCtx } from './terrainHeight';
 
 const SIGNAL = '#1f4db8';
-const FRESH = '#d4a53a';
 const MUTED = '#a39b8c';
 const EDGE_IDLE = '#bcc3bd';
 
@@ -87,7 +86,7 @@ export function buildMinimapSummits(ctx: TerrainCtx): MinimapSummit[] {
       r = 8;
       op = 0.95;
     } else if (lit) {
-      fill = ctx.mode === 'now' ? FRESH : SIGNAL;
+      fill = SIGNAL;
       r = 6;
       op = 0.95;
     }

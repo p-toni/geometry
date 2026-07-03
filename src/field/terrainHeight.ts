@@ -1,8 +1,7 @@
-import { freshScore } from '../lib/freshness';
 import type { PoolNode, Rel } from '../pool/types';
 
 export type TerrainCtx = {
-  mode: 'field' | 'lens' | 'now' | 'read';
+  mode: 'field' | 'lens' | 'read';
   readId: string | null;
   neighborRels: Record<string, Rel>;
   matched: Set<string>;
@@ -23,10 +22,6 @@ export function terrainHeight(
   } else if (ctx.mode === 'lens') {
     h = ctx.matched.has(id) ? 1.95 : 0.42;
     lit = ctx.matched.has(id);
-  } else if (ctx.mode === 'now') {
-    const fs = freshScore(node);
-    h = fs >= 3 ? 2.2 : fs >= 1 ? 1.5 : 0.5;
-    lit = fs >= 1;
   }
 
   return { h, lit };

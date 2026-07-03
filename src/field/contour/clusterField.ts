@@ -63,7 +63,7 @@ function clamp01(t: number): number {
 
 /** Valley→ridge RGB shared by volume fill and contour ink family. */
 export function terrainRgb(
-  mode: 'field' | 'lens' | 'now' | 'read',
+  mode: 'field' | 'lens' | 'read',
   cluster: Cluster,
   t: number,
 ): [number, number, number] {
@@ -78,13 +78,6 @@ export function terrainRgb(
       Math.round(vb + (rb - vb) * u),
     ];
   }
-  if (mode === 'now') {
-    return [
-      Math.round(252 - u * 6),
-      Math.round(210 - u * 112),
-      Math.round(168 - u * 148),
-    ];
-  }
   return [
     Math.round(210 - u * 72),
     Math.round(224 - u * 48),
@@ -94,13 +87,13 @@ export function terrainRgb(
 
 /** Hypsometric volume — same palette as contour lines, transparent wash. */
 export function volumeFillRgba(
-  mode: 'field' | 'lens' | 'now' | 'read',
+  mode: 'field' | 'lens' | 'read',
   cluster: Cluster,
   t: number,
   dimmed: boolean,
 ): [number, number, number, number] {
   const [r, g, b] = terrainRgb(mode, cluster, t);
-  const modeBoost = mode === 'now' ? 1.35 : mode === 'lens' ? 1.2 : 1;
+  const modeBoost = mode === 'lens' ? 1.2 : 1;
   const base = (dimmed ? 0.12 : 0.27) * modeBoost;
   const a = base * (0.35 + clamp01(t) * 0.65);
   return [r, g, b, a];
@@ -123,12 +116,12 @@ export function hypsometricWhisper(cluster: Cluster, t: number, dimmed: boolean)
 export function contourStroke(
   cluster: Cluster,
   levelT: number,
-  mode: 'field' | 'lens' | 'now' | 'read',
+  mode: 'field' | 'lens' | 'read',
   dimmed: boolean,
 ): string {
   const u = clamp01(levelT);
   const [r, g, b] = terrainRgb(mode, cluster, u);
-  const modeBoost = mode === 'now' ? 1.45 : mode === 'lens' ? 1.3 : mode === 'read' ? 0.9 : 1;
+  const modeBoost = mode === 'lens' ? 1.3 : mode === 'read' ? 0.9 : 1;
   const a = (0.15 + u * 0.2) * (dimmed ? 0.62 : 1) * modeBoost;
   return `rgba(${r},${g},${b},${a.toFixed(3)})`;
 }

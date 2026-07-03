@@ -116,7 +116,7 @@ export function LateFailure({ inline = true }: LateFailureProps) {
                 key={i}
                 style={{
                   display: 'block',
-                  color: cracked && i === LINES - 1 ? '#c2410c' : '#3c434a',
+                  color: cracked && i === LINES - 1 ? 'var(--read-owned)' : '#3c434a',
                   transform: `translateX(${strain * (i - 1) * 2}px)`,
                   transition: holding
                     ? 'transform 0.08s linear'
@@ -143,7 +143,7 @@ export function LateFailure({ inline = true }: LateFailureProps) {
               <path
                 d="M40,8 L130,52 L96,66 L210,112"
                 fill="none"
-                stroke="#c2410c"
+                stroke="var(--read-owned)"
                 strokeWidth={1.5}
                 className={`crackdraw-path${crackDrawn ? ' is-drawn' : ''}`}
               />
@@ -154,7 +154,7 @@ export function LateFailure({ inline = true }: LateFailureProps) {
           style={{
             fontFamily: 'var(--font-body)',
             fontSize: 13,
-            color: cracked ? '#c2410c' : 'var(--kicker)',
+            color: cracked ? 'var(--read-owned)' : 'var(--kicker)',
             margin: '6px 0 0',
           }}
         >

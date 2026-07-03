@@ -20,7 +20,7 @@ function pairCell(owned: boolean): CSSProperties {
     fontFamily: 'var(--font-body)',
     fontSize: 15,
     lineHeight: 1.45,
-    color: owned ? '#1C1F24' : '#6B7280',
+    color: owned ? 'var(--ink)' : 'var(--muted)',
     fontWeight: owned ? 500 : 400,
     padding: '15px 18px 15px 0',
     borderTop: '1px solid #EFEBE2',
@@ -37,7 +37,7 @@ function tableHead(kind: 'axis' | 'a' | 'b', aOwned: boolean, bOwned: boolean): 
     textTransform: 'uppercase',
     padding: '11px 14px',
     color:
-      kind === 'axis' ? '#6B7280' : owned ? 'var(--read-owned)' : '#A39B8C',
+      kind === 'axis' ? 'var(--muted)' : owned ? 'var(--read-owned)' : '#A39B8C',
     background:
       kind === 'axis' ? '#F1EEE7' : owned ? 'var(--read-owned-tint)' : '#F1EEE7',
     borderLeft: kind === 'axis' ? undefined : '1px solid #E7E2D8',
@@ -49,7 +49,7 @@ function tableCell(owned: boolean): CSSProperties {
     fontFamily: 'var(--font-body)',
     fontSize: 13,
     lineHeight: 1.4,
-    color: owned ? '#1C1F24' : '#A39B8C',
+    color: owned ? 'var(--ink)' : '#A39B8C',
     padding: '12px 14px',
     borderTop: '1px solid #EFEBE2',
     borderLeft: '1px solid #E7E2D8',
@@ -99,7 +99,7 @@ function LineSkin({
             fontWeight: 600,
             fontSize: 30,
             letterSpacing: '-0.02em',
-            color: aOwned ? '#1C1F24' : '#A39B8C',
+            color: aOwned ? 'var(--ink)' : '#A39B8C',
           }}
         >
           {row.a}
@@ -121,7 +121,7 @@ function LineSkin({
             fontSize: 11,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            color: '#C2410C',
+            color: 'var(--read-owned)',
           }}
         >
           vs
@@ -147,7 +147,7 @@ function LineSkin({
             fontWeight: 600,
             fontSize: 34,
             letterSpacing: '-0.025em',
-            color: bOwned ? '#1C1F24' : '#A39B8C',
+            color: bOwned ? 'var(--ink)' : '#A39B8C',
           }}
         >
           {row.b}
@@ -211,7 +211,7 @@ function TableSkin({
             style={{
               fontWeight: 600,
               fontSize: 13,
-              color: '#1C1F24',
+              color: 'var(--ink)',
               padding: '12px 14px',
               borderTop: '1px solid #EFEBE2',
             }}

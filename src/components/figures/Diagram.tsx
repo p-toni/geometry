@@ -3,10 +3,10 @@ import type { DiagramData } from '../../lib/diagram';
 type Props = DiagramData;
 
 const TERM_COLORS: Record<string, string> = {
-  D: '#1F4DB8',
-  κ: '#C2410C',
-  v: '#6B7280',
-  θ: '#1F4DB8',
+  D: 'var(--signal)',
+  κ: 'var(--read-owned)',
+  v: 'var(--muted)',
+  θ: 'var(--signal)',
 };
 
 const termStyle = {
@@ -14,7 +14,7 @@ const termStyle = {
   fontWeight: 600,
   fontSize: 20,
   letterSpacing: '-0.015em',
-  color: '#1C1F24',
+  color: 'var(--ink)',
 } as const;
 
 /** Spec 04 · read skin — display line only; prose is authored around the block. */
@@ -43,7 +43,7 @@ export function Diagram({ mode, cyclic, nodes, expr, relation, rhs, terms }: Pro
             return (
               <span
                 key={i}
-                style={{ color: isOp ? '#C2410C' : TERM_COLORS[part] ?? '#1C1F24' }}
+                style={{ color: isOp ? 'var(--read-owned)' : TERM_COLORS[part] ?? 'var(--ink)' }}
               >
                 {part}
               </span>
@@ -62,12 +62,12 @@ export function Diagram({ mode, cyclic, nodes, expr, relation, rhs, terms }: Pro
             {legendKeys.map((sym) => (
               <span
                 key={sym}
-                style={{ fontFamily: 'var(--font-body)', fontSize: 12.5, color: '#6B7280' }}
+                style={{ fontFamily: 'var(--font-body)', fontSize: 12.5, color: 'var(--muted)' }}
               >
                 <b
                   style={{
                     fontFamily: 'var(--font-display)',
-                    color: TERM_COLORS[sym] ?? '#1C1F24',
+                    color: TERM_COLORS[sym] ?? 'var(--ink)',
                     fontWeight: 600,
                   }}
                 >
@@ -108,7 +108,7 @@ export function Diagram({ mode, cyclic, nodes, expr, relation, rhs, terms }: Pro
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: 20,
-            color: '#C2410C',
+            color: 'var(--read-owned)',
             marginLeft: 3,
             lineHeight: 1,
           }}

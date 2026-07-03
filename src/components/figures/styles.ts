@@ -2,16 +2,16 @@ import type { CSSProperties } from 'react';
 
 /** Registry SoT: Figures - Essay Widget Registry.dc.html */
 export const registry = {
-  paper: '#FAF8F4',
+  paper: 'var(--card)',
   paper2: '#F4F1EA',
-  ink: '#1C1F24',
+  ink: 'var(--ink)',
   body: '#2C333A',
   muted: '#3C434A',
-  kicker: '#9aa39c',
+  kicker: 'var(--kicker)',
   line: '#D5CEC3',
-  lineSoft: '#E8E2D8',
-  lineHair: '#F2EDE6',
-  signal: '#1F4DB8',
+  lineSoft: 'var(--line-soft)',
+  lineHair: 'var(--line-hair)',
+  signal: 'var(--signal)',
   signalTint: '#eef2fd',
   signalBorder: '#d4dbf2',
   readAccent: 'var(--read-accent)',

@@ -32,7 +32,7 @@ function forceStyle(tier: (typeof DEFAULT_FORCES)[number]['tier']) {
       };
     case 'bridge':
       return {
-        color: '#6B7280',
+        color: 'var(--muted)',
         background: '#F4F1EA',
         border: '1px solid #D5CEC3',
       };
@@ -57,7 +57,7 @@ export function EdgeTaxonomy({ rows }: EdgeTaxonomyProps) {
           fontSize: 10,
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
-          color: '#6B7280',
+          color: 'var(--muted)',
           marginBottom: 11,
         }}
       >
@@ -70,7 +70,7 @@ export function EdgeTaxonomy({ rows }: EdgeTaxonomyProps) {
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: 12,
-              color: '#1C1F24',
+              color: 'var(--ink)',
               background: '#fff',
               border: '1px solid #D5CEC3',
               borderRadius: 4,
@@ -87,7 +87,7 @@ export function EdgeTaxonomy({ rows }: EdgeTaxonomyProps) {
           fontSize: 10,
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
-          color: '#6B7280',
+          color: 'var(--muted)',
           marginBottom: 11,
         }}
       >

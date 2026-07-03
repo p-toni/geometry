@@ -12,7 +12,7 @@ export function FootnoteMarker({ n }: { n: number }) {
       style={{
         fontFamily: 'var(--font-mono)',
         fontSize: 10,
-        color: '#C2410C',
+        color: 'var(--read-owned)',
         verticalAlign: 'super',
         lineHeight: 0,
         marginLeft: 1,
@@ -41,7 +41,7 @@ export function SectionFootnotes({ entries }: { entries: FootnoteEntry[] }) {
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: 10,
-              color: '#C2410C',
+              color: 'var(--read-owned)',
               flex: 'none',
             }}
           >
@@ -75,7 +75,7 @@ export function Citation({ placement, source, claim }: Props) {
           fontFamily: 'var(--font-body)',
           fontWeight: 500,
           fontSize: 15,
-          color: '#1C1F24',
+          color: 'var(--ink)',
           background: '#fff',
           border: '1px solid #D6CFC2',
           borderRadius: 6,
@@ -147,7 +147,7 @@ export function SourcesLedger({ items }: LedgerProps) {
           fontWeight: 600,
           fontSize: 15,
           letterSpacing: '-0.01em',
-          color: '#1C1F24',
+          color: 'var(--ink)',
           marginBottom: 6,
         }}
       >
@@ -165,7 +165,7 @@ export function SourcesLedger({ items }: LedgerProps) {
             borderTop: '1px solid #EFEBE2',
           }}
         >
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C2410C' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--read-owned)' }}>
             {i + 1}
           </span>
           <div className="prose-inset">

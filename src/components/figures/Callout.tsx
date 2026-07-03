@@ -28,10 +28,10 @@ const SKIN: Record<
   aside: {
     box: {
       background: '#F4F1EA',
-      border: '1px solid #E8E2D8',
+      border: '1px solid var(--line-soft)',
       borderLeft: '3px solid #9aa39c',
     },
-    label: '#6B7280',
+    label: 'var(--muted)',
     glyph: '◇',
   },
   honesty: {
