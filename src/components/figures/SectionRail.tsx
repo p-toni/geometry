@@ -37,7 +37,7 @@ export function SectionRail({ display, letter, role, tagline, tier, isFirst, sec
           letterSpacing: tier === 'grammar' ? '0.2em' : '0.14em',
           textTransform: 'uppercase',
           color: tier === 'grammar' ? registry.readAccent : registry.kicker,
-          whiteSpace: 'nowrap',
+          minWidth: 0,
         }}
       >
         {kicker}

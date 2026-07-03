@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { Spin } from '../components/Spin';
 import { linkedNeighborRels, uniqueEdges } from '../lib/graph';
@@ -9,10 +9,9 @@ import {
   writeFieldState,
 } from '../lib/fieldUrl';
 import { effectiveReadFull } from '../lib/readMode';
-import { kindLabel } from '../lib/glyph';
 
 import { pool, FIELD_HEIGHT, FIELD_WIDTH } from '../pool';
-import type { Rel } from '../pool/types';
+import type { NodeKind } from '../pool/types';
 import {
   SpatialConstellationHandoff,
   type DescentOrigin,
@@ -28,7 +27,43 @@ import { FieldTerrainCanvas } from './FieldTerrainCanvas';
 import { ReadPanel } from './ReadPanel';
 import { Minimap } from './Minimap';
 import type { TerrainCtx } from './terrainHeight';
-import toniLtdLogo from '../assets/toni-ltd.svg';
+/** Terrain names (thought) are set in italic serif; built things in roman. */
+function isTerrainKind(kind: NodeKind): boolean {
+  return kind === 'essay' || kind === 'note' || kind === 'about';
+}
+
+/** Cartographic symbology — each kind gets its own surveyor's mark. */
+function kindMarkStyle(kind: NodeKind, color: string): CSSProperties {
+  const base: CSSProperties = { flex: 'none', display: 'inline-block' };
+  switch (kind) {
+    case 'essay':
+      return {
+        ...base,
+        width: 7,
+        height: 7,
+        borderRadius: '50%',
+        border: `1px solid ${color}`,
+        background: `radial-gradient(circle, ${color} 0 1.5px, transparent 2px)`,
+      };
+    case 'project':
+      return { ...base, width: 5, height: 5, background: color, transform: 'rotate(45deg)' };
+    case 'doc':
+      return { ...base, width: 5, height: 5, borderRadius: '50%', border: `1px solid ${color}` };
+    case 'note':
+      return { ...base, width: 4, height: 4, borderRadius: '50%', background: color };
+    case 'about':
+      return { ...base, width: 5, height: 5, border: `1px solid ${color}` };
+    default:
+      // media artifacts (shader / voxel / sharp): hatched survey swatch
+      return {
+        ...base,
+        width: 6,
+        height: 6,
+        border: `1px solid ${color}`,
+        background: `repeating-linear-gradient(135deg, ${color} 0 1px, transparent 1px 3px)`,
+      };
+  }
+}
 
 export function FieldApp() {
   const [params, setParams] = useSearchParams();
@@ -81,14 +116,12 @@ export function FieldApp() {
     urlState.full ||
     (locationState.read === readId && locationState.full);
   const readFull = effectiveReadFull(readId ? pool.nodes[readId] : undefined, fullOn);
-  const nowOn = urlState.now && !readId && !matched?.length;
   const lensActive = !!(urlState.query && matched && matched.length > 0 && !readId);
 
   const mode = getFieldMode({
     read: readId,
     query: urlState.query,
     matched,
-    now: nowOn,
   });
 
   const pushUrl = useCallback(
@@ -115,7 +148,7 @@ export function FieldApp() {
   );
 
   const skipViewportSync = useRef(true);
-  const modeKey = `${params.get('read') ?? ''}|${params.get('trail') ?? ''}|${params.get('q') ?? ''}|${params.get('now') ?? ''}|${params.get('full') ?? ''}|${params.get('spatial') ?? ''}`;
+  const modeKey = `${params.get('read') ?? ''}|${params.get('trail') ?? ''}|${params.get('q') ?? ''}|${params.get('full') ?? ''}|${params.get('spatial') ?? ''}`;
   const viewportKey = `${params.get('x') ?? ''}|${params.get('y') ?? ''}|${params.get('z') ?? ''}`;
 
   useEffect(() => {
@@ -211,7 +244,6 @@ export function FieldApp() {
       pushUrl({
         read: id,
         query: '',
-        now: false,
         full: false,
         spatial: false,
         trail,
@@ -239,7 +271,7 @@ export function FieldApp() {
     setLensInput('');
     setMatched(null);
     setActiveChip(null);
-    pushUrl({ read: null, query: '', now: false, full: false, spatial: false, trail: [] });
+    pushUrl({ read: null, query: '', full: false, spatial: false, trail: [] });
     field.fitView();
   }, [field, pushUrl, triggerCascade]);
 
@@ -280,7 +312,7 @@ export function FieldApp() {
   const runLens = useCallback(
     (q: string) => {
       if (!q.trim()) {
-        pushUrl({ query: '', now: false, read: null, spatial: false, trail: [] });
+        pushUrl({ query: '', read: null, spatial: false, trail: [] });
         setMatched(null);
         setActiveChip(null);
         return;
@@ -288,7 +320,7 @@ export function FieldApp() {
       setComposing(true);
       const ids = resolveLens(pool, q, pool.layout.lenses);
       setMatched(ids);
-      pushUrl({ query: q, now: false, read: null, spatial: false, trail: [] });
+      pushUrl({ query: q, read: null, spatial: false, trail: [] });
       requestAnimationFrame(() => {
         frameIds(ids, pool.layout.positions, false);
         requestAnimationFrame(() => setComposing(false));
@@ -303,7 +335,7 @@ export function FieldApp() {
       setLensInput(query);
       setComposing(true);
       setMatched(nodeIds);
-      pushUrl({ query, now: false, read: null, spatial: false, trail: [] });
+      pushUrl({ query, read: null, spatial: false, trail: [] });
       requestAnimationFrame(() => {
         frameIds(nodeIds, pool.layout.positions, true);
         requestAnimationFrame(() => setComposing(false));
@@ -311,16 +343,6 @@ export function FieldApp() {
     },
     [frameIds, pushUrl],
   );
-
-  const toggleNow = useCallback(() => {
-    triggerCascade();
-    setDescentOrigin(null);
-    const next = !nowOn;
-    pushUrl({ now: next, read: null, query: '', spatial: false, trail: [] });
-    setLensInput('');
-    setMatched(null);
-    setActiveChip(null);
-  }, [nowOn, pushUrl, triggerCascade]);
 
   const readNode = readId ? pool.nodes[readId] : null;
   const [pendingSpatialExit, setPendingSpatialExit] = useState(false);
@@ -381,15 +403,15 @@ export function FieldApp() {
   const matchedSet = useMemo(() => new Set(matched ?? []), [matched]);
   const terrainCtx = useMemo<TerrainCtx>(
     () => ({
-      mode: readId ? 'read' : lensActive ? 'lens' : nowOn ? 'now' : 'field',
+      mode: readId ? 'read' : lensActive ? 'lens' : 'field',
       readId,
       neighborRels,
       matched: matchedSet,
     }),
-    [readId, lensActive, nowOn, neighborRels, matchedSet],
+    [readId, lensActive, neighborRels, matchedSet],
   );
   const edges = useMemo(() => uniqueEdges(pool), []);
-  const fieldFocused = Boolean(readId || lensActive || nowOn);
+  const fieldFocused = Boolean(readId || lensActive);
 
   const status = statusForMode(mode, pool, {
     read: readId,
@@ -418,7 +440,6 @@ export function FieldApp() {
       full: match[2] === 'full',
       spatial: match[2] === 'spatial',
       query: '',
-      now: false,
     });
     navigate({ pathname: '/', search: `?${next.toString()}` }, { replace: true });
   }, [location.pathname, navigate, params]);
@@ -482,15 +503,15 @@ export function FieldApp() {
             border: 'none',
             cursor: 'pointer',
             padding: 0,
+            fontFamily: 'var(--font-display)',
+            fontWeight: 600,
+            fontSize: 18,
+            letterSpacing: '0.05em',
+            color: 'var(--ink)',
+            lineHeight: 1,
           }}
         >
-          <img
-            src={toniLtdLogo}
-            alt=""
-            width={132}
-            height={33}
-            style={{ display: 'block', height: 20, width: 'auto' }}
-          />
+          TONI<span style={{ color: 'var(--fresh)', margin: '0 1px' }}>·</span>LTD
         </button>
 
         <form
@@ -611,30 +632,6 @@ export function FieldApp() {
         </div>
 
         <div className="field-topbar-spacer" style={{ flex: 1 }} />
-
-        <button
-          type="button"
-          className="pressable field-now-button"
-          onClick={toggleNow}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6,
-            fontFamily: 'var(--font-mono)',
-            fontSize: 10,
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            color: nowOn ? '#fff' : 'var(--muted)',
-            background: nowOn ? 'var(--fresh)' : 'var(--card)',
-            border: `1px solid ${nowOn ? 'var(--fresh)' : 'var(--line)'}`,
-            borderRadius: 3,
-            padding: '8px 12px',
-            cursor: 'pointer',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          <span style={{ fontSize: 12, lineHeight: 1 }}>◷</span> now
-        </button>
       </header>
 
       <div
@@ -705,17 +702,45 @@ export function FieldApp() {
                   (readId && (a === readId || b === readId)) ||
                   (lensActive && matchedSet.has(a) && matchedSet.has(b));
                 const dimmed = (readId || lensActive) && !live;
+                // Routes meander like footpaths on a survey map: a cubic curve
+                // with two perpendicular waypoints seeded by the pair id, so
+                // some edges arc and some snake — stable across renders.
+                const dx = pb[0] - pa[0];
+                const dy = pb[1] - pa[1];
+                const dist = Math.hypot(dx, dy) || 1;
+                let seed = 0;
+                for (const ch of `${a}-${b}`) seed = (seed * 31 + ch.charCodeAt(0)) | 0;
+                const nx = -dy / dist;
+                const ny = dx / dist;
+                const amp = Math.min(30, dist * 0.15);
+                const o1 = (seed % 2 === 0 ? 1 : -1) * amp;
+                const o2 = ((seed >> 2) % 2 === 0 ? 1 : -1) * amp * 0.7;
+                const c1x = pa[0] + dx / 3 + nx * o1;
+                const c1y = pa[1] + dy / 3 + ny * o1;
+                const c2x = pa[0] + (2 * dx) / 3 + nx * o2;
+                const c2y = pa[1] + (2 * dy) / 3 + ny * o2;
+                // Lift route ends off the place-names.
+                const trim = 13;
+                const d1 = Math.hypot(c1x - pa[0], c1y - pa[1]) || 1;
+                const d2 = Math.hypot(pb[0] - c2x, pb[1] - c2y) || 1;
+                const sx = pa[0] + ((c1x - pa[0]) / d1) * trim;
+                const sy = pa[1] + ((c1y - pa[1]) / d1) * trim;
+                const ex = pb[0] - ((pb[0] - c2x) / d2) * trim;
+                const ey = pb[1] - ((pb[1] - c2y) / d2) * trim;
                 return (
-                  <line
+                  <path
                     key={`${a}-${b}`}
                     className="field-edge"
-                    x1={pa[0]}
-                    y1={pa[1]}
-                    x2={pb[0]}
-                    y2={pb[1]}
-                    stroke={live ? 'var(--signal)' : '#bcc3bd'}
-                    strokeWidth={live ? 2 : 1.3}
-                    opacity={dimmed ? 0.18 : live ? 0.9 : 0.7}
+                    d={`M ${sx} ${sy} C ${c1x} ${c1y} ${c2x} ${c2y} ${ex} ${ey}`}
+                    fill="none"
+                    strokeLinecap="round"
+                    stroke={
+                      live
+                        ? 'var(--signal)'
+                        : 'color-mix(in srgb, var(--read-accent) 42%, var(--line))'
+                    }
+                    strokeWidth={live ? 1.8 : 1.1}
+                    opacity={dimmed ? 0.16 : live ? 0.95 : 0.62}
                   />
                 );
               })}
@@ -736,8 +761,8 @@ export function FieldApp() {
                     fontSize: 14,
                     letterSpacing: '0.3em',
                     textTransform: 'uppercase',
-                    color: tone.label,
-                    opacity: readId || lensActive || nowOn ? 0.4 : 0.82,
+                    color: `color-mix(in srgb, ${tone.label} 72%, var(--ink))`,
+                    opacity: readId || lensActive ? 0.4 : 0.82,
                     fontWeight: 700,
                     textShadow: '0 1px 0 rgba(250,248,244,.72)',
                     pointerEvents: 'none',
@@ -752,7 +777,7 @@ export function FieldApp() {
               const pos = pool.layout.positions[id];
               if (!pos) return null;
               const vis = nodeVisual(node, {
-                mode: readId ? 'read' : lensActive ? 'lens' : nowOn ? 'now' : 'field',
+                mode: readId ? 'read' : lensActive ? 'lens' : 'field',
                 readId,
                 neighborRels,
                 matched: matchedSet,
@@ -760,7 +785,7 @@ export function FieldApp() {
               const layout = nodeLayout(node);
               const isPill = layout.variant === 'pill';
               const isLinkLit = isPill && lensActive && matchedSet.has(id);
-              const fieldMode = !readId && !lensActive && !nowOn;
+              const fieldMode = !readId && !lensActive;
               const rankLift = fieldMode ? Math.max(0, 3 - Math.min(node.rank, 3)) : 0;
               const isFeatured = fieldMode && !isPill && node.rank <= 1;
               const isPrimary = fieldMode && !isPill && node.rank === 0;
@@ -788,7 +813,6 @@ export function FieldApp() {
                     onClick={() => onNodeClick(id)}
                     className={[
                       'pressable field-node',
-                      vis.hot ? 'field-node--hot' : '',
                       isPill ? 'field-node--link' : '',
                       isLinkLit ? 'field-node--link-lit' : '',
                       isFeatured ? 'field-node--featured' : '',
@@ -806,12 +830,13 @@ export function FieldApp() {
                       border: vis.border,
                       borderLeft: isPill
                         ? 'none'
-                        : vis.leftAccent
+                        : vis.plate && vis.leftAccent
                           ? `3px solid ${vis.accentEdge === 'fresh' ? 'var(--fresh)' : 'var(--signal)'}`
-                          : vis.border === 'none'
-                            ? 'none'
-                            : vis.border,
+                          : vis.border,
                       boxShadow: vis.shadow,
+                      textShadow: vis.plate
+                        ? undefined
+                        : '0 1px 0 rgba(246,244,239,.85), 0 0 8px rgba(246,244,239,.6)',
                       cursor: 'pointer',
                       opacity: vis.dim,
                       transform: vis.lift ? `translateY(${vis.lift}px)` : undefined,
@@ -834,21 +859,37 @@ export function FieldApp() {
                             fontFamily: 'var(--font-mono)',
                             fontSize: layout.kickerSize,
                             color: vis.kickerColor,
-                            display: 'block',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 5,
                           }}
                         >
-                          {kindLabel(node.kind)}
+                          <span aria-hidden style={kindMarkStyle(node.kind, vis.markerColor)} />
+                          {node.kind}
                         </span>
                         <div
                           className="field-node-title"
-                          style={{
-                            fontFamily: 'var(--font-body)',
-                            fontWeight: 600,
-                            fontSize: layout.titleSize,
-                            color: vis.textColor,
-                            marginTop: 4,
-                            lineHeight: 1.15,
-                          }}
+                          style={
+                            isTerrainKind(node.kind)
+                              ? {
+                                  fontFamily: 'var(--font-display)',
+                                  fontStyle: 'italic',
+                                  fontWeight: 500,
+                                  fontSize: layout.titleSize + 2.5,
+                                  letterSpacing: '0.005em',
+                                  color: vis.textColor,
+                                  marginTop: 4,
+                                  lineHeight: 1.12,
+                                }
+                              : {
+                                  fontFamily: 'var(--font-body)',
+                                  fontWeight: 600,
+                                  fontSize: layout.titleSize,
+                                  color: vis.textColor,
+                                  marginTop: 4,
+                                  lineHeight: 1.15,
+                                }
+                          }
                         >
                           {node.title}
                         </div>
@@ -991,7 +1032,7 @@ export function FieldApp() {
           fontSize: 10,
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
-          color: '#8a938c',
+          color: 'var(--kicker)',
         }}
       >
         <span style={{ display: 'flex', alignItems: 'center', gap: 9 }}>

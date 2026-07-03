@@ -7,7 +7,7 @@ type Props = {
 };
 
 const LEVEL_MARKER = [
-  { bg: 'var(--card)', border: '1px solid #D5CEC3', color: '#6B7280' },
+  { bg: 'var(--card)', border: '1px solid #D5CEC3', color: 'var(--muted)' },
   { bg: 'var(--read-accent-tint)', border: '1px solid var(--read-accent-border)', color: 'var(--read-accent)' },
   { bg: '#fff', border: '1px solid var(--read-accent)', color: 'var(--read-accent-deep)' },
   { bg: 'var(--read-accent)', border: '1px solid var(--read-accent)', color: '#fff' },
@@ -36,7 +36,7 @@ function markerStyle(mode: LadderMode, rung: LadderRung, index: number): CSSProp
         ...base,
         background: 'var(--card)',
         border: '1px dashed #b9c0c6',
-        color: '#6B7280',
+        color: 'var(--muted)',
       };
     }
     return {

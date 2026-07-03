@@ -48,7 +48,7 @@ export function ProtocolStepper() {
               fontFamily: 'var(--font-body)',
               fontSize: 12.5,
               lineHeight: 1.45,
-              color: '#6B7280',
+              color: 'var(--muted)',
               margin: 0,
             }}
           >

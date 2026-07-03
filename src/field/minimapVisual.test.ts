@@ -27,13 +27,6 @@ describe('buildMinimapSummits', () => {
     expect(geometry?.fill).toBe('#1f4db8');
     expect(other?.fill).toBe('#a39b8c');
   });
-
-  it('uses gold ink for fresh nodes in now mode', () => {
-    const nowCtx: TerrainCtx = { ...baseCtx, mode: 'now' };
-    const summits = buildMinimapSummits(nowCtx);
-    const fresh = summits.find((s) => Math.abs(s.cx - 952) < 2 && Math.abs(s.cy - 208) < 2);
-    expect(fresh?.fill).toBe('#d4a53a');
-  });
 });
 
 describe('buildMinimapEdges', () => {

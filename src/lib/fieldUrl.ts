@@ -5,7 +5,6 @@ export type FieldViewState = {
   /** Essay IDs visited before the current read — powers back + breadcrumb */
   trail: string[];
   query: string;
-  now: boolean;
   /** Spatial constellation handoff open for the current read */
   spatial: boolean;
   x: number | null;
@@ -23,7 +22,6 @@ export function parseFieldState(params: URLSearchParams): FieldViewState {
     full: params.get('full') === '1',
     trail,
     query: params.get('q') ?? '',
-    now: params.get('now') === '1',
     spatial: params.get('spatial') === '1',
     x: num(params.get('x')),
     y: num(params.get('y')),
@@ -59,7 +57,6 @@ export function writeFieldState(base: FieldViewState, patch: Partial<FieldViewSt
   if (next.full) p.set('full', '1');
   if (next.trail.length) p.set('trail', next.trail.join(','));
   if (next.query) p.set('q', next.query);
-  if (next.now) p.set('now', '1');
   if (next.spatial) p.set('spatial', '1');
   if (next.x != null) p.set('x', String(Math.round(next.x)));
   if (next.y != null) p.set('y', String(Math.round(next.y)));

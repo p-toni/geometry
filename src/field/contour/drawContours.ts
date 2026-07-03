@@ -222,7 +222,6 @@ export function paintMinimapPeaks(
     let fill: string;
     if (terrainCtx.readId === id) fill = '#1c1f24';
     else if (lit && interactive) fill = '#1f4db8';
-    else if (lit && terrainCtx.mode === 'now') fill = '#d4a53a';
     else if (lit) fill = tone.minimap;
     else fill = '#b8c0ba';
 

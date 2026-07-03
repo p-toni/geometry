@@ -64,7 +64,7 @@
   overflow: hidden;
   height: clamp(360px, 58vh, 640px);
   border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   background: #090604;
   box-shadow: 0 22px 60px rgba(21, 18, 14, 0.22);
 }
@@ -74,7 +74,7 @@
   overflow: hidden;
   height: clamp(390px, 62vh, 680px);
   border: 1px solid color-mix(in srgb, var(--ink) 24%, transparent);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   background: #030302;
   box-shadow: 0 24px 64px rgba(10, 10, 8, 0.28);
 }
@@ -86,7 +86,7 @@
   overflow: hidden;
   height: 420px;
   border: 1px solid var(--line-soft);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   background:
     radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--read-accent) 18%, transparent), transparent 24%),
     linear-gradient(135deg, rgba(31, 77, 184, 0.06), transparent 36%),
@@ -259,7 +259,7 @@
   min-width: 40px;
   min-height: 40px;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--card) 92%, #fff);
   color: var(--ink);
   box-shadow: 0 1px 2px rgba(28, 31, 36, 0.05);
@@ -293,7 +293,7 @@
   flex-direction: column;
   gap: 1px;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--card);
   box-shadow: var(--shadow-raised);
@@ -315,7 +315,7 @@
   gap: 7px;
   min-height: 36px;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 0 11px;
   background: var(--card);
   color: var(--muted);
@@ -365,7 +365,7 @@
 .figure-registry {
   margin: 10px 0 22px;
   border: 1px solid var(--line-soft);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   background: var(--card);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.72), 0 8px 24px rgba(28, 31, 36, 0.045);
   overflow: hidden;
@@ -376,7 +376,7 @@
   align-items: center;
   gap: 10px;
   padding: 11px 14px;
-  border-bottom: 1px solid var(--line-hair, #f2ede6);
+  border-bottom: 1px solid var(--line-hair);
   color: var(--kicker);
   font-family: var(--font-mono);
   font-size: 10px;
@@ -398,7 +398,7 @@
 .contrast-table {
   display: grid;
   grid-template-columns: 0.85fr 1.1fr 1.1fr;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
@@ -410,9 +410,9 @@
 
 .protocol-stepper__card {
   background: var(--card);
-  border: 1px solid #e8e2d8;
+  border: 1px solid var(--line-soft);
   border-top: 3px solid var(--read-accent);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 15px 14px;
   box-shadow: 0 2px 8px rgba(28, 31, 36, 0.06);
 }
@@ -556,20 +556,27 @@
   font-weight: 700 !important;
 }
 
+/* Primary node — a gold cartouche underline, not a box */
 .field-node--primary::before {
   content: '';
   position: absolute;
-  inset: -5px;
-  border: 1px solid color-mix(in srgb, var(--fresh) 36%, transparent);
-  border-radius: 6px;
+  left: 12px;
+  right: 12px;
+  bottom: 3px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--fresh) 65%, transparent) 20%,
+    color-mix(in srgb, var(--fresh) 65%, transparent) 80%,
+    transparent
+  );
   pointer-events: none;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--fresh) 10%, transparent);
 }
 
 .field-node-kicker {
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  opacity: 0.72;
 }
 
 .field-node-title {
@@ -668,28 +675,6 @@
   transform: translateY(0) scale(0.98) !important;
 }
 
-@keyframes nowpulse-glow {
-  0%,
-  100% {
-    opacity: 0.35;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.03);
-  }
-}
-
-.field-node--hot::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: inherit;
-  pointer-events: none;
-  box-shadow: 0 2px 18px color-mix(in srgb, var(--fresh) 50%, transparent);
-  animation: nowpulse-glow 2.4s ease-in-out infinite;
-}
-
 .field-grain {
   position: absolute;
   inset: 0;
@@ -725,7 +710,7 @@
   height: 84px;
   background: #f4f1ea;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   box-shadow: 0 2px 8px rgba(20, 23, 26, 0.06);
   overflow: hidden;
   cursor: crosshair;
@@ -831,21 +816,11 @@
 
   .field-logo-button {
     grid-column: 1;
-  }
-
-  .field-logo-button img {
-    height: 18px !important;
+    font-size: 16px !important;
   }
 
   .field-topbar-spacer {
     display: none !important;
-  }
-
-  .field-now-button {
-    grid-column: 3;
-    justify-self: end;
-    padding: 7px 10px !important;
-    min-height: 34px;
   }
 
   .lens-form {
@@ -997,12 +972,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .field-node--hot::after {
-    animation: none !important;
-    opacity: 0.65 !important;
-    transform: none !important;
-  }
-
   .field-node,
   .pressable,
   .edge-continues,

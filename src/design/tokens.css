@@ -8,6 +8,7 @@
   --ink-2: #4a4f56;
   --line: #ddd6cb;
   --line-soft: #e8e2d8;
+  --line-hair: #f2ede6;
   --signal: #1f4db8;
   --fresh: #d4a53a;
 
@@ -25,9 +26,7 @@
   --cluster-work: #4a68a8;
   --cluster-play: #657963;
   --cluster-you: #8a7578;
-  --accent: var(--signal);
-  --accent-ink: var(--signal);
-  --kicker: #94908a;
+  --kicker: #6b6660;
 
   /* Canela stand-in — large headlines only (FIG.01 title, type-display) */
   --font-display: 'Newsreader', 'Georgia', serif;
@@ -36,6 +35,9 @@
   /* Registry UI labels — keep the small UI voice on Inter; mono + Newsreader carry identity */
   --font-ui: var(--font-body);
   --font-mono: 'Space Mono', 'SF Mono', monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
 
   --shadow-raised: 0 2px 8px rgba(28, 31, 36, 0.08);
   --shadow-lifted: 0 8px 20px rgba(28, 31, 36, 0.14);
