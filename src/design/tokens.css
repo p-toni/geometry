@@ -46,9 +46,13 @@
 
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  /* Inverse of --ease-drawer for mirrored exit paths */
+  --ease-drawer-out: cubic-bezier(1, 0, 0.68, 0.28);
   --motion-focus: 200ms;
-  --motion-nav-open: 240ms;
-  --motion-nav-hop: 180ms;
+  --motion-nav-open: 360ms;
+  --motion-nav-hop: 280ms;
+  --motion-sheet: 320ms;
+  --motion-fade: 180ms;
   /* Read prose — excerpt, masthead dek, and full essay body share one scale */
   --prose-size: 16.5px;
   --prose-leading: 1.78;

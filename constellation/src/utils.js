@@ -80,7 +80,13 @@ export function makeTransition() {
       prevActive: false,
       prevStartTime: null,
       prevEdgeSet: new Set(),
+      prevNodeIds: new Set(),
       prevFadeDuration: 200,
+      /**
+       * True when hopping selection → selection. Keeps the field dimmed so
+       * dimProgress does not restart at 0 (that flash is the node-hop blink).
+       */
+      retainDim: false,
     };
   }
 

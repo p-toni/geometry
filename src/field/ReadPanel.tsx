@@ -6,6 +6,7 @@ import { Masthead } from '../components/figures/Masthead';
 import { neighbors } from '../lib/graph';
 import { isWholePiece } from '../lib/readMode';
 import type { Pool, PoolNode } from '../pool';
+import { useSheetGesture } from './hooks/useSheetGesture';
 
 const SeaShader = lazy(() =>
   import('./SeaShader').then((module) => ({ default: module.SeaShader })),
@@ -71,11 +72,32 @@ export function ReadPanel({
   const excerptTail = dek ? node.excerpt.slice(1) : node.excerpt;
   const mediaSentence = node.body.find((block) => block.t === 'p')?.x ?? dek;
   const scrollRef = useRef<HTMLDivElement>(null);
+  const headerScrolled = useRef(false);
+
+  const sheet = useSheetGesture({
+    enabled: !descending,
+    onDismiss: onClose,
+  });
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
     el.scrollTop = 0;
+    el.classList.remove('is-scrolled');
+    headerScrolled.current = false;
+  }, [node.id]);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const scrolled = el.scrollTop > 4;
+      if (scrolled === headerScrolled.current) return;
+      headerScrolled.current = scrolled;
+      el.classList.toggle('is-scrolled', scrolled);
+    };
+    el.addEventListener('scroll', onScroll, { passive: true });
+    return () => el.removeEventListener('scroll', onScroll);
   }, [node.id]);
 
   useEffect(() => {
@@ -91,12 +113,17 @@ export function ReadPanel({
 
   return (
     <aside
+      ref={(el) => {
+        sheet.sheetRef.current = el;
+      }}
       className={[
         'field-read',
         'field-read-sheet',
         'edge-emphasis',
         showFullBody && !wholePiece ? 'field-read--full' : '',
         descending ? 'field-read--descending' : '',
+        sheet.dragging ? 'field-read--dragging' : '',
+        sheet.gestureActive ? 'field-read--sheet-gesture' : '',
       ]
         .filter(Boolean)
         .join(' ')}
@@ -108,6 +135,17 @@ export function ReadPanel({
         overflow: 'hidden',
       }}
     >
+      {sheet.gestureActive ? (
+        <div
+          className="field-read-handle"
+          data-testid="read-sheet-handle"
+          aria-label="Drag to dismiss"
+          {...sheet.handleProps}
+        >
+          <span className="field-read-handle__pill" aria-hidden />
+        </div>
+      ) : null}
+
       <header
         className="field-read-header"
         style={{
@@ -116,7 +154,6 @@ export function ReadPanel({
           alignItems: 'center',
           gap: 11,
           padding: '14px 22px',
-          borderBottom: '1px solid var(--line-soft)',
         }}
       >
         <button

@@ -63,7 +63,7 @@ export function mount(root, options = {}) {
       '</div>',
       '<div class="constellation-cursor" aria-hidden="true"></div>',
       '<canvas class="constellation-canvas-a"></canvas>',
-      '<canvas class="constellation-canvas-b" style="display:none"></canvas>',
+      '<canvas class="constellation-canvas-b is-inactive" aria-hidden="true"></canvas>',
     ].join('');
 
     const toggleEl = root.querySelector('.constellation-view-toggle');
@@ -94,6 +94,9 @@ export function mount(root, options = {}) {
       layoutMode: useAuthoredLayout ? 'authored' : 'radial',
       authoredNodes: null,
       labelSafeInset: options.labelSafeInset,
+      /** Keep drawing both canvases until cross-fade settles. */
+      crossfadeUntil: 0,
+      viewBootstrapped: false,
     };
 
     function activeView() {
@@ -148,13 +151,23 @@ export function mount(root, options = {}) {
       return Math.min(state.W, state.H) * frac * mobileScale;
     }
 
+    function prefersReducedMotion() {
+      return typeof matchMedia !== 'undefined'
+        && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
     function getIdleness() {
+      if (prefersReducedMotion()) return 0;
       const elapsed = performance.now() - state.lastActivity;
       if (elapsed < 30000) return 0;
       return easeOutCubic(clamp01((elapsed - 30000) / 4000));
     }
 
     function tickIdleness() {
+      if (prefersReducedMotion()) {
+        state.renderedIdleness = 0;
+        return;
+      }
       const target = getIdleness();
       if (target > state.renderedIdleness) {
         state.renderedIdleness += (target - state.renderedIdleness) * 0.008;
@@ -317,9 +330,14 @@ export function mount(root, options = {}) {
     }
 
     function startIntro(view) {
+      view.particles.length = 0;
+      if (prefersReducedMotion()) {
+        view.intro.active = false;
+        view.intro.startTime = 0;
+        return;
+      }
       view.intro.startTime = performance.now();
       view.intro.active = true;
-      view.particles.length = 0;
     }
 
     function resize() {
@@ -387,6 +405,7 @@ export function mount(root, options = {}) {
         if (elapsed >= tr.prevFadeDuration) {
           tr.prevActive = false;
           tr.prevEdgeSet = new Set();
+          tr.prevNodeIds = new Set();
         }
       }
     }
@@ -394,6 +413,7 @@ export function mount(root, options = {}) {
     function getRippleProgress(view, edge, idx) {
       const tr = view.selectionTransition;
       const isActive = view.activeEdgeSet.has(idx);
+      if (prefersReducedMotion()) return isActive ? 1 : 0;
       if (!tr.active) return isActive ? 1 : 0;
       const elapsed = performance.now() - tr.startTime;
       if (tr.phase === 'out') {
@@ -401,6 +421,8 @@ export function mount(root, options = {}) {
         return 1 - easeOutCubic(clamp01(elapsed / tr.fadeDuration));
       }
       if (!isActive) return 0;
+      // Cross-hop: edges already lit must not restart ripple at 0 (shared blink).
+      if (tr.retainDim && tr.prevEdgeSet.has(idx)) return 1;
       const fromNode = view.nodes[tr.fromId];
       const farNode = view.nodes[edge.from === tr.fromId ? edge.to : edge.from];
       if (!fromNode || !farNode) return easeOutCubic(clamp01(elapsed / 300));
@@ -415,7 +437,22 @@ export function mount(root, options = {}) {
       return 1 - easeOutCubic(clamp01((performance.now() - tr.prevStartTime) / tr.prevFadeDuration));
     }
 
+    /** Dim factor for non-active edges while a selection is live. */
+    function selectionDimProgress(view) {
+      const tr = view.selectionTransition;
+      if (!view.selectedId && !(tr.active && tr.phase === 'out')) return 0;
+      // Already in a selection: keep the field dimmed (no bright flash on hop).
+      if (tr.retainDim) return 1;
+      if (tr.active && tr.phase === 'in') {
+        return easeOutCubic(
+          clamp01((performance.now() - tr.startTime) / tr.duration),
+        );
+      }
+      return 1;
+    }
+
     function fireBurst(view, nodeId) {
+      if (prefersReducedMotion()) return;
       const activeIndices = [...view.activeEdgeSet];
       if (!activeIndices.length) return;
       const count = Math.min(6, activeIndices.length);
@@ -486,24 +523,32 @@ export function mount(root, options = {}) {
       const wasSelected = toggle && view.selectedId === id;
       const prevId = view.selectedId;
       const isCrossSelect = !wasSelected && prevId !== null;
+      const tr = view.selectionTransition;
       if (isCrossSelect) {
-        const tr = view.selectionTransition;
         tr.prevEdgeSet = new Set(view.activeEdgeSet);
+        tr.prevNodeIds = new Set(view.activeNodeIds);
         tr.prevActive = true;
         tr.prevStartTime = performance.now();
+      } else if (!wasSelected) {
+        tr.prevEdgeSet = new Set();
+        tr.prevNodeIds = new Set();
+        tr.prevActive = false;
       }
       view.selectedId = wasSelected ? null : id;
       refreshSelection(view);
       if (wasSelected) {
-        view.selectionTransition.active = true;
-        view.selectionTransition.startTime = performance.now();
-        view.selectionTransition.phase = 'out';
+        tr.active = true;
+        tr.startTime = performance.now();
+        tr.phase = 'out';
+        tr.retainDim = false;
       } else {
-        view.selectionTransition.active = true;
-        view.selectionTransition.startTime = performance.now();
-        view.selectionTransition.phase = 'in';
-        view.selectionTransition.fromId = id;
-        fireBurst(view, id);
+        tr.active = true;
+        tr.startTime = performance.now();
+        tr.phase = 'in';
+        tr.fromId = id;
+        tr.retainDim = isCrossSelect;
+        // Burst only on first select — hop bursts read as a full-field flash.
+        if (!isCrossSelect) fireBurst(view, id);
       }
       if (view.key === state.currentView) {
         setInfoForView(view);
@@ -513,9 +558,11 @@ export function mount(root, options = {}) {
 
     function clearSelection(view) {
       if (view.selectedId) {
-        view.selectionTransition.active = true;
-        view.selectionTransition.startTime = performance.now();
-        view.selectionTransition.phase = 'out';
+        const tr = view.selectionTransition;
+        tr.active = true;
+        tr.startTime = performance.now();
+        tr.phase = 'out';
+        tr.retainDim = false;
       }
       view.selectedId = null;
       refreshSelection(view);
@@ -542,6 +589,7 @@ export function mount(root, options = {}) {
     }
 
     function spawnParticle(view, edge) {
+      if (prefersReducedMotion()) return;
       const pool = edge ? [edge] : (view.selectedId ? [...view.activeEdgeSet].map(i => view.edges[i]).filter(Boolean) : view.edges);
       if (!pool.length) return;
       const chosen = pool[Math.floor(Math.random() * pool.length)];
@@ -559,6 +607,10 @@ export function mount(root, options = {}) {
     }
 
     function spawnParticles(view) {
+      if (prefersReducedMotion()) {
+        view.particles.length = 0;
+        return;
+      }
       if (view.intro.active && performance.now() - view.intro.startTime < view.intro.particleStartOffset) return;
       const idleParticleFactor = 1 - state.renderedIdleness * 0.72;
       const baseMax = view.selectedId ? Math.floor(view.P.maxParticles * 1.6) : view.P.maxParticles;
@@ -667,15 +719,45 @@ export function mount(root, options = {}) {
       cursorEl.style.height = `${sizePx.toFixed(1)}px`;
     }
 
+    const VIEW_CROSSFADE_MS = 220;
+    const VIEW_CROSSFADE_REDUCED_MS = 140;
+
+    function applyCanvasVisibility(viewKey, animate) {
+      const showA = viewKey === 'A';
+      const reduce = prefersReducedMotion();
+      const ms = reduce ? VIEW_CROSSFADE_REDUCED_MS : VIEW_CROSSFADE_MS;
+      const transition = animate
+        ? `opacity ${ms}ms ${reduce ? 'ease' : 'cubic-bezier(0.23, 1, 0.32, 1)'}`
+        : 'none';
+
+      canvasA.style.transition = transition;
+      canvasB.style.transition = transition;
+      canvasA.classList.toggle('is-inactive', !showA);
+      canvasB.classList.toggle('is-inactive', showA);
+      canvasA.setAttribute('aria-hidden', showA ? 'false' : 'true');
+      canvasB.setAttribute('aria-hidden', showA ? 'true' : 'false');
+      canvasA.style.pointerEvents = showA ? 'auto' : 'none';
+      canvasB.style.pointerEvents = showA ? 'none' : 'auto';
+
+      if (animate) {
+        state.crossfadeUntil = performance.now() + ms + 48;
+      } else {
+        state.crossfadeUntil = 0;
+      }
+    }
+
     function switchView(viewKey) {
       if (viewKey !== 'A' && viewKey !== 'B') return;
+      const changed = state.currentView !== viewKey;
+      const animate = state.viewBootstrapped && changed;
       state.currentView = viewKey;
-      canvasA.style.display = viewKey === 'A' ? 'block' : 'none';
-      canvasB.style.display = viewKey === 'B' ? 'block' : 'none';
+      applyCanvasVisibility(viewKey, animate);
+      state.viewBootstrapped = true;
       toggleEl.textContent = viewKey === 'A' ? (state.layoutMode === 'authored' ? 'ARGUMENT DESCENT' : 'INQUIRIES + CONCEPTS') : 'CONCEPT MESH';
       otherView().hoverId = null;
       otherView().hoverProximity = 0;
       const view = activeView();
+      // First visit only — switching back must not replay the full intro.
       if (!view.hasShown) {
         startIntro(view);
         view.hasShown = true;
@@ -823,7 +905,8 @@ export function mount(root, options = {}) {
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
       viewA.edges.forEach((edge, idx) => {
-        const pulse = (viewA.P.edgePulse ?? 0) * Math.sin(viewA.frame * 0.008 + idx * 0.3);
+        const pulseAmp = prefersReducedMotion() ? 0 : (viewA.P.edgePulse ?? 0);
+        const pulse = pulseAmp * Math.sin(viewA.frame * 0.008 + idx * 0.3);
         let alpha = (viewA.P.edgeAlpha + viewA.P.edgeAlpha * pulse) * idleEdgeFactor;
         let width = viewA.P.edgeWidth * edgeWidthMultiplier(edge);
         alpha *= edgeAlphaMultiplier(edge);
@@ -841,9 +924,7 @@ export function mount(root, options = {}) {
               alpha += (targetAlpha - alpha) * prevFade;
               width += (viewA.P.edgeWidth * 2 - width) * prevFade;
             } else {
-              const dimProgress = viewA.selectionTransition.active && viewA.selectionTransition.phase === 'in'
-                ? easeOutCubic(clamp01((performance.now() - viewA.selectionTransition.startTime) / viewA.selectionTransition.duration))
-                : 1;
+              const dimProgress = selectionDimProgress(viewA);
               alpha *= (1 - 0.78 * dimProgress);
               width *= (1 - 0.30 * dimProgress);
             }
@@ -871,7 +952,8 @@ export function mount(root, options = {}) {
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
       viewB.edges.forEach((edge, idx) => {
-        const pulse = (viewB.P.edgePulse ?? 0) * Math.sin(viewB.frame * 0.008 + idx * 0.3);
+        const pulseAmp = prefersReducedMotion() ? 0 : (viewB.P.edgePulse ?? 0);
+        const pulse = pulseAmp * Math.sin(viewB.frame * 0.008 + idx * 0.3);
         let alpha = (viewB.P.edgeAlpha + viewB.P.edgeAlpha * pulse) * idleEdgeFactor;
         alpha *= edgeAlphaMultiplier(edge);
         let width = viewB.P.edgeWidth * edge.shared * viewB.P.sharedWeightScale * edgeWidthMultiplier(edge);
@@ -889,9 +971,7 @@ export function mount(root, options = {}) {
               alpha += (targetAlpha - alpha) * prevFade;
               width += (viewB.P.edgeWidth * edge.shared * viewB.P.sharedWeightScale * 1.55 - width) * prevFade;
             } else {
-              const dimProgress = viewB.selectionTransition.active && viewB.selectionTransition.phase === 'in'
-                ? easeOutCubic(clamp01((performance.now() - viewB.selectionTransition.startTime) / viewB.selectionTransition.duration))
-                : 1;
+              const dimProgress = selectionDimProgress(viewB);
               alpha *= (1 - 0.82 * dimProgress);
               width *= (1 - 0.30 * dimProgress);
             }
@@ -960,7 +1040,9 @@ export function mount(root, options = {}) {
       if (!n || !P.beaconHaloFrac) return;
       const fade = introNodeAlpha(view, n.id);
       const focus = view.selectedId ? (view.activeNodeIds.has(n.id) ? 1 : 0.32) : 1;
-      const pulse = 1 + Math.sin(view.frame * 0.018) * (P.beaconPulse ?? 0.05);
+      const pulse = prefersReducedMotion()
+        ? 1
+        : 1 + Math.sin(view.frame * 0.018) * (P.beaconPulse ?? 0.05);
       const a = (P.beaconAlpha ?? 0.5) * fade * focus * (1 - state.renderedIdleness * 0.45);
       if (a <= 0) return;
       const ctx = view.ctx;
@@ -991,6 +1073,14 @@ export function mount(root, options = {}) {
     function nodeAlpha(view, id) {
       if (!view.selectedId) return 0.78;
       if (view.activeNodeIds.has(id) || id === view.selectedId || id === view.hoverId) return 1;
+      const tr = view.selectionTransition;
+      // Fade previous neighborhood out instead of hard-cutting to 0.10 on hop.
+      if (tr.prevActive && tr.prevNodeIds.has(id)) {
+        const t = easeOutCubic(
+          clamp01((performance.now() - tr.prevStartTime) / tr.prevFadeDuration),
+        );
+        return 1 - 0.9 * t;
+      }
       return 0.10;
     }
 
@@ -1225,6 +1315,10 @@ export function mount(root, options = {}) {
     function loop() {
       if (state.destroyed) return;
       drawView(activeView());
+      // Keep the outgoing canvas live through the Argument ↔ Mesh cross-fade.
+      if (performance.now() < state.crossfadeUntil) {
+        drawView(otherView());
+      }
       state.rafId = requestAnimationFrame(loop);
     }
 
@@ -1241,10 +1335,11 @@ export function mount(root, options = {}) {
     }
 
     [canvasA, canvasB].forEach(canvas => {
-      canvas.addEventListener('mousemove', handleMove);
+      canvas.style.touchAction = 'none';
+      canvas.addEventListener('pointermove', handleMove);
       canvas.addEventListener('click', handleClick);
-      canvas.addEventListener('mouseenter', handleEnter);
-      canvas.addEventListener('mouseleave', handleLeave);
+      canvas.addEventListener('pointerenter', handleEnter);
+      canvas.addEventListener('pointerleave', handleLeave);
     });
     toggleEl.addEventListener('click', onToggle);
     toggleEl.addEventListener('keydown', onToggleKey);
@@ -1276,10 +1371,10 @@ export function mount(root, options = {}) {
         if (state.resizeObserver) state.resizeObserver.disconnect();
         else window.removeEventListener('resize', resize);
         [canvasA, canvasB].forEach(canvas => {
-          canvas.removeEventListener('mousemove', handleMove);
+          canvas.removeEventListener('pointermove', handleMove);
           canvas.removeEventListener('click', handleClick);
-          canvas.removeEventListener('mouseenter', handleEnter);
-          canvas.removeEventListener('mouseleave', handleLeave);
+          canvas.removeEventListener('pointerenter', handleEnter);
+          canvas.removeEventListener('pointerleave', handleLeave);
         });
         toggleEl.removeEventListener('click', onToggle);
         toggleEl.removeEventListener('keydown', onToggleKey);
