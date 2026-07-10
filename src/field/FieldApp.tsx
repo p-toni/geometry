@@ -92,7 +92,7 @@ export function FieldApp() {
 
   const triggerCascade = useCallback(() => {
     setCascading(true);
-    window.setTimeout(() => setCascading(false), 460);
+    window.setTimeout(() => setCascading(false), 280);
   }, []);
 
   const field = useFieldTransform({
@@ -128,7 +128,8 @@ export function FieldApp() {
     (patch: Partial<ReturnType<typeof parseFieldState>>, replace = false) => {
       const navIntent = patch.read !== undefined || patch.trail !== undefined;
       if (navIntent) {
-        suppressViewportSync.current = Date.now() + 1200;
+        // Cover spring settle (~280–360ms), not a multi-second lockout.
+        suppressViewportSync.current = Date.now() + 500;
         if (patch.read !== undefined) setReadTarget(patch.read);
         if (patch.trail !== undefined) setTrailTarget(patch.trail);
       }
@@ -218,7 +219,7 @@ export function FieldApp() {
     (id: string, animate = true, hop = false) => {
       const pos = pool.layout.positions[id];
       if (!pos) return;
-      suppressViewportSync.current = Date.now() + 1200;
+      suppressViewportSync.current = Date.now() + 500;
       const view = transformForPoint(pos);
       flyTo(pos, animate, hop ? NAV_HOP_MS : NAV_OPEN_MS);
       return view;
@@ -271,8 +272,20 @@ export function FieldApp() {
     setLensInput('');
     setMatched(null);
     setActiveChip(null);
-    pushUrl({ read: null, query: '', full: false, spatial: false, trail: [] });
-    field.fitView();
+    // Clear stale zoom from URL and suppress sync through fit spring + layout.
+    suppressViewportSync.current = Date.now() + 700;
+    pushUrl({
+      read: null,
+      query: '',
+      full: false,
+      spatial: false,
+      trail: [],
+      x: null,
+      y: null,
+      z: null,
+    });
+    // Fit after read panel unmounts so target uses full viewport width.
+    field.fitView({ afterLayout: true });
   }, [field, pushUrl, triggerCascade]);
 
   const back = useCallback(() => {
@@ -304,8 +317,17 @@ export function FieldApp() {
         ...(view ?? {}),
       });
     } else {
-      pushUrl({ read: null, full: false, spatial: false, trail: [] });
-      field.fitView();
+      suppressViewportSync.current = Date.now() + 700;
+      pushUrl({
+        read: null,
+        full: false,
+        spatial: false,
+        trail: [],
+        x: null,
+        y: null,
+        z: null,
+      });
+      field.fitView({ afterLayout: true });
     }
   }, [field, focusNode, pushUrl, trailTarget]);
 
@@ -649,7 +671,7 @@ export function FieldApp() {
           onPointerDown={field.onPointerDown}
           onPointerMove={field.onPointerMove}
           onPointerUp={field.onPointerUp}
-          onPointerLeave={field.onPointerUp}
+          onPointerCancel={field.onPointerCancel}
           onWheel={field.onWheel}
           style={{
             position: 'relative',
@@ -920,7 +942,7 @@ export function FieldApp() {
               [
                 { label: '+', name: 'Zoom in', onClick: field.zoomIn },
                 { label: '−', name: 'Zoom out', onClick: field.zoomOut },
-                { label: '⌖', name: 'Fit field', onClick: field.fitView },
+                { label: '⌖', name: 'Fit field', onClick: () => field.fitView() },
               ] as const
             ).map((btn, i) => (
               <button

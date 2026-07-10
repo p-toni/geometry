@@ -1,14 +1,22 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FIELD_HEIGHT, FIELD_WIDTH } from '../../pool';
+import {
+  inertiaSettled,
+  inertiaStep,
+  prefersReducedMotion,
+  pushSample,
+  springSettled,
+  springStep,
+  SPRING,
+  velocityFromSamples,
+  type PointerSample,
+} from '../../lib/spring';
 
 const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
-export const NAV_OPEN_MS = 240;
-export const NAV_HOP_MS = 180;
-const FLY_MS = 220;
 
-function prefersReducedMotion() {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
+/** Hop UI timing (CSS hop class); fly uses spring response. */
+export const NAV_OPEN_MS = Math.round(SPRING.move.response * 1000);
+export const NAV_HOP_MS = Math.round(SPRING.hop.response * 1000);
 
 export type Transform = {
   x: number;
@@ -16,13 +24,38 @@ export type Transform = {
   z: number;
 };
 
+type AnimMode = 'spring' | 'inertia';
+
+type AnimState = {
+  mode: AnimMode;
+  raf: number;
+  lastT: number;
+  vx: number;
+  vy: number;
+  vz: number;
+  tx: number;
+  ty: number;
+  tz: number;
+  response: number;
+  damping: number;
+};
+
+function responseFromMs(ms?: number, hop = false): number {
+  if (ms != null && ms > 0) return Math.max(0.12, ms / 1000);
+  return hop ? SPRING.hop.response : SPRING.move.response;
+}
+
 export function useFieldTransform(initial?: Partial<Transform>) {
   const vpRef = useRef<HTMLDivElement>(null);
   const worldRef = useRef<HTMLDivElement>(null);
   const miniVpRef = useRef<HTMLDivElement>(null);
   const readoutRef = useRef<HTMLDivElement>(null);
-  const dragRef = useRef<{ x: number; y: number } | null>(null);
+  const dragRef = useRef<{ x: number; y: number; pointerId: number } | null>(
+    null,
+  );
+  const samplesRef = useRef<PointerSample[]>([]);
   const movedRef = useRef(false);
+  const animRef = useRef<AnimState | null>(null);
   const transformRef = useRef<Transform>({
     x: initial?.x ?? 0,
     y: initial?.y ?? 0,
@@ -32,14 +65,21 @@ export function useFieldTransform(initial?: Partial<Transform>) {
   const [transform, setTransform] = useState<Transform>(transformRef.current);
   const [ready, setReady] = useState(false);
 
-  const applyDom = useCallback((t: Transform, animate: boolean, ms = FLY_MS) => {
-    transformRef.current = t;
+  const stopAnim = useCallback(() => {
+    const anim = animRef.current;
+    if (anim) {
+      cancelAnimationFrame(anim.raf);
+      animRef.current = null;
+    }
+  }, []);
+
+  useEffect(() => () => stopAnim(), [stopAnim]);
+
+  const paintDom = useCallback((t: Transform) => {
     const world = worldRef.current;
     const vp = vpRef.current;
     if (!world || !vp) return;
-    const reduce = prefersReducedMotion();
-    world.style.transition =
-      animate && !reduce ? `transform ${ms}ms var(--ease-out-strong)` : 'none';
+    world.style.transition = 'none';
     world.style.transform = `translate(${t.x}px,${t.y}px) scale(${t.z})`;
     if (readoutRef.current) {
       const el = readoutRef.current;
@@ -47,7 +87,7 @@ export function useFieldTransform(initial?: Partial<Transform>) {
       if (el.textContent !== next) {
         el.classList.add('is-updating');
         el.textContent = next;
-        window.setTimeout(() => el.classList.remove('is-updating'), 120);
+        window.setTimeout(() => el.classList.remove('is-updating'), 100);
       }
     }
     const miniVp = miniVpRef.current;
@@ -57,18 +97,190 @@ export function useFieldTransform(initial?: Partial<Transform>) {
       const T = clamp(-t.y / t.z / FIELD_HEIGHT, 0, 1);
       const W = clamp(vr.width / t.z / FIELD_WIDTH, 0.04, 1 - L);
       const H = clamp(vr.height / t.z / FIELD_HEIGHT, 0.04, 1 - T);
-      miniVp.style.transition =
-        animate && !reduce ? `transform ${ms}ms var(--ease-out-strong)` : 'none';
+      miniVp.style.transition = 'none';
       miniVp.style.transform = `translate(${L * 100}%, ${T * 100}%) scale(${W}, ${H})`;
     }
   }, []);
 
+  const commitTransform = useCallback((t: Transform) => {
+    transformRef.current = t;
+    paintDom(t);
+    setTransform(t);
+  }, [paintDom]);
+
+  const applyLive = useCallback((t: Transform) => {
+    transformRef.current = t;
+    paintDom(t);
+  }, [paintDom]);
+
+  const tickSpring = useCallback(() => {
+    const anim = animRef.current;
+    if (!anim || anim.mode !== 'spring') return;
+    const now = performance.now();
+    const dt = Math.min(0.032, Math.max(0.001, (now - anim.lastT) / 1000));
+    anim.lastT = now;
+
+    const cur = transformRef.current;
+    const sx = springStep(
+      cur.x,
+      anim.vx,
+      anim.tx,
+      dt,
+      anim.response,
+      anim.damping,
+    );
+    const sy = springStep(
+      cur.y,
+      anim.vy,
+      anim.ty,
+      dt,
+      anim.response,
+      anim.damping,
+    );
+    const sz = springStep(
+      cur.z,
+      anim.vz,
+      anim.tz,
+      dt,
+      anim.response,
+      anim.damping,
+    );
+    anim.vx = sx.velocity;
+    anim.vy = sy.velocity;
+    anim.vz = sz.velocity;
+
+    const next: Transform = {
+      x: sx.position,
+      y: sy.position,
+      z: clamp(sz.position, 0.3, 2.6),
+    };
+
+    // Settle when close enough — commit *current* sample, not a hard snap to
+    // target (a snap after Euler overshoot reads as a second end-kick).
+    const done =
+      springSettled(next.x, anim.vx, anim.tx, 0.4, 12) &&
+      springSettled(next.y, anim.vy, anim.ty, 0.4, 12) &&
+      springSettled(next.z, anim.vz, anim.tz, 0.004, 0.08);
+
+    if (done) {
+      animRef.current = null;
+      commitTransform({
+        x: next.x,
+        y: next.y,
+        z: clamp(next.z, 0.3, 2.6),
+      });
+      return;
+    }
+
+    applyLive(next);
+    anim.raf = requestAnimationFrame(tickSpring);
+  }, [applyLive, commitTransform]);
+
+  const tickInertia = useCallback(() => {
+    const anim = animRef.current;
+    if (!anim || anim.mode !== 'inertia') return;
+    const now = performance.now();
+    const dt = Math.min(0.032, Math.max(0.001, (now - anim.lastT) / 1000));
+    anim.lastT = now;
+
+    const cur = transformRef.current;
+    const ix = inertiaStep(cur.x, anim.vx, dt);
+    const iy = inertiaStep(cur.y, anim.vy, dt);
+    anim.vx = ix.velocity;
+    anim.vy = iy.velocity;
+
+    const next: Transform = { x: ix.position, y: iy.position, z: cur.z };
+
+    if (inertiaSettled(anim.vx) && inertiaSettled(anim.vy)) {
+      animRef.current = null;
+      commitTransform(next);
+      return;
+    }
+
+    applyLive(next);
+    anim.raf = requestAnimationFrame(tickInertia);
+  }, [applyLive, commitTransform]);
+
+  const startSpringTo = useCallback(
+    (
+      target: Transform,
+      opts?: {
+        response?: number;
+        damping?: number;
+        velocity?: { vx: number; vy: number; vz: number };
+      },
+    ) => {
+      stopAnim();
+      if (prefersReducedMotion()) {
+        commitTransform(target);
+        return;
+      }
+      const cur = transformRef.current;
+      const anim: AnimState = {
+        mode: 'spring',
+        raf: 0,
+        lastT: performance.now(),
+        vx: opts?.velocity?.vx ?? 0,
+        vy: opts?.velocity?.vy ?? 0,
+        vz: opts?.velocity?.vz ?? 0,
+        tx: target.x,
+        ty: target.y,
+        tz: clamp(target.z, 0.3, 2.6),
+        response: opts?.response ?? SPRING.move.response,
+        damping: opts?.damping ?? SPRING.move.damping,
+      };
+      // Already there
+      if (
+        springSettled(cur.x, 0, anim.tx) &&
+        springSettled(cur.y, 0, anim.ty) &&
+        springSettled(cur.z, 0, anim.tz, 0.002, 0.05)
+      ) {
+        commitTransform({ x: anim.tx, y: anim.ty, z: anim.tz });
+        return;
+      }
+      animRef.current = anim;
+      anim.raf = requestAnimationFrame(tickSpring);
+    },
+    [commitTransform, stopAnim, tickSpring],
+  );
+
+  const startInertia = useCallback(
+    (vx: number, vy: number) => {
+      stopAnim();
+      if (prefersReducedMotion() || (Math.abs(vx) < 40 && Math.abs(vy) < 40)) {
+        commitTransform(transformRef.current);
+        return;
+      }
+      const anim: AnimState = {
+        mode: 'inertia',
+        raf: 0,
+        lastT: performance.now(),
+        vx,
+        vy,
+        vz: 0,
+        tx: transformRef.current.x,
+        ty: transformRef.current.y,
+        tz: transformRef.current.z,
+        response: SPRING.move.response,
+        damping: SPRING.move.damping,
+      };
+      animRef.current = anim;
+      anim.raf = requestAnimationFrame(tickInertia);
+    },
+    [commitTransform, stopAnim, tickInertia],
+  );
+
   const setT = useCallback(
     (next: Transform, animate = false, ms?: number, commit = true) => {
-      if (commit) setTransform(next);
-      applyDom(next, animate, ms ?? FLY_MS);
+      if (!animate || prefersReducedMotion()) {
+        stopAnim();
+        if (commit) commitTransform(next);
+        else applyLive(next);
+        return;
+      }
+      startSpringTo(next, { response: responseFromMs(ms) });
     },
-    [applyDom],
+    [applyLive, commitTransform, startSpringTo, stopAnim],
   );
 
   const initField = useCallback(
@@ -76,7 +288,11 @@ export function useFieldTransform(initial?: Partial<Transform>) {
       const vp = vpRef.current;
       if (!vp) return;
       const r = vp.getBoundingClientRect();
-      const z = clamp(Math.min(r.width / FIELD_WIDTH, r.height / FIELD_HEIGHT) * 0.94, 0.5, 1.5);
+      const z = clamp(
+        Math.min(r.width / FIELD_WIDTH, r.height / FIELD_HEIGHT) * 0.94,
+        0.5,
+        1.5,
+      );
       const x = (r.width - FIELD_WIDTH * z) / 2;
       const y = (r.height - FIELD_HEIGHT * z) / 2;
       setReady(true);
@@ -96,19 +312,22 @@ export function useFieldTransform(initial?: Partial<Transform>) {
     [setT],
   );
 
-  const transformForPoint = useCallback((pos: readonly [number, number]): Transform => {
-    const vp = vpRef.current;
-    const prev = transformRef.current;
-    if (!vp) return prev;
-    const r = vp.getBoundingClientRect();
-    const [px, py] = pos;
-    const z = clamp(Math.max(prev.z, 1), 0.8, 2.6);
-    return {
-      x: r.width * 0.42 - px * z,
-      y: r.height * 0.46 - py * z,
-      z,
-    };
-  }, []);
+  const transformForPoint = useCallback(
+    (pos: readonly [number, number]): Transform => {
+      const vp = vpRef.current;
+      const prev = transformRef.current;
+      if (!vp) return prev;
+      const r = vp.getBoundingClientRect();
+      const [px, py] = pos;
+      const z = clamp(Math.max(prev.z, 1), 0.8, 2.6);
+      return {
+        x: r.width * 0.42 - px * z,
+        y: r.height * 0.46 - py * z,
+        z,
+      };
+    },
+    [],
+  );
 
   const flyTo = useCallback(
     (pos: readonly [number, number], animate = true, ms?: number) => {
@@ -118,7 +337,11 @@ export function useFieldTransform(initial?: Partial<Transform>) {
   );
 
   const frameIds = useCallback(
-    (ids: string[], positions: Record<string, readonly [number, number]>, animate = true) => {
+    (
+      ids: string[],
+      positions: Record<string, readonly [number, number]>,
+      animate = true,
+    ) => {
       const vp = vpRef.current;
       if (!vp || !ids.length) return;
       const r = vp.getBoundingClientRect();
@@ -149,40 +372,89 @@ export function useFieldTransform(initial?: Partial<Transform>) {
     [setT],
   );
 
-  const onPointerDown = useCallback((e: React.PointerEvent) => {
-    dragRef.current = { x: e.clientX, y: e.clientY };
-    movedRef.current = false;
-    if (worldRef.current) worldRef.current.style.transition = 'none';
-    if (vpRef.current) vpRef.current.style.cursor = 'grabbing';
-  }, []);
-
-  const onPointerMove = useCallback(
+  const onPointerDown = useCallback(
     (e: React.PointerEvent) => {
-      if (!dragRef.current) return;
-      const dx = e.clientX - dragRef.current.x;
-      const dy = e.clientY - dragRef.current.y;
-      if (Math.abs(dx) + Math.abs(dy) > 4) movedRef.current = true;
-      dragRef.current = { x: e.clientX, y: e.clientY };
-      const prev = transformRef.current;
-      setT({ x: prev.x + dx, y: prev.y + dy, z: prev.z }, false, undefined, false);
+      if (e.button !== 0 && e.pointerType === 'mouse') return;
+      stopAnim();
+      const el = e.currentTarget as HTMLElement;
+      try {
+        el.setPointerCapture(e.pointerId);
+      } catch {
+        /* capture optional */
+      }
+      dragRef.current = {
+        x: e.clientX,
+        y: e.clientY,
+        pointerId: e.pointerId,
+      };
+      samplesRef.current = [];
+      pushSample(samplesRef.current, e.clientX, e.clientY, performance.now());
+      movedRef.current = false;
+      if (vpRef.current) vpRef.current.style.cursor = 'grabbing';
     },
-    [setT],
+    [stopAnim],
   );
 
-  const onPointerUp = useCallback(() => {
-    dragRef.current = null;
-    setTransform(transformRef.current);
-    if (vpRef.current) vpRef.current.style.cursor = 'grab';
-  }, []);
+  const onPointerMove = useCallback((e: React.PointerEvent) => {
+    if (!dragRef.current || dragRef.current.pointerId !== e.pointerId) return;
+    const dx = e.clientX - dragRef.current.x;
+    const dy = e.clientY - dragRef.current.y;
+    if (Math.abs(dx) + Math.abs(dy) > 4) movedRef.current = true;
+    dragRef.current = {
+      x: e.clientX,
+      y: e.clientY,
+      pointerId: e.pointerId,
+    };
+    pushSample(samplesRef.current, e.clientX, e.clientY, performance.now());
+    const prev = transformRef.current;
+    applyLive({ x: prev.x + dx, y: prev.y + dy, z: prev.z });
+  }, [applyLive]);
+
+  const endDrag = useCallback(
+    (e: React.PointerEvent) => {
+      if (!dragRef.current || dragRef.current.pointerId !== e.pointerId) return;
+      const el = e.currentTarget as HTMLElement;
+      if (el.hasPointerCapture?.(e.pointerId)) {
+        try {
+          el.releasePointerCapture(e.pointerId);
+        } catch {
+          /* ignore */
+        }
+      }
+      dragRef.current = null;
+      if (vpRef.current) vpRef.current.style.cursor = 'grab';
+
+      pushSample(samplesRef.current, e.clientX, e.clientY, performance.now());
+      const { vx, vy } = velocityFromSamples(samplesRef.current);
+      samplesRef.current = [];
+
+      if (movedRef.current && !prefersReducedMotion()) {
+        startInertia(vx, vy);
+      } else {
+        commitTransform(transformRef.current);
+      }
+    },
+    [commitTransform, startInertia],
+  );
+
+  const onPointerUp = endDrag;
+  const onPointerCancel = endDrag;
 
   const onWheel = useCallback(
     (e: React.WheelEvent) => {
       e.preventDefault();
+      stopAnim();
       const r = vpRef.current?.getBoundingClientRect();
       if (!r) return;
-      zoomAt(e.deltaY < 0 ? 1.12 : 0.89, e.clientX - r.left, e.clientY - r.top, false);
+      zoomAt(
+        e.deltaY < 0 ? 1.12 : 0.89,
+        e.clientX - r.left,
+        e.clientY - r.top,
+        false,
+      );
+      commitTransform(transformRef.current);
     },
-    [zoomAt],
+    [commitTransform, stopAnim, zoomAt],
   );
 
   const onMiniClick = useCallback(
@@ -209,7 +481,33 @@ export function useFieldTransform(initial?: Partial<Transform>) {
 
   const wasDragged = useCallback(() => movedRef.current, []);
 
-  const fitView = useCallback(() => initField(true), [initField]);
+  const fitLayoutRaf = useRef(0);
+
+  const fitView = useCallback(
+    (opts?: { afterLayout?: boolean }) => {
+      const run = () => initField(true);
+      if (!opts?.afterLayout) {
+        run();
+        return;
+      }
+      // Wait for panel unmount / flex reflow so fit uses the full viewport.
+      if (fitLayoutRaf.current) cancelAnimationFrame(fitLayoutRaf.current);
+      fitLayoutRaf.current = requestAnimationFrame(() => {
+        fitLayoutRaf.current = requestAnimationFrame(() => {
+          fitLayoutRaf.current = 0;
+          run();
+        });
+      });
+    },
+    [initField],
+  );
+
+  useEffect(
+    () => () => {
+      if (fitLayoutRaf.current) cancelAnimationFrame(fitLayoutRaf.current);
+    },
+    [],
+  );
 
   const zoomIn = useCallback(() => {
     const r = vpRef.current?.getBoundingClientRect();
@@ -241,6 +539,7 @@ export function useFieldTransform(initial?: Partial<Transform>) {
       onPointerDown,
       onPointerMove,
       onPointerUp,
+      onPointerCancel,
       onWheel,
       onMiniClick,
       wasDragged,
@@ -259,6 +558,7 @@ export function useFieldTransform(initial?: Partial<Transform>) {
       onPointerDown,
       onPointerMove,
       onPointerUp,
+      onPointerCancel,
       onWheel,
       onMiniClick,
       wasDragged,

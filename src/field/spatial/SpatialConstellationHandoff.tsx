@@ -5,7 +5,8 @@ import type { Block } from '../../pool/types';
 
 export type DescentOrigin = { x: number; y: number };
 
-const EXIT_MS = 260;
+const EXIT_MS = 240;
+const MOUNT_FALLBACK_MS = 280;
 
 type Props = {
   graphPath: string;
@@ -29,6 +30,8 @@ export function SpatialConstellationHandoff({
   const [exiting, setExiting] = useState(false);
   const [entered, setEntered] = useState(false);
   const [mountReady, setMountReady] = useState(false);
+  /** Enter from descend CTA; exit re-anchors to back control when available. */
+  const [motionOrigin, setMotionOrigin] = useState<DescentOrigin | undefined>(origin);
 
   useEffect(() => {
     const id = requestAnimationFrame(() => {
@@ -49,7 +52,7 @@ export function SpatialConstellationHandoff({
     };
 
     el.addEventListener('transitionend', onTransitionEnd);
-    const fallback = window.setTimeout(enableMount, 320);
+    const fallback = window.setTimeout(enableMount, MOUNT_FALLBACK_MS);
 
     return () => {
       el.removeEventListener('transitionend', onTransitionEnd);
@@ -57,20 +60,30 @@ export function SpatialConstellationHandoff({
     };
   }, [entered, exiting]);
 
-  const beginExit = useCallback(() => {
-    setMountReady(false);
-    setExiting(true);
-    window.setTimeout(() => onClose(), EXIT_MS);
-  }, [onClose]);
+  const beginExit = useCallback(
+    (from?: DescentOrigin) => {
+      if (from) setMotionOrigin(from);
+      setMountReady(false);
+      setExiting(true);
+      window.setTimeout(() => onClose(), EXIT_MS);
+    },
+    [onClose],
+  );
 
-  const requestClose = useCallback(() => {
-    beginExit();
-  }, [beginExit]);
+  const requestClose = useCallback(
+    (from?: DescentOrigin) => {
+      beginExit(from);
+    },
+    [beginExit],
+  );
 
   useEffect(() => {
     if (!exitRequested || exiting) return;
     beginExit();
   }, [exitRequested, exiting, beginExit]);
+
+  const originX = motionOrigin ? `${motionOrigin.x}px` : '50%';
+  const originY = motionOrigin ? `${motionOrigin.y}px` : '72%';
 
   const motionClass = [
     'spatial-handoff-motion',
@@ -94,8 +107,8 @@ export function SpatialConstellationHandoff({
         aria-hidden="true"
         style={
           {
-            '--spatial-origin-x': origin ? `${origin.x}px` : '50%',
-            '--spatial-origin-y': origin ? `${origin.y}px` : '72%',
+            '--spatial-origin-x': originX,
+            '--spatial-origin-y': originY,
           } as CSSProperties
         }
       >
@@ -105,9 +118,7 @@ export function SpatialConstellationHandoff({
         ref={motionRef}
         className={motionClass}
         style={{
-          transformOrigin: origin
-            ? `${origin.x}px ${origin.y}px`
-            : '50% 72%',
+          transformOrigin: `${originX} ${originY}`,
         }}
       >
         <SpatialConstellationView

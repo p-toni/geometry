@@ -14,7 +14,8 @@ type Props = {
   graphPath: string | null;
   fallbackTitle?: string;
   variant?: 'embedded' | 'handoff' | 'panel';
-  onBack?: () => void;
+  /** Optional origin for spatial exit (e.g. back control center). */
+  onBack?: (origin?: { x: number; y: number }) => void;
   backLabel?: string;
   body?: Block[];
   className?: string;
@@ -290,7 +291,15 @@ export function SpatialConstellationView({
       <div className="spatial-topbar">
         <div className="spatial-topbar-start">
           {onBack ? (
-            <button type="button" className="spatial-back-button" onClick={onBack} aria-label={cleanBackLabel}>
+            <button
+              type="button"
+              className="spatial-back-button"
+              onClick={(e) => {
+                const r = e.currentTarget.getBoundingClientRect();
+                onBack({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
+              }}
+              aria-label={cleanBackLabel}
+            >
               <span aria-hidden="true">←</span>
               <span>{cleanBackLabel}</span>
             </button>

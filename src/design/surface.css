@@ -445,19 +445,108 @@
   background: rgba(238, 240, 237, 0.58);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  transition: background 280ms var(--ease-out-strong);
+  transition:
+    background var(--motion-sheet) var(--ease-out-strong),
+    opacity var(--motion-fade) var(--ease-out-strong);
 }
 
 .field-read {
   width: 480px;
+  will-change: transform, opacity;
   transition:
-    width 320ms var(--ease-drawer),
-    transform 320ms var(--ease-out-strong),
-    opacity 280ms var(--ease-out-strong);
+    width var(--motion-sheet) var(--ease-drawer),
+    transform var(--motion-sheet) var(--ease-drawer),
+    opacity var(--motion-fade) var(--ease-out-strong);
+  animation: field-read-enter-desktop var(--motion-sheet) var(--ease-drawer) both;
 }
 
 .field-read--full {
   width: 728px;
+}
+
+.field-read--dragging {
+  animation: none !important;
+  transition: none !important;
+  will-change: transform;
+}
+
+.field-read-handle {
+  display: none;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0 2px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.field-read-handle:active {
+  cursor: grabbing;
+}
+
+.field-read-handle__pill {
+  display: block;
+  width: 36px;
+  height: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+.field-read-header {
+  position: relative;
+  z-index: 2;
+  background: color-mix(in srgb, var(--card) 94%, transparent);
+  border-bottom: 1px solid var(--line-hair);
+  transition: border-color 160ms var(--ease-out-strong);
+}
+
+/* Scroll-edge fade instead of a hard hairline under sticky chrome */
+.field-read-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -14px;
+  height: 14px;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--card) 88%, transparent),
+    transparent
+  );
+  transition: opacity 160ms var(--ease-out-strong);
+}
+
+.field-read:has(.field-read-scroll.is-scrolled) .field-read-header {
+  border-bottom-color: var(--line-soft);
+}
+
+.field-read:has(.field-read-scroll.is-scrolled) .field-read-header::after {
+  opacity: 1;
+}
+
+@keyframes field-read-enter-desktop {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes field-read-enter-mobile {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (min-width: 901px) {
@@ -471,11 +560,14 @@
 }
 
 .field-read--descending {
-  transform: scale(0.96) translateX(10px);
+  transform: translateX(22px);
   opacity: 0;
-  filter: blur(2px);
   pointer-events: none;
   visibility: hidden;
+  transition:
+    transform var(--motion-sheet) var(--ease-drawer-out),
+    opacity var(--motion-fade) var(--ease-out-strong);
+  animation: none;
 }
 
 .field-read-scrim--descent {
@@ -924,6 +1016,18 @@
     max-height: min(70dvh, calc(100% - var(--status-h) - 24px), 620px);
   }
 
+  .field-read-handle {
+    display: flex;
+  }
+
+  .field-read {
+    animation: field-read-enter-mobile var(--motion-sheet) var(--ease-drawer) both;
+  }
+
+  .field-read--descending {
+    transform: translateY(24px);
+  }
+
   .field-read-header {
     gap: 8px !important;
     padding: 11px 12px !important;
@@ -971,6 +1075,7 @@
   }
 }
 
+/* Reduced motion: keep short opacity cross-fades, drop slides/springs/elastic */
 @media (prefers-reduced-motion: reduce) {
   .field-node,
   .pressable,
@@ -984,18 +1089,89 @@
   .lens-form,
   .field-zoom-readout,
   .field-region-label {
-    transition: none !important;
+    transition:
+      opacity var(--motion-fade) ease,
+      background var(--motion-fade) ease,
+      border-color var(--motion-fade) ease,
+      color var(--motion-fade) ease !important;
     animation: none !important;
   }
 
   .field-node,
   .pressable,
-  .edge-continues,
+  .edge-continues {
+    transform: none !important;
+  }
+
   .field-read {
+    animation: field-read-fade-in var(--motion-fade) ease both !important;
     transform: none !important;
   }
 
   .field-read--descending {
+    transform: none !important;
     filter: none !important;
+    opacity: 0 !important;
+  }
+
+  .field-read--dragging {
+    transition: none !important;
+  }
+
+  .crackdraw-path {
+    transition: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
+
+@keyframes field-read-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .field-read-scrim {
+    background: rgba(238, 240, 237, 0.94);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .field-read-scrim--descent {
+    background: rgba(28, 31, 36, 0.72);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .field-read-header {
+    background: var(--card);
+  }
+
+  .field-zoom-readout {
+    background: var(--card) !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .field-read,
+  .field-icon-button,
+  .field-panel-action,
+  .field-minimap,
+  .field-tool-stack {
+    border-color: color-mix(in srgb, var(--ink) 42%, var(--line)) !important;
+  }
+
+  .field-read-scrim {
+    background: rgba(246, 244, 239, 0.92);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .field-read-header {
+    background: var(--card);
+    border-bottom: 1px solid var(--ink);
   }
 }
