@@ -34,7 +34,7 @@ struct:
     - label: "Misfit"
       concepts: ["failure", "revision"]
     - label: "Practice"
-      concepts: ["AI", "tests"]
+      concepts: ["AI", "tests", "conceptual probes"]
     - label: "Closing"
       concepts: ["contact", "world answers"]
 ---
@@ -360,6 +360,26 @@ invariant → symmetry → compression → prediction → action → feedback �
 If I cannot name the feedback, I do not yet have a living idea.
 
 If I cannot name where the feedback lands, I do not yet have a learning loop.
+
+For abstract or meta-cognitive work, the material is thinner.
+
+I still need contact.
+
+Four proxies I already use — named so I cannot skip them:
+
+1. **Translation** — can the idea survive code, diagram, notation, or another language?
+2. **Social misfit** — does an independent observer resist or misread the compressed form?
+3. **Temporal commitment** — is there a dated, observable prediction attached?
+4. **Constraint stress** — does it survive no-AI, low time, or a foreign domain?
+
+One probe is enough when the bet is small.
+
+The map stays weak.
+
+A single edge takes temporary predictive closure long enough to risk being wrong — then I downgrade or revise.
+
+Not a second framework.
+A practice card.
 
 Deming's PDSA cycle makes this ordinary in the best way: plan, do, study, act [Deming 1986].
 

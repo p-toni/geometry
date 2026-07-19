@@ -27,6 +27,8 @@ struct:
       concepts: ["bidirectional steering", "surprise"]
     - label: "Workflow"
       concepts: ["scout", "verify", "rewrite"]
+    - label: "Load order"
+      concepts: ["which gate when", "event-driven recovery"]
 ---
 
 I am not "using AI."
@@ -422,13 +424,82 @@ I rewrite my way out.
 
 ---
 
-### 9) Non-negotiable constraints
+### 9) Load order (which gate when)
+
+The gates are not a stack I run on every thought.
+
+They are layered instruments.
+
+Using all of them at once is how a private stabilizer becomes tax.
+
+**Always present**
+
+- Weak grades on edges I am leaning on ([[Weak Geometry|weak-geometry]]).
+- Cuts I can name: what I collapsed, what I ignored ([[Allowed Ignorance|allowed-ignorance]]).
+
+**On a decision**
+
+R3+2+1 from memory.
+
+Thesis · reason · next action · two assumptions · one uncertainty.
+
+**On structure that is not yet a thesis**
+
+Topology gate.
+
+Draw it. Name the open edge. Falsify one link.
+
+**On an ownership claim**
+
+Reconstruction.
+
+Close the source. Rebuild. Run one or more of the geometry tests from [[Geometry Over Retrieval|geometry-retrieval]]. Weak geometry adds *relax*.
+
+**On an external bet**
+
+Contact from [[The World Answers|the-world-answers]].
+
+One probe.
+Temporary predictive closure on one edge.
+Then downgrade or revise.
+
+**On drift**
+
+Recovery, not a timer.
+
+Close → rewrite → re-enter at L0 or L1.
+
+The interval is event-driven.
+Not calendar-mandated.
+
+If I cannot name which gate I am in, I am probably stacking them — and stacking is how verification becomes heavier than the loop it was meant to protect.
+
+This is a private stabilizer.
+
+Not a scalable cognitive OS.
+Not a compliance surface for readers.
+
+---
+
+### 10) Non-negotiable constraints
 
 **No identity outsourcing.**
 
 **No reality arbitration.**
 
 **Provenance is mandatory.**
+
+Not as chrome.
+As a cut I can still see.
+
+For any draft that left the loop coupled, I keep a one-line declaration:
+
+Source: human · assisted · co-authored.
+What was borrowed.
+What I rebuilt with the source closed.
+
+I do not need a verification UI.
+I need the seam to stay visible.
 
 **Inside-my-head rule.**
 
@@ -438,7 +509,7 @@ Whether that shape is a proposition or a topology.
 
 ---
 
-### 10) A final constraint: this is for me
+### 11) A final constraint: this is for me
 
 I am not publishing a manifesto.
 
@@ -455,3 +526,5 @@ If I want to feel impressed, I can read papers.
 If I want to stay sane and compound, I follow the rules above.
 
 **Update (2026-03-15):** Bennett (2026) formalizes a latency ceiling for integrated hybrids under the Chord assumptions: if relevant links in the control loop exceed the integration window theta, the system can fragment into two agents taking turns rather than one enlarged mind. The bound D <= kvtheta converts a time budget into a spatial budget. In the BCI case study, 10 ms round-trip latency is marginally feasible for a 20-50 ms candidate window. In cloud AI, raw network speed is not enough: limited concurrency and serialized pipelines can fail co-instantiation even when links are fast. L3 has a physics. (Source: https://www.preprints.org/manuscript/202602.1708/v2)
+
+**Update (2026-07-18):** The gates above can be misread as simultaneous tax. Load order (§9) is the correction: which instrument when, event-driven recovery, no calendar cool-off. Provenance stays a one-line seam, not site chrome.

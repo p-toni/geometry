@@ -329,3 +329,13 @@ What changes what I do next.
 **Update (2026-03-15):** Bennett (2026) formalizes a complementary constraint: under the Chord assumptions, a unified conscious moment has a physical size limit D <= kvtheta, where D is the support diameter, v is the signal-propagation ceiling, theta is the integration window, and k depends on exchange architecture. A mind can only get so big because signals travel at finite speed. This is about consciousness criteria, but it sharpens my own boundedness lens: boundedness is not a mood. It is a physical constraint on integration. (Source: https://www.preprints.org/manuscript/202602.1708/v2)
 
 **Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] gives a sharper name to what boundedness forces: not just limited capacity, but mandatory equivalence-making. Every usable map already contains decisions about which differences can be treated as the same. That is the primitive act underneath compression, and the place where bounded cognition most quietly makes its bets.
+
+**Update (2026-07-18):** Two limits that look alike and are not.
+
+- **Hard structural limits (HSL):** integration window, signal speed, the D ≤ kvθ ceiling. Fixed. Practice does not expand them.
+- **Dynamic loop parameters (DLP):** leakage, re-entry cost, closure pressure, basin stability. Trainable inside the container.
+
+Training optimizes DLP.
+It never buys more HSL.
+
+When active edges exceed what the container can hold, the move is cut — not expand.

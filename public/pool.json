@@ -1680,6 +1680,26 @@
         {
           "t": "p",
           "x": "**Update (2026-04-12):** [[Allowed Ignorance|allowed-ignorance]] gives a sharper name to what boundedness forces: not just limited capacity, but mandatory equivalence-making. Every usable map already contains decisions about which differences can be treated as the same. That is the primitive act underneath compression, and the place where bounded cognition most quietly makes its bets."
+        },
+        {
+          "t": "p",
+          "x": "**Update (2026-07-18):** Two limits that look alike and are not."
+        },
+        {
+          "t": "p",
+          "x": "• **Hard structural limits (HSL):** integration window, signal speed, the D ≤ kvθ ceiling. Fixed. Practice does not expand them."
+        },
+        {
+          "t": "p",
+          "x": "• **Dynamic loop parameters (DLP):** leakage, re-entry cost, closure pressure, basin stability. Trainable inside the container."
+        },
+        {
+          "t": "p",
+          "x": "Training optimizes DLP. It never buys more HSL."
+        },
+        {
+          "t": "p",
+          "x": "When active edges exceed what the container can hold, the move is cut — not expand."
         }
       ],
       "struct": {
@@ -3941,7 +3961,132 @@
         },
         {
           "t": "h",
-          "x": "9) Non-negotiable constraints",
+          "x": "9) Load order (which gate when)",
+          "level": 3
+        },
+        {
+          "t": "p",
+          "x": "The gates are not a stack I run on every thought."
+        },
+        {
+          "t": "p",
+          "x": "They are layered instruments."
+        },
+        {
+          "t": "p",
+          "x": "Using all of them at once is how a private stabilizer becomes tax."
+        },
+        {
+          "t": "p",
+          "x": "**Always present**"
+        },
+        {
+          "t": "p",
+          "x": "• Weak grades on edges I am leaning on ([[Weak Geometry|weak-geometry]])."
+        },
+        {
+          "t": "p",
+          "x": "• Cuts I can name: what I collapsed, what I ignored ([[Allowed Ignorance|allowed-ignorance]])."
+        },
+        {
+          "t": "p",
+          "x": "**On a decision**"
+        },
+        {
+          "t": "p",
+          "x": "R3+2+1 from memory."
+        },
+        {
+          "t": "p",
+          "x": "Thesis · reason · next action · two assumptions · one uncertainty."
+        },
+        {
+          "t": "p",
+          "x": "**On structure that is not yet a thesis**"
+        },
+        {
+          "t": "p",
+          "x": "Topology gate."
+        },
+        {
+          "t": "p",
+          "x": "Draw it. Name the open edge. Falsify one link."
+        },
+        {
+          "t": "p",
+          "x": "**On an ownership claim**"
+        },
+        {
+          "t": "p",
+          "x": "Reconstruction."
+        },
+        {
+          "t": "p",
+          "x": "Close the source. Rebuild. Run one or more of the geometry tests from [[Geometry Over Retrieval|geometry-retrieval]]. Weak geometry adds *relax*."
+        },
+        {
+          "t": "p",
+          "x": "**On an external bet**"
+        },
+        {
+          "t": "p",
+          "x": "Contact from [[The World Answers|the-world-answers]]."
+        },
+        {
+          "t": "p",
+          "x": "One probe. Temporary predictive closure on one edge. Then downgrade or revise."
+        },
+        {
+          "t": "p",
+          "x": "**On drift**"
+        },
+        {
+          "t": "p",
+          "x": "Recovery, not a timer."
+        },
+        {
+          "t": "diagram",
+          "mode": "flow",
+          "cyclic": false,
+          "nodes": [
+            "Close",
+            "rewrite",
+            "re-enter at L0 or L1."
+          ],
+          "edges": [
+            {
+              "from": "Close",
+              "to": "rewrite",
+              "rel": "→",
+              "force": "necessary"
+            },
+            {
+              "from": "rewrite",
+              "to": "re-enter at L0 or L1.",
+              "rel": "→",
+              "force": "likely"
+            }
+          ]
+        },
+        {
+          "t": "p",
+          "x": "The interval is event-driven. Not calendar-mandated."
+        },
+        {
+          "t": "p",
+          "x": "If I cannot name which gate I am in, I am probably stacking them — and stacking is how verification becomes heavier than the loop it was meant to protect."
+        },
+        {
+          "t": "p",
+          "x": "This is a private stabilizer."
+        },
+        {
+          "t": "p",
+          "x": "Not a scalable cognitive OS. Not a compliance surface for readers."
+        },
+        {
+          "t": "h",
+          "x": "10) Non-negotiable constraints",
           "level": 3
         },
         {
@@ -3958,6 +4103,22 @@
         },
         {
           "t": "p",
+          "x": "Not as chrome. As a cut I can still see."
+        },
+        {
+          "t": "p",
+          "x": "For any draft that left the loop coupled, I keep a one-line declaration:"
+        },
+        {
+          "t": "p",
+          "x": "Source: human · assisted · co-authored. What was borrowed. What I rebuilt with the source closed."
+        },
+        {
+          "t": "p",
+          "x": "I do not need a verification UI. I need the seam to stay visible."
+        },
+        {
+          "t": "p",
           "x": "**Inside-my-head rule.**"
         },
         {
@@ -3970,7 +4131,7 @@
         },
         {
           "t": "h",
-          "x": "10) A final constraint: this is for me",
+          "x": "11) A final constraint: this is for me",
           "level": 3
         },
         {
@@ -4004,6 +4165,10 @@
         {
           "t": "p",
           "x": "**Update (2026-03-15):** Bennett (2026) formalizes a latency ceiling for integrated hybrids under the Chord assumptions: if relevant links in the control loop exceed the integration window theta, the system can fragment into two agents taking turns rather than one enlarged mind. The bound D <= kvtheta converts a time budget into a spatial budget. In the BCI case study, 10 ms round-trip latency is marginally feasible for a 20-50 ms candidate window. In cloud AI, raw network speed is not enough: limited concurrency and serialized pipelines can fail co-instantiation even when links are fast. L3 has a physics. (Source: https://www.preprints.org/manuscript/202602.1708/v2)"
+        },
+        {
+          "t": "p",
+          "x": "**Update (2026-07-18):** The gates above can be misread as simultaneous tax. Load order (§9) is the correction: which instrument when, event-driven recovery, no calendar cool-off. Provenance stays a one-line seam, not site chrome."
         }
       ],
       "struct": {
@@ -4050,6 +4215,13 @@
               "scout",
               "verify",
               "rewrite"
+            ]
+          },
+          {
+            "label": "Load order",
+            "concepts": [
+              "which gate when",
+              "event-driven recovery"
             ]
           }
         ]
@@ -4813,6 +4985,60 @@
         },
         {
           "t": "p",
+          "x": "For abstract or meta-cognitive work, the material is thinner."
+        },
+        {
+          "t": "p",
+          "x": "I still need contact."
+        },
+        {
+          "t": "p",
+          "x": "Four proxies I already use — named so I cannot skip them:"
+        },
+        {
+          "t": "ladder",
+          "mode": "step",
+          "rungs": [
+            {
+              "marker": "01",
+              "term": "Translation",
+              "body": "— can the idea survive code, diagram, notation, or another language?"
+            },
+            {
+              "marker": "02",
+              "term": "Social misfit",
+              "body": "— does an independent observer resist or misread the compressed form?"
+            },
+            {
+              "marker": "03",
+              "term": "Temporal commitment",
+              "body": "— is there a dated, observable prediction attached?"
+            },
+            {
+              "marker": "04",
+              "term": "Constraint stress",
+              "body": "— does it survive no-AI, low time, or a foreign domain?"
+            }
+          ]
+        },
+        {
+          "t": "p",
+          "x": "One probe is enough when the bet is small."
+        },
+        {
+          "t": "p",
+          "x": "The map stays weak."
+        },
+        {
+          "t": "p",
+          "x": "A single edge takes temporary predictive closure long enough to risk being wrong — then I downgrade or revise."
+        },
+        {
+          "t": "p",
+          "x": "Not a second framework. A practice card."
+        },
+        {
+          "t": "p",
           "x": "Deming's PDSA cycle makes this ordinary in the best way: plan, do, study, act [Deming 1986]."
         },
         {
@@ -4930,7 +5156,8 @@
             "label": "Practice",
             "concepts": [
               "AI",
-              "tests"
+              "tests",
+              "conceptual probes"
             ]
           },
           {
