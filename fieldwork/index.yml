@@ -1,0 +1,41 @@
+round: 1
+status: divergence
+seed: fieldwork/seed.md
+constitution: fieldwork/README.md
+
+branches:
+  - id: morphogenesis-and-persistence
+    role: adjacent
+    status: open
+  - id: mathematics-without-platonic-space
+    role: rival
+    status: open
+  - id: geometry-as-metaphor
+    role: hostile
+    status: open
+  - id: institutional-continuity
+    role: alien
+    status: open
+  - id: distributed-knowing
+    role: cross-cutting
+    status: open
+
+sources:
+  - id: hartl-et-al-2026-remapping-navigation
+    status: native-pass
+  - id: levin-2026-ingressing-minds
+    status: native-pass
+  - id: lee-smart-response
+    status: native-pass
+  - id: openai-2026-navier-stokes
+    status: native-pass
+
+collisions:
+  - id: possibility-accessibility-persistence
+    status: open
+
+probes: []
+
+synthesis:
+  latest: fieldwork/synthesis/000-baseline.md
+  source_closed: false
