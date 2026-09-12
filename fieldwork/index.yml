@@ -2,6 +2,14 @@ round: 1
 status: divergence
 seed: fieldwork/seed.md
 constitution: fieldwork/README.md
+exploration_model: fieldwork/state-space-exploration.md
+
+exploration:
+  wave: C
+  scout_frontier: 32
+  promoted_this_wave: 6
+  human_carrying_budget: 5
+  source_closed: false
 
 branches:
   - id: morphogenesis-and-persistence
@@ -27,6 +35,24 @@ branches:
     status: open
   - id: perception-without-representation
     role: hostile
+    status: open
+  - id: relevant-information-under-bottleneck
+    role: alien-cross-cutting
+    status: open
+  - id: coarse-graining-and-universality
+    role: alien-rival
+    status: open
+  - id: partial-observation-and-control
+    role: alien-cross-cutting
+    status: open
+  - id: transitions-in-individuality
+    role: alien-cross-cutting
+    status: open
+  - id: cultural-transmission-and-structure
+    role: alien
+    status: open
+  - id: convergence-without-synchrony
+    role: alien-cross-cutting
     status: open
 
 sources:
@@ -57,6 +83,18 @@ sources:
   - id: lamport-1978-time-clocks-ordering
     status: stressed
   - id: chong-proctor-2020-affordances
+    status: stressed
+  - id: tishby-pereira-bialek-2000-information-bottleneck
+    status: stressed
+  - id: wilson-kogut-1974-renormalization-group
+    status: stressed
+  - id: kalman-1960-observability-controllability
+    status: stressed
+  - id: szathmary-2015-major-transitions
+    status: stressed
+  - id: kirby-cornish-smith-2008-iterated-learning
+    status: stressed
+  - id: shapiro-et-al-2011-crdts
     status: stressed
 
 collisions:
