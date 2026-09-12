@@ -145,7 +145,7 @@ collisions:
   - id: relevance-is-conditional
     status: open
   - id: verification-has-multiple-boundaries
-    status: probing
+    status: open-after-probe
   - id: stability-is-not-resilience
     status: open
   - id: universal-description-vs-explanation
@@ -159,7 +159,7 @@ integrator_working_set:
 
 probes:
   - id: navier-stokes-statement-fidelity
-    status: proposed
+    status: answered
 
 synthesis:
   latest: fieldwork/synthesis/000-baseline.md
