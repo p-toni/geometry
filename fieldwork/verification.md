@@ -79,8 +79,10 @@ discriminator:
 expected_if_A:
 expected_if_B:
 
+verification_target:
 independent_verifier:
 independence_rationale:
+trusted_base:
 
 result:
 would_change_if_wrong:
@@ -88,6 +90,20 @@ status: proposed | running | answered | ambiguous | failed
 ```
 
 Write expectations before observing the result. Do not repair the prediction afterward.
+
+## Verify the right object
+
+A verifier can be perfectly strict and still answer the wrong question. Before promotion, separate at least these layers when they apply:
+
+1. **derivation validity** — does the evidence/proof establish the exact formal claim?
+2. **statement fidelity** — is that formal/operational claim the one we intended to test?
+3. **assumption boundary** — which axioms, definitions, priors, measurement choices, or background conditions are imported?
+4. **verifier boundary** — what implementation, instrument, dataset, or checking system is trusted?
+5. **interpretation / uptake** — what does survival license us to say, predict, or do?
+
+Lean's own validation guidance is a useful exemplar: it explicitly distinguishes “does the theorem have a valid proof?” from “what does the theorem statement mean?” and recommends stronger independent checking for high-risk unreviewed AI-generated proofs.
+
+No green checkmark propagates automatically across these boundaries.
 
 ## Verifier families
 
@@ -119,7 +135,15 @@ Prefer, in order:
 4. independent expert reconstruction or adversarial review;
 5. self-checking only when nothing stronger exists, clearly marked weak.
 
+For software/formal verification, record the **trusted computing base** rather than treating the verifier as infallible. Independent implementations reduce correlated failure risk. A verifier is another system with a boundary, not an oracle.
+
 The stronger the promotion, the stronger the required independence.
+
+## Observation is not discrimination
+
+More evidence of the same type can leave alternatives observationally equivalent. When that happens, change the probe rather than merely increasing sample size.
+
+Prefer interventions or measurements that cause live alternatives to produce different expected outcomes. `intervention-and-identifiability` is the native control branch for this rule.
 
 ## When no verifier exists
 
