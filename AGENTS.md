@@ -1,117 +1,139 @@
-# geometry — agent authoring guide
+# geometry — operating guide
 
-This site is a thesis you can operate (`src/home/next/NextHome.tsx`) fed by a content pool. Content lives as markdown files with YAML frontmatter. A build step compiles them into `public/pool.json` and `src/pool/generated.ts`.
+This repository contains two coupled but deliberately distinct systems:
 
-The home is **six doors** — one sentence each, together forming the argument (who → essays → work → play → now → hi). Clicking a door opens its room below; a compression dial rewrites all six at three registers (`full` → `line` → `word`). Panels read the pool by cluster: **writing** → the essays room, **work** → the work room, **play** → the play room. Essays open at `/read/:id` — the single reader, set in the **Essay System** (`src/essaySystem/`). It renders typed `Block[]` directly, not a parallel prose model. `/writing/:id` redirects there.
+- `fieldwork/` is the research system.
+- `content/` + `src/` are the publication system.
 
-The spatial field UI was **removed** — the product surface is `src/home/next/` plus `src/essaySystem/`, and nothing else renders a page. Design tokens live only in `src/design/tokens.css` (no parallel `--h-*` palette). Pool placement still uses `src/pool/field.ts` (hand-placed node coordinates — not the old FieldApp).
+Do not let the publication thesis organize the research search space. Fieldwork may revise or break Geometry; Geometry does not get to pre-filter fieldwork.
 
-## Workflow
+## Mode 1 — fieldwork
+
+Read `fieldwork/README.md`, `fieldwork/seed.md`, and `fieldwork/index.yml` before researching.
+
+The anti-collapse protocol is binding:
+
+1. **Freeze the seed.** Do not edit the current thesis during divergence.
+2. **Diverge in native coordinates.** Maintain adjacent, rival, hostile, and alien branches. A branch should be phrased in the vocabulary of its own domain, not ours.
+3. **Native pass before translation.** A source card must state what the source says, what evidence it gives, what it assumes, and what it does not establish before any Geometry interpretation appears.
+4. **Stress internally.** Give every serious source at least one rival reading or failure condition.
+5. **Privilege collisions over accumulation.** Similar vocabulary is not evidence. A collision matters when independent lines force a new distinction, contradiction, prediction, intervention, or failure diagnosis.
+6. **Contact before canon.** Central claims need a path by which something outside the map can answer: experiment, proof, formal constraint, historical check, build, behavior, consequence, or another explicit probe.
+7. **Synthesize source-closed first.** At the end of a round, reconstruct what changed without looking at the sources. Then reopen them and correct provenance.
+8. **Preserve unresolved alternatives.** Do not invent a sentence that makes incompatible frameworks agree.
+
+### Fieldwork file roles
+
+```text
+fieldwork/
+  seed.md                 frozen starting state for the current round
+  index.yml               small machine-readable research state
+  branches/               question-spaces, each with a native vocabulary
+  sources/                provenance cards, one source per file
+  collisions/             where independent branches genuinely interact
+  probes/                 ways for the world/formal system/history to answer
+  synthesis/              periodic source-closed reconstructions
+  templates/              schemas; keep them weak
+```
+
+### What counts as displacement
+
+A source changes the map only if it does at least one of these:
+
+- creates a distinction we did not have;
+- contradicts or weakens an existing edge;
+- generates a prediction or discriminating consequence;
+- suggests an intervention or probe;
+- explains a live anomaly better than a competitor;
+- exposes an assumption that was previously invisible.
+
+Otherwise record it and move on.
+
+### Failure conditions
+
+Stop and correct course if research starts to do any of the following:
+
+- searching mainly for `geometry`, `invariants`, `interfaces`, `boundedness`, or other thesis vocabulary;
+- translating a source into our language before it has a native account;
+- counting semantic resemblance as support;
+- making every branch converge on the same ontology;
+- adding a published essay because a new source feels exciting;
+- using the archive as a substitute for reconstruction.
+
+For autonomous research, use `.agents/skills/anti-collapse-research/SKILL.md`.
+
+---
+
+## Mode 2 — publication
+
+The site is a thesis you can operate, fed by a Markdown content pool. A build step compiles content into `public/pool.json` and `src/pool/generated.ts`.
+
+### Workflow
 
 ```bash
 pnpm pool:build   # required after any content edit
-pnpm dev          # local preview
-pnpm test         # vitest
-pnpm test:browser # agent-browser smoke test — needs `pnpm dev` running
-pnpm lint         # oxlint; the baseline is zero warnings
+pnpm dev
+pnpm test
+pnpm test:browser # needs pnpm dev running
+pnpm lint
 pnpm build        # pool:build + typecheck + static export + seo
 ```
 
-Anything kept on disk but deliberately not shipped and not tracked lives in `_local/`
-(pre-rewrite writings, retired essay visuals, the unwired point-cloud `.splt`).
+### Content layout
 
-## File layout
-
-```
+```text
 content/{cluster}/{id}.md
 ```
 
-- **cluster:** `writing` | `work` | `play` | `you`
-- **id:** kebab-case slug; must match a key in `src/pool/field.ts` `positions`
+Clusters: `writing` | `work` | `play` | `you`.
 
-## Frontmatter schema
+The `id` is kebab-case and must match a key in `src/pool/field.ts` `positions`. Do not add `pos` to frontmatter.
+
+Typical frontmatter:
 
 ```yaml
 ---
 id: allowed-ignorance
-kind: essay          # essay | note | project | doc | shader | voxel | sharp | link | about
+kind: essay
 cluster: writing
 title: allowed ignorance
-date: 2026-07-28     # prefer real dates; 'today'/'live' cannot age (freshScore = 0)
-rank: 0              # 0 = freshest; affects Now lens height
-excerpt:             # optional; auto-derived from first paragraphs if omitted
+date: 2026-07-28
+rank: 0
+excerpt:
   - "One-line thesis or hook."
 links:
   - target: increasing-returns
-    rel: cites       # see Rel type in src/pool/types.ts
-struct:              # optional; lens seeds the reader standfirst/gloss fallbacks
+    rel: cites
+struct:
   lens: "understanding after the right omissions"
-  sections:         # descriptive only; no longer drives any build
-    - label: Thesis
-      concepts: ["allowed cuts", "omission"]
-href: https://…      # link / play nodes
-why: I needed…       # work projects — private pressure
-problem: They kept…
-principle: If I cannot… # first-principles cut of the problem
-solution: One kernel…
-value: The unfinished…  # short value produced
-space: re-entry         # distilled from the problem statement
-proof: https://…        # repo or running proof; omit if not public
-media: true          # play nodes with render placeholders
 ---
 ```
 
-**Do not** add `pos` to frontmatter — coordinates are authored once in `src/pool/field.ts`.
+### Body → blocks
 
-## Body → Blocks → Figures
+The Markdown body is parsed by `src/lib/parseBlocks.ts` and recast by `src/essaySystem/essayModel.ts`.
 
-The markdown body (below `---`) is parsed by `src/lib/parseBlocks.ts` into typed `Block[]` atoms. `src/essaySystem/essayModel.ts` recasts those into the Essay System's closed set of shapes.
+- `## Heading` → section
+- plain paragraph → prose
+- `> thesis: …` / `> **…**` → claim
+- `> [aside|honesty|update] …` → callout
+- `![caption](src)` → plate
+- `:::contrast a | b` → comparison
+- typed table → edge taxonomy
+- numbered list → ladder
+- `:::diagram` → diagram
+- `<!-- block:motif -->` → motif
+- `> pull: …` → pull quote
+- `[[Title|id]]` → summoned reference
 
-| Markdown | Block type | Essay System form |
-|----------|------------|-------------------|
-| `## Heading` | `h` | §NN section mark, mirrored in the rail |
-| plain paragraph | `p` | Prose |
-| `> thesis: …` or `> **…**` | `thesis` | Claim CNN, mirrored in the rail |
-| `> [aside\|honesty\|update] …` | `callout` | Definition box |
-| `![caption](src)` | `plate` | Image plate (light polarity only) or drawn figure |
-| `:::contrast a \| b` | `contrast` | Comparison table, accent on the owned pole |
-| `\| type \| force \|` table | `edge-taxonomy` | Comparison table |
-| `1. step` list | `ladder` | Numbered stops (the "step" verb) |
-| `:::diagram` fence | `diagram` | Conceptual diagram, one accent event |
-| `<!-- block:motif -->` | `motif` | Late-failure figure |
-| `> pull: …` | `pull` | Pull quote |
-| `[[Title\|id]]` | inline | Summoned reference, resolves in the margin |
+Essay chrome is rendered by `EssayReader`; do not repeat `# Title` in the body.
 
-Adding a `Block` type means adding its shape to `essayModel.ts`. A test asserts every
-block type any essay actually uses survives the recast — the reader must never silently
-drop content.
+### Publication rules
 
-Essay chrome (title, standfirst, date, colophon) is rendered by `EssayReader` — do not repeat `# Title` in the body.
+- Edit atoms, not JSX. Never add MDX or React to content files.
+- After editing `content/**/*.md` or `src/pool/field.ts`, run `pnpm pool:build`.
+- New nodes require both a content file and `positions[id]` in `src/pool/field.ts`.
+- Keep directed links within the relation types in `src/pool/types.ts`.
+- Research notes do not belong in `content/writing/` until a synthesis round explicitly promotes them.
 
-## Reading modes
-
-1. **Excerpt** — `excerpt` frontmatter or first two `p` blocks
-2. **Full** — entire `body` at `/read/:id`, set in the Essay System
-
-The former spatial constellation descent was removed; `##`/`###` headings remain required for the reader's §NN section marks and rail.
-
-## Rules for agents
-
-- Edit atoms, not JSX. Never add MDX or React in content files.
-- After editing any `content/**/*.md` or `src/pool/field.ts`, run `pnpm pool:build`.
-- New nodes require both a content file **and** a hand-placed `positions[id]` entry.
-- Use `[[backlink:…]]` for in-essay navigation to other pool nodes.
-- Keep links directed and use only relations from `Rel` in `src/pool/types.ts`.
-
-## Retired
-
-- MDX essays under `/essays/`
-- `bodyPath`, per-canvas JSON, zustand canvas store
-- v1 widget components
-- Constellation argument descent (spatial graphs, `constellation/`, `pnpm constellation:*`)
-- The scrolling home (`HomeLayout`/`HomePage`/`ThesisSection`, `home.css`) — replaced by the six doors
-- `src/design/surface.css` — the field subsystem's styling; it outlived the UI by three commits
-- The v1 content-migration scripts and `pnpm pool:seed` / `pool:migrate` / `pool:restore`
-- `lib/freshness`, `lib/graph`, `lib/readMode`, `lib/spring`, `lib/search`, `pool/essayStructure`
-
-Nothing above is coming back. If a change seems to need one of them, the change is wrong.
+Anything deliberately local and untracked remains under `_local/`.
