@@ -13,6 +13,7 @@ The companion promotion discipline lives in `fieldwork/verification.md`.
 ## Units
 
 - **frontier** — candidate question-spaces not yet investigated deeply;
+- **effective frontier** — the subset currently reachable or likely to be found given search history, tools, vocabulary, incentives, and source graph;
 - **scout** — a cheap, source-native exploration of one frontier cell;
 - **branch** — a question-space that earned sustained investigation;
 - **source card** — one provenance-preserving native pass;
@@ -21,6 +22,24 @@ The companion promotion discipline lives in `fieldwork/verification.md`.
 - **progress unit** — a new question, distinction, discriminating consequence, intervention, or claim we can no longer honestly hold.
 
 Source count is not progress.
+
+## The state space is not assumed static
+
+“State-space exploration” does **not** mean uniform sampling from a fixed list of possibilities.
+
+Different systems taught us to distinguish nominal possibility from accessibility:
+
+- physical dynamics can make some states overwhelmingly easier to reach than others;
+- prior choices can change later payoffs and create lock-in;
+- repeated transmission can reshape the object being transmitted;
+- our own research summaries can change what later searches notice.
+
+So the research system tracks two problems at once:
+
+1. **coverage** — how much possibility is being explored;
+2. **accessibility bias** — how the current path changes what is likely to be explored next.
+
+Blindness and fresh starts are therefore anti-lock-in mechanisms, not merely anti-confirmation mechanisms.
 
 ## Exploration budget
 
@@ -59,6 +78,8 @@ Its job is to return only:
 - whether a deeper branch appears warranted.
 
 Blindness is procedural. It reduces convergence pressure; it does not imply true cognitive independence between model runs.
+
+At least some scout waves should be **fresh-start waves**: no inherited summaries from prior scouts, even when those summaries appear useful.
 
 ### 2. Native investigators
 
@@ -130,6 +151,17 @@ Do not let search become one large family of neighboring literatures. Across a b
 
 This is not an ontology. It is a defense against local search.
 
+## Anti-lock-in controls
+
+Because exploration can change its own effective frontier:
+
+- rotate active branches instead of letting the working set only accumulate;
+- preserve paused branches without treating pause as rejection;
+- run fresh-start blind waves periodically;
+- compare seeded versus fresh exploration when path dependence becomes a live concern;
+- do not let a high-yield vocabulary become the default query language across unrelated domains;
+- prefer re-opening a dead or alien branch over adding a fifteenth near-neighbor when diversity is falling.
+
 ## Stop / reset conditions
 
 Pause expansion and run source-closed reconstruction when any of these appear:
@@ -139,14 +171,15 @@ Pause expansion and run source-closed reconstruction when any of these appear:
 - the same small set of authors or vocabularies dominates multiple branches;
 - collisions increase only by semantic analogy;
 - the human-facing displacement has stopped changing despite large search spend;
-- one cheap discriminating probe has become more informative than further reading.
+- one cheap discriminating probe has become more informative than further reading;
+- the effective frontier appears to be shrinking around the current map despite nominally broad search.
 
-After reconstruction, either promote probes, open a fresh blind wave, or close the round.
+After reconstruction, either promote probes, open a fresh blind wave, rotate the active set, or close the round.
 
 ## Rhythm
 
 ```text
-expand → discriminate → expand → discriminate
+expand → discriminate → reset if needed → expand → discriminate
 ```
 
-State-space exploration grows the frontier. Verification cuts it.
+State-space exploration grows the frontier. Verification cuts it. Fresh starts keep the frontier from becoming merely the shadow of its own history.
