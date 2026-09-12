@@ -23,7 +23,8 @@ Read, in order:
 1. `fieldwork/seed.md`
 2. `fieldwork/index.yml`
 3. `fieldwork/state-space-exploration.md`
-4. relevant files in `fieldwork/scouts/`, `branches/`, `sources/`, and `collisions/`
+4. `fieldwork/verification.md`
+5. relevant files in `fieldwork/scouts/`, `branches/`, `sources/`, and `collisions/`
 
 Do not begin by searching Geometry vocabulary unless the branch itself is explicitly about that vocabulary.
 
@@ -105,11 +106,23 @@ Semantic resemblance does not count.
 
 Keep only two to four collisions in the active integrator working set. Others may remain open without being simultaneously synthesized.
 
-### 6. Contact
+### 6. Verify / contact
 
-Turn the strongest collision into a probe when possible. Prefer the cheapest discriminating probe, not the grandest experiment.
+Turn the strongest collision into a probe only when live alternatives can be made to differ under a constraint.
 
-Valid contact can include empirical intervention, formal proof/verification, historical evidence, behavioral prediction, a built artifact, an external decision with observable consequence, or another explicit constraint the map cannot negotiate with.
+Minimum form:
+
+```text
+A predicts / permits / requires X
+B predicts / permits / requires Y
+constraint C can distinguish X from Y
+```
+
+Every promoted probe must use `fieldwork/templates/probe.md` and carry the verification contract from `fieldwork/verification.md`.
+
+Prefer the cheapest discriminating probe, not the grandest experiment. Valid contact can include empirical intervention, formal proof/verification, historical evidence, behavioral prediction, executable tests, a built artifact, an external decision with observable consequence, or another explicit constraint the map cannot negotiate with.
+
+Discovery and justification are separate jobs. The verifier should be as independent of the claim-generation mechanism as the domain permits.
 
 Promote zero to two probes at once by default. A cheap probe can be more valuable than another wave of reading.
 
@@ -132,7 +145,29 @@ Trigger a reset when new branches mostly rename old distinctions, source cards b
 
 A seed can be preserved, weakened, split, expanded, or broken. Do not optimize for continuity.
 
+Probe results may revise the seed only when:
+
+1. the discriminator was stated before the result;
+2. the verifier was sufficiently independent;
+3. the result survived checking appropriate to its claim type;
+4. the displacement can be reconstructed source-closed;
+5. it changes a prediction, decision, distinction, or statement we would otherwise retain.
+
+Cross-domain claims need heterogeneous survival before becoming canon. Several neighboring citations are not heterogeneous contact.
+
 Published essays change only after this stage.
+
+## Promotion ladder
+
+```text
+scout → branch       fertility
+branch → collision   displacement
+collision → probe    discriminability
+probe → seed         independent survival + reconstruction
+seed → canon         heterogeneous survival
+```
+
+Admission gets cheaper upstream. Proof obligations get stricter downstream.
 
 ## Human carrying budget
 
@@ -153,6 +188,8 @@ Default update:
 - global synthesis on first contact;
 - turning uncertainty into one larger metaphor;
 - letting scouts see the answer they are supposed to find;
+- promoting a collision that cannot yet discriminate alternatives;
+- using the generator as its only verifier when a stronger independent constraint exists;
 - using the model's prose fluency as evidence of ownership;
 - treating attraction as truth rather than search allocation.
 
