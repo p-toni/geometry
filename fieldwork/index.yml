@@ -29,9 +29,27 @@ sources:
     status: native-pass
   - id: openai-2026-navier-stokes
     status: native-pass
+  - id: mccolgan-difrisco-2024-developmental-system-drift
+    status: stressed
+  - id: reck-schiemer-2025-mathematical-structuralism
+    status: stressed
+  - id: brooks-1991-intelligence-without-representation
+    status: stressed
+  - id: argote-guo-2016-routines-transactive-memory
+    status: stressed
+  - id: hutchins-1991-organizing-work-by-adaptation
+    status: stressed
+  - id: giere-2007-distributed-cognition-without-knowing
+    status: stressed
 
 collisions:
   - id: possibility-accessibility-persistence
+    status: open
+  - id: persistence-without-mechanism-identity
+    status: open
+  - id: structure-without-ontology
+    status: open
+  - id: cognition-without-knower
     status: open
 
 probes: []
