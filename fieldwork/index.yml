@@ -8,7 +8,7 @@ verification_fabric: fieldwork/verification.md
 exploration:
   wave: C
   scout_frontier: 32
-  promoted_this_wave: 10
+  promoted_this_wave: 17
   active_native_branches: 14
   human_carrying_budget: 5
   source_closed: false
@@ -16,13 +16,13 @@ exploration:
 branches:
   - id: morphogenesis-and-persistence
     role: adjacent
-    status: open
+    status: paused
   - id: mathematics-without-platonic-space
     role: rival
     status: paused
   - id: geometry-as-metaphor
     role: hostile
-    status: open
+    status: paused
   - id: institutional-continuity
     role: alien
     status: paused
@@ -31,22 +31,22 @@ branches:
     status: open
   - id: mathematical-geometry-native
     role: adjacent
-    status: open
+    status: paused
   - id: organizational-closure
     role: rival
-    status: open
+    status: paused
   - id: perception-without-representation
     role: hostile
-    status: open
+    status: paused
   - id: relevant-information-under-bottleneck
     role: alien-cross-cutting
-    status: open
+    status: paused
   - id: coarse-graining-and-universality
     role: alien-rival
     status: open
   - id: partial-observation-and-control
     role: alien-cross-cutting
-    status: open
+    status: paused
   - id: transitions-in-individuality
     role: alien-cross-cutting
     status: paused
@@ -67,6 +67,27 @@ branches:
     status: open
   - id: universal-framework-critique
     role: hostile
+    status: open
+  - id: predictive-state-reconstruction
+    role: alien-cross-cutting
+    status: open
+  - id: folding-landscapes
+    role: alien
+    status: open
+  - id: generative-immune-repertoire
+    role: alien
+    status: open
+  - id: collective-choice-without-comparison
+    role: alien-cross-cutting
+    status: open
+  - id: price-mediated-information
+    role: alien-rival
+    status: open
+  - id: path-dependence-and-lock-in
+    role: alien-hostile
+    status: open
+  - id: reliable-computation-unreliable-components
+    role: alien-cross-cutting
     status: open
 
 sources:
@@ -124,6 +145,20 @@ sources:
     status: stressed
   - id: raja-et-al-2021-markov-blanket-trick
     status: stressed
+  - id: shalizi-crutchfield-2001-computational-mechanics
+    status: stressed
+  - id: onuchic-luthey-schulten-wolynes-1997-energy-landscape
+    status: stressed
+  - id: cohn-et-al-2007-clonal-selection
+    status: stressed
+  - id: britton-franks-pratt-seeley-2002-honeybees-agree
+    status: stressed
+  - id: grossman-stiglitz-1980-informational-efficiency
+    status: stressed
+  - id: arthur-1989-increasing-returns-lock-in
+    status: stressed
+  - id: von-neumann-1956-reliable-unreliable
+    status: stressed
 
 collisions:
   - id: possibility-accessibility-persistence
@@ -150,15 +185,25 @@ collisions:
     status: open
   - id: universal-description-vs-explanation
     status: open
+  - id: predictive-equivalence-not-state-similarity
+    status: open-after-probe
+  - id: state-space-is-shaped-by-dynamics
+    status: open
+  - id: reliability-above-components
+    status: open
+  - id: representation-changes-its-source
+    status: open
 
 integrator_working_set:
-  - verification-has-multiple-boundaries
-  - relevance-is-conditional
-  - geometry-beyond-invariance
-  - universal-description-vs-explanation
+  - predictive-equivalence-not-state-similarity
+  - state-space-is-shaped-by-dynamics
+  - reliability-above-components
+  - representation-changes-its-source
 
 probes:
   - id: navier-stokes-statement-fidelity
+    status: answered
+  - id: equivalence-partitions-diverge
     status: answered
 
 synthesis:
