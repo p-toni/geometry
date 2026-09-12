@@ -1,6 +1,6 @@
 # round 001 — fresh-start blind scout wave D
 
-Status: **open**  
+Status: **first pass complete**  
 Mode: state-space exploration / fresh start  
 Seed visibility for scouts: **none**  
 Inherited collision summaries: **none**
@@ -38,7 +38,7 @@ Wave D exists to counter the path dependence created by waves A–C. Each cell i
 
 ## Promotion — first six
 
-Wave D initially promotes six deliberately different mechanisms:
+Wave D promoted six deliberately different mechanisms:
 
 1. `dissipative-order-boundary-conditions`;
 2. `active-matter-collective-order`;
@@ -47,4 +47,15 @@ Wave D initially promotes six deliberately different mechanisms:
 5. `mediated-scientific-contact`;
 6. `polycentric-governance`.
 
-The purpose is not to maximize immediate collision count. It is to add new native mechanisms while keeping the working set bounded through branch rotation.
+The purpose was not to maximize immediate collision count. It was to add new native mechanisms while keeping the working set bounded through branch rotation.
+
+## Result of the first pass
+
+The promoted branches produced four new collisions:
+
+- constraints shape reachability;
+- explanation is level-indexed;
+- contact is mediated;
+- boundaries can be plural.
+
+Three of these already admitted exact probes; two additional probes were run after the source-closed reconstruction. The remaining 18 cells stay available for later fresh or targeted promotion.
