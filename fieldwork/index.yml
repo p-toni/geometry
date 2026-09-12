@@ -3,11 +3,13 @@ status: divergence
 seed: fieldwork/seed.md
 constitution: fieldwork/README.md
 exploration_model: fieldwork/state-space-exploration.md
+verification_fabric: fieldwork/verification.md
 
 exploration:
   wave: C
   scout_frontier: 32
-  promoted_this_wave: 6
+  promoted_this_wave: 10
+  active_native_branches: 14
   human_carrying_budget: 5
   source_closed: false
 
@@ -17,13 +19,13 @@ branches:
     status: open
   - id: mathematics-without-platonic-space
     role: rival
-    status: open
+    status: paused
   - id: geometry-as-metaphor
     role: hostile
     status: open
   - id: institutional-continuity
     role: alien
-    status: open
+    status: paused
   - id: distributed-knowing
     role: cross-cutting
     status: open
@@ -47,12 +49,24 @@ branches:
     status: open
   - id: transitions-in-individuality
     role: alien-cross-cutting
-    status: open
+    status: paused
   - id: cultural-transmission-and-structure
     role: alien
-    status: open
+    status: paused
   - id: convergence-without-synchrony
     role: alien-cross-cutting
+    status: open
+  - id: ecological-resilience
+    role: alien
+    status: open
+  - id: proof-checking-and-trust-boundaries
+    role: cross-cutting
+    status: open
+  - id: intervention-and-identifiability
+    role: alien-cross-cutting
+    status: open
+  - id: universal-framework-critique
+    role: hostile
     status: open
 
 sources:
@@ -96,6 +110,20 @@ sources:
     status: stressed
   - id: shapiro-et-al-2011-crdts
     status: stressed
+  - id: lean-2026-validating-proofs
+    status: stressed
+  - id: demoura-2026-kernel-soundness-bug-hunt
+    status: stressed
+  - id: romeijn-williamson-2018-identifiability-intervention
+    status: stressed
+  - id: holling-1973-resilience-stability
+    status: stressed
+  - id: hoel-et-al-2013-causal-emergence
+    status: stressed
+  - id: hordijk-hein-steel-2010-autocatalytic-sets
+    status: stressed
+  - id: raja-et-al-2021-markov-blanket-trick
+    status: stressed
 
 collisions:
   - id: possibility-accessibility-persistence
@@ -114,8 +142,24 @@ collisions:
     status: open
   - id: invariants-without-representation
     status: open
+  - id: relevance-is-conditional
+    status: open
+  - id: verification-has-multiple-boundaries
+    status: probing
+  - id: stability-is-not-resilience
+    status: open
+  - id: universal-description-vs-explanation
+    status: open
 
-probes: []
+integrator_working_set:
+  - verification-has-multiple-boundaries
+  - relevance-is-conditional
+  - geometry-beyond-invariance
+  - universal-description-vs-explanation
+
+probes:
+  - id: navier-stokes-statement-fidelity
+    status: proposed
 
 synthesis:
   latest: fieldwork/synthesis/000-baseline.md
