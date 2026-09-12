@@ -6,9 +6,10 @@ exploration_model: fieldwork/state-space-exploration.md
 verification_fabric: fieldwork/verification.md
 
 exploration:
-  wave: C
-  scout_frontier: 32
-  promoted_this_wave: 17
+  wave: D
+  scout_frontier: 24
+  promoted_this_wave: 6
+  promoted_total: 23
   active_native_branches: 14
   human_carrying_budget: 5
   source_closed: false
@@ -58,22 +59,22 @@ branches:
     status: open
   - id: ecological-resilience
     role: alien
-    status: open
+    status: paused
   - id: proof-checking-and-trust-boundaries
     role: cross-cutting
-    status: open
+    status: paused
   - id: intervention-and-identifiability
     role: alien-cross-cutting
-    status: open
+    status: paused
   - id: universal-framework-critique
     role: hostile
     status: open
   - id: predictive-state-reconstruction
     role: alien-cross-cutting
-    status: open
+    status: paused
   - id: folding-landscapes
     role: alien
-    status: open
+    status: paused
   - id: generative-immune-repertoire
     role: alien
     status: open
@@ -82,11 +83,29 @@ branches:
     status: open
   - id: price-mediated-information
     role: alien-rival
-    status: open
+    status: paused
   - id: path-dependence-and-lock-in
     role: alien-hostile
     status: open
   - id: reliable-computation-unreliable-components
+    role: alien-cross-cutting
+    status: open
+  - id: dissipative-order-boundary-conditions
+    role: alien-cross-cutting
+    status: open
+  - id: active-matter-collective-order
+    role: alien
+    status: open
+  - id: admissibility-by-construction
+    role: alien-cross-cutting
+    status: open
+  - id: levels-of-explanation
+    role: hostile-cross-cutting
+    status: open
+  - id: mediated-scientific-contact
+    role: hostile-cross-cutting
+    status: open
+  - id: polycentric-governance
     role: alien-cross-cutting
     status: open
 
@@ -159,6 +178,18 @@ sources:
     status: stressed
   - id: von-neumann-1956-reliable-unreliable
     status: stressed
+  - id: prigogine-1977-dissipative-structures
+    status: stressed
+  - id: marchetti-et-al-2013-active-matter
+    status: stressed
+  - id: wright-felleisen-1994-type-soundness
+    status: stressed
+  - id: marr-poggio-1976-levels
+    status: stressed
+  - id: latour-woolgar-1979-laboratory-life
+    status: stressed
+  - id: ostrom-2010-polycentric-governance
+    status: stressed
 
 collisions:
   - id: possibility-accessibility-persistence
@@ -193,17 +224,27 @@ collisions:
     status: open
   - id: representation-changes-its-source
     status: open
+  - id: constraints-shape-reachability
+    status: open-after-probe
+  - id: explanation-is-level-indexed
+    status: open
+  - id: contact-is-mediated
+    status: open
+  - id: boundaries-can-be-plural
+    status: open
 
 integrator_working_set:
-  - predictive-equivalence-not-state-similarity
-  - state-space-is-shaped-by-dynamics
-  - reliability-above-components
-  - representation-changes-its-source
+  - constraints-shape-reachability
+  - explanation-is-level-indexed
+  - contact-is-mediated
+  - boundaries-can-be-plural
 
 probes:
   - id: navier-stokes-statement-fidelity
     status: answered
   - id: equivalence-partitions-diverge
+    status: answered
+  - id: admissibility-changes-reachability
     status: answered
 
 synthesis:
