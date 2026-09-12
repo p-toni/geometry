@@ -17,7 +17,7 @@ A second operating premise now governs scale:
 
 > **A bounded learner can build systems that explore vastly more possibilities than the learner ever has to carry.**
 
-See `state-space-exploration.md` for the branching model.
+See `state-space-exploration.md` for the branching model, `verification.md` for promotion discipline, and `comparison-hygiene.md` for cross-domain integration guards.
 
 ## Lifecycle
 
@@ -56,6 +56,8 @@ Blind scouts are earlier than these labels. They receive native questions withou
 - `seed.md` — frozen thesis and candidate formulations at the start of the round.
 - `index.yml` — current round/state. It should stay small enough to read at a glance.
 - `state-space-exploration.md` — branching budgets, scout/investigator/integrator roles, and human carrying budget.
+- `verification.md` — asymmetric promotion gates and verification contracts.
+- `comparison-hygiene.md` — guards against collapsing explanatory level, causal role, system boundary, or contact channel.
 - `scouts/` — wide, cheap frontier exploration before branch promotion.
 - `branches/` — question-spaces that earned sustained investigation.
 - `sources/` — one provenance card per source, written native-first.
@@ -76,6 +78,17 @@ A source is worth recording because it is interesting. It is allowed to move the
 - an exposed hidden assumption.
 
 Shared words do not count.
+
+## Comparison rule
+
+Before collapsing two branches into one pattern, ask:
+
+1. Are they making claims at the same explanatory level?
+2. Does the structure merely represent distinctions, or does it change admissibility/reachability?
+3. Which system boundary is required for the operation being discussed?
+4. Through what measurement/verification channel does contact occur?
+
+If the apparent collision disappears after those are made explicit, archive the resemblance rather than promoting it.
 
 ## Progress and carrying load
 
