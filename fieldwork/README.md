@@ -101,6 +101,8 @@ Default broad pulse:
 
 These are operating ranges, not quotas.
 
+> **The research system carries the frontier. The learner carries the consequences.**
+
 ## Research-round close
 
 Before touching `content/writing/`, write a synthesis from memory. Ask:
