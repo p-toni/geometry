@@ -4,16 +4,16 @@ seed: fieldwork/seed.md
 constitution: fieldwork/README.md
 exploration_model: fieldwork/state-space-exploration.md
 verification_fabric: fieldwork/verification.md
-comparison_hygiene: fieldwork/comparison-hygiene.md
+working_backbone: fieldwork/working-backbone.md
 
 exploration:
-  wave: D
-  scout_frontier: 24
-  promoted_this_wave: 6
-  promoted_total: 23
+  wave: E
+  scout_frontier: 16
+  promoted_this_wave: 4
+  promoted_total: 27
   active_native_branches: 14
   human_carrying_budget: 5
-  source_closed: true
+  source_closed: true_once
 
 branches:
   - id: morphogenesis-and-persistence
@@ -81,7 +81,7 @@ branches:
     status: open
   - id: collective-choice-without-comparison
     role: alien-cross-cutting
-    status: open
+    status: paused
   - id: price-mediated-information
     role: alien-rival
     status: paused
@@ -93,10 +93,10 @@ branches:
     status: open
   - id: dissipative-order-boundary-conditions
     role: alien-cross-cutting
-    status: open
+    status: paused
   - id: active-matter-collective-order
     role: alien
-    status: open
+    status: paused
   - id: admissibility-by-construction
     role: alien-cross-cutting
     status: open
@@ -107,6 +107,18 @@ branches:
     role: hostile-cross-cutting
     status: open
   - id: polycentric-governance
+    role: alien-cross-cutting
+    status: paused
+  - id: metrological-traceability
+    role: alien-cross-cutting
+    status: open
+  - id: compositional-security
+    role: alien-hostile
+    status: open
+  - id: exhaustive-state-space-verification
+    role: alien-cross-cutting
+    status: open
+  - id: niche-construction-feedback
     role: alien-cross-cutting
     status: open
 
@@ -191,6 +203,16 @@ sources:
     status: stressed
   - id: ostrom-2010-polycentric-governance
     status: stressed
+  - id: bipm-vim3-metrological-traceability
+    status: stressed
+  - id: canetti-2001-universal-composability
+    status: stressed
+  - id: clarke-emerson-sifakis-model-checking
+    status: stressed
+  - id: laland-et-al-niche-construction
+    status: stressed
+  - id: leveson-stamp-safety-constraints
+    status: stressed
 
 collisions:
   - id: possibility-accessibility-persistence
@@ -233,12 +255,20 @@ collisions:
     status: open-after-probe
   - id: boundaries-can-be-plural
     status: open
+  - id: local-guarantees-do-not-automatically-compose
+    status: open-after-probe
+  - id: contact-needs-traceability
+    status: open
+  - id: exploration-vs-verification
+    status: open
+  - id: systems-can-change-their-own-future-constraints
+    status: open
 
 integrator_working_set:
-  - constraints-shape-reachability
-  - explanation-is-level-indexed
-  - contact-is-mediated
-  - boundaries-can-be-plural
+  - local-guarantees-do-not-automatically-compose
+  - contact-needs-traceability
+  - exploration-vs-verification
+  - systems-can-change-their-own-future-constraints
 
 probes:
   - id: navier-stokes-statement-fidelity
@@ -250,6 +280,10 @@ probes:
   - id: same-function-different-mechanism
     status: answered
   - id: observation-vs-intervention
+    status: answered
+  - id: contact-channel-failure-injection
+    status: answered
+  - id: local-independence-does-not-compose
     status: answered
 
 synthesis:
