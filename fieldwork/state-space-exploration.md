@@ -8,6 +8,8 @@ The working premise is simple:
 
 The research system should therefore optimize for **wide exploration with narrow human-facing load**.
 
+The companion promotion discipline lives in `fieldwork/verification.md`.
+
 ## Units
 
 - **frontier** — candidate question-spaces not yet investigated deeply;
@@ -70,7 +72,25 @@ Integrators see the seed and independently developed branches late. Their job is
 
 The integrator working set should stay small: normally two to four collisions at once.
 
-## Promotion rule
+## Promotion pressure
+
+Promotion becomes stricter as a claim approaches the seed.
+
+```text
+scout → branch       fertility
+branch → collision   displacement
+collision → probe    discriminability
+probe → seed         independent survival + source-closed reconstruction
+seed → canon         heterogeneous survival across different kinds of contact
+```
+
+This asymmetry is intentional: **cheap admission upstream, expensive justification downstream**.
+
+Discovery and verification should be separated whenever possible. A speculative mechanism can generate a candidate; promotion depends on a constraint that cannot simply be talked into agreement.
+
+Every promoted probe uses the verification contract in `fieldwork/verification.md` and `fieldwork/templates/probe.md`.
+
+## Scout promotion rule
 
 A scout can become a branch when at least one is true:
 
@@ -122,3 +142,11 @@ Pause expansion and run source-closed reconstruction when any of these appear:
 - one cheap discriminating probe has become more informative than further reading.
 
 After reconstruction, either promote probes, open a fresh blind wave, or close the round.
+
+## Rhythm
+
+```text
+expand → discriminate → expand → discriminate
+```
+
+State-space exploration grows the frontier. Verification cuts it.
