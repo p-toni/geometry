@@ -4,6 +4,7 @@ seed: fieldwork/seed.md
 constitution: fieldwork/README.md
 exploration_model: fieldwork/state-space-exploration.md
 verification_fabric: fieldwork/verification.md
+comparison_hygiene: fieldwork/comparison-hygiene.md
 
 exploration:
   wave: D
@@ -12,7 +13,7 @@ exploration:
   promoted_total: 23
   active_native_branches: 14
   human_carrying_budget: 5
-  source_closed: false
+  source_closed: true
 
 branches:
   - id: morphogenesis-and-persistence
@@ -227,9 +228,9 @@ collisions:
   - id: constraints-shape-reachability
     status: open-after-probe
   - id: explanation-is-level-indexed
-    status: open
+    status: open-after-probe
   - id: contact-is-mediated
-    status: open
+    status: open-after-probe
   - id: boundaries-can-be-plural
     status: open
 
@@ -246,7 +247,11 @@ probes:
     status: answered
   - id: admissibility-changes-reachability
     status: answered
+  - id: same-function-different-mechanism
+    status: answered
+  - id: observation-vs-intervention
+    status: answered
 
 synthesis:
-  latest: fieldwork/synthesis/000-baseline.md
-  source_closed: false
+  latest: fieldwork/synthesis/001-source-closed-reconstruction.md
+  source_closed: true
