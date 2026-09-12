@@ -38,7 +38,7 @@ Treat `seed.md` as immutable for the round. New formulations go in a synthesis f
 
 Before deep branching, open a broad frontier of native questions.
 
-A blind scout does **not** receive the seed, essays, or collision map. Give it only the native question and enough domain context to search responsibly.
+A blind scout does **not** receive the seed, essays, collision map, or prior scout summaries unless the experiment explicitly tests inheritance. Give it only the native question and enough domain context to search responsibly.
 
 A scout returns:
 
@@ -50,6 +50,8 @@ A scout returns:
 Do not translate the scout result into Geometry language. A scout may legitimately return “no branch here.”
 
 Typical broad pulse: 24–40 scout cells.
+
+Periodically open a **fresh-start wave** whose scouts inherit no summaries from earlier waves. This is an anti-lock-in control, not merely an anti-confirmation control.
 
 ### 2. Promote and diverge
 
@@ -65,7 +67,7 @@ Maintain multiple relationships to the current seed once branches are promoted:
 
 These are search roles, not an ontology. Do not force equal quotas, but do not synthesize while an entire role is absent without recording why.
 
-Keep the sustained native working set roughly 8–14 branches unless independence or depth degrades.
+Keep the sustained native working set roughly 8–14 branches unless independence or depth degrades. **Rotate** the active set: pause branches that already yielded a displacement rather than letting the working set only accumulate.
 
 ### 3. Native pass
 
@@ -139,7 +141,9 @@ Periodically stop retrieval. With sources closed, write:
 
 Then reopen sources only to correct provenance and overclaiming.
 
-Trigger a reset when new branches mostly rename old distinctions, source cards become predictable, one vocabulary dominates, or large search spend stops changing the human-facing displacement.
+Trigger a reset when new branches mostly rename old distinctions, source cards become predictable, one vocabulary dominates, large search spend stops changing the human-facing displacement, **or the effective frontier appears to be shrinking around the current research history**.
+
+A reset may mean source-closed reconstruction, active-branch rotation, or a fresh-start blind wave.
 
 ### 8. Revision
 
@@ -188,6 +192,8 @@ Default update:
 - global synthesis on first contact;
 - turning uncertainty into one larger metaphor;
 - letting scouts see the answer they are supposed to find;
+- allowing prior scout summaries to silently become the search environment for every later scout;
+- letting the active branch set only accumulate rather than rotate;
 - promoting a collision that cannot yet discriminate alternatives;
 - using the generator as its only verifier when a stronger independent constraint exists;
 - using the model's prose fluency as evidence of ownership;
