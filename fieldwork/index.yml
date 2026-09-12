@@ -19,6 +19,15 @@ branches:
   - id: distributed-knowing
     role: cross-cutting
     status: open
+  - id: mathematical-geometry-native
+    role: adjacent
+    status: open
+  - id: organizational-closure
+    role: rival
+    status: open
+  - id: perception-without-representation
+    role: hostile
+    status: open
 
 sources:
   - id: hartl-et-al-2026-remapping-navigation
@@ -41,6 +50,14 @@ sources:
     status: stressed
   - id: giere-2007-distributed-cognition-without-knowing
     status: stressed
+  - id: chern-1990-what-is-geometry
+    status: stressed
+  - id: montevil-mossio-2015-closure-of-constraints
+    status: stressed
+  - id: lamport-1978-time-clocks-ordering
+    status: stressed
+  - id: chong-proctor-2020-affordances
+    status: stressed
 
 collisions:
   - id: possibility-accessibility-persistence
@@ -50,6 +67,14 @@ collisions:
   - id: structure-without-ontology
     status: open
   - id: cognition-without-knower
+    status: open
+  - id: geometry-beyond-invariance
+    status: open
+  - id: persistence-without-target
+    status: open
+  - id: order-without-global-view
+    status: open
+  - id: invariants-without-representation
     status: open
 
 probes: []
