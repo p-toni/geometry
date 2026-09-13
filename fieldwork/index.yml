@@ -1,6 +1,6 @@
 round: 1
-status: divergence
-mode: falsification
+status: integration
+mode: post-falsification-reconstruction
 
 seed: fieldwork/seed.md
 working_backbone: fieldwork/working-backbone.md
@@ -13,18 +13,12 @@ verification_fabric: fieldwork/verification.md
 protocol_self_evaluation: fieldwork/protocol-evaluation.md
 
 exploration:
-  wave: F
+  latest_wave: F
   promoted_total: 29
   user_seeded_controls: 1
   active_native_branches: 14
   human_carrying_budget: 5
-  source_closed_reconstructions: 1
-
-integrator_working_set:
-  - learning-may-not-require-error
-  - state-space-may-not-be-prestatable
-  - local-guarantees-do-not-automatically-compose
-  - contact-needs-traceability
+  source_closed_reconstructions: 2
 
 probe_outcomes:
   answered: 9
@@ -61,10 +55,19 @@ meta_tests:
     result: baseline-advantage-low-conflation-task
 
 synthesis:
-  latest: fieldwork/synthesis/001-source-closed-reconstruction.md
+  latest: fieldwork/synthesis/002-source-closed-reconstruction.md
+  review: fieldwork/synthesis/002-ledger-review.md
   source_closed: true
+  outcome: scoped-toolkit-no-unified-theory
+  next_test: none-earned
   seed_revised: false
   essays_changed: false
+
+round_decision:
+  active_general_theory: none
+  retained: scoped distinctions and inquiry guards
+  repairs: quarantined
+  next_cycle_requires: substantive claim, missing coordinate, or decision consequence with a discriminator
 
 inventory_note: >
   Directories are the inventory. This index intentionally tracks only live round state.
