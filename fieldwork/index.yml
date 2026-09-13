@@ -3,14 +3,18 @@ status: divergence
 seed: fieldwork/seed.md
 constitution: fieldwork/README.md
 exploration_model: fieldwork/state-space-exploration.md
+generative_frontier: fieldwork/generative-frontier.md
 verification_fabric: fieldwork/verification.md
+protocol_self_evaluation: fieldwork/protocol-evaluation.md
 working_backbone: fieldwork/working-backbone.md
+falsification_wave: fieldwork/falsification/round-001-wave-f.md
 
 exploration:
-  wave: E
-  scout_frontier: 16
-  promoted_this_wave: 4
-  promoted_total: 27
+  wave: F
+  mode: adversarial-falsification
+  hostile_targets: 6
+  promoted_this_wave: 2
+  promoted_total: 29
   active_native_branches: 14
   human_carrying_budget: 5
   source_closed: true_once
@@ -57,7 +61,7 @@ branches:
     status: paused
   - id: convergence-without-synchrony
     role: alien-cross-cutting
-    status: open
+    status: paused
   - id: ecological-resilience
     role: alien
     status: paused
@@ -78,7 +82,7 @@ branches:
     status: paused
   - id: generative-immune-repertoire
     role: alien
-    status: open
+    status: paused
   - id: collective-choice-without-comparison
     role: alien-cross-cutting
     status: paused
@@ -120,6 +124,12 @@ branches:
     status: open
   - id: niche-construction-feedback
     role: alien-cross-cutting
+    status: open
+  - id: learning-without-explicit-error
+    role: hostile-cross-cutting
+    status: open
+  - id: unprestatable-phase-space
+    role: hostile-alien
     status: open
 
 sources:
@@ -213,6 +223,10 @@ sources:
     status: stressed
   - id: leveson-stamp-safety-constraints
     status: stressed
+  - id: oja-1982-principal-component
+    status: stressed
+  - id: longo-montevil-kauffman-2012-unprestatable-phase-space
+    status: stressed
 
 collisions:
   - id: possibility-accessibility-persistence
@@ -263,12 +277,16 @@ collisions:
     status: open
   - id: systems-can-change-their-own-future-constraints
     status: open
+  - id: learning-may-not-require-error
+    status: open-after-ambiguous-probe
+  - id: state-space-may-not-be-prestatable
+    status: open
 
 integrator_working_set:
+  - learning-may-not-require-error
+  - state-space-may-not-be-prestatable
   - local-guarantees-do-not-automatically-compose
   - contact-needs-traceability
-  - exploration-vs-verification
-  - systems-can-change-their-own-future-constraints
 
 probes:
   - id: navier-stokes-statement-fidelity
@@ -285,6 +303,19 @@ probes:
     status: answered
   - id: local-independence-does-not-compose
     status: answered
+  - id: learning-without-explicit-error
+    status: ambiguous
+
+probe_outcomes:
+  answered: 7
+  ambiguous: 1
+  failed: 0
+  bad_discriminator: 0
+  unverifiable: 0
+
+audits:
+  - id: suppression-audit-001-ecological-resilience
+    status: suppression-justified
 
 synthesis:
   latest: fieldwork/synthesis/001-source-closed-reconstruction.md
