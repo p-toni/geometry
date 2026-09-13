@@ -14,13 +14,17 @@ description: Explore a question broadly without making the current Geometry thes
 
 The current thesis is an experimental object, not the organizing ontology of search.
 
+A bounded learner can use the research system to explore vastly more possibilities than the learner has to carry. Search width may grow faster than human-facing complexity.
+
 ## Start
 
 Read, in order:
 
 1. `fieldwork/seed.md`
 2. `fieldwork/index.yml`
-3. relevant files in `fieldwork/branches/`, `sources/`, and `collisions/`
+3. `fieldwork/state-space-exploration.md`
+4. `fieldwork/verification.md`
+5. relevant files in `fieldwork/scouts/`, `branches/`, `sources/`, and `collisions/`
 
 Do not begin by searching Geometry vocabulary unless the branch itself is explicitly about that vocabulary.
 
@@ -30,20 +34,44 @@ Do not begin by searching Geometry vocabulary unless the branch itself is explic
 
 Treat `seed.md` as immutable for the round. New formulations go in a synthesis file or candidate note, never silently into the seed.
 
-### 1. Diverge
+### 1. Blind scout
 
-Maintain four relationships to the current seed:
+Before deep branching, open a broad frontier of native questions.
+
+A blind scout does **not** receive the seed, essays, collision map, or prior scout summaries unless the experiment explicitly tests inheritance. Give it only the native question and enough domain context to search responsibly.
+
+A scout returns:
+
+- the domain's own statement of the problem;
+- one or two strong entry sources;
+- a visible internal disagreement, if any;
+- whether deeper investigation appears warranted.
+
+Do not translate the scout result into Geometry language. A scout may legitimately return “no branch here.”
+
+Typical broad pulse: 24–40 scout cells.
+
+Periodically open a **fresh-start wave** whose scouts inherit no summaries from earlier waves. This is an anti-lock-in control, not merely an anti-confirmation control.
+
+### 2. Promote and diverge
+
+Promote only scouts that earned depth through a native distinction, competing mechanism, anomaly, intervention, falsification opportunity, or useful alienness.
+
+Maintain multiple relationships to the current seed once branches are promoted:
 
 - **adjacent** — studies the same phenomena from nearby work;
 - **rival** — explains the same phenomena differently;
 - **hostile** — argues the framing is unnecessary, metaphorical, unfalsifiable, or confused;
-- **alien** — investigates a potentially analogous phenomenon in a domain that does not share our language.
+- **alien** — investigates a potentially analogous phenomenon in a domain that does not share our language;
+- **cross-cutting** — changes the boundary or level at which several branches must be described.
 
 These are search roles, not an ontology. Do not force equal quotas, but do not synthesize while an entire role is absent without recording why.
 
-### 2. Native pass
+Keep the sustained native working set roughly 8–14 branches unless independence or depth degrades. **Rotate** the active set: pause branches that already yielded a displacement rather than letting the working set only accumulate.
 
-For each source, create `fieldwork/sources/<id>.md` before relating it to Geometry.
+### 3. Native pass
+
+For each serious source, create `fieldwork/sources/<id>.md` before relating it to Geometry.
 
 Record:
 
@@ -58,13 +86,13 @@ Record:
 
 If you cannot explain the source without our vocabulary, the native pass failed.
 
-### 3. Stress
+### 4. Stress
 
 Ask what the framework rules out, what would count against it, what a simpler account explains, and where metaphor may be doing work that mechanism has not earned.
 
 Do not repair the source on its behalf.
 
-### 4. Collide
+### 5. Collide
 
 Create a collision only when two or more independently understood branches create pressure that cannot be represented as simple agreement.
 
@@ -78,13 +106,29 @@ A useful collision contains at least one of:
 
 Semantic resemblance does not count.
 
-### 5. Contact
+Keep only two to four collisions in the active integrator working set. Others may remain open without being simultaneously synthesized.
 
-Turn the strongest collision into a probe when possible. Prefer the cheapest discriminating probe, not the grandest experiment.
+### 6. Verify / contact
 
-Valid contact can include empirical intervention, formal proof/verification, historical evidence, behavioral prediction, a built artifact, an external decision with observable consequence, or another explicit constraint the map cannot negotiate with.
+Turn the strongest collision into a probe only when live alternatives can be made to differ under a constraint.
 
-### 6. Source-closed synthesis
+Minimum form:
+
+```text
+A predicts / permits / requires X
+B predicts / permits / requires Y
+constraint C can distinguish X from Y
+```
+
+Every promoted probe must use `fieldwork/templates/probe.md` and carry the verification contract from `fieldwork/verification.md`.
+
+Prefer the cheapest discriminating probe, not the grandest experiment. Valid contact can include empirical intervention, formal proof/verification, historical evidence, behavioral prediction, executable tests, a built artifact, an external decision with observable consequence, or another explicit constraint the map cannot negotiate with.
+
+Discovery and justification are separate jobs. The verifier should be as independent of the claim-generation mechanism as the domain permits.
+
+Promote zero to two probes at once by default. A cheap probe can be more valuable than another wave of reading.
+
+### 7. Source-closed synthesis
 
 Periodically stop retrieval. With sources closed, write:
 
@@ -97,11 +141,48 @@ Periodically stop retrieval. With sources closed, write:
 
 Then reopen sources only to correct provenance and overclaiming.
 
-### 7. Revision
+Trigger a reset when new branches mostly rename old distinctions, source cards become predictable, one vocabulary dominates, large search spend stops changing the human-facing displacement, **or the effective frontier appears to be shrinking around the current research history**.
+
+A reset may mean source-closed reconstruction, active-branch rotation, or a fresh-start blind wave.
+
+### 8. Revision
 
 A seed can be preserved, weakened, split, expanded, or broken. Do not optimize for continuity.
 
+Probe results may revise the seed only when:
+
+1. the discriminator was stated before the result;
+2. the verifier was sufficiently independent;
+3. the result survived checking appropriate to its claim type;
+4. the displacement can be reconstructed source-closed;
+5. it changes a prediction, decision, distinction, or statement we would otherwise retain.
+
+Cross-domain claims need heterogeneous survival before becoming canon. Several neighboring citations are not heterogeneous contact.
+
 Published essays change only after this stage.
+
+## Promotion ladder
+
+```text
+scout → branch       fertility
+branch → collision   displacement
+collision → probe    discriminability
+probe → seed         independent survival + reconstruction
+seed → canon         heterogeneous survival
+```
+
+Admission gets cheaper upstream. Proof obligations get stricter downstream.
+
+## Human carrying budget
+
+The research system carries the frontier. The human carries the consequences.
+
+Default update:
+
+- surface at most three to five material displacements;
+- do not dump the literature frontier;
+- summarize dead branches statistically unless a failure is itself informative;
+- preserve unresolved alternatives.
 
 ## Anti-patterns
 
@@ -110,6 +191,11 @@ Published essays change only after this stage.
 - 'everyone is saying Geometry';
 - global synthesis on first contact;
 - turning uncertainty into one larger metaphor;
+- letting scouts see the answer they are supposed to find;
+- allowing prior scout summaries to silently become the search environment for every later scout;
+- letting the active branch set only accumulate rather than rotate;
+- promoting a collision that cannot yet discriminate alternatives;
+- using the generator as its only verifier when a stronger independent constraint exists;
 - using the model's prose fluency as evidence of ownership;
 - treating attraction as truth rather than search allocation.
 

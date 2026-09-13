@@ -1,41 +1,73 @@
 round: 1
-status: divergence
+status: integration
+mode: post-falsification-reconstruction
+
 seed: fieldwork/seed.md
+working_backbone: fieldwork/working-backbone.md
+backbone_status: fieldwork/backbone-status-001.md
+backbone_claim_types: fieldwork/backbone-claim-types.md
 constitution: fieldwork/README.md
+exploration_model: fieldwork/state-space-exploration.md
+generative_frontier: fieldwork/generative-frontier.md
+verification_fabric: fieldwork/verification.md
+protocol_self_evaluation: fieldwork/protocol-evaluation.md
 
-branches:
-  - id: morphogenesis-and-persistence
-    role: adjacent
-    status: open
-  - id: mathematics-without-platonic-space
-    role: rival
-    status: open
-  - id: geometry-as-metaphor
-    role: hostile
-    status: open
-  - id: institutional-continuity
-    role: alien
-    status: open
-  - id: distributed-knowing
-    role: cross-cutting
-    status: open
+exploration:
+  latest_wave: F
+  promoted_total: 29
+  user_seeded_controls: 1
+  active_native_branches: 14
+  human_carrying_budget: 5
+  source_closed_reconstructions: 2
 
-sources:
-  - id: hartl-et-al-2026-remapping-navigation
-    status: native-pass
-  - id: levin-2026-ingressing-minds
-    status: native-pass
-  - id: lee-smart-response
-    status: native-pass
-  - id: openai-2026-navier-stokes
-    status: native-pass
+probe_outcomes:
+  answered: 9
+  ambiguous: 1
+  failed: 1
+  bad_discriminator: 2
+  unverifiable: 0
 
-collisions:
-  - id: possibility-accessibility-persistence
-    status: open
+recent_probes:
+  - id: learning-without-explicit-error
+    status: ambiguous
+  - id: equivalence-indexing-vacuity
+    status: bad_discriminator
+  - id: boundedness-alone-does-not-imply-incompleteness
+    status: failed
+  - id: accessibility-buckets-vacuity
+    status: bad_discriminator
+  - id: prediction-intervention-control-dissociate
+    status: answered
+  - id: tetrahedron-not-universal-information-geometry
+    status: answered
 
-probes: []
+controls:
+  - id: fuller-tetrahedral-primacy
+    collision: minimum-system-does-not-imply-universal-geometry
+    literal_universality: rejected-by-information-geometry-counterexample
+
+meta_tests:
+  - id: 001-epidemic-network-comparison
+    result: promising-procedural-effect
+  - id: 002-fixed-budget-tuning-comparison
+    result: protocol-advantage-equal-evidence
+  - id: 003-fixed-budget-soap-bubble-comparison
+    result: baseline-advantage-low-conflation-task
 
 synthesis:
-  latest: fieldwork/synthesis/000-baseline.md
-  source_closed: false
+  latest: fieldwork/synthesis/002-source-closed-reconstruction.md
+  review: fieldwork/synthesis/002-ledger-review.md
+  source_closed: true
+  outcome: scoped-toolkit-no-unified-theory
+  next_test: none-earned
+  seed_revised: false
+  essays_changed: false
+
+round_decision:
+  active_general_theory: none
+  retained: scoped distinctions and inquiry guards
+  repairs: quarantined
+  next_cycle_requires: substantive claim, missing coordinate, or decision consequence with a discriminator
+
+inventory_note: >
+  Directories are the inventory. This index intentionally tracks only live round state.
