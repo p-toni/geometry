@@ -15,6 +15,7 @@ exploration:
   hostile_targets: 6
   promoted_this_wave: 2
   promoted_total: 29
+  user_seeded_controls: 1
   active_native_branches: 14
   human_carrying_budget: 5
   source_closed: true_once
@@ -91,7 +92,7 @@ branches:
     status: paused
   - id: path-dependence-and-lock-in
     role: alien-hostile
-    status: open
+    status: paused
   - id: reliable-computation-unreliable-components
     role: alien-cross-cutting
     status: open
@@ -130,6 +131,9 @@ branches:
     status: open
   - id: unprestatable-phase-space
     role: hostile-alien
+    status: open
+  - id: tetrahedral-synergetics
+    role: adjacent-hostile-control
     status: open
 
 sources:
@@ -227,6 +231,10 @@ sources:
     status: stressed
   - id: longo-montevil-kauffman-2012-unprestatable-phase-space
     status: stressed
+  - id: fuller-1975-synergetics-tetrahedral-primacy
+    status: stressed
+  - id: amari-2021-information-geometry
+    status: stressed
 
 collisions:
   - id: possibility-accessibility-persistence
@@ -281,6 +289,8 @@ collisions:
     status: open-after-ambiguous-probe
   - id: state-space-may-not-be-prestatable
     status: open
+  - id: minimum-system-does-not-imply-universal-geometry
+    status: open
 
 integrator_working_set:
   - learning-may-not-require-error
@@ -305,17 +315,27 @@ probes:
     status: answered
   - id: learning-without-explicit-error
     status: ambiguous
+  - id: equivalence-indexing-vacuity
+    status: bad-discriminator
 
 probe_outcomes:
   answered: 7
   ambiguous: 1
   failed: 0
-  bad_discriminator: 0
+  bad_discriminator: 1
   unverifiable: 0
 
 audits:
   - id: suppression-audit-001-ecological-resilience
     status: suppression-justified
+
+meta_tests:
+  - id: 001-epidemic-network-comparison
+    budget: uncontrolled
+    result: promising-procedural-effect
+  - id: 002-fixed-budget-tuning-comparison
+    budget: equal-evidence
+    result: promising-procedural-effect
 
 synthesis:
   latest: fieldwork/synthesis/001-source-closed-reconstruction.md
