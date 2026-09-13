@@ -2,7 +2,7 @@
 
 This is the research substrate behind Geometry.
 
-It exists to let the exploration become broader than the published thesis without becoming a pile of links or a confirmation engine.
+It exists to let exploration become broader than the published thesis without becoming a pile of links or a confirmation engine.
 
 ## Operating constitution
 
@@ -11,18 +11,35 @@ It exists to let the exploration become broader than the published thesis withou
 > **Difference decides what deserves attention.**  
 > **Contact decides what survives.**
 
-Attraction is a search prior, not evidence. The current Geometry thesis is a seed to pressure-test, not the vocabulary through which every source must pass.
+Attraction is a search prior, not evidence. A Geometry thesis, when one exists, is an experimental object rather than the vocabulary through which every source must pass.
 
 A second operating premise governs scale:
 
 > **A bounded learner can build systems that explore vastly more possibilities than the learner ever has to carry.**
 
-See `state-space-exploration.md` for branching, `generative-frontier.md` for coordinate-change pressure, `verification.md` for promotion discipline, `comparison-hygiene.md` for cross-domain integration guards, and `protocol-evaluation.md` for evaluation of the research method itself.
+## Routing after round 001
 
-## Lifecycle
+Round 001 showed that the full anti-collapse protocol is useful selectively, not by default. Start at `acceleration.md` and route each incoming question into the cheapest lane that can answer it responsibly.
 
 ```text
-seed
+fast research by default
+        ↓
+escalate when synthesis risk is material
+        ↓
+open a deep anti-collapse cycle only when a substantive claim,
+missing coordinate, or consequential decision has a discriminator
+```
+
+> **Velocity happens before promotion, not instead of verification.**
+
+The `research-router` skill performs this triage. The existing `anti-collapse-research` skill remains the deep-lane procedure.
+
+See `state-space-exploration.md` for branching, `generative-frontier.md` for coordinate-change pressure, `verification.md` for promotion discipline, `comparison-hygiene.md` for cross-domain integration guards, and `protocol-evaluation.md` for evaluation of the research method itself.
+
+## Deep-cycle lifecycle
+
+```text
+seed / target
   ↓
 blind scout frontier
   ↓
@@ -42,16 +59,16 @@ working backbone, if earned
   ↓
 adversarial falsification / coordinate challenge
   ↓
-revision of the seed, if earned
+revision, withdrawal, or round close
 ```
 
-Synthesis is intentionally late. After the first reconstruction, the search mix should shift toward attempts to break the working claims rather than merely accumulating support.
+Synthesis is intentionally late. After the first reconstruction, the search mix should shift toward attempts to break working claims rather than merely accumulating support.
 
 ## Search roles
 
-Branches can be **adjacent**, **rival**, **hostile**, **alien**, or cross-cutting relative to the current seed.
+Branches can be **adjacent**, **rival**, **hostile**, **alien**, or cross-cutting relative to the current target.
 
-These labels prevent accidental monoculture; they are not claims about reality. A useful round should expose the seed to more than friends.
+These labels prevent accidental monoculture; they are not claims about reality. A useful deep cycle should expose its target to more than friends.
 
 Blind scouts are earlier than these labels. They receive native questions without the seed or current collision map so that the frontier is not pre-shaped by Geometry.
 
@@ -59,9 +76,10 @@ A falsification investigator is different: it intentionally sees the working cla
 
 ## Directories
 
-- `seed.md` — frozen thesis and candidate formulations at the start of the round.
-- `index.yml` — current round/state.
-- `working-backbone.md` — current navigational hypothesis after source-closed reconstruction; not canon.
+- `seed.md` — frozen starting thesis for round 001; retained as historical record.
+- `index.yml` — current research state.
+- `acceleration.md` — fast / escalation / deep research routing.
+- `working-backbone.md` — historical round-001 navigational hypothesis; not canon.
 - `state-space-exploration.md` — branching budgets, scout/investigator/integrator roles, and human carrying budget.
 - `generative-frontier.md` — guard against assuming all novelty is search inside fixed coordinates.
 - `verification.md` — asymmetric promotion gates and verification contracts.
@@ -72,10 +90,10 @@ A falsification investigator is different: it intentionally sees the working cla
 - `sources/` — one provenance card per source, written native-first.
 - `collisions/` — places where independent branches genuinely force pressure.
 - `probes/` — ways for an external constraint to answer.
-- `falsification/` — post-reconstruction attempts to make working claims fail, narrow, or become ambiguous.
+- `falsification/` — attempts to make working claims fail, narrow, or become ambiguous.
 - `audits/` — checks on branch suppression and other research-system decisions.
 - `meta/` — baseline-vs-protocol comparisons and protocol performance records.
-- `synthesis/` — periodic reconstruction with sources closed first.
+- `synthesis/` — source-closed reconstructions and round-close artifacts.
 - `templates/` — weak schemas for repeatability.
 
 ## Admission rule
@@ -113,7 +131,7 @@ For each important clause, predeclare:
 - a domain likely to violate it;
 - what would count as `failed`, `narrowed`, `ambiguous`, `bad-discriminator`, or `survived`.
 
-Do not repair a clause after observing a difficult result simply by broadening its definitions.
+Do not repair a clause after observing a difficult result simply by broadening its definitions. A repaired formulation is a new claim, not survival of its predecessor.
 
 ## Progress and carrying load
 
@@ -123,7 +141,7 @@ A **progress unit** is a new question, distinction, discriminating consequence, 
 
 The research system may carry dozens of frontier cells. Human-facing updates should normally surface only the few displacements that materially change the search.
 
-Default broad pulse:
+Default broad pulse for a deep cycle:
 
 ```text
 24–40 blind scouts
@@ -155,15 +173,19 @@ Periodically:
 - preserve failed and ambiguous experiments;
 - simplify or abandon protocol machinery that does not change outcomes.
 
+Round 001 already showed a baseline advantage on a low-conflation explanatory task. The full protocol is therefore **selective infrastructure**, not the default research style.
+
 ## Research-round close
 
 Before touching `content/writing/`, write a synthesis from memory. Ask:
 
 1. What questions exist now that did not exist at the start?
 2. Which distinctions survive with the sources closed?
-3. What can the seed no longer say honestly?
+3. What can the seed/target no longer say honestly?
 4. Which competing explanations remain irreducible?
 5. What would discriminate between them?
 6. What, if anything, should become public writing?
 
-The goal is not to make Geometry larger. It is to discover whether Geometry survives — and whether the research protocol itself earns continued use.
+A valid close can conclude that no unified theory survives and no next test is earned.
+
+The goal is not to make Geometry larger. It is to discover what, if anything, has earned the right to be carried forward.
