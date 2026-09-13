@@ -1,296 +1,23 @@
 round: 1
 status: divergence
+mode: falsification
+
 seed: fieldwork/seed.md
+working_backbone: fieldwork/working-backbone.md
+backbone_claim_types: fieldwork/backbone-claim-types.md
 constitution: fieldwork/README.md
 exploration_model: fieldwork/state-space-exploration.md
 generative_frontier: fieldwork/generative-frontier.md
 verification_fabric: fieldwork/verification.md
 protocol_self_evaluation: fieldwork/protocol-evaluation.md
-working_backbone: fieldwork/working-backbone.md
-falsification_wave: fieldwork/falsification/round-001-wave-f.md
 
 exploration:
   wave: F
-  mode: adversarial-falsification
-  hostile_targets: 6
-  promoted_this_wave: 2
   promoted_total: 29
   user_seeded_controls: 1
   active_native_branches: 14
   human_carrying_budget: 5
-  source_closed: true_once
-
-branches:
-  - id: morphogenesis-and-persistence
-    role: adjacent
-    status: paused
-  - id: mathematics-without-platonic-space
-    role: rival
-    status: paused
-  - id: geometry-as-metaphor
-    role: hostile
-    status: paused
-  - id: institutional-continuity
-    role: alien
-    status: paused
-  - id: distributed-knowing
-    role: cross-cutting
-    status: open
-  - id: mathematical-geometry-native
-    role: adjacent
-    status: paused
-  - id: organizational-closure
-    role: rival
-    status: paused
-  - id: perception-without-representation
-    role: hostile
-    status: paused
-  - id: relevant-information-under-bottleneck
-    role: alien-cross-cutting
-    status: paused
-  - id: coarse-graining-and-universality
-    role: alien-rival
-    status: open
-  - id: partial-observation-and-control
-    role: alien-cross-cutting
-    status: paused
-  - id: transitions-in-individuality
-    role: alien-cross-cutting
-    status: paused
-  - id: cultural-transmission-and-structure
-    role: alien
-    status: paused
-  - id: convergence-without-synchrony
-    role: alien-cross-cutting
-    status: paused
-  - id: ecological-resilience
-    role: alien
-    status: paused
-  - id: proof-checking-and-trust-boundaries
-    role: cross-cutting
-    status: paused
-  - id: intervention-and-identifiability
-    role: alien-cross-cutting
-    status: paused
-  - id: universal-framework-critique
-    role: hostile
-    status: open
-  - id: predictive-state-reconstruction
-    role: alien-cross-cutting
-    status: paused
-  - id: folding-landscapes
-    role: alien
-    status: paused
-  - id: generative-immune-repertoire
-    role: alien
-    status: paused
-  - id: collective-choice-without-comparison
-    role: alien-cross-cutting
-    status: paused
-  - id: price-mediated-information
-    role: alien-rival
-    status: paused
-  - id: path-dependence-and-lock-in
-    role: alien-hostile
-    status: paused
-  - id: reliable-computation-unreliable-components
-    role: alien-cross-cutting
-    status: open
-  - id: dissipative-order-boundary-conditions
-    role: alien-cross-cutting
-    status: paused
-  - id: active-matter-collective-order
-    role: alien
-    status: paused
-  - id: admissibility-by-construction
-    role: alien-cross-cutting
-    status: open
-  - id: levels-of-explanation
-    role: hostile-cross-cutting
-    status: open
-  - id: mediated-scientific-contact
-    role: hostile-cross-cutting
-    status: open
-  - id: polycentric-governance
-    role: alien-cross-cutting
-    status: paused
-  - id: metrological-traceability
-    role: alien-cross-cutting
-    status: open
-  - id: compositional-security
-    role: alien-hostile
-    status: open
-  - id: exhaustive-state-space-verification
-    role: alien-cross-cutting
-    status: open
-  - id: niche-construction-feedback
-    role: alien-cross-cutting
-    status: open
-  - id: learning-without-explicit-error
-    role: hostile-cross-cutting
-    status: open
-  - id: unprestatable-phase-space
-    role: hostile-alien
-    status: open
-  - id: tetrahedral-synergetics
-    role: adjacent-hostile-control
-    status: open
-
-sources:
-  - id: hartl-et-al-2026-remapping-navigation
-    status: native-pass
-  - id: levin-2026-ingressing-minds
-    status: native-pass
-  - id: lee-smart-response
-    status: native-pass
-  - id: openai-2026-navier-stokes
-    status: native-pass
-  - id: mccolgan-difrisco-2024-developmental-system-drift
-    status: stressed
-  - id: reck-schiemer-2025-mathematical-structuralism
-    status: stressed
-  - id: brooks-1991-intelligence-without-representation
-    status: stressed
-  - id: argote-guo-2016-routines-transactive-memory
-    status: stressed
-  - id: hutchins-1991-organizing-work-by-adaptation
-    status: stressed
-  - id: giere-2007-distributed-cognition-without-knowing
-    status: stressed
-  - id: chern-1990-what-is-geometry
-    status: stressed
-  - id: montevil-mossio-2015-closure-of-constraints
-    status: stressed
-  - id: lamport-1978-time-clocks-ordering
-    status: stressed
-  - id: chong-proctor-2020-affordances
-    status: stressed
-  - id: tishby-pereira-bialek-2000-information-bottleneck
-    status: stressed
-  - id: wilson-kogut-1974-renormalization-group
-    status: stressed
-  - id: kalman-1960-observability-controllability
-    status: stressed
-  - id: szathmary-2015-major-transitions
-    status: stressed
-  - id: kirby-cornish-smith-2008-iterated-learning
-    status: stressed
-  - id: shapiro-et-al-2011-crdts
-    status: stressed
-  - id: lean-2026-validating-proofs
-    status: stressed
-  - id: demoura-2026-kernel-soundness-bug-hunt
-    status: stressed
-  - id: romeijn-williamson-2018-identifiability-intervention
-    status: stressed
-  - id: holling-1973-resilience-stability
-    status: stressed
-  - id: hoel-et-al-2013-causal-emergence
-    status: stressed
-  - id: hordijk-hein-steel-2010-autocatalytic-sets
-    status: stressed
-  - id: raja-et-al-2021-markov-blanket-trick
-    status: stressed
-  - id: shalizi-crutchfield-2001-computational-mechanics
-    status: stressed
-  - id: onuchic-luthey-schulten-wolynes-1997-energy-landscape
-    status: stressed
-  - id: cohn-et-al-2007-clonal-selection
-    status: stressed
-  - id: britton-franks-pratt-seeley-2002-honeybees-agree
-    status: stressed
-  - id: grossman-stiglitz-1980-informational-efficiency
-    status: stressed
-  - id: arthur-1989-increasing-returns-lock-in
-    status: stressed
-  - id: von-neumann-1956-reliable-unreliable
-    status: stressed
-  - id: prigogine-1977-dissipative-structures
-    status: stressed
-  - id: marchetti-et-al-2013-active-matter
-    status: stressed
-  - id: wright-felleisen-1994-type-soundness
-    status: stressed
-  - id: marr-poggio-1976-levels
-    status: stressed
-  - id: latour-woolgar-1979-laboratory-life
-    status: stressed
-  - id: ostrom-2010-polycentric-governance
-    status: stressed
-  - id: bipm-vim3-metrological-traceability
-    status: stressed
-  - id: canetti-2001-universal-composability
-    status: stressed
-  - id: clarke-emerson-sifakis-model-checking
-    status: stressed
-  - id: laland-et-al-niche-construction
-    status: stressed
-  - id: leveson-stamp-safety-constraints
-    status: stressed
-  - id: oja-1982-principal-component
-    status: stressed
-  - id: longo-montevil-kauffman-2012-unprestatable-phase-space
-    status: stressed
-  - id: fuller-1975-synergetics-tetrahedral-primacy
-    status: stressed
-  - id: amari-2021-information-geometry
-    status: stressed
-
-collisions:
-  - id: possibility-accessibility-persistence
-    status: open
-  - id: persistence-without-mechanism-identity
-    status: open
-  - id: structure-without-ontology
-    status: open
-  - id: cognition-without-knower
-    status: open
-  - id: geometry-beyond-invariance
-    status: open
-  - id: persistence-without-target
-    status: open
-  - id: order-without-global-view
-    status: open
-  - id: invariants-without-representation
-    status: open
-  - id: relevance-is-conditional
-    status: open
-  - id: verification-has-multiple-boundaries
-    status: open-after-probe
-  - id: stability-is-not-resilience
-    status: open
-  - id: universal-description-vs-explanation
-    status: open
-  - id: predictive-equivalence-not-state-similarity
-    status: open-after-probe
-  - id: state-space-is-shaped-by-dynamics
-    status: open
-  - id: reliability-above-components
-    status: open
-  - id: representation-changes-its-source
-    status: open
-  - id: constraints-shape-reachability
-    status: open-after-probe
-  - id: explanation-is-level-indexed
-    status: open-after-probe
-  - id: contact-is-mediated
-    status: open-after-probe
-  - id: boundaries-can-be-plural
-    status: open
-  - id: local-guarantees-do-not-automatically-compose
-    status: open-after-probe
-  - id: contact-needs-traceability
-    status: open
-  - id: exploration-vs-verification
-    status: open
-  - id: systems-can-change-their-own-future-constraints
-    status: open
-  - id: learning-may-not-require-error
-    status: open-after-ambiguous-probe
-  - id: state-space-may-not-be-prestatable
-    status: open
-  - id: minimum-system-does-not-imply-universal-geometry
-    status: open
+  source_closed_reconstructions: 1
 
 integrator_working_set:
   - learning-may-not-require-error
@@ -298,45 +25,40 @@ integrator_working_set:
   - local-guarantees-do-not-automatically-compose
   - contact-needs-traceability
 
-probes:
-  - id: navier-stokes-statement-fidelity
-    status: answered
-  - id: equivalence-partitions-diverge
-    status: answered
-  - id: admissibility-changes-reachability
-    status: answered
-  - id: same-function-different-mechanism
-    status: answered
-  - id: observation-vs-intervention
-    status: answered
-  - id: contact-channel-failure-injection
-    status: answered
-  - id: local-independence-does-not-compose
-    status: answered
-  - id: learning-without-explicit-error
-    status: ambiguous
-  - id: equivalence-indexing-vacuity
-    status: bad-discriminator
-
 probe_outcomes:
   answered: 7
   ambiguous: 1
-  failed: 0
-  bad_discriminator: 1
+  failed: 1
+  bad_discriminator: 2
   unverifiable: 0
 
-audits:
-  - id: suppression-audit-001-ecological-resilience
-    status: suppression-justified
+recent_probes:
+  - id: learning-without-explicit-error
+    status: ambiguous
+  - id: equivalence-indexing-vacuity
+    status: bad_discriminator
+  - id: boundedness-alone-does-not-imply-incompleteness
+    status: failed
+  - id: accessibility-buckets-vacuity
+    status: bad_discriminator
+
+controls:
+  - id: fuller-tetrahedral-primacy
+    collision: minimum-system-does-not-imply-universal-geometry
 
 meta_tests:
   - id: 001-epidemic-network-comparison
-    budget: uncontrolled
     result: promising-procedural-effect
   - id: 002-fixed-budget-tuning-comparison
-    budget: equal-evidence
-    result: promising-procedural-effect
+    result: protocol-advantage-equal-evidence
+  - id: 003-fixed-budget-soap-bubble-comparison
+    result: baseline-advantage-low-conflation-task
 
 synthesis:
   latest: fieldwork/synthesis/001-source-closed-reconstruction.md
   source_closed: true
+  seed_revised: false
+  essays_changed: false
+
+inventory_note: >
+  Directories are the inventory. This index intentionally tracks only live round state.
