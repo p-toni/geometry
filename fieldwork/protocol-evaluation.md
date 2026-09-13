@@ -38,6 +38,17 @@ The ratio is approximate. The key requirement is that a mature probe portfolio s
 
 If every probe returns a neat answer in the direction that motivated it, treat that as evidence that the probes may be too easy.
 
+### Current outcome diversity
+
+The adversarial phase has now produced all of the following:
+
+- clean answered probes;
+- one ambiguity (`learning-without-explicit-error`);
+- bad discriminators (`equivalence-indexing-vacuity`, `accessibility-buckets-vacuity`);
+- the first direct failed backbone claim (`boundedness-alone-does-not-imply-incompleteness`).
+
+The failed boundedness claim matters because it is not a vocabulary problem. A finite bounded system can completely represent, observe, and visit a finite possibility space when capacity is sufficient. The relevant premise is therefore **relative capacity**, not boundedness alone.
+
 ## Random suppression audit
 
 Human-facing compression can hide surprises. Periodically select one paused / low-yield branch by a predeclared mechanical rule, reopen it briefly, and ask whether suppression discarded material displacement.
@@ -83,6 +94,18 @@ A protocol arm can look better simply because it searches longer. Meta-tests sho
 4. **independent evaluation** — score outputs with a checker, external expert, or outcome that neither arm controls.
 
 `meta/002-fixed-budget-tuning-comparison.md` is the first equal-evidence comparison. On the same three-source packet, the anti-collapse procedure preserved objective dependence and generated a discriminator that the simple baseline did not, while the baseline remained cheaper in reasoning overhead. This is evidence of a procedural effect, not validation.
+
+`meta/003-fixed-budget-soap-bubble-comparison.md` deliberately tests a low-conflation explanatory question. The baseline already recovers the correct mechanism and scope at low cost; anti-collapse adds some scope hygiene and an optional discriminator but no material improvement for the ordinary question. **Baseline wins relative to overhead.**
+
+That negative result narrows the protocol hypothesis:
+
+> Anti-collapse should be used selectively when synthesis risk is material — especially when multiple mechanisms, objectives, boundaries, or verification regimes are plausibly bundled. It should not replace strong ordinary explanation by default.
+
+## Backbone claim typing
+
+`backbone-claim-types.md` now separates universal/conditional claims, mechanistic explanations, taxonomic possibility statements, distinction claims, and operational guards.
+
+This is necessary because a taxonomy can survive every attempted counterexample simply by being permissive, while a universal claim can be refuted by one finite construction. Falsification pressure must match the logical role of the sentence under test.
 
 ## Failure conditions for the protocol
 
