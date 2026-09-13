@@ -1,0 +1,24 @@
+protocol_meta_evaluation:
+  status: active
+  definition: fieldwork/protocol-evaluation.md
+
+suppression_audits:
+  - id: suppression-audit-001-ecological-resilience
+    result: suppression-justified
+
+baseline_comparisons:
+  - id: epidemic-network-001
+    question: How does contact-network structure change epidemic thresholds and intervention leverage?
+    baseline: fieldwork/meta/001-epidemic-network-baseline.md
+    protocol: fieldwork/meta/001-epidemic-network-protocol.md
+    comparison: fieldwork/meta/001-epidemic-network-comparison.md
+    result: promising-procedural-effect-not-validation
+    main_gain: mechanism separation, scope calibration, probe generation
+    main_cost: higher search and artifact overhead
+    next_requirement: equalize search budget in a future comparison
+
+current_protocol_hypothesis: >
+  When a question contains several potentially conflated mechanisms and the output
+  is meant to support durable generalization, the anti-collapse protocol may produce
+  more discriminating and better-calibrated conclusions than ordinary synthesis,
+  at higher search cost.
