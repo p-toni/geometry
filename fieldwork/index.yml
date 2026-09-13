@@ -4,6 +4,7 @@ mode: falsification
 
 seed: fieldwork/seed.md
 working_backbone: fieldwork/working-backbone.md
+backbone_status: fieldwork/backbone-status-001.md
 backbone_claim_types: fieldwork/backbone-claim-types.md
 constitution: fieldwork/README.md
 exploration_model: fieldwork/state-space-exploration.md
@@ -26,7 +27,7 @@ integrator_working_set:
   - contact-needs-traceability
 
 probe_outcomes:
-  answered: 7
+  answered: 8
   ambiguous: 1
   failed: 1
   bad_discriminator: 2
@@ -41,6 +42,8 @@ recent_probes:
     status: failed
   - id: accessibility-buckets-vacuity
     status: bad_discriminator
+  - id: prediction-intervention-control-dissociate
+    status: answered
 
 controls:
   - id: fuller-tetrahedral-primacy
