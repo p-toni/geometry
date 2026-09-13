@@ -27,7 +27,7 @@ integrator_working_set:
   - contact-needs-traceability
 
 probe_outcomes:
-  answered: 8
+  answered: 9
   ambiguous: 1
   failed: 1
   bad_discriminator: 2
@@ -44,10 +44,13 @@ recent_probes:
     status: bad_discriminator
   - id: prediction-intervention-control-dissociate
     status: answered
+  - id: tetrahedron-not-universal-information-geometry
+    status: answered
 
 controls:
   - id: fuller-tetrahedral-primacy
     collision: minimum-system-does-not-imply-universal-geometry
+    literal_universality: rejected-by-information-geometry-counterexample
 
 meta_tests:
   - id: 001-epidemic-network-comparison
