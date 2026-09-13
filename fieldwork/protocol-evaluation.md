@@ -73,6 +73,17 @@ Before comparing outputs, freeze evaluation criteria:
 
 Because the same model family may execute both procedures, this tests **procedural effect**, not independent intelligence. It cannot establish external validity by itself.
 
+## Budget controls
+
+A protocol arm can look better simply because it searches longer. Meta-tests should therefore progress through stronger controls:
+
+1. **uncontrolled budget** — useful only for discovering qualitative differences;
+2. **equal evidence / retrieval budget** — both arms receive the same source packet and no extra retrieval;
+3. **equal reasoning budget** — approximate the same token/time budget in addition to equal evidence;
+4. **independent evaluation** — score outputs with a checker, external expert, or outcome that neither arm controls.
+
+`meta/002-fixed-budget-tuning-comparison.md` is the first equal-evidence comparison. On the same three-source packet, the anti-collapse procedure preserved objective dependence and generated a discriminator that the simple baseline did not, while the baseline remained cheaper in reasoning overhead. This is evidence of a procedural effect, not validation.
+
 ## Failure conditions for the protocol
 
 The protocol should be weakened, simplified, or abandoned if repeated comparisons show that it:
