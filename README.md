@@ -1,5 +1,7 @@
 # geometry
 
+> **External research adjudication:** if you were given this repository to decide what Geometry should do next, start at [`ASTRA.md`](./ASTRA.md). The latest research state is in draft PR #13, not on `main`.
+
 `geometry` now has two coupled systems:
 
 1. **fieldwork/** — the research substrate. It is intentionally broader than the thesis and is governed by the anti-collapse protocol.
